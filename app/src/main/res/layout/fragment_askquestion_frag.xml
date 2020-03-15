@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+
+    >
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="@dimen/width_260"
+        android:layout_height="@dimen/height_37"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margintop_30"
+        android:background="@drawable/round_back"
+        android:backgroundTint="@color/bkgcolor_gray"
+        android:hint="  Name"
+        android:textColorHint="@color/txtcolor_lightmauve" />
+
+    <EditText
+        android:id="@+id/Item"
+        android:layout_width="@dimen/width_260"
+        android:layout_height="@dimen/height_37"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margintop_500"
+        android:background="@drawable/round_back"
+        android:backgroundTint="@color/bkgcolor_gray"
+        android:hint="    Item Link"
+        android:textColorHint="@color/txtcolor_lightmauve"
+
+
+        />
+
+    <RelativeLayout
+        android:layout_width="@dimen/width_260"
+        android:layout_height="@dimen/height_239"
+        android:layout_gravity="center"
+        android:background="@drawable/round_back"
+        android:backgroundTint="@color/bkgcolor_gray"
+
+        >
+
+        <EditText
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_170"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/round_back"
+            android:backgroundTint="@color/bkgcolor_gray"
+            android:gravity="start|top"
+            android:hint="  Message"
+            android:lines="7"
+            android:textColorHint="@color/txtcolor_lightmauve"
+
+
+            />
+
+        <ImageView
+            android:id="@+id/add_attachment"
+            android:layout_width="@dimen/width_20"
+            android:layout_height="@dimen/height_20"
+            android:layout_alignEnd="@+id/msg"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/margintop_10"
+            android:backgroundTint="@color/bkgcolor_gray"
+            android:src="@drawable/attachment" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/width_250"
+        android:layout_height="@dimen/height_40"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/marginbottom_10"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margintop_14"
+            android:gravity="start"
+            android:hint="@string/attachment_jpg"
+            android:textColorHint="@color/bkgcolor_mauve"
+            android:textSize="@dimen/textsize_10"
+
+
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="@dimen/width_123"
+            android:layout_height="@dimen/height_43"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/marginleft_91"
+            android:layout_marginTop=".5dp"
+            android:layout_toEndOf="@+id/txt"
+            android:layout_toRightOf="@+id/txt"
+            android:indeterminate="false"
+            android:max="100"
+            android:minWidth="@dimen/minWidth_250"
+            android:minHeight="@dimen/minHeight_190"
+            android:progress="19" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="@dimen/width_16"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginstart_220"
+            android:layout_marginTop="@dimen/margintop_9"
+            android:src="@drawable/close_icon" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="@dimen/width_115"
+        android:layout_height="@dimen/hight_34"
+        android:layout_marginStart="@dimen/marginstart_70"
+        android:background="@drawable/round_back"
+        android:backgroundTint="@color/bkgcolor_mauve"
+        android:padding="@dimen/padding_5"
+        android:text="@string/send"
+        android:textColor="@color/txtcolor_white" />
+
+</LinearLayout>

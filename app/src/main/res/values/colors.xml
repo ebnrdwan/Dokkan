@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#6a4e5d</color>
+    <color name="txtcolor_lightmauve">#ac9fa6</color>
+    <color name="bkgcolor_gray">#e6e4e4</color>
+    <color name="txtcolor_white">#fff</color>
+    <color name="bkgcolor_mauve">#6a4e5d</color>
 </resources>
