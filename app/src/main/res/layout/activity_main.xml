@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +13,8 @@
         android:id="@+id/linearTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:paddingTop="@dimen/padding_5"
         android:gravity="center|center_vertical"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,15 +22,15 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/profile_image"
-            app:civ_border_color="#9A7C84"
+            android:src="@drawable/profileimage"
+            app:civ_border_color="@color/color_9a7c84"
             app:civ_border_width="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_5"
             />
 
 
@@ -38,24 +38,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="5dp">
+            android:paddingBottom="@dimen/padding_5">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Salma and Esraa"
-                android:textColor="#ffff"
-                android:textSize="15sp"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:text="@string/user_name"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/textSize_15"
                 android:textStyle="bold" />
             <Button
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="@dimen/width_15"
+                android:layout_height="@dimen/height_15"
                 android:background="@drawable/edit_name"
-                android:layout_marginTop="6dp"/>
+                android:layout_marginTop="@dimen/margin_6"/>
 
         </LinearLayout>
 
@@ -64,28 +64,28 @@
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_5"
             android:drawableStart="@drawable/location"
-            android:text="cairo, Egypt"
-            android:textColor="#ffff"
-            android:textSize="15sp" />
+            android:text="@string/location_name"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/textSize_15" />
 
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="300dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="5dp"
-        app:cardBackgroundColor="#F1EDED"
-        app:cardCornerRadius="20dp"
+        android:layout_width="@dimen/width_300"
+        android:layout_height="@dimen/height_320"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:elevation="@dimen/elevation_5"
+        app:cardBackgroundColor="@color/color_F1EDED"
+        app:cardCornerRadius="@dimen/cornerRaduis_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -97,10 +97,10 @@
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
+            android:layout_height="@dimen/height_300"
+            android:paddingRight="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_10"
+            android:paddingTop="@dimen/padding_5"
             >
 
         </ListView>
@@ -109,14 +109,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/signout"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="464dp"
-        android:layout_marginEnd="8dp"
-        android:elevation="5dp"
-        app:cardBackgroundColor="#6a4e5d"
-        app:cardCornerRadius="20dp"
+        android:layout_width="@dimen/width_150"
+        android:layout_height="@dimen/height_50"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_464"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:elevation="@dimen/elevation_5"
+        app:cardBackgroundColor="@color/color_6a4e5d"
+        app:cardCornerRadius="@dimen/cornerRaduis_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,9 +128,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:text="Sign Out"
-            android:textColor="#ffff"
-            android:textSize="15dp"
+            android:text="@string/sign_out"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/textSize_15"
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>

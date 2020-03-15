@@ -11,10 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_20"
         android:layout_marginRight="@dimen/margin_20"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_5"
         android:textColor="@color/color_9a7c84"
-        android:textSize="@dimen/textSize_16"
         tools:hint="My Orders"
         android:padding="@dimen/padding_5"
         android:drawableEnd="@drawable/right_arrow"/>
