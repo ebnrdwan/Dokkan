@@ -26,7 +26,7 @@
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/prof"
+            android:src="@drawable/profile_image"
             app:civ_border_color="#9A7C84"
             app:civ_border_width="2dp"
             android:layout_marginBottom="2dp"
