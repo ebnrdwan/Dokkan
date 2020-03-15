@@ -1,6 +1,7 @@
 package com.engineering.dokkan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,31 +16,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.list);
 
-        ArrayList<String> list = AddingOptionsToList();
+        ProfileFragment headFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.head_container , headFragment)
+                .commit();
 
-        OptionAdapter adapter = new OptionAdapter(this, list);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-
-            }
-        });
-
-    }
-    public ArrayList<String> AddingOptionsToList (){
-        final ArrayList<String> list = new ArrayList<String>();
-        list.add("My Orders");
-        list.add("Messages");
-        list.add("Reviews");
-        list.add("Help");
-        list.add("Languages");
-        list.add("My Address Book");
-        return list ;
-    }
+        }
 
 }
