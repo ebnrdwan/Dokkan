@@ -29,4 +29,6 @@
     <dimen name="marginleft_91">91dp</dimen>
     <dimen name="minWidth_250">250dp</dimen>
     <dimen name="minHeight_190">190dp</dimen>
+    <dimen name="paddingstart_9">9dp</dimen>
+    <dimen name="paddingstart_15">15dp</dimen>
 </resources>

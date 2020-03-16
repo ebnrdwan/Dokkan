@@ -19,7 +19,8 @@
         android:layout_marginTop="@dimen/margintop_30"
         android:background="@drawable/round_back"
         android:backgroundTint="@color/bkgcolor_gray"
-        android:hint="  Name"
+        android:hint="@string/name"
+        android:paddingStart="@dimen/paddingstart_15"
         android:textColorHint="@color/txtcolor_lightmauve" />
 
     <EditText
@@ -31,7 +32,8 @@
         android:layout_marginTop="@dimen/margintop_500"
         android:background="@drawable/round_back"
         android:backgroundTint="@color/bkgcolor_gray"
-        android:hint="    Item Link"
+        android:hint="@string/item_link"
+        android:paddingStart="@dimen/paddingstart_15"
         android:textColorHint="@color/txtcolor_lightmauve"
 
 
@@ -54,8 +56,9 @@
             android:background="@drawable/round_back"
             android:backgroundTint="@color/bkgcolor_gray"
             android:gravity="start|top"
-            android:hint="  Message"
+            android:hint="@string/message"
             android:lines="7"
+            android:paddingStart="@dimen/paddingstart_9"
             android:textColorHint="@color/txtcolor_lightmauve"
 
 
