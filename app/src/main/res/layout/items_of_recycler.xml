@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_77"
+    android:layout_margin="@dimen/margin_20">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circimage"
+        android:layout_width="@dimen/width_90"
+        android:layout_height="@dimen/height_90"
+        android:src="@drawable/icon1"
+        app:civ_border_color="@color/color_wigth"
+        app:civ_border_width="@dimen/width_2" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginLeft_10"
+        android:layout_marginTop="@dimen/marginTop_10"
+        android:layout_toEndOf="@+id/circimage"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_Shope_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shope_name"
+            android:textColor="@color/textColor_black"
+            android:textSize="@dimen/size_18" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/is_the_price_ok_for_you"
+            android:textSize="@dimen/text_size_15" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/marginTop_60"
+        android:text="@string/_11_04_am" />
+
+</RelativeLayout>
