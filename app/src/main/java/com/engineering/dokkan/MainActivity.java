@@ -2,6 +2,8 @@ package com.engineering.dokkan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -25,4 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
+        Askquestion_Fragment Fragment = new Askquestion_Fragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Fragment);
+        ft.commit();
+        ft.addToBackStack(null);
+
+    }
 }
+

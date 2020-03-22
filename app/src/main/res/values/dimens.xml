@@ -33,4 +33,35 @@
     <dimen name="height_300">300dp</dimen>
 
     <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margintop_500">500dp</dimen>
+    <dimen name="width_260">260dp</dimen>
+    <dimen name="height_239">239dp</dimen>
+    <dimen name="height_170">170dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="width_20">20dp</dimen>
+    <dimen name="height_20">20dp</dimen>
+    <dimen name="margintop_10">10dp</dimen>
+    <dimen name="width_250">250dp</dimen>
+    <dimen name="height_40">40dp</dimen>
+    <dimen name="marginbottom_10">10dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="marginstart_70">70dp</dimen>
+    <dimen name="width_115">115dp</dimen>
+    <dimen name="hight_34">34dp</dimen>
+    <dimen name="margintop_30">30dp</dimen>
+    <dimen name="marginstart_220">220dp</dimen>
+    <dimen name="margintop_9">9dp</dimen>
+    <dimen name="width_16">16dp</dimen>
+    <dimen name="height_37">37dp</dimen>
+    <dimen name="margintop_14">14dp</dimen>
+    <dimen name="textsize_10">10sp</dimen>
+    <dimen name="width_123">123dp</dimen>
+    <dimen name="height_43">43dp</dimen>
+    <dimen name="marginleft_91">91dp</dimen>
+    <dimen name="minWidth_250">250dp</dimen>
+    <dimen name="minHeight_190">190dp</dimen>
+    <dimen name="paddingstart_9">9dp</dimen>
+    <dimen name="paddingstart_15">15dp</dimen>
 </resources>
