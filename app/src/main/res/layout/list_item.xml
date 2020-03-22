@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_5"
+        android:textColor="@color/color_9a7c84"
+        tools:hint="My Orders"
+        android:padding="@dimen/padding_5"
+        android:drawableEnd="@drawable/right_arrow"/>
+</LinearLayout>
