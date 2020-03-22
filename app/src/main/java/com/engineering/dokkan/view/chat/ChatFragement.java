@@ -1,4 +1,4 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.view.chat;
 
 
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.ChatModel;
 
 import java.util.ArrayList;
 
@@ -43,7 +46,7 @@ public class ChatFragement extends Fragment {
         chatList.add(new ChatModel(R.drawable.icon2, "Shop Name", "Is the price ok for you?", "11:05 Am"));
         chatList.add(new ChatModel(R.drawable.icon5, "Shop Name", "Is the price ok for you?", "11:05 Am"));
         chatList.add(new ChatModel(R.drawable.icon8, "Shop Name", "Is the price ok for you?", "11:05 Am"));
-        MessageAdapter adapter = new MessageAdapter(chatList);
+        chatAdapter adapter = new chatAdapter(chatList);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
         rv.setAdapter(adapter);

@@ -7,12 +7,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.Notification;
-import com.pkmmte.view.CircularImageView;
-
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ContantViewHolder> {
     ArrayList<Notification> notification_List;
@@ -52,7 +51,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     class ContantViewHolder extends RecyclerView.ViewHolder{
         TextView Text_name;
         TextView Text_number;
-        CircularImageView Text_image;
+        CircleImageView Text_image;
         TextView Text_date;
         public ContantViewHolder(@NonNull final View itemView) {
             super(itemView);

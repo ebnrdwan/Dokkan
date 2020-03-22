@@ -71,5 +71,4 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
-    <dimen name="margin_20">20dp</dimen>
 </resources>

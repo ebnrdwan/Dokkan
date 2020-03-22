@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.engineering.dokkan.view.chat.ChatFragement;
 import com.engineering.dokkan.view.notifications.No_Notifications;
 import com.engineering.dokkan.view.notifications.NotificationFragment;
 import com.engineering.dokkan.R;
@@ -23,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
 //        navigateToProfile();
 //        navigateToNotification();
-        navigateToQuestions();
+//        navigateToChat();
+//        navigateToQuestions();
 
 
     }
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.container, headFragment)
                 .commit();
     }
-
 
 
     void navigateToQuestions() {
@@ -56,14 +56,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container, fragx);
-        ft.addToBackStack(null);
         ft.commit();
     }
 
 
-
-
-
+    public void navigateToChat() {
+        ChatFragement chatFragement = new ChatFragement();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container, chatFragement);
+        ft.commit();
+    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.data;
 
 public class ChatModel {
     private int shop_logo;

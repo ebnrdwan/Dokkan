@@ -20,15 +20,12 @@
         android:layout_marginBottom="5dp"
         >
 
-        <com.pkmmte.view.CircularImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/notification_image_id"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_launcher_background"
-            app:border="true"
-            app:border_width="1dp"
-
-            ></com.pkmmte.view.CircularImageView>
+       />
 
         <RelativeLayout
             android:id="@+id/relative"
