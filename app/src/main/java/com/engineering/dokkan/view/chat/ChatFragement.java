@@ -1,19 +1,16 @@
 package com.engineering.dokkan.view.chat;
 
 
-import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.ChatModel;
+import com.engineering.dokkan.data.models.ChatModel;
+import com.engineering.dokkan.view.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -21,7 +18,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatFragement extends Fragment {
+public class ChatFragement extends BaseFragment {
     RecyclerView rv;
 
     public ChatFragement() {
@@ -30,12 +27,13 @@ public class ChatFragement extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public int getLayoutId() {
+        return R.layout.fragment_chat_fragement;
+    }
 
-        View v = inflater.inflate(R.layout.fragment_chat_fragement, container, false);
-        rv = v.findViewById(R.id.recycler);
+    @Override
+    public void initializeViews(View view) {
+        rv = view.findViewById(R.id.recycler);
 
         ArrayList<ChatModel> chatList = new ArrayList<>();
         chatList.add(new ChatModel(R.drawable.icon4, "Shop Name", "Is the price ok for you?", "11:05 Am"));
@@ -53,10 +51,14 @@ public class ChatFragement extends Fragment {
         DividerItemDecoration dv;
         dv = new DividerItemDecoration(rv.getContext(), ((LinearLayoutManager) lm).getOrientation());
         rv.addItemDecoration(dv);
+    }
 
-        return v;
 
+    @Override
+    public void setListeners() {
 
     }
+
+
 
 }

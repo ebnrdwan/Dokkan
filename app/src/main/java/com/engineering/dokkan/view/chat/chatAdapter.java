@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.ChatModel;
+import com.engineering.dokkan.data.models.ChatModel;
 
 import java.util.ArrayList;
 

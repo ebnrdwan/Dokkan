@@ -1,20 +1,16 @@
 package com.engineering.dokkan.view.notifications;
 
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.Notification;
+import com.engineering.dokkan.data.models.Notification;
+import com.engineering.dokkan.view.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -22,31 +18,28 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationFragment extends Fragment {
-    Button showNotificationBtn, showNoNotificationBtn;
-    View notification;
-    View noNotification;
+public class NotificationFragment extends BaseFragment {
+    private Button showNotificationBtn, showNoNotificationBtn;
+    private View notificationView;
+    private View noNotificationView;
 
     public NotificationFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+    public int getLayoutId() {
+        return R.layout.fragment_notification;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initViews(view);
+    public void initializeViews(View view) {
+        showNotificationBtn = view.findViewById(R.id.btnShowNotification);
+        showNoNotificationBtn = view.findViewById(R.id.btnShowNoNotification);
+        notificationView = view.findViewById(R.id.notification_layout);
+        noNotificationView = view.findViewById(R.id.noNotification_layout);
         initializeNotificationRecyclerView(view);
-        setListeners();
-
     }
-
     private void initializeNotificationRecyclerView(View v) {
         RecyclerView recyclerView = v.findViewById(R.id.recyclerview);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
@@ -60,14 +53,11 @@ public class NotificationFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void initViews(View view) {
-        showNotificationBtn = view.findViewById(R.id.btnShowNotification);
-        showNoNotificationBtn = view.findViewById(R.id.btnShowNoNotification);
-        notification = view.findViewById(R.id.notification_layout);
-        noNotification = view.findViewById(R.id.noNotification_layout);
-    }
 
-    private void setListeners() {
+
+
+    @Override
+    public void setListeners() {
         showNotificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,13 +75,13 @@ public class NotificationFragment extends Fragment {
 
 
     private void navigateToNoNotification() {
-    noNotification.setVisibility(View.VISIBLE);
-    notification.setVisibility(View.GONE);
+        noNotificationView.setVisibility(View.VISIBLE);
+        notificationView.setVisibility(View.GONE);
     }
 
     private void navigateToNotification() {
-        notification.setVisibility(View.VISIBLE);
-        noNotification.setVisibility(View.GONE);
+        notificationView.setVisibility(View.VISIBLE);
+        noNotificationView.setVisibility(View.GONE);
     }
 
 }
