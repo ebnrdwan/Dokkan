@@ -1,4 +1,4 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.view.profile;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.engineering.dokkan.R;
 
 import java.util.ArrayList;
 

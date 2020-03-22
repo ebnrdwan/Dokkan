@@ -1,4 +1,4 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.view.notifications;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.Notification;
 import com.pkmmte.view.CircularImageView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ContantViewHolder> {
-    ArrayList<Data> notification_List;
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ContantViewHolder> {
+    ArrayList<Notification> notification_List;
 
 
-    public RecyclerViewAdapter(ArrayList<Data> notificationList) {
+    public NotificationAdapter(ArrayList<Notification> notificationList) {
         notification_List = notificationList;
     }
 
@@ -29,11 +31,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ContantViewHolder holder, int position) {
-        Data data = notification_List.get(position);
-        String t = data.getNotification_name();
-        String r = data.getNotificaton_info();
-        String d = data.getNotification_date();
-        int image = data.getNotificaton_image();
+        Notification notification = notification_List.get(position);
+        String t = notification.getNotification_name();
+        String r = notification.getNotificaton_info();
+        String d = notification.getNotification_date();
+        int image = notification.getNotificaton_image();
         holder.Text_name.setText(t);
         holder.Text_number.setText(r);
         holder.Text_date.setText(d);

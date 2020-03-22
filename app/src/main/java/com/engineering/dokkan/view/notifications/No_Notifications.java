@@ -1,4 +1,4 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.view.notifications;
 
 
 import android.os.Bundle;
@@ -9,14 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.engineering.dokkan.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Askquestion_Fragment extends Fragment {
+public class No_Notifications extends Fragment {
 
 
-    public Askquestion_Fragment() {
+    public No_Notifications() {
         // Required empty public constructor
     }
 
@@ -25,7 +27,7 @@ public class Askquestion_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_askquestion_frag, container, false);
+        return inflater.inflate(R.layout.layout_no__notifications, container, false);
     }
 
 }

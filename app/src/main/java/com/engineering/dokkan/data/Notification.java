@@ -1,12 +1,12 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.data;
 
-public class Data {
+public class Notification {
     private String notification_name;
     private String notificaton_info;
     private String notification_date;
     private   int notificaton_image;
 
-    public Data(String notification_name, String notificaton_info, int notificaton_image,String notification_date) {
+    public Notification(String notification_name, String notificaton_info, int notificaton_image, String notification_date) {
         this.notification_name = notification_name;
         this.notificaton_info = notificaton_info;
         this.notificaton_image = notificaton_image;
