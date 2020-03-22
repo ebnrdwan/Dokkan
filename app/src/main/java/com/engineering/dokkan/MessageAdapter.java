@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
 public class MessageAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     ArrayList<ChatModel> chatList = new ArrayList<>();
 
