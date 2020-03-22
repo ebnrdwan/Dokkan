@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dokkan</string>
+    <string name="sorry_no_result_found">Sorry,no result found</string>
 </resources>
