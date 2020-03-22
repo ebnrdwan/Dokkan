@@ -21,4 +21,10 @@
     <string name="string2">Stay tuned! Notifications about your activity</string>
     <string name="string3">will show up here</string>
 
+    <string name="shope_name">Shope Name</string>
+    <string name="is_the_price_ok_for_you">Is the price ok for you?</string>
+    <string name="_11_04_am">11:04 Am</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="click_here">Click Here</string>
 </resources>

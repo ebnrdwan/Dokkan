@@ -61,4 +61,15 @@
     <dimen name="minHeight_190">190dp</dimen>
     <dimen name="paddingstart_9">9dp</dimen>
     <dimen name="paddingstart_15">15dp</dimen>
+    <dimen name="size_18">18sp</dimen>
+    <dimen name="margin20">20dp</dimen>
+    <dimen name="height_77">77dp</dimen>
+    <dimen name="width_90">90dp</dimen>
+    <dimen name="height_90">90dp</dimen>
+    <dimen name="width_2">2dp</dimen>
+    <dimen name="marginTop_10">10dp</dimen>
+    <dimen name="marginLeft_10">10dp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="marginTop_60">60dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
 </resources>
