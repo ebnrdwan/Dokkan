@@ -127,7 +127,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnShowNotification"
         android:layout_width="@dimen/width_115"
         android:layout_height="@dimen/hight_34"
         android:layout_marginStart="@dimen/marginstart_70"

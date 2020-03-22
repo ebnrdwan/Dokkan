@@ -2,18 +2,16 @@ package com.engineering.dokkan.view.notifications;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.Notification;
@@ -25,7 +23,9 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class NotificationFragment extends Fragment {
-    Button button_x, button_y;
+    Button showNotificationBtn, showNoNotificationBtn;
+    View notification;
+    View noNotification;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -35,10 +35,21 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_notification, container, false);
+        return inflater.inflate(R.layout.fragment_notification, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initViews(view);
+        initializeNotificationRecyclerView(view);
+        setListeners();
+
+    }
+
+    private void initializeNotificationRecyclerView(View v) {
         RecyclerView recyclerView = v.findViewById(R.id.recyclerview);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         ArrayList<Notification> data = new ArrayList<Notification>();
         data.add(new Notification("Name", "invited you to something.", R.drawable.prodict2, "11:04 AM"));
@@ -47,24 +58,24 @@ public class NotificationFragment extends Fragment {
         data.add(new Notification("Item Name", "is back in stock", R.drawable.product1, "11:04 AM"));
         NotificationAdapter adapter = new NotificationAdapter(data);
         recyclerView.setAdapter(adapter);
-        return v;
     }
 
-
-    public void initViews(View view) {
-        button_x = view.findViewById(R.id.button);
-        button_y = view.findViewById(R.id.button1);
+    private void initViews(View view) {
+        showNotificationBtn = view.findViewById(R.id.btnShowNotification);
+        showNoNotificationBtn = view.findViewById(R.id.btnShowNoNotification);
+        notification = view.findViewById(R.id.notification_layout);
+        noNotification = view.findViewById(R.id.noNotification_layout);
     }
-    public void setListeners()
-    {
-        button_x.setOnClickListener(new View.OnClickListener() {
+
+    private void setListeners() {
+        showNotificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 navigateToNotification();
             }
         });
-        button_y.setOnClickListener(new View.OnClickListener() {
+        showNoNotificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToNoNotification();
@@ -73,22 +84,14 @@ public class NotificationFragment extends Fragment {
     }
 
 
-    public void navigateToNoNotification() {
-        No_Notifications fragy = new No_Notifications();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, fragy);
-        ft.addToBackStack(null);
-        ft.commit();
+    private void navigateToNoNotification() {
+    noNotification.setVisibility(View.VISIBLE);
+    notification.setVisibility(View.GONE);
     }
 
-    public void navigateToNotification() {
-        NotificationFragment fragx = new NotificationFragment();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, fragx);
-        ft.addToBackStack(null);
-        ft.commit();
+    private void navigateToNotification() {
+        notification.setVisibility(View.VISIBLE);
+        noNotification.setVisibility(View.GONE);
     }
 
 }

@@ -1,17 +1,14 @@
 package com.engineering.dokkan.view;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import com.engineering.dokkan.view.chat.ChatFragement;
-import com.engineering.dokkan.view.notifications.No_Notifications;
-import com.engineering.dokkan.view.notifications.NotificationFragment;
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.view.chat.ChatFragement;
+import com.engineering.dokkan.view.notifications.NotificationFragment;
 import com.engineering.dokkan.view.profile.ProfileFragment;
 import com.engineering.dokkan.view.questions.AskQuestionFragment;
 
