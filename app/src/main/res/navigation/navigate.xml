@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/toAskQuestions"
+            app:destination="@id/askQuestionFragment" />
+
+        <action
+            android:id="@+id/toChat"
+            app:destination="@id/chatFragement" />
+
+        <action
+            android:id="@+id/toProfile"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/toNotification"
+            app:destination="@id/notificationFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_askquestion_frag"
+        android:id="@+id/askQuestionFragment"
+        android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
+        android:label="AskQuestionFragment" />
+    <fragment
+        tools:layout="@layout/fragment_chat_fragement"
+        android:id="@+id/chatFragement"
+        android:name="com.engineering.dokkan.view.chat.ChatFragement"
+        android:label="ChatFragement" />
+    <fragment
+        tools:layout="@layout/fragment_notification"
+        android:id="@+id/notificationFragment"
+        android:name="com.engineering.dokkan.view.notifications.NotificationFragment"
+        android:label="NotificationFragment" >
+
+
+
+
+
+    </fragment>
+
+
+
+
+</navigation>

@@ -1,68 +1,63 @@
 package com.engineering.dokkan.view;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.view.chat.ChatFragement;
-import com.engineering.dokkan.view.notifications.NotificationFragment;
-import com.engineering.dokkan.view.profile.ProfileFragment;
-import com.engineering.dokkan.view.questions.AskQuestionFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    FrameLayout rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        rootView = findViewById(R.id.rootView);
 
 //        navigateToProfile();
 //        navigateToNotification();
 //        navigateToChat();
-        navigateToQuestions();
+//        navigateToQuestions();
 
 
     }
 
 
     void navigateToProfile() {
-        ProfileFragment headFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.container, headFragment)
-                .commit();
+        getNavController().navigate(R.id.toProfile);
     }
 
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
+
+    }
+
     void navigateToQuestions() {
-        AskQuestionFragment Fragment = new AskQuestionFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.container, Fragment);
-        ft.commit();
+        getNavController().navigate(R.id.toAskQuestions);
+    }
+
+
+    NavController getNavController() {
+        return Navigation.findNavController(this, R.id.nav_host_fragment);
+
     }
 
 
     public void navigateToNotification() {
-        NotificationFragment fragx = new NotificationFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, fragx);
-        ft.commit();
+        getNavController().navigate(R.id.toNotification);
     }
 
 
     public void navigateToChat() {
-        ChatFragement chatFragement = new ChatFragement();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, chatFragement);
-        ft.commit();
+        getNavController().navigate(R.id.toChat);
     }
 
 
