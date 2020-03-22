@@ -6,5 +6,10 @@
     <string name="string1">NO notificatios yet</string>
     <string name="string2">Stay tuned! Notifications about your activity</string>
     <string name="string3">will show up here</string>
+    <string name="notification_button">notification</string>
+    <string name="no_notification_button">No_notification</string>
+    <string name="disc_item">invited you to something</string>
+    <string name="name_item">NAME</string>
+    <string name="date_item">11:04AM</string>
 
 </resources>

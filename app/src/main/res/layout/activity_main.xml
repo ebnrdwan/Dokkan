@@ -2,28 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="@dimen/layout_match_parent"
+    android:layout_height="@dimen/layout_match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:gravity="center">
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="notification"
-        android:layout_marginTop="2dp"/>
+        android:layout_width="@dimen/layout_match_parent"
+        android:layout_height="@dimen/layout_wrap_content"
+        android:text="@string/notification_button"
+        android:layout_marginTop="@dimen/layout_dimen_2dp"/>
     <Button
         android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="no_notification"
-        android:layout_marginTop="5dp"/>
+        android:layout_width="@dimen/layout_match_parent"
+        android:layout_height="@dimen/layout_wrap_content"
+        android:text="@string/no_notification_button"
+        android:layout_marginTop="@dimen/layout_dimen_2dp"/>
     <FrameLayout
         android:id="@+id/contener"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/layout_match_parent"
+        android:layout_height="@dimen/layout_match_parent"
         />
 
 </LinearLayout>

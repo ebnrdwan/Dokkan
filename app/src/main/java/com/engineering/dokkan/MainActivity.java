@@ -1,6 +1,7 @@
 package com.engineering.dokkan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -14,32 +15,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button_x=findViewById(R.id.button);
-        button_y = findViewById(R.id.button1);
-        button_x.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Notification fragx = new Notification();
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.contener,fragx);
-                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        });
-        button_y.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               No_Notifications fragy = new No_Notifications();
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.contener,fragy);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
-
+        initializeViews();
+        setLisetners(button_x,new Notification());
+        setLisetners(button_y,new No_Notifications());
 
     }
+
+    public void initializeViews(){
+    button_x=findViewById(R.id.button);
+    button_y = findViewById(R.id.button1);
+    }
+   public void navigateToNotification(Fragment fragment){
+       FragmentManager fm = getSupportFragmentManager();
+       FragmentTransaction ft = fm.beginTransaction();
+       ft.replace(R.id.contener,fragment);
+       ft.addToBackStack(null);
+       ft.commit();
+    }
+     public void setLisetners(Button button , final Fragment fragment){
+         button.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 navigateToNotification(fragment);
+
+             }
+         });
+    }
+
 }

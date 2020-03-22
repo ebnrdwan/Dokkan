@@ -2,85 +2,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="@dimen/layout_match_parent"
+    android:layout_height="@dimen/layout_wrap_content"
     android:layout_gravity="center"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="15dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginRight="@dimen/layout_dimen_20dp"
+    android:layout_marginLeft="@dimen/layout_dimen_20dp"
+    android:layout_marginTop="@dimen/layout_dimen_15dp"
+    android:layout_marginBottom="@dimen/layout_dimen_5dp">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/layout_match_parent"
+        android:layout_height="@dimen/layout_wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/layout_dimen_10dp"
+        android:layout_marginRight="@dimen/layout_dimen_10dp"
+        android:layout_marginTop="@dimen/layout_dimen_5dp"
+        android:layout_marginBottom="@dimen/layout_dimen_5dp"
         >
 
         <com.pkmmte.view.CircularImageView
             android:id="@+id/notification_image_id"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/layout_dimen_60dp"
+            android:layout_height="@dimen/layout_dimen_60dp"
             android:src="@drawable/ic_launcher_background"
             app:border="true"
-            app:border_width="1dp"
+            app:border_width="@dimen/layout_dimen_1dp"
 
             ></com.pkmmte.view.CircularImageView>
 
         <RelativeLayout
             android:id="@+id/relative"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/layout_match_parent"
+            android:layout_height="@dimen/layout_wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginLeft="2.5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/layout_dimen_3dp"
+            android:layout_marginRight="@dimen/layout_dimen_10dp"
+            android:layout_marginTop="@dimen/layout_dimen_5dp"
+            android:layout_marginBottom="@dimen/layout_dimen_5dp"
 
             >
             <LinearLayout
                 android:id="@+id/textLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/layout_wrap_content"
+                android:layout_height="@dimen/layout_wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/notification_name_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NAME"
+                    android:layout_width="@dimen/layout_wrap_content"
+                    android:layout_height="@dimen/layout_wrap_content"
+                    android:text="@string/name_item"
                     android:textStyle="bold"
-                    android:textColor="#86636E"
+                    android:textColor="@color/colortextblod"
                     />
                 <TextView
                     android:id="@+id/notification_info_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="invited you to something"
-                    android:textColor="#C4BCBE"
+                    android:layout_width="@dimen/layout_wrap_content"
+                    android:layout_height="@dimen/layout_wrap_content"
+                    android:layout_marginLeft="@dimen/layout_dimen_1dp"
+                    android:text="@string/disc_item"
+                    android:textColor="@color/colortext"
 
                     />
             </LinearLayout>
             <TextView
                 android:id="@+id/notification_date_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/layout_wrap_content"
+                android:layout_height="@dimen/layout_wrap_content"
                 android:layout_below="@+id/textLayout"
-                android:text="11:04AM"
-                android:textColor="#C4BCBE"
+                android:text="@string/date_item"
+                android:textColor="@color/colortext"
                 />
         </RelativeLayout>
     </LinearLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#AD808F"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_width="@dimen/layout_match_parent"
+        android:layout_height="@dimen/layout_dimen_1dp"
+        android:background="@color/colortextblod"
+        android:layout_marginLeft="@dimen/layout_dimen_19dp"
+        android:layout_marginRight="@dimen/layout_dimen_19dp"
         >
 
     </View>
