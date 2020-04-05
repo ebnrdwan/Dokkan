@@ -71,4 +71,27 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="height_260">260dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="textSize_17">17sp</dimen>
+    <dimen name="margin_190">190dp</dimen>
+    <dimen name="width_60">60dp</dimen>
+    <dimen name="height_1">1dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="width_70">70dp</dimen>
+    <dimen name="textSize_14">14sp</dimen>
+    <dimen name="margin_13">13dp</dimen>
+    <dimen name="width_130">130dp</dimen>
+    <dimen name="elevation_8">8dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="cornerRaduis_10">10dp</dimen>
+    <dimen name="width_100">100dp</dimen>
+    <dimen name="height_110">110dp</dimen>
+    <dimen name="width_160">160dp</dimen>
+    <dimen name="height_180">180dp</dimen>
+    <dimen name="cornerRadius_6">6dp</dimen>
+    <dimen name="height_100">100dp</dimen>
 </resources>

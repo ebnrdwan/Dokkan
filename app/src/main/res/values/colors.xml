@@ -19,4 +19,7 @@
     <color name="bkgcolor_mauve">#6a4e5d</color>
     <color name="color_wigth">#ffff</color>
     <color name="textColor_black">#f000</color>
+    <color name="color_e6e4e4">#e6e4e4</color>
+    <color name="color_f8f6f7">#f8f6f7</color>
+    <color name="color_baa6ab">#baa6ab</color>
 </resources>

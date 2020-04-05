@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_e6e4e4">
+
+
+        <ImageView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_170"
+            android:background="@drawable/prom"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_recently_view"
+            android:layout_below="@id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recently_viewed"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:paddingStart="@dimen/padding_5"
+            android:paddingTop="@dimen/padding_5"
+            android:layout_marginTop="@dimen/padding_5"
+            android:layout_marginLeft="@dimen/padding_5"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/tv_recently_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recently_view_recyclerView"
+            android:paddingLeft="@dimen/padding_10"
+            android:paddingTop="@dimen/padding_15"
+
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_below="@id/recently_view_recyclerView"
+            android:id="@+id/based_on_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_260"
+            android:layout_marginTop="@dimen/margin_25"
+            android:layout_marginLeft="@dimen/margin_25"
+            android:layout_marginRight="@dimen/margin_25"
+            android:background="@drawable/background_with_radius">
+
+
+            <TextView
+                android:id="@+id/categ_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accessories"
+                android:textColor="@color/color_e6e4e4"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textStyle="bold"
+                android:textSize="@dimen/textSize_17"/>
+            <TextView
+
+                android:layout_below="@id/categ_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/based_on_your_recent_searches"
+                android:textColor="@color/color_e6e4e4"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_5"
+                />
+
+            <TextView
+                android:id="@+id/tv_seemore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categ_name"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_190"
+                android:text="@string/see_more"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/color_e6e4e4"
+                android:onClick="seemoreClick"
+                android:clickable="true"
+                />
+            <View
+                android:layout_below="@id/tv_seemore"
+                android:layout_width="@dimen/width_60"
+                android:layout_height="@dimen/height_1"
+                android:layout_marginRight="@dimen/margin_14"
+                android:layout_alignParentRight="true"
+                android:background="@color/color_e6e4e4" />
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_images"
+            android:layout_below="@id/recently_view_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_100"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_10"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        <TextView
+            android:id="@+id/tv_similarItem"
+            android:layout_below="@id/based_on_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/similar_to_items_you_viewed"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:paddingLeft="@dimen/padding_5"
+            android:paddingTop="@dimen/padding_10"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginLeft="@dimen/margin_5"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/tv_similarItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/similarItem_recyclerView"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingTop="@dimen/padding_15"
+            >
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_viewmore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/similarItem_recyclerView"
+            android:text="@string/view_more"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
+            android:onClick="viewmoreClick"
+            android:textStyle="bold"
+            android:clickable="true"
+            />
+        <View
+            android:id="@+id/line"
+            android:layout_below="@id/tv_viewmore"
+            android:layout_width="@dimen/width_70"
+            android:layout_height="@dimen/height_1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/margin_14"
+            android:background="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:id="@+id/other_categ_based_on_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_260"
+            android:layout_below="@id/line"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginLeft="@dimen/margin_25"
+            android:layout_marginRight="@dimen/margin_25"
+            android:background="@drawable/background_with_radius">
+
+
+            <TextView
+                android:id="@+id/other_categ_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="@string/any_other_category"
+                android:textColor="@color/color_e6e4e4"
+                android:textSize="@dimen/textSize_14"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/other_categ_name"
+                android:layout_marginLeft="@dimen/margin_13"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="@string/based_on_your_recent_searches"
+                android:textColor="@color/color_e6e4e4" />
+
+            <TextView
+                android:id="@+id/tv_seemore2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/other_categ_name"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/margin_190"
+                android:layout_marginRight="@dimen/margin_15"
+                android:clickable="true"
+                android:onClick="seemoreClick"
+                android:text="@string/see_more"
+                android:textColor="@color/color_e6e4e4" />
+
+            <View
+                android:layout_width="@dimen/width_60"
+                android:layout_height="@dimen/height_1"
+                android:layout_below="@id/tv_seemore2"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_14"
+                android:background="@color/color_e6e4e4" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_other_categ"
+            android:layout_below="@id/similarItem_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_100"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_10"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_recently_fav"
+            android:layout_below="@id/other_categ_based_on_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/similar_to_recent_favorites"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:paddingLeft="@dimen/padding_5"
+            android:paddingTop="@dimen/padding_5"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginLeft="@dimen/margin_5"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recently_fav_recyclerView"
+            android:layout_below="@+id/tv_recently_fav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_10"
+            android:paddingTop="@dimen/padding_15"
+
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

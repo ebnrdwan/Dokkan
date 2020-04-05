@@ -23,4 +23,18 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+    <string name="recently_viewed">Recently Viewed</string>
+
+    <string name="accessories">Accessories</string>
+    <string name="based_on_your_recent_searches">Based on your recent searches</string>
+    <string name="see_more">See more</string>
+    <string name="similar_to_items_you_viewed">Similar to items you Viewed</string>
+    <string name="view_more">View more</string>
+    <string name="any_other_category">Any Other Category</string>
+    <string name="similar_to_recent_favorites">Similar to recent favorites</string>
+    <string name="item_full_name">Item Full Name</string>
+    <string name="price_150">$150</string>
+
+
 </resources>
