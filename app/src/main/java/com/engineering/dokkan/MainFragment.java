@@ -38,8 +38,6 @@ public class MainFragment extends BaseFragment {
         return Navigation.findNavController(getActivity() ,R.id.nav_host_fragment);
     }
 
-
-
     @Override
     public void initializeViews(View view) {
         initialization(view);
@@ -93,6 +91,7 @@ public class MainFragment extends BaseFragment {
         btn_profile = view.findViewById(R.id.btn_profile);
         btn_askQ = view.findViewById(R.id.btn_ask);
     }
+
 
 
 }
