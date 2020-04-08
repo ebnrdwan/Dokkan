@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment"
+    android:background="@drawable/welcome">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:paddingStart="@dimen/padding_15">
+
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:layout_margin="@dimen/margin_15"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/color_f8f6f7"
+            />
+        <Button
+            android:id="@+id/btn_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_15"
+            android:background="@color/color_f8f6f7"
+            android:text="@string/messages"
+            android:textColor="@color/colorPrimaryDark" />
+        <Button
+            android:id="@+id/btn_notify"
+            android:padding="@dimen/padding_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notification"
+            android:layout_margin="@dimen/margin_5"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/color_f8f6f7"
+            />
+        <Button
+            android:id="@+id/btn_profile"
+            android:background="@color/color_f8f6f7"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile"
+            android:layout_margin="@dimen/margin_15"
+
+            />
+        <Button
+            android:id="@+id/btn_ask"
+            android:layout_margin="@dimen/margin_5"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/color_f8f6f7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ask_question"
+            android:padding="@dimen/padding_10"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

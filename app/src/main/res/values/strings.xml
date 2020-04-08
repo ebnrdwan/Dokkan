@@ -8,7 +8,7 @@
 
     <string name="send">Send</string>
 
-<string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attachment_jpg">Attachment.jpg</string>
     <string name="message">Message</string>
     <string name="item_link">Item Link</string>
@@ -35,6 +35,11 @@
     <string name="similar_to_recent_favorites">Similar to recent favorites</string>
     <string name="item_full_name">Item Full Name</string>
     <string name="price_150">$150</string>
+    <string name="home">Home</string>
+    <string name="messages">Messages</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+    <string name="ask_question">Ask Question</string>
 
 
 </resources>
