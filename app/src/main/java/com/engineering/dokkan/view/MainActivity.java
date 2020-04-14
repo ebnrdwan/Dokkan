@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 //        navigateToProfile();
 //        navigateToNotification();
 //        navigateToChat();
-        navigateToQuestions();
+  //      navigateToQuestions();
 
 
     }
