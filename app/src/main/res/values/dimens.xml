@@ -71,4 +71,26 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+
+    <dimen name="margen_top_200">200dp</dimen>
+    <dimen name="font_23">23sp</dimen>
+    <dimen name="layout_width_207">207dp</dimen>
+    <dimen name="layout_height_48">48dp</dimen>
+    <dimen name="margin_Top_512">512dp</dimen>
+    <dimen name="font_17">17sp</dimen>
+    <dimen name="margin_Top_575">575dp</dimen>
+    <dimen name="margin_Top_618">618dp</dimen>
+    <dimen name="layout_width_34">34dp</dimen>
+    <dimen name="layout_width_31">31dp</dimen>
+    <dimen name="layout_width_33">33dp</dimen>
+    <dimen name="margin_Left_138">138dp</dimen>
+    <dimen name="margin_Left_15">15dp</dimen>
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="margin_Top_672">672dp</dimen>
+    <dimen name="margin_Top_687">687dp</dimen>
+
+
+
+
+
 </resources>

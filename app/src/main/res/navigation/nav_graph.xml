@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_Welcome2">
+    <fragment
+        android:id="@+id/fragment_Welcome2"
+        android:name="com.engineering.dokkan.view.welcome.Fragment_Welcome"
+        android:label="Fragment_Welcome" >
+        <action
+            android:id="@+id/action_fragment_Welcome2_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+        <action
+            android:id="@+id/action_fragment_Welcome2_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+        <action
+            android:id="@+id/action_fragment_Welcome2_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
+    </fragment>
+    <fragment
+        android:id="@+id/askQuestionFragment"
+        android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
+        android:label="AskQuestionFragment" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="com.engineering.dokkan.view.MainActivity"
+        android:label="fragment_askquestion_frag"
+        tools:layout="@layout/fragment_askquestion_frag" />
+</navigation>

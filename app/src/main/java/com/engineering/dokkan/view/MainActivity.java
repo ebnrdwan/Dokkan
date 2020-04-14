@@ -15,6 +15,7 @@ import com.engineering.dokkan.view.questions.AskQuestionFragment;
 public class MainActivity extends AppCompatActivity {
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
     void navigateToProfile() {
         ProfileFragment headFragment = new ProfileFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
