@@ -25,6 +25,7 @@ public class Fragment_Welcome extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
+       // btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singUp = view.findViewById(R.id.btn_signUp);
 
