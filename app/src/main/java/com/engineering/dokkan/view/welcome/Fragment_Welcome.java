@@ -25,7 +25,6 @@ public class Fragment_Welcome extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
-       // btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singUp = view.findViewById(R.id.btn_signUp);
 
@@ -60,7 +59,7 @@ public class Fragment_Welcome extends BaseFragment {
         return Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
     }
-
+/*
     void navigateToAskQuestion() {
         getNavController().navigate(R.id.action_fragment_Welcome2_to_askQuestionFragment);
     }
@@ -72,7 +71,7 @@ public class Fragment_Welcome extends BaseFragment {
     void navigateToM() {
         getNavController().navigate(R.id.action_fragment_Welcome2_to_mainActivity2);
     }
-
+*/
 
 
 }
