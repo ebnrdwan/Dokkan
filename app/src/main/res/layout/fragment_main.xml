@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Favourite.mainFragment"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/btn_askQ"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin20"
+        android:gravity="center"
+        android:text="AskQ"
+
+        />
+
+    <Button
+        android:id="@+id/btn_fav"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:text="Favourite"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_30"/>
+
+    <Button
+        android:id="@+id/btn_profile"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:text="Favourite"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_30"/>
+</LinearLayout>

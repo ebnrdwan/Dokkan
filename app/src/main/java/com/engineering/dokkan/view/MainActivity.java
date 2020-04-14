@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 //        navigateToProfile();
 //        navigateToNotification();
 //        navigateToChat();
-        navigateToQuestions();
+          navigateToQuestions();
 
 
     }
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, chatFragement);
         ft.commit();
     }
+
 
 
 }

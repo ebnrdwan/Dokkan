@@ -7,7 +7,6 @@
     <dimen name="textSize_16">16sp</dimen>
 
 
-    <dimen name="padding_5">5dp</dimen>
     <dimen name="padding_10">10dp</dimen>
 
 
@@ -71,4 +70,26 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+    <dimen name="height_45">45dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="width_5">5dp</dimen>
+    <dimen name="paddingStart_5">2dp</dimen>
+    <dimen name="cardCornerRadius_4">4dp</dimen>
+    <dimen name="paddingLeft_2">2dp</dimen>
+    <dimen name="cardElevation_3">3dp</dimen>
+    <dimen name="height_130">130dp</dimen>
+    <dimen name="width_25">25dp</dimen>
+    <dimen name="paddingEnd_4">4dp</dimen>
+    <dimen name="paddingRight_4">4dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="paddingStart_4">4dp</dimen>
+    <dimen name="paddingLeft_4">4dp</dimen>
+    <dimen name="height_190">190dp</dimen>
+    <dimen name="marginTop_4">4dp</dimen>
+    <dimen name="paddingBottom_2">2dp</dimen>
+    <dimen name="txtSize_11">11sp</dimen>
+    <dimen name="marginRight_5">5dp</dimen>
+    <dimen name="marginEnd_5">5dp</dimen>
+    <dimen name="marginLeft_6">6dp</dimen>
+    <dimen name="marginTop_164">164dp</dimen>
 </resources>
