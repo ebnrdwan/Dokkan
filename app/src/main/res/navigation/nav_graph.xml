@@ -3,34 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/favourite_Fragment">
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.engineering.dokkan.view.Favourite.mainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:id="@+id/favourite_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Favourite_Fragment"
+        android:label="Favourite_Fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_askQuestionFragment"
-            app:destination="@id/askQuestionFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_item_Fragment"
+            android:id="@+id/action_favourite_Fragment_to_item_Fragment"
             app:destination="@id/item_Fragment" />
+        <action
+            android:id="@+id/action_favourite_Fragment_to_shop_Fragment"
+            app:destination="@id/shop_Fragment" />
     </fragment>
-    <fragment
-        android:id="@+id/askQuestionFragment"
-        android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
-        android:label="AskQuestionFragment" />
     <fragment
         android:id="@+id/item_Fragment"
         android:name="com.engineering.dokkan.view.Favourite.Item_Fragment"
         android:label="item_fragment"
         tools:layout="@layout/item_fragment" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
-        android:label="ProfileFragment" />
-
+        android:id="@+id/shop_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Shop_Fragment"
+        android:label="shop_fragment"
+        tools:layout="@layout/shop_fragment" />
 </navigation>
