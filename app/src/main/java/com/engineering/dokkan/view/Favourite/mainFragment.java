@@ -3,9 +3,12 @@ package com.engineering.dokkan.view.Favourite;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +17,14 @@ import android.widget.Button;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class mainFragment extends BaseFragment {
+
+      private TabLayout tabLayout;
+      private ViewPager view;
+      private ViewPagerAdapter viewadapter;
+      View v ;
       private Button askq_btn , fav_btn , profile_btn ;
 
     public mainFragment() {
@@ -26,14 +32,21 @@ public class mainFragment extends BaseFragment {
     }
 
 
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_favourite, container, false);
+        tabLayout = v.findViewById(R.id.tablayout);
+        view = v.findViewById(R.id.viewpager);
+        viewadapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewadapter.AddFragment(new Item_Fragment(), "Item");
+        viewadapter.AddFragment(new Shop_Fragment(), "Shop");
+        view.setAdapter(viewadapter);
+        tabLayout.setupWithViewPager(view);
+        return v;
+
     }
-
-
     NavController getNavController() {
         return Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
     }
@@ -56,7 +69,7 @@ public class mainFragment extends BaseFragment {
         fav_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_fragmentFavourite);
+                getNavController().navigate(R.id.action_mainFragment_to_item_Fragment);
 
             }
         });

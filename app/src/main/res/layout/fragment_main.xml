@@ -32,7 +32,7 @@
         android:id="@+id/btn_profile"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
-        android:text="Favourite"
+        android:text="profile"
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin_30"/>
 </LinearLayout>

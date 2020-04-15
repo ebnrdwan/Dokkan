@@ -13,23 +13,24 @@
             android:id="@+id/action_mainFragment_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_fragmentFavourite"
-            app:destination="@id/fragmentFavourite" />
-        <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_item_Fragment"
+            app:destination="@id/item_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/askQuestionFragment"
         android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
         android:label="AskQuestionFragment" />
     <fragment
-        android:id="@+id/fragmentFavourite"
-        android:name="com.engineering.dokkan.view.Favourite.FragmentFavourite"
-        android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        android:id="@+id/item_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Item_Fragment"
+        android:label="item_fragment"
+        tools:layout="@layout/item_fragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.engineering.dokkan.view.profile.ProfileFragment"
         android:label="ProfileFragment" />
+
 </navigation>
