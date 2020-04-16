@@ -30,7 +30,6 @@
                 />
 
 
-
             <TextView
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
@@ -82,6 +81,14 @@
                 android:background="#fff"/>
 
         </RelativeLayout>
+        <ImageButton
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_25"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_favorite_black_24dp"
+            android:background="@android:color/transparent"/>
+
+
 
 
     </androidx.cardview.widget.CardView>

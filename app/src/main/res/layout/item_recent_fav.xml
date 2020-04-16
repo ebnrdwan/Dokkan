@@ -23,8 +23,17 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/grid_two"
-
             />
+
+        <ImageButton
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_25"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_favorite_black_24dp"
+            android:background="@android:color/transparent"/>
+
+
+
 
 
 
