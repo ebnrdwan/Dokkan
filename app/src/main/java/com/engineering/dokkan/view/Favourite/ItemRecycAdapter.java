@@ -13,10 +13,10 @@ import com.engineering.dokkan.R;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.favouriteHolder> {
-    private ArrayList< FavouriteData > favList;
+public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favouriteHolder> {
+    private ArrayList<FavitemModel> favList;
 
-    public MyAdapter(ArrayList<FavouriteData> favList) {
+    public ItemRecycAdapter(ArrayList<FavitemModel> favList) {
         this.favList = favList;
     }
 

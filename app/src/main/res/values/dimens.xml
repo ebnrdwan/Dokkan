@@ -92,4 +92,20 @@
     <dimen name="marginEnd_5">5dp</dimen>
     <dimen name="marginLeft_6">6dp</dimen>
     <dimen name="marginTop_164">164dp</dimen>
+    <dimen name="textSize_13">13sp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="height_115">115dp</dimen>
+    <dimen name="width_75">75dp</dimen>
+    <dimen name="height_55">55dp</dimen>
+    <dimen name="marginStart_15">15dp</dimen>
+
+    <dimen name="marginBottom_15">15dp</dimen>
+    <dimen name="marginleft_77">77dp</dimen>
+    <dimen name="margintop_17">17dp</dimen>
+    <dimen name="marginleft_90">90dp</dimen>
+    <dimen name="margintop_170">170dp</dimen>
+    <dimen name="textsize_8">8sp</dimen>
+    <dimen name="margintop_130">130dp</dimen>
+    <dimen name="marginstart_287">287dp</dimen>
+    <dimen name="marginstart_285">285dp</dimen>
 </resources>

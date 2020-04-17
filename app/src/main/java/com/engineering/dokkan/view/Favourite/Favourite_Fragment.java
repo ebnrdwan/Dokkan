@@ -1,7 +1,7 @@
 package com.engineering.dokkan.view.Favourite;
 
 import android.view.View;
-import android.widget.Button;
+
 
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -39,11 +39,12 @@ public class Favourite_Fragment extends BaseFragment{
         viewadapter.AddFragment(new Shop_Fragment(), "Shop");
         viewPager.setAdapter(viewadapter);
         tabLayout.setupWithViewPager(viewPager);
-
+        
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
+            public void onTabSelected(TabLayout.Tab tabLayout) {
+                viewPager.setCurrentItem(tabLayout.getPosition());
+                switch (tabLayout.getPosition()) {
                     case 0:
                         getNavController().navigate(R.id.action_favourite_Fragment_to_item_Fragment);
                         break;
@@ -54,18 +55,18 @@ public class Favourite_Fragment extends BaseFragment{
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onTabUnselected(TabLayout.Tab tabLayout) {
 
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onTabReselected(TabLayout.Tab tabLayout) {
             }
-        });}
 
-            @Override
-            public void setListeners() {
-
+        });
     }
-}
+        @Override
+        public void setListeners () {
+
+        }
+    }

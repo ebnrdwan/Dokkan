@@ -26,4 +26,5 @@
     <string name="shop">Shop</string>
     <string name="item">Item</string>
     <string name="_150">$150</string>
+    <string name="shopName">Shop Name</string>
 </resources>

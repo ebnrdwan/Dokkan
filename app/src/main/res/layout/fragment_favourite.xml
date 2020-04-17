@@ -19,11 +19,12 @@
         android:padding="@dimen/padding_5"
         app:tabIndicatorColor="@color/colorPrimary"
         app:tabRippleColor="@color/colorPrimary"
-        app:tabTextColor="@color/colorAccent">
+        app:tabTextColor="@color/colorAccent"
+        >
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/ItemTab"
-            android:layout_width="@dimen/width_5"
+            android:layout_width="@dimen/width_25"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/item" />
@@ -31,7 +32,7 @@
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/shopTab"
-            android:layout_width="@dimen/width_5"
+            android:layout_width="@dimen/width_25"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/shop" />

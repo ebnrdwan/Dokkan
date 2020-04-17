@@ -1,12 +1,12 @@
 package com.engineering.dokkan.view.Favourite;
 
-public class FavouriteData {
+public class FavitemModel {
     String name ;
     String price ;
     int image ;
     int icon ;
 
-    public FavouriteData(String name, String price, int image, int icon) {
+    public FavitemModel(String name, String price, int image, int icon) {
         this.name = name;
         this.price = price;
         this.image = image;

@@ -19,7 +19,7 @@ public class Item_Fragment extends Fragment {
 
      View v ;
      private RecyclerView recyclerView;
-     private ArrayList<FavouriteData> data;
+     private ArrayList<FavitemModel> data;
 
     public Item_Fragment() {
     }
@@ -29,7 +29,7 @@ public class Item_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.item_fragment,container,false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_id);
-        MyAdapter Adapter = new MyAdapter(data);
+        ItemRecycAdapter Adapter = new ItemRecycAdapter(data);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(Adapter);
         return v ;
@@ -40,11 +40,11 @@ public class Item_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         data = new ArrayList<>();
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo1,R.drawable.fav_icon));
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo2,R.drawable.fav_icon));
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo5,R.drawable.fav_icon));
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo4,R.drawable.fav_icon));
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo3,R.drawable.fav_icon));
-        data.add(new FavouriteData("Full Item Name","150$",R.drawable.photo1,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo1,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo2,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo5,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo4,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo3,R.drawable.fav_icon));
+        data.add(new FavitemModel("Full Item Name","150$",R.drawable.photo1,R.drawable.fav_icon));
     }
 }

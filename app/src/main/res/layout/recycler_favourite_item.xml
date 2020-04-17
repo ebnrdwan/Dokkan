@@ -5,7 +5,7 @@
     android:id="@+id/cardview"
     android:layout_width="@dimen/width_150"
     android:layout_height="@dimen/height_190"
-    android:layout_margin="@dimen/margin_5"
+    android:layout_margin="@dimen/margin_10"
     android:paddingStart="@dimen/paddingStart_5"
     android:clickable="true"
     cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
@@ -50,7 +50,7 @@
             android:paddingStart="@dimen/paddingStart_4"
             android:paddingLeft="@dimen/paddingLeft_4"
             android:text="Full Item Name"
-            android:textSize="@dimen/textsize_10"
+            android:textSize="@dimen/textSize_13"
             android:layout_below="@+id/itemImage"
             android:textColor="@color/txtColor_black"
             />
