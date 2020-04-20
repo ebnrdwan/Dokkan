@@ -19,4 +19,19 @@
     <color name="bkgcolor_mauve">#6a4e5d</color>
     <color name="color_wigth">#ffff</color>
     <color name="textColor_black">#f000</color>
+
+
+
+    <color name="color_FFF5F5F5">#FFF5F5F5</color>
+    <color name="color_FFF7F1F4">#FFF7F1F4</color>
+    <color name="color_FDFBFB">#FDFBFB</color>
+    <color name="color_fff">#fff</color>
+    <color name="color_FFF7F2F2">#FFF7F2F2</color>
+    <color name="color_e6e4e4">#e6e4e4</color>
+    <color name="color_fff2">#fff</color>
+    <color name="color_FFF8F7F7">#FFF8F7F7</color>
+
+
+
+
 </resources>

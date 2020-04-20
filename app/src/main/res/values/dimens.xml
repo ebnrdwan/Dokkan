@@ -71,4 +71,37 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+
+
+    <dimen name="width_89dp">89dp</dimen>
+    <dimen name="height_84dp">84dp</dimen>
+    <dimen name="txt_size_30sp">30sp</dimen>
+    <dimen name="width_100dp">100dp</dimen>
+    <dimen name="hieght_100dp">100dp</dimen>
+    <dimen name="pad_bott_20dp">20dp</dimen>
+    <dimen name="txt_size_25sp">25sp</dimen>
+    <dimen name="name_width_250dp">250dp</dimen>
+    <dimen name="email_width_250dp">250dp</dimen>
+    <dimen name="name_padding">15dp</dimen>
+    <dimen name="email_padding">15dp</dimen>
+    <dimen name="pass_padding">15dp</dimen>
+    <dimen name="confirm_pass_padding">15dp</dimen>
+    <dimen name="name_marginleft">9dp</dimen>
+    <dimen name="email_marginleft">10dp</dimen>
+    <dimen name="pass_marginleft">10dp</dimen>
+    <dimen name="pass_width">250dp</dimen>
+    <dimen name="confirm_pass_width">250dp</dimen>
+    <dimen name="confirm_pass_marginleft">10dp</dimen>
+    <dimen name="height_19">19dp</dimen>
+    <dimen name="marginTop_25">25dp</dimen>
+    <dimen name="marginleft_75">75dp</dimen>
+    <dimen name="view_width">155dp</dimen>
+    <dimen name="view_height">1dp</dimen>
+    <dimen name="marginleft_173">173dp</dimen>
+    <dimen name="marginbott_123">123dp</dimen>
+    <dimen name="butt_width">190dp</dimen>
+    <dimen name="butt_height">40dp</dimen>
+    <dimen name="marginleft_100">100dp</dimen>
+
+
 </resources>

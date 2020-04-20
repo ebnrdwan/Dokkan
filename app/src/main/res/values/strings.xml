@@ -8,7 +8,7 @@
 
     <string name="send">Send</string>
 
-<string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attachment_jpg">Attachment.jpg</string>
     <string name="message">Message</string>
     <string name="item_link">Item Link</string>
@@ -23,4 +23,18 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+
+
+    <string name="after_registration">AFTER REGISTRATION</string>
+    <string name="register">REGISTER</string>
+    <string name="register2">Register</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="i_agree_to_the">i agree to the</string>
+    <string name="terms_and_conditions">terms and conditions.</string>
+    <string name="register3">Register</string>
+    <string name="terms_and_conditions2">TERMS AND CONDITIONS</string>
 </resources>
