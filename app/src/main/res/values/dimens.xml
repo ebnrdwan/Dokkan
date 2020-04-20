@@ -80,7 +80,6 @@
     <dimen name="height_30">30dp</dimen>
     <dimen name="margin_left_5">5dp</dimen>
     <dimen name="width_250">250dp</dimen>
-    <dimen name="height_40">40dp</dimen>
     <dimen name="max_height_23">23dp</dimen>
     <dimen name="margin_left_7">7dp</dimen>
     <dimen name="margin_right_9">9dp</dimen>
@@ -88,6 +87,12 @@
     <dimen name="height_47">47dp</dimen>
     <dimen name="margin_left_3">3dp</dimen>
     <dimen name="margin_left_11">11dp</dimen>
+    <dimen name="margin_top_9">9dp</dimen>
+    <dimen name="padding_11">11dp</dimen>
+    <dimen name="max_height_200">200dp</dimen>
+    <dimen name="padding_left_5">5dp</dimen>
+    <dimen name="width_40">40dp</dimen>
+    <dimen name="height_40">40dp</dimen>
 
 
 </resources>
