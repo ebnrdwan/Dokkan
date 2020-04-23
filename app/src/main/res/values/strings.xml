@@ -8,7 +8,7 @@
 
     <string name="send">Send</string>
 
-<string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attachment_jpg">Attachment.jpg</string>
     <string name="message">Message</string>
     <string name="item_link">Item Link</string>
@@ -23,4 +23,48 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+    <string name="NO_notificatios_yet">NO notificatios yet</string>
+
+
+
+    <string name="Stay_tuned_Notifications_about_your_activity">Stay tuned! Notifications about your activity</string>
+
+
+
+    <string name="will_show_up_here">will show up here</string>
+
+
+
+    <string name="notification_button">notification</string>
+
+
+
+    <string name="no_notification_button">No_notification</string>
+
+
+
+    <string name="invited_you_to_something">invited you to something</string>
+
+
+
+    <string name="name_item">NAME</string>
+
+
+
+    <string name="date_item">11:04AM</string>
+
+    <string name="Register_here"> Register here.</string>
+
+
+
+    <string name="Dont_have_an_account">Don’t have an account?</string>
+
+    <string name="Forget_Password">Forget Password!?</string>
+
+    <string name="sign_in">sign in</string>
+
+    <string name="hint_email">E-Mail</string>
+
+    <string name="hint_password">password</string>
 </resources>
