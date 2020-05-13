@@ -40,7 +40,18 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
-        initialization(view);
+        btn_home = view.findViewById(R.id.btn_home);
+        btn_msg =view.findViewById(R.id.btn_message);
+        btn_notification = view.findViewById(R.id.btn_notify);
+        btn_profile = view.findViewById(R.id.btn_profile);
+        btn_askQ = view.findViewById(R.id.btn_ask);
+
+        setListeners();
+
+    }
+
+    @Override
+    public void setListeners() {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,20 +88,10 @@ public class MainFragment extends BaseFragment {
         });
 
 
-    }
-
-    @Override
-    public void setListeners() {
 
     }
 
-    public void initialization( View view){
-        btn_home = view.findViewById(R.id.btn_home);
-        btn_msg =view.findViewById(R.id.btn_message);
-        btn_notification = view.findViewById(R.id.btn_notify);
-        btn_profile = view.findViewById(R.id.btn_profile);
-        btn_askQ = view.findViewById(R.id.btn_ask);
-    }
+
 
 
 
