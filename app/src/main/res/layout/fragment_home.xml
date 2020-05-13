@@ -90,8 +90,6 @@
                 android:text="@string/see_more"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/color_e6e4e4"
-                android:onClick="seemoreClick"
-                android:clickable="true"
                 />
             <View
                 android:layout_below="@id/tv_seemore"
@@ -149,12 +147,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/similarItem_recyclerView"
             android:text="@string/view_more"
-            android:textSize="15sp"
+            android:textSize="@dimen/textSize_15"
             android:layout_centerHorizontal="true"
             android:textColor="@color/colorPrimary"
-            android:onClick="viewmoreClick"
             android:textStyle="bold"
-            android:clickable="true"
             />
         <View
             android:id="@+id/line"
@@ -205,8 +201,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/margin_190"
                 android:layout_marginRight="@dimen/margin_15"
-                android:clickable="true"
-                android:onClick="seemoreClick"
                 android:text="@string/see_more"
                 android:textColor="@color/color_e6e4e4" />
 

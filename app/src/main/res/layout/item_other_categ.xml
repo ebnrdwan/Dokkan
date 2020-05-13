@@ -10,7 +10,7 @@
         android:layout_width="@dimen/width_150"
         android:layout_height="@dimen/width_130"
         android:elevation="@dimen/elevation_8"
-        app:cardBackgroundColor="#fff"
+        app:cardBackgroundColor="@color/color_white"
         app:cardCornerRadius="@dimen/cornerRaduis_10"
         android:layout_marginRight="@dimen/margin_10"
         android:layout_marginLeft="@dimen/margin_3"

@@ -96,4 +96,5 @@
     <dimen name="height_100">100dp</dimen>
     <dimen name="width_25">25dp</dimen>
     <dimen name="height_25">25dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
 </resources>

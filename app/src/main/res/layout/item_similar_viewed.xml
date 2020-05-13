@@ -10,7 +10,7 @@
         android:layout_width="@dimen/width_160"
         android:layout_height="@dimen/height_180"
         android:elevation="@dimen/elevation_5"
-        app:cardBackgroundColor="#fff"
+        app:cardBackgroundColor="@color/color_white"
         app:cardCornerRadius="@dimen/cornerRadius_6"
         android:layout_marginRight="@dimen/margin_15"
         android:layout_marginBottom="@dimen/margin_15">
@@ -35,11 +35,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/similar_image"
-                android:textColor="#474646"
-                android:textSize="14sp"
+                android:textColor="@color/color_474646"
+                android:textSize="@dimen/textSize_14"
                 android:text="@string/item_full_name"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_5"
                 />
 
 
@@ -52,8 +52,8 @@
                 android:numStars="5"
                 android:stepSize="0.1"
                 android:isIndicator="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_3"
                 />
 
 
@@ -62,13 +62,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rating"
-                android:textColor="#474646"
+                android:textColor="@color/color_474646"
                 android:text="@string/price_150"
-                android:textSize="14sp"
+                android:textSize="@dimen/textSize_14"
                 android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_3"
+                android:layout_marginBottom="@dimen/margin_4"
                 />
 
             <ImageButton
@@ -76,9 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rating"
                 android:src="@drawable/menu"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_alignParentRight="true"
-                android:background="#fff"/>
+                android:background="@color/color_white"/>
 
         </RelativeLayout>
         <ImageButton
