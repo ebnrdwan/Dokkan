@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="@dimen/padding_8"
     android:orientation="vertical">
 
 
@@ -14,7 +14,6 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop=".4dp"
         android:background="@android:color/white"
         android:padding="@dimen/padding_5"
         app:tabIndicatorColor="@color/colorPrimary"

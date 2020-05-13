@@ -4,7 +4,6 @@ import android.view.View;
 
 
 import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
@@ -39,31 +38,7 @@ public class Favourite_Fragment extends BaseFragment{
         viewadapter.AddFragment(new Shop_Fragment(), "Shop");
         viewPager.setAdapter(viewadapter);
         tabLayout.setupWithViewPager(viewPager);
-        
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tabLayout) {
-                viewPager.setCurrentItem(tabLayout.getPosition());
-                switch (tabLayout.getPosition()) {
-                    case 0:
-                        getNavController().navigate(R.id.action_favourite_Fragment_to_item_Fragment);
-                        break;
-                    case 1:
-                        getNavController().navigate(R.id.action_favourite_Fragment_to_shop_Fragment);
-                        break;
-                }
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tabLayout) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tabLayout) {
-            }
-
-        });
     }
         @Override
         public void setListeners () {

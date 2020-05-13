@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_190"
     android:layout_margin="@dimen/margin_15"
-    android:paddingStart="@dimen/paddingStart_5"
+    android:paddingStart="@dimen/paddingStart_4"
     android:clickable="true"
     cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
     android:foreground="?android:attr/selectableItemBackground"
@@ -78,20 +78,24 @@
         <ImageView
             android:id="@+id/favourite_icon"
             android:layout_width="@dimen/width_20"
-            android:layout_height="@dimen/height_20"
-            android:layout_marginStart="@dimen/marginstart_287"
+            android:layout_height="@dimen/height_37"
+            android:layout_marginStart="@dimen/marginStart_250"
             android:layout_marginTop="@dimen/margintop_130"
             android:src="@drawable/ic_favorite" />
 
+
         <ImageView
             android:id="@+id/moreOption"
-            android:layout_width="@dimen/width_20"
-            android:layout_height="@dimen/height_20"
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_37"
             android:layout_below="@+id/favourite_icon"
-            android:gravity="bottom|top"
-            android:layout_marginStart="@dimen/marginstart_285"
-            android:src="@drawable/ic_more"
-            />
+            android:layout_marginStart="@dimen/marginStart_247"
+            android:layout_marginBottom="@dimen/marginBottom_5"
+            android:gravity="start|top"
+
+
+
+            android:src="@drawable/ic_more" />
     </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

@@ -98,7 +98,6 @@
     <dimen name="width_75">75dp</dimen>
     <dimen name="height_55">55dp</dimen>
     <dimen name="marginStart_15">15dp</dimen>
-
     <dimen name="marginBottom_15">15dp</dimen>
     <dimen name="marginleft_77">77dp</dimen>
     <dimen name="margintop_17">17dp</dimen>
@@ -108,4 +107,8 @@
     <dimen name="margintop_130">130dp</dimen>
     <dimen name="marginstart_287">287dp</dimen>
     <dimen name="marginstart_285">285dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="marginStart_250">250dp</dimen>
+    <dimen name="marginStart_247">247dp</dimen>
+    <dimen name="marginBottom_5">5dp</dimen>
 </resources>

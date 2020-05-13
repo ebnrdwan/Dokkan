@@ -1,4 +1,4 @@
-package com.engineering.dokkan.view.Favourite;
+package com.engineering.dokkan.data.models;
 
 public class FavShopModel {
     private int shopImage ;
