@@ -109,7 +109,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_100"
             android:paddingTop="@dimen/padding_10"
-            android:paddingLeft="@dimen/padding_10"
             >
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -221,7 +220,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_100"
             android:paddingTop="@dimen/padding_10"
-            android:paddingLeft="@dimen/padding_10"
             >
 
         </androidx.recyclerview.widget.RecyclerView>
