@@ -71,6 +71,30 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+    <dimen name="paddind_15">15dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="tv_size_16">16sp</dimen>
+    <dimen name="padding_bottom_10">10dp</dimen>
+    <dimen name="padding_1">1dp</dimen>
+    <dimen name="margin_bottom_5">5dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="width_30">30dp</dimen>
+    <dimen name="height_30">30dp</dimen>
+    <dimen name="margin_left_5">5dp</dimen>
+    <dimen name="max_height_23">23dp</dimen>
+    <dimen name="margin_left_7">7dp</dimen>
+    <dimen name="margin_right_9">9dp</dimen>
+    <dimen name="width_47">47dp</dimen>
+    <dimen name="height_47">47dp</dimen>
+    <dimen name="margin_left_3">3dp</dimen>
+    <dimen name="margin_left_11">11dp</dimen>
+    <dimen name="margin_top_9">9dp</dimen>
+    <dimen name="padding_11">11dp</dimen>
+    <dimen name="max_height_200">200dp</dimen>
+    <dimen name="padding_left_5">5dp</dimen>
+    <dimen name="width_40">40dp</dimen>
+
+
 
     <dimen name="margen_top_200">200dp</dimen>
     <dimen name="font_23">23sp</dimen>

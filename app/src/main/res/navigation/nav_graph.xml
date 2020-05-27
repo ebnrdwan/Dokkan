@@ -3,32 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_Welcome2">
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/fragment_Welcome2"
-        android:name="com.engineering.dokkan.view.welcome.Fragment_Welcome"
-        android:label="Fragment_Welcome" >
+        android:id="@+id/mainFragment"
+        android:name="com.engineering.dokkan.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_fragment_Welcome2_to_askQuestionFragment"
+            android:id="@+id/action_mainFragment2_to_mainFragment"
+            app:destination="@id/ChatFragement" />
+        <action
+            android:id="@+id/action_mainFragment2_to_chatFragement"
+            app:destination="@id/chatingFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
-        <action
-            android:id="@+id/action_fragment_Welcome2_to_profileFragment2"
-            app:destination="@id/profileFragment2" />
-        <action
-            android:id="@+id/action_fragment_Welcome2_to_mainActivity2"
-            app:destination="@id/mainActivity2" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chatingFragment"
+        android:name="com.engineering.dokkan.view.chating.ChatingFragment"
+        android:label="ChatingFragment"
+        tools:layout="@layout/fragment_chating" />
     <fragment
         android:id="@+id/askQuestionFragment"
         android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
-        android:label="AskQuestionFragment" />
-    <fragment
-        android:id="@+id/profileFragment2"
-        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
-        android:label="ProfileFragment" />
-    <activity
-        android:id="@+id/mainActivity2"
-        android:name="com.engineering.dokkan.view.MainActivity"
-        android:label="fragment_askquestion_frag"
+        android:label="AskQuestionFragment"
         tools:layout="@layout/fragment_askquestion_frag" />
+    <fragment
+        android:id="@+id/ChatFragement"
+        android:name="com.engineering.dokkan.view.chat.ChatFragement"
+        android:label="ChatFragement"
+        tools:layout="@layout/fragment_chat_fragement" />
+
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.engineering.dokkan.view.notifications.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>
+
