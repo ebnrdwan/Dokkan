@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_1">
+
+    <LinearLayout
+        android:id="@+id/chat_left_msg_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="@dimen/margin_5"
+        android:background="@drawable/background_left_chat"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_5">
+
+        <TextView
+            android:id="@+id/chat_left_msg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_10"
+            android:paddingBottom="@dimen/padding_bottom_10"
+            android:text="@string/hello"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/tv_size_16" />
+    </LinearLayout>
+
+
+</LinearLayout>
