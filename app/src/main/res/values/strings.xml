@@ -8,7 +8,7 @@
 
     <string name="send">Send</string>
 
-<string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attachment_jpg">Attachment.jpg</string>
     <string name="message">Message</string>
     <string name="item_link">Item Link</string>
@@ -23,4 +23,7 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+    <string name="text1">The cart is empty</string>
+    <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
+    <string name="back_to_shopping">Back to Shopping</string>
 </resources>
