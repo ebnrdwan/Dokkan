@@ -23,6 +23,17 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+    <string name="text1">The cart is empty</string>
+    <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
+    <string name="back_to_shopping">Back to Shopping</string>
+    <string name="chating">Chating</string>
+    <string name="notification">notification</string>
+    <string name="profile">profile</string>
+    <string name="messages">messages</string>
+    <string name="ask_question">ask_question</string>
+    <string name="hello">hello</string>
+    <string name="type_a_message">type a message..</string>
+    <string name="azza_helmy">Azza Helmy</string>
     <string name="shop">Shop</string>
     <string name="item">Item</string>
     <string name="_150">$150</string>
