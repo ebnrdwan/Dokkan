@@ -4,6 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
+
+
+    <fragment
+        android:id="@+id/empty_CartFragment"
+        android:name="com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment"
+        android:label="fragment_empty__cart"
+        tools:layout="@layout/fragment_empty__cart" >
+        <action
+            android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.engineering.dokkan.MainFragment"

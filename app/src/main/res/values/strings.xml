@@ -23,6 +23,9 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+    <string name="text1">The cart is empty</string>
+    <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
+    <string name="back_to_shopping">Back to Shopping</string>
     <string name="chating">Chating</string>
     <string name="notification">notification</string>
     <string name="profile">profile</string>

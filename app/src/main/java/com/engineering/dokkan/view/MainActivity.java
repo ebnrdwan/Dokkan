@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment;
 import com.engineering.dokkan.view.chat.ChatFragement;
 import com.engineering.dokkan.view.notifications.NotificationFragment;
 import com.engineering.dokkan.view.profile.ProfileFragment;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, chatFragement);
         ft.commit();
     }
+
 
 
 }

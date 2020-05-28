@@ -69,6 +69,12 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
+    <dimen name="margin1_20">20dp</dimen>
+    <dimen name="size25">25sp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin2_10">10dp</dimen>
+    <dimen name="size2">15sp</dimen>
+    <dimen name="size3">20sp</dimen>
     <dimen name="paddind_15">15dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="tv_size_16">16sp</dimen>
