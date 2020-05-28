@@ -6,7 +6,7 @@
     <color name="noData_fontColor">#9a7c84</color>
 
 
-    <color name="color_6a4e5d">#6a4e5d</color>
+
     <color name="color_9a7c84">#9A7C84</color>
     <color name="color_F1EDED">#F1EDED</color>
 
@@ -23,4 +23,5 @@
     <color name="text2color">#ac9fa6</color>
     <color name="btn_color">#6a4e5d</color>
     <color name="text_btn_color">#FFFFFF</color>
+    <color name="color_6a4e5d">#6a4e5d</color>
 </resources>
