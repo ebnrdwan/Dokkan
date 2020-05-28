@@ -4,6 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/favourite_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Favourite_Fragment"
+        android:label="Favourite_Fragment" >
+        <action
+            android:id="@+id/action_favourite_Fragment_to_item_Fragment"
+            app:destination="@id/item_Fragment" />
+        <action
+            android:id="@+id/action_favourite_Fragment_to_shop_Fragment"
+            app:destination="@id/shop_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/item_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Item_Fragment"
+        android:label="item_fragment"
+        tools:layout="@layout/item_fragment" />
+    <fragment
+        android:id="@+id/shop_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.Shop_Fragment"
+        android:label="shop_fragment"
+        tools:layout="@layout/shop_fragment" />
+
+    <fragment
+        android:id="@+id/empty_CartFragment"
+        android:name="com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment"
+        android:label="fragment_empty__cart"
+        tools:layout="@layout/fragment_empty__cart" >
+        <action
+            android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.engineering.dokkan.MainFragment"
