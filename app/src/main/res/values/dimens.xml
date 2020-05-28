@@ -41,6 +41,8 @@
     <dimen name="width_20">20dp</dimen>
     <dimen name="height_20">20dp</dimen>
     <dimen name="margintop_10">10dp</dimen>
+    <dimen name="width_250">250dp</dimen>
+    <dimen name="height_40">40dp</dimen>
     <dimen name="marginbottom_10">10dp</dimen>
     <dimen name="marginstart_70">70dp</dimen>
     <dimen name="width_115">115dp</dimen>
@@ -76,7 +78,6 @@
     <dimen name="size2">15sp</dimen>
     <dimen name="size3">20sp</dimen>
     <dimen name="paddind_15">15dp</dimen>
-    <dimen name="margin_15">15dp</dimen>
     <dimen name="tv_size_16">16sp</dimen>
     <dimen name="padding_bottom_10">10dp</dimen>
     <dimen name="padding_1">1dp</dimen>
@@ -85,7 +86,6 @@
     <dimen name="width_30">30dp</dimen>
     <dimen name="height_30">30dp</dimen>
     <dimen name="margin_left_5">5dp</dimen>
-    <dimen name="width_250">250dp</dimen>
     <dimen name="max_height_23">23dp</dimen>
     <dimen name="margin_left_7">7dp</dimen>
     <dimen name="margin_right_9">9dp</dimen>
@@ -98,7 +98,44 @@
     <dimen name="max_height_200">200dp</dimen>
     <dimen name="padding_left_5">5dp</dimen>
     <dimen name="width_40">40dp</dimen>
-    <dimen name="height_40">40dp</dimen>
-
-
+    <dimen name="height_45">45dp</dimen>
+    <dimen name="width_5">5dp</dimen>
+    <dimen name="paddingStart_5">2dp</dimen>
+    <dimen name="cardCornerRadius_4">4dp</dimen>
+    <dimen name="paddingLeft_2">2dp</dimen>
+    <dimen name="cardElevation_3">3dp</dimen>
+    <dimen name="height_130">130dp</dimen>
+    <dimen name="width_25">25dp</dimen>
+    <dimen name="paddingEnd_4">4dp</dimen>
+    <dimen name="paddingRight_4">4dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="paddingStart_4">4dp</dimen>
+    <dimen name="paddingLeft_4">4dp</dimen>
+    <dimen name="height_190">190dp</dimen>
+    <dimen name="marginTop_4">4dp</dimen>
+    <dimen name="paddingBottom_2">2dp</dimen>
+    <dimen name="txtSize_11">11sp</dimen>
+    <dimen name="marginRight_5">5dp</dimen>
+    <dimen name="marginEnd_5">5dp</dimen>
+    <dimen name="marginLeft_6">6dp</dimen>
+    <dimen name="marginTop_164">164dp</dimen>
+    <dimen name="textSize_13">13sp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="height_115">115dp</dimen>
+    <dimen name="width_75">75dp</dimen>
+    <dimen name="height_55">55dp</dimen>
+    <dimen name="marginStart_15">15dp</dimen>
+    <dimen name="marginBottom_15">15dp</dimen>
+    <dimen name="marginleft_77">77dp</dimen>
+    <dimen name="margintop_17">17dp</dimen>
+    <dimen name="marginleft_90">90dp</dimen>
+    <dimen name="margintop_170">170dp</dimen>
+    <dimen name="textsize_8">8sp</dimen>
+    <dimen name="margintop_130">130dp</dimen>
+    <dimen name="marginstart_287">287dp</dimen>
+    <dimen name="marginstart_285">285dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="marginStart_250">250dp</dimen>
+    <dimen name="marginStart_247">247dp</dimen>
+    <dimen name="marginBottom_5">5dp</dimen>
 </resources>

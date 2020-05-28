@@ -6,7 +6,7 @@
     <color name="noData_fontColor">#9a7c84</color>
 
 
-
+    <color name="color_6a4e5d">#6a4e5d</color>
     <color name="color_9a7c84">#9A7C84</color>
     <color name="color_F1EDED">#F1EDED</color>
 
@@ -19,9 +19,10 @@
     <color name="bkgcolor_mauve">#6a4e5d</color>
     <color name="color_wigth">#ffff</color>
     <color name="textColor_black">#f000</color>
+    <color name="title_name">#9A7C84</color>
+    <color name="txtColor_black">#2d2d2d</color>
     <color name="text1color">#6a4e5d</color>
     <color name="text2color">#ac9fa6</color>
     <color name="btn_color">#6a4e5d</color>
     <color name="text_btn_color">#FFFFFF</color>
-    <color name="color_6a4e5d">#6a4e5d</color>
 </resources>
