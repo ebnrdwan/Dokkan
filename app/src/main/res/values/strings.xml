@@ -38,4 +38,10 @@
     <string name="item">Item</string>
     <string name="_150">$150</string>
     <string name="shopName">Shop Name</string>
+
+    <string name="made_with_love">Made With Love</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_with_your_social">Login With Your Social</string>
+    <string name="media_account">Media Account.</string>
 </resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/back_ground"
+    tools:context=".view.MainActivity">
+
+    <ImageView
+        android:id="@+id/img_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo1" />
+
+    <EditText
+        android:id="@+id/edt_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen_top_200"
+        android:background="@null"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/made_with_love"
+        android:textColor="@color/color_ecddcd"
+        android:textSize="@dimen/font_23"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/btn_signIn"
+        android:layout_width="@dimen/layout_width_207"
+        android:layout_height="@dimen/layout_height_48"
+        android:layout_marginTop="@dimen/margin_Top_512"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sign_in"
+        android:textColor="@color/color_ecddcd"
+        android:background="@drawable/btn_style"
+        android:textSize="@dimen/font_17"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="@dimen/layout_width_207"
+        android:layout_height="@dimen/layout_height_48"
+        android:layout_marginTop="@dimen/margin_Top_575"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/btn_style"
+        android:backgroundTint="@color/color_ecddcd"
+        android:textSize="@dimen/font_17"
+        android:textAllCaps="false"
+        />
+
+    <LinearLayout
+        android:id="@+id/liner_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_Top_618"
+        >
+
+        <ImageView
+            android:id="@+id/img_2"
+            android:layout_width="@dimen/layout_width_34"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_Left_138"
+            android:src="@drawable/fb" />
+
+        <ImageView
+            android:id="@+id/img_3"
+            android:layout_width="@dimen/layout_width_31"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_Left_15"
+            android:src="@drawable/go" />
+
+
+        <ImageView
+            android:id="@+id/img_4"
+            android:layout_width="@dimen/layout_width_33"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_Left_15"
+            android:src="@drawable/insta" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_with_your_social"
+        android:gravity="center"
+        android:textColor="@color/color_ecddcd"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_10"
+        android:fontFamily="serif"
+        android:layout_marginTop="@dimen/margin_Top_672"
+        android:background="@null"/>
+
+    <EditText
+        android:id="@+id/edt_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/media_account"
+        android:gravity="center"
+        android:textColor="@color/color_ecddcd"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_10"
+        android:fontFamily="serif"
+        android:layout_marginTop="@dimen/margin_Top_687"
+        android:background="@null"/>
+
+
+</RelativeLayout>

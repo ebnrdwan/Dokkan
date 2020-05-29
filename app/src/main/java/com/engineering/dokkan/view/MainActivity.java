@@ -24,12 +24,10 @@ public class MainActivity extends AppCompatActivity {
 //        navigateToProfile();
 //        navigateToNotification();
 //        navigateToChat();
-   //       navigateToQuestions();
+        //       navigateToQuestions();
 
 
     }
-
-
     void navigateToProfile() {
         ProfileFragment headFragment = new ProfileFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, chatFragement);
         ft.commit();
     }
-
 
 
 }
