@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
 
 
@@ -21,7 +22,7 @@ import com.engineering.dokkan.view.base.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends BaseFragment {
-   private Button btn_home , btn_msg , btn_notification , btn_profile , btn_askQ ;
+    private Button btn_home,btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ;
 
 
     public MainFragment() {
@@ -40,18 +41,16 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
-        btn_home = view.findViewById(R.id.btn_home);
-        btn_msg =view.findViewById(R.id.btn_message);
-        btn_notification = view.findViewById(R.id.btn_notify);
-        btn_profile = view.findViewById(R.id.btn_profile);
-        btn_askQ = view.findViewById(R.id.btn_ask);
-
-        setListeners();
-
+        initialization(view);
     }
-
     @Override
     public void setListeners() {
+        btn_chating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNavController().navigate(R.id.action_mainFragment2_to_chatFragement);
+            }
+        });
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,8 +90,16 @@ public class MainFragment extends BaseFragment {
 
     }
 
+    public void initialization(View view) {
+        btn_home = view.findViewById(R.id.btn_home);
 
-
+        btn_chating = view.findViewById(R.id.btn_chating);
+        btn_msg = view.findViewById(R.id.btn_message);
+        btn_notification = view.findViewById(R.id.btn_notify);
+        btn_profile = view.findViewById(R.id.btn_profile);
+        btn_askQ = view.findViewById(R.id.btn_ask);
+    }
 
 
 }
+

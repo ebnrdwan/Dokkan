@@ -43,4 +43,21 @@
     <string name="ask_question">Ask Question</string>
 
 
+    <string name="text1">The cart is empty</string>
+    <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
+    <string name="back_to_shopping">Back to Shopping</string>
+    <string name="chating">Chating</string>
+    <string name="hello">hello</string>
+    <string name="type_a_message">type a message..</string>
+    <string name="azza_helmy">Azza Helmy</string>
+    <string name="shop">Shop</string>
+    <string name="item">Item</string>
+    <string name="_150">$150</string>
+    <string name="shopName">Shop Name</string>
+
+    <string name="made_with_love">Made With Love</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_with_your_social">Login With Your Social</string>
+    <string name="media_account">Media Account.</string>
 </resources>
