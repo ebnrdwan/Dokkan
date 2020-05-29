@@ -23,6 +23,15 @@
             />
 
         <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:layout_margin="@dimen/margin_15"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/color_f8f6f7"
+            />
+        <Button
             android:id="@+id/btn_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

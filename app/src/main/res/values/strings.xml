@@ -2,6 +2,7 @@
     <string name="app_name">Dokkan</string>
 
 
+
     <string name="location_name">cairo, Egypt</string>
     <string name="user_name">Salma and Esraa</string>
     <string name="sign_out">Sign Out</string>
@@ -23,14 +24,29 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+    <string name="recently_viewed">Recently Viewed</string>
+
+    <string name="accessories">Accessories</string>
+    <string name="based_on_your_recent_searches">Based on your recent searches</string>
+    <string name="see_more">See more</string>
+    <string name="similar_to_items_you_viewed">Similar to items you Viewed</string>
+    <string name="view_more">View more</string>
+    <string name="any_other_category">Any Other Category</string>
+    <string name="similar_to_recent_favorites">Similar to recent favorites</string>
+    <string name="item_full_name">Item Full Name</string>
+    <string name="price_150">$150</string>
+    <string name="home">Home</string>
+    <string name="messages">Messages</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+    <string name="ask_question">Ask Question</string>
+
+
     <string name="text1">The cart is empty</string>
     <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
     <string name="back_to_shopping">Back to Shopping</string>
     <string name="chating">Chating</string>
-    <string name="notification">notification</string>
-    <string name="profile">profile</string>
-    <string name="messages">messages</string>
-    <string name="ask_question">ask_question</string>
     <string name="hello">hello</string>
     <string name="type_a_message">type a message..</string>
     <string name="azza_helmy">Azza Helmy</string>
