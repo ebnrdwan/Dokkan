@@ -7,7 +7,14 @@
     android:background="@drawable/reg"
     android:orientation="vertical"
     >
+<ImageView
+    android:id="@+id/arrow_back"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_chevron_left_black_24dp"
+    android:padding="@dimen/arrow_back_padd"
 
+    />
     <ImageView
         android:layout_width="@dimen/width_100dp"
         android:layout_height="@dimen/hieght_100dp"
@@ -36,10 +43,10 @@
         android:textColorHint="@color/color_FFF7F1F4"
         android:inputType="text"
         android:padding="@dimen/name_padding"
-        android:textSize="13sp"
+        android:textSize="@dimen/txt_size"
         android:layout_marginLeft="@dimen/name_marginleft"
-        android:backgroundTint="@color/color_FFF8F7F7"
-
+        android:backgroundTint="@color/color_FDFBFB"
+        android:paddingStart="10dp"
 
         />
 
@@ -53,9 +60,9 @@
         android:textColorHint="@color/color_FFF7F1F4"
         android:inputType="textEmailAddress"
         android:padding="@dimen/email_padding"
-        android:textSize="13sp"
+        android:textSize="@dimen/txt_size"
         android:layout_marginLeft="@dimen/email_marginleft"
-        android:backgroundTint="@color/color_FFF8F7F7"
+        android:backgroundTint="@color/color_FDFBFB"
 
 
 
@@ -70,11 +77,10 @@
         android:drawableLeft="@drawable/ic_pass"
         android:hint="@string/password"
         android:textColorHint="@color/color_FFF7F1F4"
-        android:inputType="numberPassword"
         android:padding="@dimen/pass_padding"
-        android:textSize="13sp"
+        android:textSize="@dimen/txt_size"
         android:layout_marginLeft="@dimen/pass_marginleft"
-        android:backgroundTint="@color/color_FFF8F7F7"
+        android:backgroundTint="@color/color_FDFBFB"
 
 
 
@@ -88,11 +94,10 @@
         android:drawableLeft="@drawable/ic_pass"
         android:hint="@string/confirm_password"
         android:textColorHint="@color/color_FDFBFB"
-        android:inputType="numberPassword"
         android:padding="@dimen/confirm_pass_padding"
-        android:textSize="13sp"
+        android:textSize="@dimen/txt_size"
         android:layout_marginLeft="@dimen/confirm_pass_marginleft"
-        android:backgroundTint="@color/color_FFF8F7F7"
+        android:backgroundTint="@color/color_FDFBFB"
 
 
         />
@@ -101,8 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_19"
         android:layout_marginTop="@dimen/marginTop_25"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/marginleft_75"
+        android:layout_marginLeft="@dimen/margin_left_35"
         >
 
         <CheckBox
@@ -121,6 +125,7 @@
             android:layout_toRightOf="@id/cb_reg"
             android:text="@string/i_agree_to_the"
             android:textColor="@color/color_FFF7F2F2"
+            android:textSize="@dimen/txt_size_13"
 
 
             />
@@ -131,17 +136,20 @@
             android:text="@string/terms_and_conditions"
             android:textColor="@color/color_FFF7F2F2"
             android:layout_toRightOf="@id/txt"
+            android:layout_marginLeft="@dimen/margin_left_7"
+            android:textSize="@dimen/txt_size_13"
+
 
             />
-
 
     </LinearLayout>
     <View
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
-        android:background="@color/color_e6e4e4"
-        android:layout_marginLeft="@dimen/marginleft_173"
-        android:layout_marginBottom="@dimen/marginbott_123"
+        android:background="@color/color_FDFBFB"
+        android:layout_marginLeft="@dimen/margin_left_144"
+        android:layout_marginBottom="@dimen/margin_bott_5"
+
 
         />
 
@@ -153,7 +161,11 @@
         android:text="@string/register3"
         android:textColor="@color/color_fff2"
         android:layout_marginLeft="@dimen/marginleft_100"
+        android:layout_marginTop="@dimen/margin_top_50"
+
 
         />
+
+
 
 </LinearLayout>

@@ -92,16 +92,25 @@
     <dimen name="pass_width">250dp</dimen>
     <dimen name="confirm_pass_width">250dp</dimen>
     <dimen name="confirm_pass_marginleft">10dp</dimen>
-    <dimen name="height_19">19dp</dimen>
-    <dimen name="marginTop_25">25dp</dimen>
-    <dimen name="marginleft_75">75dp</dimen>
-    <dimen name="view_width">155dp</dimen>
+    <dimen name="height_19">17dp</dimen>
+    <dimen name="marginTop_25">40dp</dimen>
+    <dimen name="marginleft_60">60dp</dimen>
+    <dimen name="view_width">122dp</dimen>
     <dimen name="view_height">1dp</dimen>
     <dimen name="marginleft_173">173dp</dimen>
     <dimen name="marginbott_123">123dp</dimen>
     <dimen name="butt_width">190dp</dimen>
-    <dimen name="butt_height">40dp</dimen>
+    <dimen name="butt_height">45dp</dimen>
     <dimen name="marginleft_100">100dp</dimen>
+
+    <dimen name="txt_size">13sp</dimen>
+    <dimen name="arrow_back_padd">20dp</dimen>
+    <dimen name="margin_left_35">35dp</dimen>
+    <dimen name="margin_left_7">7dp</dimen>
+    <dimen name="margin_left_144">150dp</dimen>
+    <dimen name="margin_bott_5">5dp</dimen>
+    <dimen name="margin_top_50">50dp</dimen>
+    <dimen name="txt_size_13">13dp</dimen>
 
 
 </resources>
