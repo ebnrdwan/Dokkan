@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ import java.util.regex.Pattern;
 public class RegisterFragment extends BaseFragment {
 private Button register;
     private EditText username , email , password , confirmPassword;
-
+private CheckBox ch ;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -121,6 +122,7 @@ String confirmPassInput = confirmPassword.getText().toString();
             }
 
         });
+
 
 
 

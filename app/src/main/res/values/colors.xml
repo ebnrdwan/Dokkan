@@ -30,8 +30,7 @@
     <color name="color_e6e4e4">#e6e4e4</color>
     <color name="color_fff2">#fff</color>
     <color name="color_FFF8F7F7">#FFF8F7F7</color>
-
-
+    <color name="backgroundTint">#C4BBBB</color>
 
 
 </resources>

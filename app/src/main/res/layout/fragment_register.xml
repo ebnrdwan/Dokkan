@@ -13,7 +13,6 @@
     android:layout_height="wrap_content"
     android:src="@drawable/ic_chevron_left_black_24dp"
     android:padding="@dimen/arrow_back_padd"
-
     />
     <ImageView
         android:layout_width="@dimen/width_100dp"
@@ -42,12 +41,10 @@
         android:hint="@string/username"
         android:textColorHint="@color/color_FFF7F1F4"
         android:inputType="text"
-        android:padding="@dimen/name_padding"
+        android:padding="@dimen/padding_15"
         android:textSize="@dimen/txt_size"
-        android:layout_marginLeft="@dimen/name_marginleft"
-        android:backgroundTint="@color/color_FDFBFB"
-        android:paddingStart="10dp"
-
+        android:backgroundTint="@color/backgroundTint"
+        android:textAlignment="center"
         />
 
     <EditText
@@ -59,14 +56,10 @@
         android:hint="@string/e_mail"
         android:textColorHint="@color/color_FFF7F1F4"
         android:inputType="textEmailAddress"
-        android:padding="@dimen/email_padding"
+        android:padding="@dimen/padding_15"
         android:textSize="@dimen/txt_size"
-        android:layout_marginLeft="@dimen/email_marginleft"
-        android:backgroundTint="@color/color_FDFBFB"
-
-
-
-
+        android:backgroundTint="@color/backgroundTint"
+        android:textAlignment="center"
         />
 
     <EditText
@@ -77,13 +70,10 @@
         android:drawableLeft="@drawable/ic_pass"
         android:hint="@string/password"
         android:textColorHint="@color/color_FFF7F1F4"
-        android:padding="@dimen/pass_padding"
+        android:padding="@dimen/padding_15"
         android:textSize="@dimen/txt_size"
-        android:layout_marginLeft="@dimen/pass_marginleft"
-        android:backgroundTint="@color/color_FDFBFB"
-
-
-
+        android:backgroundTint="@color/backgroundTint"
+        android:textAlignment="center"
         />
 
     <EditText
@@ -94,64 +84,47 @@
         android:drawableLeft="@drawable/ic_pass"
         android:hint="@string/confirm_password"
         android:textColorHint="@color/color_FDFBFB"
-        android:padding="@dimen/confirm_pass_padding"
+        android:padding="@dimen/padding_15"
         android:textSize="@dimen/txt_size"
-        android:layout_marginLeft="@dimen/confirm_pass_marginleft"
-        android:backgroundTint="@color/color_FDFBFB"
-
-
+        android:backgroundTint="@color/backgroundTint"
+        android:textAlignment="center"
         />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/height_19"
-        android:layout_marginTop="@dimen/marginTop_25"
-        android:layout_marginLeft="@dimen/margin_left_35"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/padd_left_80"
+        android:paddingTop="@dimen/padd_top_35"
         >
-
         <CheckBox
             android:id="@+id/cb_reg"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/checkBox_width"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/color_fff"
-
-
+            android:buttonTint="@color/color_FDFBFB"
+            android:scaleX="0.60"
+            android:scaleY="0.60"
             />
-
         <TextView
-            android:id="@+id/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/i_agree_to_the_terms_and_conditions"
             android:layout_toRightOf="@id/cb_reg"
-            android:text="@string/i_agree_to_the"
-            android:textColor="@color/color_FFF7F2F2"
-            android:textSize="@dimen/txt_size_13"
-
-
-            />
-        <TextView
-            android:id="@+id/terms_conditions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/terms_and_conditions"
-            android:textColor="@color/color_FFF7F2F2"
-            android:layout_toRightOf="@id/txt"
-            android:layout_marginLeft="@dimen/margin_left_7"
-            android:textSize="@dimen/txt_size_13"
-
+            android:textColor="@color/color_FFF7F1F4"
+            android:textSize="@dimen/txt_size_11"
+            android:layout_marginTop="@dimen/margin_top_7"
 
             />
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_height"
+            android:background="@color/color_FDFBFB"
+            android:layout_marginLeft="@dimen/margin_left_101"
+            android:layout_marginTop="@dimen/margin_top_20"
+            />
 
-    </LinearLayout>
-    <View
-        android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
-        android:background="@color/color_FDFBFB"
-        android:layout_marginLeft="@dimen/margin_left_144"
-        android:layout_marginBottom="@dimen/margin_bott_5"
 
+    </RelativeLayout>
 
-        />
 
     <Button
         android:id="@+id/butt"
@@ -162,10 +135,5 @@
         android:textColor="@color/color_fff2"
         android:layout_marginLeft="@dimen/marginleft_100"
         android:layout_marginTop="@dimen/margin_top_50"
-
-
         />
-
-
-
 </LinearLayout>
