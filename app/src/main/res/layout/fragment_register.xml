@@ -74,6 +74,7 @@
         android:textSize="@dimen/txt_size"
         android:backgroundTint="@color/backgroundTint"
         android:textAlignment="center"
+        android:inputType="textPassword"
         />
 
     <EditText
@@ -88,6 +89,8 @@
         android:textSize="@dimen/txt_size"
         android:backgroundTint="@color/backgroundTint"
         android:textAlignment="center"
+        android:inputType="textPassword"
+
         />
 
     <RelativeLayout

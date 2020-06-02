@@ -119,14 +119,10 @@ String confirmPassInput = confirmPassword.getText().toString();
                 if(validateUsername()==true &&validateEmail()==true&&validatePassword()==true&&validateConfirmPassword()==true){
                     getNavController().navigate(R.id.action_registerFragment_to_profileFragment);
                 }
+
             }
 
         });
-
-
-
-
-
     }
 
     @Override
