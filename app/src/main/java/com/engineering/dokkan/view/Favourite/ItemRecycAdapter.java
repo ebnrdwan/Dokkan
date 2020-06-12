@@ -1,6 +1,11 @@
 package com.engineering.dokkan.view.Favourite;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +21,20 @@ import com.engineering.dokkan.data.models.FavitemModel;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favouriteHolder> {
+    Context c;
     private ArrayList<FavitemModel>favList ;
 
-    public ItemRecycAdapter(ArrayList<FavitemModel> favList) {
+    public ItemRecycAdapter(Context c, ArrayList<FavitemModel> favList) {
+        this.c = c;
         this.favList = favList;
     }
 
@@ -34,17 +47,51 @@ public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull favouriteHolder holder, int position) {
+    public void onBindViewHolder(@NonNull favouriteHolder holder, final int position) {
+        Picasso.get().load(favList.get(position).getImage()).into(holder.Item_Image);
         holder.Item_Name.setText(favList.get(position).getName());
         holder.Item_Price.setText(favList.get(position).getPrice());
-        Picasso.get().load(favList.get(position).getImage()).into(holder.Item_Image);
-        final Item_Fragment itemfragment = new Item_Fragment();
         holder.ShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               itemfragment.onShareItem(view);
+                Picasso.get()
+                        .load(favList.get(position).getImage())
+                        .into(new Target() {
+                            @Override
+                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                Intent intent = new Intent("android.intent.action.SEND");
+                                intent.setType("image/*");
+                                intent.putExtra("android.intent.extra.STREAM", getlocalBitmapUri(bitmap));
+                                c.startActivity(Intent.createChooser(intent, "share"));
+                            }
+
+                            @Override
+                            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                            }
+                            @Override
+                            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                            }
+                        });
             }
         });
+    }
+    private Uri getlocalBitmapUri(Bitmap bitmap) {
+        Uri bmuri = null;
+        try {
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
+            fileOutputStream.close();
+            bmuri = Uri.fromFile(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+        return bmuri;
+
     }
 
     @Override

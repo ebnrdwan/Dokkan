@@ -56,7 +56,7 @@ public class Shop_Fragment extends BaseFragment {
                     FavShopModel favModel = dataSnapshot1.getValue(FavShopModel.class);
                     ShopData.add(favModel);
                 }
-                myAdapter = new ShopRecycAdaptar(ShopData);
+                myAdapter = new ShopRecycAdaptar(getContext(),ShopData);
                 recyclerView.setAdapter(myAdapter);
 
             }
