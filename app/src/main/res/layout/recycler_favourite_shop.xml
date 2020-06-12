@@ -75,27 +75,27 @@
             android:text="@string/location_name"
             android:textSize="@dimen/textsize_8" />
 
+
         <ImageView
             android:id="@+id/favourite_icon"
-            android:layout_width="@dimen/width_20"
+            android:layout_width="@dimen/width_25"
             android:layout_height="@dimen/height_37"
             android:layout_marginStart="@dimen/marginStart_250"
             android:layout_marginTop="@dimen/margintop_130"
             android:src="@drawable/ic_favorite" />
 
-
-        <ImageView
-            android:id="@+id/moreOption"
-            android:layout_width="@dimen/width_25"
-            android:layout_height="@dimen/height_37"
+        <ImageButton
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/favourite_icon"
             android:layout_marginStart="@dimen/marginStart_247"
+            android:layout_marginTop="-6dp"
             android:layout_marginBottom="@dimen/marginBottom_5"
+            android:background="@android:color/transparent"
             android:gravity="start|top"
 
-
-
-            android:src="@drawable/ic_more" />
+            android:src="@drawable/ic_share" />
     </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

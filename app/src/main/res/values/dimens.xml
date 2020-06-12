@@ -138,4 +138,6 @@
     <dimen name="marginStart_250">250dp</dimen>
     <dimen name="marginStart_247">247dp</dimen>
     <dimen name="marginBottom_5">5dp</dimen>
+    <dimen name="marginTop_2">2dp</dimen>
+    <dimen name="width_145">145dp</dimen>
 </resources>

@@ -44,4 +44,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version"
 
     implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+
 }
+apply plugin: 'com.google.gms.google-services'

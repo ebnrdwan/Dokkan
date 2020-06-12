@@ -40,31 +40,35 @@
                 android:src="@drawable/fav_icon" />
 
 
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="@dimen/width_145"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemImage"
+                android:layout_marginStart="@dimen/margin_3"
+                android:layout_marginLeft="@dimen/margin_3"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="@dimen/margin_3"
+                android:layout_marginRight="@dimen/margin_3"
+                android:layout_marginBottom="@dimen/margin_3"
+                android:gravity="start"
+                android:paddingStart="@dimen/paddingStart_4"
+                android:paddingLeft="@dimen/paddingLeft_4"
+                android:text="Full Item Name"
+                android:textColor="@color/txtColor_black"
+                android:textSize="@dimen/textSize_13" />
 
-        <TextView
-            android:id="@+id/itemName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_15"
-            android:layout_margin="@dimen/margin_3"
-            android:gravity="start"
-            android:paddingStart="@dimen/paddingStart_4"
-            android:paddingLeft="@dimen/paddingLeft_4"
-            android:text="Full Item Name"
-            android:textSize="@dimen/textSize_13"
-            android:layout_below="@+id/itemImage"
-            android:textColor="@color/txtColor_black"
-            />
 
-
-           <RatingBar
-               android:id="@+id/ratingBar"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/itemName"
-               android:numStars="5"
-               style="?android:attr/ratingBarStyleSmall"
-               android:paddingStart="@dimen/paddingStart_4"
-               android:paddingLeft="@dimen/paddingLeft_4"/>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemName"
+                android:layout_marginTop="@dimen/marginTop_2"
+                android:numStars="5"
+                android:paddingStart="@dimen/paddingStart_4"
+                android:paddingLeft="@dimen/paddingLeft_4" />
 
 
             <TextView
@@ -79,10 +83,11 @@
                 android:paddingBottom="@dimen/paddingBottom_2"
                 android:text="@string/_150"
                 android:textColor="@color/txtColor_black"
-                android:textSize="@dimen/txtSize_11"
+                android:textSize="@dimen/textsize_10"
                 android:textStyle="bold" />
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/share_button"
                 android:layout_width="@dimen/width_20"
                 android:layout_height="@dimen/height_20"
                 android:layout_below="@+id/itemPrice"
@@ -94,7 +99,9 @@
                 android:layout_marginEnd="@dimen/marginEnd_5"
                 android:layout_marginRight="@dimen/marginRight_5"
                 android:gravity="start|top"
-                android:src="@drawable/ic_more" />
+                android:src="@drawable/ic_share"
+                android:background="@android:color/transparent"
+                />
             />
         </RelativeLayout>
 

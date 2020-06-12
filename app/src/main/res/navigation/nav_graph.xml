@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_mainFragment2_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_favourite_Fragment"
+            app:destination="@id/favourite_Fragment" />
     </fragment>
 
     <fragment

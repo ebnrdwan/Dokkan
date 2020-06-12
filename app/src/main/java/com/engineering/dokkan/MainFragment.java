@@ -22,7 +22,7 @@ import com.engineering.dokkan.view.base.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends BaseFragment {
-    private Button btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ;
+    private Button btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ , btn_fav;
 
 
     public MainFragment() {
@@ -79,6 +79,13 @@ public class MainFragment extends BaseFragment {
             }
         });
 
+        btn_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNavController().navigate(R.id.action_mainFragment_to_favourite_Fragment);
+
+            }
+        });
 
     }
 
@@ -93,6 +100,7 @@ public class MainFragment extends BaseFragment {
         btn_notification = view.findViewById(R.id.btn_notify);
         btn_profile = view.findViewById(R.id.btn_profile);
         btn_askQ = view.findViewById(R.id.btn_ask);
+        btn_fav = view.findViewById((R.id.btn_fav));
     }
 
 

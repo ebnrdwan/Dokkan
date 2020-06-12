@@ -60,7 +60,14 @@
             android:padding="@dimen/padding_10"
             android:text="@string/ask_question" />
 
-
+        <Button
+            android:id="@+id/btn_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="@dimen/padding_10"
+            android:text="favourite item" />
     </LinearLayout>
 
 

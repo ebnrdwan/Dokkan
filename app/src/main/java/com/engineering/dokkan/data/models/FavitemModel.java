@@ -3,33 +3,23 @@ package com.engineering.dokkan.data.models;
 public class FavitemModel {
     String name ;
     String price ;
-    int image ;
-    int icon ;
+    String image ;
 
-    public FavitemModel(String name, String price, int image, int icon) {
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.icon = icon;
+    public FavitemModel() {
+
     }
 
-    public int getIcon()
-    {
-        return icon;
-    }
-
-    public void setIcon(int icon)
-    {
-        this.icon = icon;
-    }
-
-    public int getImage() {
-
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
+        this.image = image;
+    }
 
+    public FavitemModel(String name, String price, String image) {
+        this.name = name;
+        this.price = price;
         this.image = image;
     }
 
