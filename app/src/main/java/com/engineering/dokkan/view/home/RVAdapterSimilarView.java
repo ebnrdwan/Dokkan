@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.HomeItemModel;
+import com.engineering.dokkan.data.models.ProductitemModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarView.ItemViewHolder> {
-    private ArrayList<HomeItemModel> itemList;
+public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarView.ItemViewHolder > {
+    private ArrayList<ProductitemModel> itemList;
     private ItemClickListener onItemClickListener;
 
-    public RVAdapterSimilarView(ArrayList<HomeItemModel> itemList, ItemClickListener onItemClickListener) {
+    public RVAdapterSimilarView(ArrayList<ProductitemModel> itemList, ItemClickListener onItemClickListener) {
         this.itemList = itemList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -34,7 +36,11 @@ public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarV
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+        Picasso.get().load(itemList.get(position).getImage()).into(holder.itemImage);
+        holder.itemName.setText(itemList.get(position).getName());
+        holder.price.setText(itemList.get(position).getPrice());
         holder.setDatainView(itemList.get(position));
+
 
     }
 
@@ -55,7 +61,7 @@ public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarV
 
 
 
-        public ItemViewHolder(@NonNull View itemView , final ItemClickListener itemClickListener) {
+        public ItemViewHolder(@NonNull View itemView ,final ItemClickListener itemClickListener) {
             super(itemView);
             this.itemClickListener =itemClickListener;
             rootView = itemView ;
@@ -64,11 +70,7 @@ public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarV
             price=(TextView)itemView.findViewById(R.id.price);
         }
 
-        public void setDatainView(final HomeItemModel item) {
-
-            itemImage.setImageResource(item.getImageResourceId());
-            itemName.setText(item.getItemName());
-            price.setText(item.getPrice());
+        public void setDatainView(final ProductitemModel item) {
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -79,6 +81,6 @@ public class RVAdapterSimilarView extends RecyclerView.Adapter<RVAdapterSimilarV
     }
 
     interface ItemClickListener {
-        void onItemClick(HomeItemModel item);
+        void onItemClick(ProductitemModel item);
     }
 }

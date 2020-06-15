@@ -31,14 +31,14 @@ public class Fragment_Welcome extends BaseFragment {
         btn_singIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNavController().navigate(R.id.action_fragment_Welcome2_to_profileFragment2);
+               // getNavController().navigate(R.id.action_fragment_Welcome2_to_profileFragment2);
             }
         });
 
         btn_singUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNavController().navigate(R.id.action_fragment_Welcome2_to_askQuestionFragment);
+                //getNavController().navigate(R.id.action_fragment_Welcome2_to_askQuestionFragment);
             }
         });
     }

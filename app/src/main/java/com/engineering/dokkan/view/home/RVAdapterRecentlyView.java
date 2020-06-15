@@ -9,14 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.ProductitemModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentlyView.ImageViewHolder> {
-    private ArrayList<Integer> imageList;
+    private ArrayList<ProductitemModel> imageList;
     private ImageClickListener onItemClickListener;
 
-    public RVAdapterRecentlyView(ArrayList<Integer> imageList, ImageClickListener onItemClickListener) {
+    public RVAdapterRecentlyView(ArrayList<ProductitemModel> imageList, ImageClickListener onItemClickListener) {
         this.imageList = imageList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -32,6 +34,8 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        Picasso.get().load(imageList.get(position).getImage()).into(holder.itemImage);
+
         holder.setDatainView(imageList.get(position));
 
     }
@@ -61,9 +65,7 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
 
         }
 
-        public void setDatainView(final int item) {
-
-            itemImage.setImageResource(item);
+        public void setDatainView(final ProductitemModel item) {
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -74,6 +76,6 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
     }
 
     interface ImageClickListener {
-        void onItemClick(int item);
+        void onItemClick(ProductitemModel item);
     }
 }
