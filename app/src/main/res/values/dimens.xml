@@ -164,7 +164,7 @@
     <dimen name="height_260">260dp</dimen>
     <dimen name="margin_25">25dp</dimen>
     <dimen name="margin_15">15dp</dimen>
-    <dimen name="textSize_17">17sp</dimen>
+    <dimen name="text_size17">17sp</dimen>
     <dimen name="margin_190">190dp</dimen>
     <dimen name="width_60">60dp</dimen>
     <dimen name="height_1">1dp</dimen>
@@ -186,4 +186,10 @@
     <dimen name="width_25">25dp</dimen>
     <dimen name="height_25">25dp</dimen>
     <dimen name="margin_4">4dp</dimen>
+    <dimen name="pageMargin">30dp</dimen>
+    <dimen name="offset">10dp</dimen>
+    <dimen name="pageMarginAndOffset">30dp</dimen>
+    <dimen name="textSize_25">25sp</dimen>
+    <dimen name="padding_60">60dp</dimen>
+    <dimen name="height_400">400dp</dimen>
 </resources>

@@ -2,7 +2,6 @@
     <string name="app_name">Dokkan</string>
 
 
-
     <string name="location_name">cairo, Egypt</string>
     <string name="user_name">Salma and Esraa</string>
     <string name="sign_out">Sign Out</string>
@@ -60,4 +59,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_with_your_social">Login With Your Social</string>
     <string name="media_account">Media Account.</string>
+    <string name="welcomeUser_name">Asmaa El Qady</string>
+    <string name="browse_category">Browse Category</string>
+    <string name="product">Product</string>
 </resources>
