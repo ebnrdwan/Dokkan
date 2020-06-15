@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_180"
+    android:layout_marginRight="@dimen/margin_15"
+    android:layout_marginLeft="@dimen/margin_15"
+    android:layout_marginBottom="@dimen/margin_10"
+    android:paddingStart="@dimen/paddingStart_4"
+    android:clickable="true"
+    cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardElevation="@dimen/cardElevation_3"
+    android:paddingLeft="@dimen/paddingLeft_2"
+    android:background="@color/bkgcolor_gray">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/shopImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_100"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/photo1" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/shop_name_image"
+            android:layout_width="@dimen/width_75"
+            android:layout_height="@dimen/height_55"
+            android:layout_below="@+id/shopImage"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_marginStart="@dimen/marginStart_15"
+            android:layout_marginTop="@dimen/marginTop_10"
+            android:layout_marginBottom="@dimen/marginBottom_15"
+            tools:src="@drawable/icon3" />
+
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/shop_name_image"
+            android:layout_below="@+id/shopImage"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="@string/shopName"
+            android:textColor="@color/textColor_black"
+            android:textSize="@dimen/textSize_15"
+            />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shop_name"
+            android:layout_toRightOf="@id/shop_name_image"
+            android:numStars="5"
+            android:progressTint="#FFC107"
+            android:stepSize="0.5"
+            android:paddingTop="@dimen/padding_5"/>
+
+        <TextView
+            android:id="@+id/shop_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rating_bar"
+            android:layout_toRightOf="@id/shop_name_image"
+            android:drawableStart="@drawable/ic_location"
+            android:text="@string/location_name"
+            android:textSize="@dimen/textsize_10" />
+
+        <ImageButton
+            android:id="@+id/favourite_icon"
+            android:layout_width="@dimen/width_30"
+            android:layout_height="@dimen/height_30"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_below="@id/shopImage"
+            android:src="@drawable/ic_favorite_empty"/>
+
+
+        <ImageButton
+            android:id="@+id/share_shop"
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_30"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/favourite_icon"
+            android:gravity="start|top"
+            android:src="@drawable/ic_share" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
