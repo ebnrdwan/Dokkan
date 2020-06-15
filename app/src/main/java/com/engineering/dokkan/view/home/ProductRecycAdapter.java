@@ -60,6 +60,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         Picasso.get().load(productsList.get(position).getImage()).into(holder.Item_Image);
         holder.Item_Name.setText(productsList.get(position).getName());
         holder.Item_Price.setText(productsList.get(position).getPrice());
+
+        //share the link of photo 
         holder.ShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +97,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
 
 
         holder.setDatainView(productsList.get(position));
+
+        //favourite Togglebtn
         holder.favourite.setChecked(false);
         holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
         holder.favourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -118,10 +122,10 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             }
         });
 
+        //old favourite Imagebtn
 //        holder.favourite.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Log.d("STEP", "onClick: " + "done" );
 //                if ( productsList.get(position).isFav()){ // if it was already true
 //                    holder.favourite.setImageResource(R.drawable.ic_favorite_empty);
 //                    productsList.get(position).setFav(false);
