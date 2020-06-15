@@ -192,4 +192,5 @@
     <dimen name="textSize_25">25sp</dimen>
     <dimen name="padding_60">60dp</dimen>
     <dimen name="height_400">400dp</dimen>
+    <dimen name="margin_1">1dp</dimen>
 </resources>
