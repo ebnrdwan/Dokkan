@@ -2,12 +2,31 @@ package com.engineering.dokkan.data.models;
 
 public class ShopitemModel  {
 
+    private String key ;
     private String location;
     private String bio;
     private String coverImage;
     private String shopImage;
     private String categoryid;
     private String shopName;
+    private static boolean fav = false ;
+
+
+    public static boolean isFav() {
+        return fav;
+    }
+
+    public static void setFav(boolean fav) {
+        ShopitemModel.fav = fav;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getLocation() {
         return location;

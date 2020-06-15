@@ -17,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.ShopitemModel;
 import com.engineering.dokkan.view.Favourite.ShopRecycAdaptar;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -84,7 +86,7 @@ public class ShopFragment extends BaseFragment {
                     data.add(shops);
                 }
 
-                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(data);
+                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext() ,data , ListenerShops , ListenerFavourite);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -107,6 +109,27 @@ public class ShopFragment extends BaseFragment {
             }
         });
     }
+
+    ShopRecyclerAdaptar.ItemClickListener ListenerShops = new ShopRecyclerAdaptar.ItemClickListener() {
+        @Override
+        public void onItemClick(ShopitemModel item) {
+            Toast.makeText(getActivity(), "item Clicked", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite = new ShopRecyclerAdaptar.FavouriteClickListener() {
+        @Override
+        public void onFavouriteClicked(int position, boolean isFav) {
+            dbReference = FirebaseDatabase.getInstance().getReference("shops");
+            dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
+    };
 
 
 }

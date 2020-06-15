@@ -76,16 +76,17 @@
             android:text="@string/location_name"
             android:textSize="@dimen/textsize_10" />
 
-        <ImageButton
+        <ToggleButton
             android:id="@+id/favourite_icon"
-            android:layout_width="@dimen/width_30"
-            android:layout_height="@dimen/height_30"
-            android:background="@android:color/transparent"
+            android:layout_width="@dimen/width_20"
+            android:layout_height="@dimen/width_20"
+            android:background="@drawable/ic_favorite_empty"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/margin_10"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_below="@id/shopImage"
-            android:src="@drawable/ic_favorite_empty"/>
+            android:textOn=""
+            android:textOff=""/>
 
 
         <ImageButton
@@ -93,7 +94,7 @@
             android:layout_width="@dimen/width_25"
             android:layout_height="@dimen/height_30"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_10"
             android:background="@android:color/transparent"
             android:layout_below="@+id/favourite_icon"
             android:gravity="start|top"
