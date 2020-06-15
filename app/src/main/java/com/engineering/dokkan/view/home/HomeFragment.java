@@ -59,11 +59,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initViewModel();
-
         DoingOfTabLayout (view);
-
         SliderWork( view);
-
         intializeRecentlyViewRecycler ( view);
 
 
