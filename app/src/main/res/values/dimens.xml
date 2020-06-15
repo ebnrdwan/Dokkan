@@ -193,4 +193,8 @@
     <dimen name="padding_60">60dp</dimen>
     <dimen name="height_400">400dp</dimen>
     <dimen name="margin_1">1dp</dimen>
+    <dimen name="width_180">180dp</dimen>
+    <dimen name="cornerRadius_20">20dp</dimen>
+    <dimen name="height_140">140dp</dimen>
+    <dimen name="text_size25">25sp</dimen>
 </resources>
