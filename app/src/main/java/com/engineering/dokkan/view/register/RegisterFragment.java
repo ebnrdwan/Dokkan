@@ -1,137 +1,162 @@
 package com.engineering.dokkan.view.register;
 
 
-import android.os.Bundle;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Patterns;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.engineering.dokkan.view.base.BaseFragment;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-import java.util.regex.Pattern;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends BaseFragment {
-private Button register;
-    private EditText username , email , password , confirmPassword;
-private CheckBox ch ;
+    private Button register;
+    EditText username, email, password, confirmPassword;
+    private ProgressDialog mProgress;
+    FirebaseAuth mFireBaseAuth;
+    private DatabaseReference databaseReference;
+    private String currentUserID;
+
+
 
     public RegisterFragment() {
         // Required empty public constructor
     }
 
 
-        @Override
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_register;
     }
+
     NavController getNavController() {
         return Navigation.findNavController(getActivity(), R.id.my_nav_host);
     }
 
-    private boolean validateUsername() {
-        String usernameInput = username.getText().toString();
-        if (usernameInput.isEmpty()) {
-            username.setError("Field can't be empty");
-            return false;
-        } else if (usernameInput.length() > 15) {
-            username.setError("Username is too long");
-            return false;
-        } else {
-            username.setError(null);
-            return true;
-        }
-    }
 
-    private boolean validateEmail(){
-        String emailInput = email.getText().toString();
-        if (emailInput.isEmpty()) {
-            email.setError("Field can't be empty");
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            email.setError("Please enter a valid email address");
-            return false;
-        } else {
-            email.setError(null);
-            return true;
-        }
-
-    }
-    private boolean validatePassword(){
-        String passInput = password.getText().toString();
-        if (passInput.isEmpty()) {
-            password.setError("Field can't be empty");
-            return false;
-        } else if (passInput.length() <6) {
-            username.setError("Password shouhd be more than 6 characters");
-            return false;
-        } else {
-            password.setError(null);
-            return true;
-        }
-    }
-    private boolean validateConfirmPassword(){
-String confirmPassInput = confirmPassword.getText().toString();
-        String passInput = password.getText().toString();
-
-        if (confirmPassInput.isEmpty()) {
-            confirmPassword.setError("Field can't be empty");
-            return false;
-        }
-        else if(!confirmPassInput.equals(passInput)){
-            confirmPassword.setError("Error!! Confirm Password should match Password");
-            return false;
-        }
-        else {
-            confirmPassword.setError(null);
-            return true;
-        }
-    }
-
-
-       @Override
+    @Override
     public void initializeViews(View view) {
         register = view.findViewById(R.id.butt);
         username = view.findViewById(R.id.name);
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         confirmPassword = view.findViewById(R.id.confirm_password);
+        mFireBaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        mProgress = new ProgressDialog(getActivity());
+        currentUserID = mFireBaseAuth.getCurrentUser().getUid();
+
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validateUsername()==true &&validateEmail()==true&&validatePassword()==true&&validateConfirmPassword()==true){
-                    getNavController().navigate(R.id.action_registerFragment_to_profileFragment);
-                }
+                createAccount();
+
 
             }
 
         });
     }
 
-    @Override
-    public void setListeners() {
+    private void createAccount() {
+        final String name = username.getText().toString();
+        final String mail = email.getText().toString();
+        String pass = password.getText().toString();
+        String confirmPass = confirmPassword.getText().toString();
+
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(getContext(), "Please! write your user name first...", Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(mail)) {
+            Toast.makeText(getContext(), "Error!! Email is Empty", Toast.LENGTH_LONG).show();
+
+        }
+        if (TextUtils.isEmpty(pass)) {
+            Toast.makeText(getContext(), "Error!! PassWord is Empty", Toast.LENGTH_LONG).show();
+
+        }
+        if (TextUtils.isEmpty(confirmPass)) {
+            Toast.makeText(getContext(), "Error!! ConfirmPassWord is Empty", Toast.LENGTH_LONG).show();
+
+        } else if (!pass.equals(confirmPass)) {
+            Toast.makeText(getContext(), "Error!! ConfirmPassWord should match PassWord", Toast.LENGTH_LONG).show();
+
+        } else {
+            mProgress.setTitle("Create User");
+            mProgress.setMessage("please Wait! User creation is in Progress...");
+            mProgress.setCanceledOnTouchOutside(true);
+            mProgress.show();
+
+            mFireBaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        currentUserID = mFireBaseAuth.getCurrentUser().getUid();
+                        databaseReference.child("Users").child(currentUserID).setValue(mail);
+
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("uid", currentUserID);
+                        map.put("name", name);
+                        databaseReference.child("Users").child(currentUserID).setValue(map);
+                        mProgress.dismiss();
+
+                        Toast.makeText(getContext(), "Registered Successful :) Please, Check your E-mail for Verifications", Toast.LENGTH_LONG).show();
+                        mFireBaseAuth.getCurrentUser().sendEmailVerification()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            getNavController().navigate(R.id.action_registerFragment_to_profileFragment);
+
+                                        } else {
+                                            mProgress.dismiss();
+                                            String message = task.getException().toString();
+                                            Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }
+                                });
+                    } else {
+                        String message = task.getException().toString();
+                        Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+
+            });
+        }
 
     }
 
 
+    @Override
+    public void setListeners() {
 
+    }
 
 
 }
