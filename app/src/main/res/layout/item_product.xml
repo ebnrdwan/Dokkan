@@ -28,20 +28,18 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/photo1" />
 
-            <ToggleButton
+            <ImageView
                 android:id="@+id/iconImage"
                 android:layout_width="@dimen/width_25"
                 android:layout_height="@dimen/height_25"
                 android:layout_gravity="right"
-                android:background="@drawable/ic_favorite_empty"
+                android:src="@drawable/ic_favorite_empty"
                 android:layout_alignRight="@+id/itemImage"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="@dimen/margin_1"
-                android:padding="@dimen/padding_5"
-                android:paddingEnd="@dimen/paddingEnd_4"
-                android:paddingRight="@dimen/paddingRight_4"
-                android:textOn=""
-                android:textOff="" />
+                android:padding="@dimen/padding_3"
+
+                 />
 
 
 
@@ -93,7 +91,7 @@
                 android:id="@+id/share_product"
                 android:layout_width="@dimen/width_25"
                 android:layout_height="@dimen/height_30"
-                android:background="@color/color_F1EDED"
+                android:background="@android:color/transparent"
                 android:gravity="start|top"
                 android:src="@drawable/ic_share"
                 android:layout_below="@+id/ratingBar"

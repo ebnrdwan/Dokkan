@@ -78,7 +78,7 @@ public class ProductsFragment extends BaseFragment {
                     ProductitemModel categ = snapshot.getValue(ProductitemModel.class);
                     data.add(categ);
                 }
-                ProductRecycAdapter Adapter = new ProductRecycAdapter( getContext() ,data , ListenerProducts , ListenerFavourite);
+                ProductRecycAdapter Adapter = new ProductRecycAdapter( getContext() ,data , ListenerProducts);
                 recyclerView.setAdapter(Adapter);
                 Log.d("STEP", "adapter: " + "done" );
 
@@ -124,29 +124,25 @@ public class ProductsFragment extends BaseFragment {
         }
     };
 
-    ProductRecycAdapter.FavouriteClickListener ListenerFavourite = new ProductRecycAdapter.FavouriteClickListener() {
-        @Override
-        public void onFavouriteClicked(final int position, final boolean isFav) {
-            Log.d("STEP", "ListenerFavourite: " + "done" );
+//    ProductRecycAdapter.FavouriteClickListener ListenerFavourite = new ProductRecycAdapter.FavouriteClickListener() {
+//        @Override
+//        public void onFavouriteClicked(final int position, final boolean isFav) {
+//            Log.d("STEP", "ListenerFavourite: " + "done" );
+//
+//            dbReference = FirebaseDatabase.getInstance().getReference("products");
+//            dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
+//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Toast.makeText(getActivity() , "Product favourite Succcesfully.." , Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//
+//
 
-            dbReference = FirebaseDatabase.getInstance().getReference("products");
-            dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getActivity() , "Product favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                        }
-                    });
 
-
-
-//                    productsMap = (Map<String, String>) dataSnapshot.getValue();
-//                    Log.d("MAP", "KEY: " + productsMap.keySet().toArray()[position].toString());
-//                    dbReference.child(productsMap.keySet().toArray()[position].toString()).child("favourite")
-//                            .setValue(isFav);
-
-        }
-    };
+//        }
+//    };
 
 
 }

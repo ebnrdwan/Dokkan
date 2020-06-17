@@ -22,6 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -34,25 +40,25 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
     Context c ;
     private ArrayList<ProductitemModel> productsList;
     private ItemClickListener onItemClickListener;
-    private FavouriteClickListener onFavClickListener ;
+    //private FavouriteClickListener onFavClickListener ;
+    DatabaseReference databaseReference;
 
 
 
 
     public ProductRecycAdapter( Context c , ArrayList<ProductitemModel> productsList
-            , ItemClickListener onItemClickListener
-            , FavouriteClickListener onFavClickListener) {
+            , ItemClickListener onItemClickListener) {
         this.c = c;
         this.productsList = productsList;
         this.onItemClickListener = onItemClickListener;
-        this.onFavClickListener = onFavClickListener ;
+       // this.onFavClickListener = onFavClickListener ;
     }
 
     @NonNull
     @Override
     public favouriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
-        return new favouriteHolder(v , onItemClickListener ,onFavClickListener );
+        return new favouriteHolder(v , onItemClickListener);
     }
 
     @Override
@@ -99,50 +105,80 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         holder.setDatainView(productsList.get(position));
 
         //favourite Togglebtn
-        holder.favourite.setChecked(false);
-        holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-        holder.favourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.fav_icon));
-                    productsList.get(position).setFav(true);
-                    Log.d("IS FAV (IF WAS FALSE)", "FAV: " + productsList.get(position).isFav() );
-                    Toast.makeText(c , "Fav Icon Succcesfully.." , Toast.LENGTH_LONG).show();
-
-                }else{
-                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-                    productsList.get(position).setFav(false);
-                    Log.d("IS FAV (IF TRUE)", "FAV: " + productsList.get(position).isFav() );
-                    Toast.makeText(c , "Fav Empty Succcesfully.." , Toast.LENGTH_LONG).show();
-
-                }
-                holder.favouriteClickListener.onFavouriteClicked(position , productsList.get(position).isFav());
-                Log.d("AFTER CALLING LISTENER", "FAV: " + productsList.get(position).isFav() );
-            }
-        });
-
-        //old favourite Imagebtn
-//        holder.favourite.setOnClickListener(new View.OnClickListener() {
+//        holder.favourite.setChecked(false);
+//        holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
+//        holder.favourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
-//            public void onClick(View view) {
-//                if ( productsList.get(position).isFav()){ // if it was already true
-//                    holder.favourite.setImageResource(R.drawable.ic_favorite_empty);
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.fav_icon));
+//                    productsList.get(position).setFav(true);
+//                    Log.d("IS FAV (IF WAS FALSE)", "FAV: " + productsList.get(position).isFav() );
+//                    Toast.makeText(c , "Fav Icon Succcesfully.." , Toast.LENGTH_LONG).show();
+//
+//                }else{
+//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
 //                    productsList.get(position).setFav(false);
 //                    Log.d("IS FAV (IF TRUE)", "FAV: " + productsList.get(position).isFav() );
-//                } else { // if it was false
-//                    holder.favourite.setImageResource(R.drawable.fav_icon);
-//                    productsList.get(position).setFav(true);
-//                    Log.d("IS FAV (IF FALSE)", "FAV: " + productsList.get(position).isFav() );
+//                    Toast.makeText(c , "Fav Empty Succcesfully.." , Toast.LENGTH_LONG).show();
 //
 //                }
 //                holder.favouriteClickListener.onFavouriteClicked(position , productsList.get(position).isFav());
 //                Log.d("AFTER CALLING LISTENER", "FAV: " + productsList.get(position).isFav() );
-//
-//
 //            }
 //        });
 
+        isFavourite(productsList.get(position).getKey() , holder.favourite) ;
+
+        holder.favourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ( !productsList.get(position).isFav() ){ //  if it was false
+                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
+                    databaseReference.child(productsList.get(position).getKey()).child("favourite").setValue(true)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    productsList.get(position).setFav(true);
+                } else { //if it was already true
+                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
+                    databaseReference.child(productsList.get(position).getKey()).child("favourite").removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    productsList.get(position).setFav(false);
+                }
+
+            }
+        });
+
+    }
+
+    private void isFavourite(String key, final ImageView favourite) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("products");
+        databaseReference.child(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if ( dataSnapshot.child("favourite").exists()){
+                    favourite.setImageResource(R.drawable.fav_icon);
+                } else  {
+                    favourite.setImageResource(R.drawable.ic_favorite_empty);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 //    private Uri getlocalBitmapUri(Bitmap bitmap) {
@@ -170,17 +206,17 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         TextView Item_Name;
         TextView Item_Price ;
         ImageView Item_Image;
-        ToggleButton favourite  ;
+        ImageView favourite  ;
         ItemClickListener itemClickListener;
-        FavouriteClickListener favouriteClickListener ;
+       // FavouriteClickListener favouriteClickListener ;
         View rootView ;
         ImageButton ShareBtn ;
 
         public favouriteHolder(@NonNull View itemView,final ItemClickListener itemClickListener
-                , FavouriteClickListener favouriteClickListener) {
+                ) {
             super(itemView);
             rootView = itemView ;
-            this.favouriteClickListener = favouriteClickListener ;
+            //this.favouriteClickListener = favouriteClickListener ;
             this.itemClickListener =itemClickListener;
             this.favourite = itemView.findViewById(R.id.iconImage);
             Item_Image = itemView.findViewById(R.id.itemImage);
@@ -205,9 +241,9 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         void onItemClick(ProductitemModel item);
     }
 
-    interface FavouriteClickListener {
-        void onFavouriteClicked(int position , boolean isFav );
-    }
+//    interface FavouriteClickListener {
+//        void onFavouriteClicked(int position , boolean isFav );
+//    }
 
 
 

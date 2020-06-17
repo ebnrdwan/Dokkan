@@ -12,7 +12,7 @@ public class ProductitemModel {
     private String descryption;
     private String size ;
     private String materials;
-    private static boolean fav = false ;
+    private  boolean fav  ;
 
 
 
