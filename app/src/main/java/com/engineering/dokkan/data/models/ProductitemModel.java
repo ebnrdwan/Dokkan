@@ -13,28 +13,30 @@ public class ProductitemModel {
     private String size ;
     private String materials;
     private  boolean fav  ;
+    private float rate ;
+
 
 
 
     public ProductitemModel() {
     }
 
-    public ProductitemModel(String name, String price, String image,
-                            String categoryid, String img1, boolean fav ,
-                            String img2, String img3, String descryption,
-                            String size, String materials , String key) {
+    public ProductitemModel(String key, String name, String price,
+                            String image, String categoryid, String img1, String img2, String img3,
+                            String descryption, String size, String materials, boolean fav, float rate) {
         this.key = key;
         this.name = name;
         this.price = price;
         this.image = image;
         this.categoryid = categoryid;
-        this.fav=fav;
         this.img1 = img1;
         this.img2 = img2;
         this.img3 = img3;
         this.descryption = descryption;
         this.size = size;
         this.materials = materials;
+        this.fav = fav;
+        this.rate = rate;
     }
 
     public ProductitemModel(String name, String price, String image) {
@@ -42,6 +44,14 @@ public class ProductitemModel {
         this.price = price;
         this.image = image;
 
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
     public String getKey() {

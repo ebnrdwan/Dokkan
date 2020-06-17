@@ -64,6 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemName"
                 android:numStars="5"
+                android:isIndicator="false"
+                android:stepSize="0.5"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_marginLeft="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_3"

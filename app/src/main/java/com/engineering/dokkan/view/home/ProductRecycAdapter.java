@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -128,6 +129,28 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
 //            }
 //        });
 
+        holder.ratingBar.setRating(productsList.get(position).getRate());
+
+        holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+//                LayerDrawable stars = (LayerDrawable)holder.ratingBar.getProgressDrawable();
+//                stars.getDrawable(2) .setColorFilter(Color.YELLOW , PorterDuff.Mode.SRC_ATOP);
+
+                productsList.get(position).setRate(ratingBar.getRating());
+                //holder.rateBarClickListener.onRateClicked(position , ratingBar.getRating() );
+                databaseReference = FirebaseDatabase.getInstance().getReference("products");
+                databaseReference.child(productsList.get(position).getKey()).child("rate").setValue(ratingBar.getRating())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        });
+
+
         isFavourite(productsList.get(position).getKey() , holder.favourite) ;
 
         holder.favourite.setOnClickListener(new View.OnClickListener() {
@@ -211,6 +234,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
        // FavouriteClickListener favouriteClickListener ;
         View rootView ;
         ImageButton ShareBtn ;
+        RatingBar ratingBar ;
 
         public favouriteHolder(@NonNull View itemView,final ItemClickListener itemClickListener
                 ) {
@@ -223,6 +247,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             Item_Name = itemView.findViewById(R.id.itemName);
             Item_Price = itemView.findViewById(R.id.itemPrice);
             ShareBtn = itemView.findViewById(R.id.share_product);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
+
         }
 
 
