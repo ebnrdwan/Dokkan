@@ -35,7 +35,6 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Picasso.get().load(imageList.get(position).getImage()).into(holder.itemImage);
-
         holder.setDatainView(imageList.get(position));
 
     }
@@ -54,6 +53,8 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
         public ImageView itemImage ;
         View rootView;
         ImageClickListener itemClickListener;
+        ImageView favourite  ;
+
 
 
 
@@ -61,6 +62,7 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
             super(itemView);
             this.itemClickListener =itemClickListener;
             rootView = itemView ;
+            this.favourite = itemView.findViewById(R.id.fav_recentview);
             itemImage = (ImageView) itemView.findViewById(R.id.recently_view);
 
         }
