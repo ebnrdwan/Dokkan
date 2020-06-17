@@ -62,9 +62,10 @@
             android:layout_below="@+id/shop_name"
             android:layout_toRightOf="@id/shop_name_image"
             android:numStars="5"
-            android:progressTint="#FFC107"
+            android:isIndicator="false"
             android:stepSize="0.5"
-            android:paddingTop="@dimen/padding_5"/>
+            android:paddingTop="@dimen/padding_5"
+            android:paddingBottom="@dimen/padding_5"/>
 
         <TextView
             android:id="@+id/shop_location"
@@ -76,17 +77,16 @@
             android:text="@string/location_name"
             android:textSize="@dimen/textsize_10" />
 
-        <ToggleButton
+        <ImageView
             android:id="@+id/favourite_icon"
             android:layout_width="@dimen/width_20"
             android:layout_height="@dimen/width_20"
             android:background="@drawable/ic_favorite_empty"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_15"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_below="@id/shopImage"
-            android:textOn=""
-            android:textOff=""/>
+           />
 
 
         <ImageButton

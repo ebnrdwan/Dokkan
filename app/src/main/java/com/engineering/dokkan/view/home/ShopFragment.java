@@ -41,6 +41,8 @@ public class ShopFragment extends BaseFragment {
     Bundle bundle1 ;
     MainViewModel mainViewModel;
 
+   // ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite;
+    ShopRecyclerAdaptar.RateBarClickListener ListenerRate;
 
 
     @Override
@@ -51,12 +53,43 @@ public class ShopFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         showShops(view);
-
-
     }
 
     @Override
     public void setListeners() {
+
+//         ListenerFavourite = new ShopRecyclerAdaptar.FavouriteClickListener() {
+//            @Override
+//            public void onFavouriteClicked(int position, boolean isFav) {
+//                dbReference = FirebaseDatabase.getInstance().getReference("shops");
+//                dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
+//                            }
+//                        });
+//
+//
+//            }
+//        };
+
+        ListenerRate = new ShopRecyclerAdaptar.RateBarClickListener(){
+
+            @Override
+            public void onRateClicked(int position, float rate) {
+                dbReference = FirebaseDatabase.getInstance().getReference("shops");
+                dbReference.child(data.get(position).getKey()).child("rate").setValue(rate)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        };
+
+
 
     }
 
@@ -85,10 +118,9 @@ public class ShopFragment extends BaseFragment {
                     ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
                     data.add(shops);
                 }
-
-                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext() ,data , ListenerShops , ListenerFavourite);
+                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
+                        ,data , ListenerShops , ListenerRate);
                 recyclerView.setAdapter(adapter);
-
             }
 
             @Override
@@ -100,6 +132,7 @@ public class ShopFragment extends BaseFragment {
 
 
     }
+
     void initViewModel() {
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         mainViewModel.catId.observe(getActivity(), new Observer<String>() {
@@ -117,19 +150,7 @@ public class ShopFragment extends BaseFragment {
         }
     };
 
-    ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite = new ShopRecyclerAdaptar.FavouriteClickListener() {
-        @Override
-        public void onFavouriteClicked(int position, boolean isFav) {
-            dbReference = FirebaseDatabase.getInstance().getReference("shops");
-            dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                        }
-                    });
-        }
-    };
+
 
 
 }

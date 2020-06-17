@@ -9,15 +9,24 @@ public class ShopitemModel  {
     private String shopImage;
     private String categoryid;
     private String shopName;
-    private static boolean fav = false ;
+    private boolean fav  ;
+    private float rate ;
 
 
-    public static boolean isFav() {
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
+    public boolean isFav() {
         return fav;
     }
 
-    public static void setFav(boolean fav) {
-        ShopitemModel.fav = fav;
+    public void setFav(boolean fav) {
+        this.fav = fav;
     }
 
     public String getKey() {
