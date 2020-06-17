@@ -26,7 +26,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_180"
                 android:background="@drawable/welcome_bg"
-                android:backgroundTint="@color/color_9a7c84"
                 android:orientation="vertical">
 
                 <ImageView
@@ -34,8 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_90"
                     android:layout_marginTop="@dimen/margin_20"
-                    android:layout_marginRight="@dimen/marginTop_60"
-                    android:background="@drawable/welcomehome" />
+                    android:background="@drawable/welcome_logo" />
 
                 <TextView
                     android:id="@+id/user_name"

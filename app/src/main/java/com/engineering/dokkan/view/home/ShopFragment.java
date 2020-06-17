@@ -42,7 +42,7 @@ public class ShopFragment extends BaseFragment {
     MainViewModel mainViewModel;
 
    // ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite;
-    ShopRecyclerAdaptar.RateBarClickListener ListenerRate;
+    //ShopRecyclerAdaptar.RateBarClickListener ListenerRate;
 
 
     @Override
@@ -57,7 +57,6 @@ public class ShopFragment extends BaseFragment {
 
     @Override
     public void setListeners() {
-
 //         ListenerFavourite = new ShopRecyclerAdaptar.FavouriteClickListener() {
 //            @Override
 //            public void onFavouriteClicked(int position, boolean isFav) {
@@ -74,23 +73,20 @@ public class ShopFragment extends BaseFragment {
 //            }
 //        };
 
-        ListenerRate = new ShopRecyclerAdaptar.RateBarClickListener(){
-
-            @Override
-            public void onRateClicked(int position, float rate) {
-                dbReference = FirebaseDatabase.getInstance().getReference("shops");
-                dbReference.child(data.get(position).getKey()).child("rate").setValue(rate)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
-                            }
-                        });
-            }
-        };
-
-
-
+//        ListenerRate = new ShopRecyclerAdaptar.RateBarClickListener(){
+//
+//            @Override
+//            public void onRateClicked(int position, float rate) {
+//                dbReference = FirebaseDatabase.getInstance().getReference("shops");
+//                dbReference.child(data.get(position).getKey()).child("rate").setValue(rate)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
+//                            }
+//                        });
+//            }
+//        };
     }
 
 
@@ -119,7 +115,7 @@ public class ShopFragment extends BaseFragment {
                     data.add(shops);
                 }
                 ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
-                        ,data , ListenerShops , ListenerRate);
+                        ,data , ListenerShops);
                 recyclerView.setAdapter(adapter);
             }
 

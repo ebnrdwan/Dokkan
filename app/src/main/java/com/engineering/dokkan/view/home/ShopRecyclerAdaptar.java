@@ -38,18 +38,17 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
     private ArrayList<ShopitemModel> shopList;
     private ItemClickListener onItemClickListener;
     //private FavouriteClickListener onFavClickListener ;
-    private RateBarClickListener onRateClickListener ;
+    //private RateBarClickListener onRateClickListener ;
 
     DatabaseReference databaseReference ;
 
     public ShopRecyclerAdaptar(Context c, ArrayList<ShopitemModel> shopList,
-                               ItemClickListener onItemClickListener,
-                               RateBarClickListener onRateClickListener) {
+                               ItemClickListener onItemClickListener) {
         this.c = c;
         this.shopList = shopList;
         this.onItemClickListener = onItemClickListener;
        // this.onFavClickListener = onFavClickListener;
-        this.onRateClickListener = onRateClickListener;
+        //this.onRateClickListener = onRateClickListener;
     }
 
     @NonNull
@@ -57,7 +56,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
     public shopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shop, parent, false);
-        return new shopHolder(v , onItemClickListener , onRateClickListener);
+        return new shopHolder(v , onItemClickListener );
     }
 
     @Override
@@ -69,14 +68,24 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
         holder.setDatainView(shopList.get(position));
 
+        holder.ratingBar.setRating(shopList.get(position).getRate());
+
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
 //                LayerDrawable stars = (LayerDrawable)holder.ratingBar.getProgressDrawable();
 //                stars.getDrawable(2) .setColorFilter(Color.YELLOW , PorterDuff.Mode.SRC_ATOP);
+
                 shopList.get(position).setRate(ratingBar.getRating());
-                Log.d("RATING_BAR", "rate: " + holder.ratingBar.getRating() );
-               // holder.rateBarClickListener.onRateClicked(position , ratingBar.getRating() );
+               //holder.rateBarClickListener.onRateClicked(position , ratingBar.getRating() );
+                databaseReference = FirebaseDatabase.getInstance().getReference("shops");
+                databaseReference.child(shopList.get(position).getKey()).child("rate").setValue(ratingBar.getRating())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
 
@@ -149,6 +158,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
     }
 
+
     private void isFavourite(String key, final ImageView favourite) {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("shops");
@@ -184,13 +194,12 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         ImageView favourite  ;
         ItemClickListener itemClickListener;
         //FavouriteClickListener favouriteClickListener ;
-        RateBarClickListener rateBarClickListener;
+        //RateBarClickListener rateBarClickListener;
         View rootView ;
         ImageButton ShareBtn ;
         RatingBar ratingBar ;
 
-        public shopHolder(@NonNull View itemView,final ItemClickListener itemClickListener
-        ,RateBarClickListener rateBarClickListener ) {
+        public shopHolder(@NonNull View itemView,final ItemClickListener itemClickListener) {
             super(itemView);
             shopImage = itemView.findViewById(R.id.shopImage);
             Shop_Name_Image = itemView.findViewById(R.id.shop_name_image);
@@ -199,7 +208,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
             rootView = itemView ;
             //this.favouriteClickListener = favouriteClickListener ;
             this.itemClickListener =itemClickListener;
-            this.rateBarClickListener =rateBarClickListener ;
+            //this.rateBarClickListener =rateBarClickListener ;
             this.favourite = itemView.findViewById(R.id.favourite_icon);
             ShareBtn = itemView.findViewById(R.id.share_shop);
             ratingBar = itemView.findViewById(R.id.rating_bar);
@@ -228,8 +237,8 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 //        void onFavouriteClicked(int position , boolean isFav );
 //    }
 
-    interface RateBarClickListener {
-        void onRateClicked(int position , float rate );
-    }
+//    interface RateBarClickListener {
+//        void onRateClicked(int position , float rate );
+//    }
 
 }
