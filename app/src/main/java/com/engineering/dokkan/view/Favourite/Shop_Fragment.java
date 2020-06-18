@@ -1,6 +1,7 @@
 package com.engineering.dokkan.view.Favourite;
 
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,6 +52,7 @@ public class Shop_Fragment extends BaseFragment {
         mReferance.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ShopData.clear();
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                 {
                     FavShopModel favModel = dataSnapshot1.getValue(FavShopModel.class);

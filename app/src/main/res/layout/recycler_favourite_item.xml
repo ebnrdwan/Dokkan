@@ -28,7 +28,7 @@
                 android:src="@drawable/photo1" />
 
             <ImageView
-                android:id="@+id/iconImage"
+                android:id="@+id/fav_heart"
                 android:layout_width="@dimen/width_25"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/itemImage"
@@ -37,7 +37,9 @@
                 android:padding="@dimen/padding_5"
                 android:paddingEnd="@dimen/paddingEnd_4"
                 android:paddingRight="@dimen/paddingRight_4"
-                android:src="@drawable/fav_icon" />
+                android:src="@drawable/fav_icon"
+
+                />
 
 
             <TextView
@@ -47,16 +49,12 @@
                 android:layout_below="@+id/itemImage"
                 android:layout_marginStart="@dimen/margin_3"
                 android:layout_marginLeft="@dimen/margin_3"
-                android:layout_marginTop="0dp"
                 android:layout_marginEnd="@dimen/margin_3"
-                android:layout_marginRight="@dimen/margin_3"
                 android:layout_marginBottom="@dimen/margin_3"
                 android:gravity="start"
-                android:paddingStart="@dimen/paddingStart_4"
-                android:paddingLeft="@dimen/paddingLeft_4"
                 android:text="Full Item Name"
                 android:textColor="@color/txtColor_black"
-                android:textSize="@dimen/textSize_13" />
+                android:textSize="@dimen/textSize_15" />
 
 
             <RatingBar
@@ -65,25 +63,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemName"
-                android:layout_marginTop="@dimen/marginTop_2"
                 android:numStars="5"
-                android:paddingStart="@dimen/paddingStart_4"
-                android:paddingLeft="@dimen/paddingLeft_4" />
+                android:progressTint="@color/Sunrise"
 
+
+
+                />
 
             <TextView
                 android:id="@+id/itemPrice"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_20"
                 android:layout_below="@+id/ratingBar"
-                android:layout_marginTop="@dimen/marginTop_4"
                 android:gravity="start"
                 android:paddingStart="@dimen/paddingStart_4"
                 android:paddingLeft="@dimen/paddingLeft_4"
                 android:paddingBottom="@dimen/paddingBottom_2"
                 android:text="@string/_150"
                 android:textColor="@color/txtColor_black"
-                android:textSize="@dimen/textsize_10"
+                android:textSize="@dimen/textSize_13"
                 android:textStyle="bold" />
 
             <ImageButton
@@ -101,6 +99,7 @@
                 android:gravity="start|top"
                 android:src="@drawable/ic_share"
                 android:background="@android:color/transparent"
+
                 />
             />
         </RelativeLayout>

@@ -1,9 +1,13 @@
 package com.engineering.dokkan.data.models;
 
+import com.google.firebase.database.Exclude;
+
 public class FavitemModel {
     String name ;
     String price ;
     String image ;
+    String mKey;
+    float rate ;
 
     public FavitemModel() {
 
@@ -40,4 +44,19 @@ public class FavitemModel {
     }
 
 
+    public String getmKey() {
+        return mKey;
+    }
+
+    public void setmKey(String mKey) {
+        this.mKey = mKey;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
 }

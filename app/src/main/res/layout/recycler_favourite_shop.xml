@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/shop_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/shopImage"
             android:layout_marginLeft="@dimen/marginleft_77"
@@ -61,12 +61,12 @@
             android:layout_below="@+id/shop_name"
             android:layout_marginLeft="@dimen/marginleft_90"
             android:numStars="5"
-            android:progressTint="#FFC107"
+            android:progressTint="@color/Sunrise"
             android:stepSize="0.5" />
 
         <TextView
             android:id="@+id/shop_location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ratingBar"
             android:layout_marginLeft="@dimen/marginleft_90"

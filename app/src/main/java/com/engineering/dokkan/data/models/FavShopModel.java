@@ -5,7 +5,8 @@ public class FavShopModel {
     private String shop_name_image;
     private String shopName;
     private String shopLocation;
-
+    String mKey;
+    float rate ;
 
     public FavShopModel(String shopCoverImage, String shop_name_image, String shopName, String shopLocation) {
         this.shopCoverImage = shopCoverImage;
@@ -48,6 +49,22 @@ public class FavShopModel {
 
     public void setShopLocation(String shopLocation) {
         this.shopLocation = shopLocation;
+    }
+
+    public String getmKey() {
+        return mKey;
+    }
+
+    public void setmKey(String mKey) {
+        this.mKey = mKey;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }
 

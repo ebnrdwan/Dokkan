@@ -2,15 +2,12 @@ package com.engineering.dokkan.view.Favourite;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.FavShopModel;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shopHolder> {
@@ -50,46 +42,26 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
         Picasso.get().load(shopList.get(position).getShopCoverImage()).into(holder.ShopCoverImage);
         holder.ShopName.setText(shopList.get(position).getShopName());
         holder.Shop_location.setText(shopList.get(position).getShopLocation());
+        holder.ratingBar.setRating(shopList.get(position).getRate());
+
+
+        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase.getInstance().getReference("Fav_Shop")
+                        .child(shopList.get(position).getmKey()).removeValue();
+
+            }
+        });
         holder.ShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Picasso.get().load(shopList.get(position).getShop_name_image()).into(new Target() {
-                    @Override
-                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        Intent intent = new Intent("android.intent.action.SEND");
-                        intent.setType("image/*");
-                        intent.putExtra("android.intent.extra.STREAM", getlocalBitmapUri(bitmap));
-                        c.startActivity(Intent.createChooser(intent, "share"));
-
-                    }
-
-                    @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-                    }
-
-                    @Override
-                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                    }
-                });
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, shopList.get(position).getShop_name_image());
+                intent.setType("text/plain");
+                c.startActivity(Intent.createChooser(intent, "Send To"));
             }
         });
-    }
-        private Uri getlocalBitmapUri(Bitmap bitmap) {
-            Uri bmuri = null;
-            try {
-                File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-                fileOutputStream.close();
-                bmuri = Uri.fromFile(file);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e2) {
-                e2.printStackTrace();
-            }
-            return bmuri;
 
         }
 
@@ -105,7 +77,10 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
     ImageView Shop_Name_Image ;
     TextView  ShopName ;
     TextView Shop_location ;
-      ImageButton ShareBtn ;
+    ImageButton ShareBtn ;
+    ImageView favBtn;
+    RatingBar ratingBar ;
+
 
     public shopHolder(@NonNull View itemView) {
         super(itemView);
@@ -114,6 +89,9 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
         ShopName = itemView.findViewById(R.id.shop_name);
         Shop_location = itemView.findViewById(R.id.shop_location);
         ShareBtn = itemView.findViewById(R.id.share_button);
+        favBtn = itemView.findViewById(R.id.favourite_icon);
+        ratingBar = itemView.findViewById(R.id.rating_bar);
+
     }
 }
 }
