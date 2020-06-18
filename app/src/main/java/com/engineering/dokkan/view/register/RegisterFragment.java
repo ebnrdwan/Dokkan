@@ -123,15 +123,14 @@ public class RegisterFragment extends BaseFragment {
                         map.put("name", name);
                         databaseReference.child("Users").child(currentUserID).setValue(map);
                         mProgress.dismiss();
-
                         Toast.makeText(getContext(), "Registered Successful :) Please, Check your E-mail for Verifications", Toast.LENGTH_LONG).show();
+
                         mFireBaseAuth.getCurrentUser().sendEmailVerification()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             getNavController().navigate(R.id.action_registerFragment_to_profileFragment);
-
                                         } else {
                                             mProgress.dismiss();
                                             String message = task.getException().toString();

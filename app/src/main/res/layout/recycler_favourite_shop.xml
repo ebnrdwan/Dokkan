@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_190"
+    android:layout_margin="@dimen/margin_15"
+    android:paddingStart="@dimen/paddingStart_4"
+    android:clickable="true"
+    cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardElevation="@dimen/cardElevation_3"
+    android:paddingLeft="@dimen/paddingLeft_2"
+    android:background="@color/bkgcolor_gray">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/shopImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_115"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo1" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/shop_name_image"
+            android:layout_width="@dimen/width_75"
+            android:layout_height="@dimen/height_55"
+            android:layout_below="@+id/shopImage"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_marginStart="@dimen/marginStart_15"
+            android:layout_marginTop="@dimen/marginTop_10"
+            android:layout_marginBottom="@dimen/marginBottom_15"
+            android:src="@drawable/icon3" />
+
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shopImage"
+            android:layout_marginLeft="@dimen/marginleft_77"
+            android:layout_marginTop="@dimen/margintop_17"
+            android:paddingStart="@dimen/paddingstart_15"
+            android:text="@string/shopName"
+            android:textColor="@color/textColor_black"
+            android:textSize="@dimen/textSize_15"
+             />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shop_name"
+            android:layout_marginLeft="@dimen/marginleft_90"
+            android:numStars="5"
+            android:progressTint="#FFC107"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:id="@+id/shop_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratingBar"
+            android:layout_marginLeft="@dimen/marginleft_90"
+            android:layout_marginTop="@dimen/margintop_170"
+            android:drawableStart="@drawable/ic_location"
+            android:text="@string/location_name"
+            android:textSize="@dimen/textsize_8" />
+
+        <ImageView
+            android:id="@+id/favourite_icon"
+            android:layout_width="@dimen/width_20"
+            android:layout_height="@dimen/height_37"
+            android:layout_marginStart="@dimen/marginStart_250"
+            android:layout_marginTop="@dimen/margintop_130"
+            android:src="@drawable/ic_favorite" />
+
+
+        <ImageView
+            android:id="@+id/moreOption"
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_37"
+            android:layout_below="@+id/favourite_icon"
+            android:layout_marginStart="@dimen/marginStart_247"
+            android:layout_marginBottom="@dimen/marginBottom_5"
+            android:gravity="start|top"
+
+
+
+            android:src="@drawable/ic_more" />
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
