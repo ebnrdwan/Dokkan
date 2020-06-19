@@ -41,7 +41,6 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
     Context c ;
     private ArrayList<ProductitemModel> productsList;
     private ItemClickListener onItemClickListener;
-    //private FavouriteClickListener onFavClickListener ;
     DatabaseReference databaseReference;
 
 
@@ -52,7 +51,6 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         this.c = c;
         this.productsList = productsList;
         this.onItemClickListener = onItemClickListener;
-       // this.onFavClickListener = onFavClickListener ;
     }
 
     @NonNull
@@ -72,73 +70,20 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         holder.ShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//
-//                Picasso.get()
-//                        .load(productsList.get(position).getImage())
-//                        .into(new Target() {
-//                            @Override
-//                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-//                                Intent intent = new Intent("android.intent.action.SEND");
-//                                intent.setType("image/*");
-//                                intent.putExtra("android.intent.extra.STREAM", getlocalBitmapUri(bitmap));
-//                                c.startActivity(Intent.createChooser(intent, "share"));
-//                            }
-//
-//                            @Override
-//                            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-//
-//                            }
-//                            @Override
-//                            public void onPrepareLoad(Drawable placeHolderDrawable) {
-//
-//                            }
-//                        });
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT,  productsList.get(position).getImage() );
                 intent.setType("text/plain");
                 c.startActivity(Intent.createChooser(intent, "Send To"));
 
-
             }
         });
 
-
-        holder.setDatainView(productsList.get(position));
-
-        //favourite Togglebtn
-//        holder.favourite.setChecked(false);
-//        holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-//        holder.favourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.fav_icon));
-//                    productsList.get(position).setFav(true);
-//                    Log.d("IS FAV (IF WAS FALSE)", "FAV: " + productsList.get(position).isFav() );
-//                    Toast.makeText(c , "Fav Icon Succcesfully.." , Toast.LENGTH_LONG).show();
-//
-//                }else{
-//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-//                    productsList.get(position).setFav(false);
-//                    Log.d("IS FAV (IF TRUE)", "FAV: " + productsList.get(position).isFav() );
-//                    Toast.makeText(c , "Fav Empty Succcesfully.." , Toast.LENGTH_LONG).show();
-//
-//                }
-//                holder.favouriteClickListener.onFavouriteClicked(position , productsList.get(position).isFav());
-//                Log.d("AFTER CALLING LISTENER", "FAV: " + productsList.get(position).isFav() );
-//            }
-//        });
-
+        //RateBar
         holder.ratingBar.setRating(productsList.get(position).getRate());
-
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-//                LayerDrawable stars = (LayerDrawable)holder.ratingBar.getProgressDrawable();
-//                stars.getDrawable(2) .setColorFilter(Color.YELLOW , PorterDuff.Mode.SRC_ATOP);
-
                 productsList.get(position).setRate(ratingBar.getRating());
-                //holder.rateBarClickListener.onRateClicked(position , ratingBar.getRating() );
                 databaseReference = FirebaseDatabase.getInstance().getReference("products");
                 databaseReference.child(productsList.get(position).getKey()).child("rate").setValue(ratingBar.getRating())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -150,9 +95,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             }
         });
 
-
-        isFavourite(productsList.get(position).getKey() , holder.favourite) ;
-
+        //Favourite
+        isFavourite(productsList.get(position).getKey() , holder.favourite , productsList.get(position)) ;
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,6 +110,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
                                 }
                             });
                     productsList.get(position).setFav(true);
+
                 } else { //if it was already true
                     databaseReference = FirebaseDatabase.getInstance().getReference("products");
                     databaseReference.child(productsList.get(position).getKey()).child("favourite").removeValue()
@@ -178,12 +123,15 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
                     productsList.get(position).setFav(false);
                 }
 
+
             }
         });
+        //Product click
+        holder.setDatainView(productsList.get(position));
 
     }
 
-    private void isFavourite(String key, final ImageView favourite) {
+    private void isFavourite(String key, final ImageView favourite, final ProductitemModel productitemModel) {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("products");
         databaseReference.child(key).addValueEventListener(new ValueEventListener() {
@@ -191,9 +139,10 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if ( dataSnapshot.child("favourite").exists()){
                     favourite.setImageResource(R.drawable.fav_icon);
+                    productitemModel.setFav(true);
                 } else  {
                     favourite.setImageResource(R.drawable.ic_favorite_empty);
-
+                    productitemModel.setFav(true);
                 }
             }
 
@@ -231,7 +180,6 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         ImageView Item_Image;
         ImageView favourite  ;
         ItemClickListener itemClickListener;
-       // FavouriteClickListener favouriteClickListener ;
         View rootView ;
         ImageButton ShareBtn ;
         RatingBar ratingBar ;
@@ -266,11 +214,6 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
     interface ItemClickListener {
         void onItemClick(ProductitemModel item);
     }
-
-//    interface FavouriteClickListener {
-//        void onFavouriteClicked(int position , boolean isFav );
-//    }
-
 
 
 

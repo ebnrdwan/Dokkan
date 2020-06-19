@@ -38,6 +38,7 @@ public class ProductsFragment extends BaseFragment {
     private DatabaseReference dbReference;
     Bundle bundle;
     MainViewModel mainViewModel;
+    ProductRecycAdapter.ItemClickListener ListenerProducts;
 
 
     @Override
@@ -52,8 +53,35 @@ public class ProductsFragment extends BaseFragment {
 
     @Override
     public void setListeners() {
-    }
+        ListenerProducts = new ProductRecycAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(final ProductitemModel item) {
+                dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
+                Query query = dbReference.orderByChild("key").equalTo(item.getKey());
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ( !dataSnapshot.exists() ){
+                            String key = dbReference.push().getKey();
+                            dbReference.child(key).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+//                    Toast.makeText(getActivity() , "Product Added Succcesfully.." , Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+            }
+        };
+    }
 
     private void showCategories(View rootView) {
         recyclerView = rootView.findViewById(R.id.recyclerview_id);
@@ -102,47 +130,6 @@ public class ProductsFragment extends BaseFragment {
             }
         });
     }
-
-
-    //Listeners
-
-    ProductRecycAdapter.ItemClickListener ListenerProducts = new ProductRecycAdapter.ItemClickListener() {
-        @Override
-        public void onItemClick(ProductitemModel item) {
-            Toast.makeText(getActivity(), "item Clicked", Toast.LENGTH_SHORT).show();
-            dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
-            String key = dbReference.push().getKey();
-            dbReference.child(key).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-//                    Toast.makeText(getActivity() , "Product Added Succcesfully.." , Toast.LENGTH_LONG).show();
-                }
-            });
-
-
-
-        }
-    };
-
-//    ProductRecycAdapter.FavouriteClickListener ListenerFavourite = new ProductRecycAdapter.FavouriteClickListener() {
-//        @Override
-//        public void onFavouriteClicked(final int position, final boolean isFav) {
-//            Log.d("STEP", "ListenerFavourite: " + "done" );
-//
-//            dbReference = FirebaseDatabase.getInstance().getReference("products");
-//            dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            Toast.makeText(getActivity() , "Product favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                        }
-//                    });
-//
-//
-
-
-//        }
-//    };
 
 
 }
