@@ -18,8 +18,7 @@
             android:id="@+id/welcome"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_170"
-            android:background="@drawable/prom"
-            />
+            android:background="@drawable/prom" />
 
 
         <TextView
