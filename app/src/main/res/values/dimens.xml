@@ -186,4 +186,23 @@
     <dimen name="width_25">25dp</dimen>
     <dimen name="height_25">25dp</dimen>
     <dimen name="margin_4">4dp</dimen>
+    <dimen name="height_450">450dp</dimen>
+    <dimen name="height_60">60dp</dimen>
+    <dimen name="textSize_10">10sp</dimen>
+    <dimen name="border_width">1dp</dimen>
+    <dimen name="width_8">86dp</dimen>
+    <dimen name="margin_50dp">150dp</dimen>
+    <dimen name="height_35dp">35dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="width_94">94dp</dimen>
+    <dimen name="height_2">2dp</dimen>
+    <dimen name="border_Width_1">1dp</dimen>
+    <dimen name="text_size_9">9sp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="width_350">350dp</dimen>
+    <dimen name="margin_290">290dp</dimen>
+    <dimen name="height_250">250dp</dimen>
+    <dimen name="height_70">70dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="sliderIndicatorRadius_2">2dp</dimen>
 </resources>

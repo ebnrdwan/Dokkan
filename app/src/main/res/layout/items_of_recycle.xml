@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin20">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circimage"
+            android:layout_margin="5dp"
+            android:layout_width="@dimen/width_60"
+            android:layout_height="@dimen/height_60"
+            app:civ_border_color="@color/bordr_color"
+            android:src="@drawable/user1"
+            app:civ_border_width="@dimen/border_width" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="@dimen/width_300"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toEndOf="@+id/circimage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="israa nour"
+                android:paddingLeft="@dimen/padding_10"
+                android:textColor="@color/color_6a4e5d"
+                android:textSize="@dimen/text_size_15" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="@dimen/width_8"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:paddingLeft="@dimen/padding_10"
+                android:progressTint="#FFC107"
+                android:paddingBottom="@dimen/padding_5"
+                android:paddingTop="@dimen/padding_5"
+                android:rating="4"
+                android:stepSize="0.5">
+            </RatingBar>
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxEms="13"
+                android:paddingLeft="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_5"
+                android:text="this item is very buteifull"
+                android:textSize="@dimen/textSize_10" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_50"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fav_comment"
+                    android:layout_width="@dimen/width_20"
+                    android:layout_height="@dimen/height_20"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:background="@drawable/fav_icon2">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/num_of_like"
+                    android:layout_width="@dimen/width_20"
+                    android:layout_height="@dimen/height_20"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_5"
+                    android:text="@string/string_numOfLiks">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/margin_50dp"
+                    android:text="@string/string_dateOfReview" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

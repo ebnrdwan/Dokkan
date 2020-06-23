@@ -31,4 +31,10 @@
     <color name="color_f8f6f7">#f8f6f7</color>
     <color name="color_baa6ab">#baa6ab</color>
     <color name="color_474646">#474646</color>
+    <color name="color_RateYellow">#DDAC17</color>
+    <color name="bordr_color">#C09E9E</color>
+    <color name="color_selector_5A5A5A">#5A5A5A</color>
+    <color name="color_6e4e5d">#6e4e5d</color>
+    <color name="color_1B1719">#1B1719</color>
+    <color name="color_C09E9E">#C09E9E</color>
 </resources>

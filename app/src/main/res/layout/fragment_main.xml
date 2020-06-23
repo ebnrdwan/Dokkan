@@ -68,6 +68,14 @@
             android:background="@color/colorPrimaryDark"
             android:padding="@dimen/padding_10"
             android:text="@string/ask_question" />
+        <Button
+            android:id="@+id/btn_productDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_15"
+            android:text="@string/product"
+            android:textColor="@color/colorPrimaryDark" />
+
 
 
     </LinearLayout>

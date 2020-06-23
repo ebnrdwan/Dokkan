@@ -22,7 +22,7 @@ import com.engineering.dokkan.view.base.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends BaseFragment {
-    private Button btn_home,btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ;
+    private Button btn_home,btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ , btn_product;
 
 
     public MainFragment() {
@@ -85,19 +85,24 @@ public class MainFragment extends BaseFragment {
 
             }
         });
+        btn_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNavController().navigate(R.id.action_mainFragment_to_productDetailsFragment);
 
-
+            }
+        });
 
     }
 
     public void initialization(View view) {
         btn_home = view.findViewById(R.id.btn_home);
-
         btn_chating = view.findViewById(R.id.btn_chating);
         btn_msg = view.findViewById(R.id.btn_message);
         btn_notification = view.findViewById(R.id.btn_notify);
         btn_profile = view.findViewById(R.id.btn_profile);
         btn_askQ = view.findViewById(R.id.btn_ask);
+        btn_product =  view.findViewById(R.id.btn_productDetails);
     }
 
 

@@ -2,7 +2,6 @@
     <string name="app_name">Dokkan</string>
 
 
-
     <string name="location_name">cairo, Egypt</string>
     <string name="user_name">Salma and Esraa</string>
     <string name="sign_out">Sign Out</string>
@@ -60,4 +59,22 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_with_your_social">Login With Your Social</string>
     <string name="media_account">Media Account.</string>
+    <string name="product">Product</string>
+    <string name="price_19">19</string>
+    <string name="string_numOfLiks">77</string>
+    <string name="string_dateOfReview">6 Days ago</string>
+    <string name="string_product_name">Weading Candle holder</string>
+    <string name="string_text_askQustion">Ask Question</string>
+    <string name="string_minus_text">-</string>
+    <string name="string_counter_text">1</string>
+    <string name="string_plus_text">+</string>
+    <string name="string_text_AddToCart">Add To CarT</string>
+    <string name="string_location_text">Cairo , Egypt</string>
+    <string name="string_text_reviews">(115 Reviews)</string>
+    <string name="string_text_Reviews">Reviews</string>
+    <string name="string_text_itemDetails">Item Details</string>
+    <string name="string_text_Size">Size</string>
+    <string name="string_text_size">hight~30cm</string>
+    <string name="string_text_material">Materials</string>
+    <string name="string_text_detais">coper wire, we use a good material</string>
 </resources>

@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_mainFragment_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/askQuestionFragment"
@@ -47,4 +50,8 @@
         android:id="@+id/profileFragment"
         android:name="com.engineering.dokkan.view.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
+        android:label="ProductDetailsFragment" />
 </navigation>
