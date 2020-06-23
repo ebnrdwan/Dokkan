@@ -71,76 +71,141 @@
     <dimen name="marginLeft_10">10dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="marginTop_60">60dp</dimen>
-    <dimen name="layout_200dp">200dp</dimen>
+    <dimen name="margin1_20">20dp</dimen>
+    <dimen name="size25">25sp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin2_10">10dp</dimen>
+    <dimen name="size2">15sp</dimen>
+    <dimen name="size3">20sp</dimen>
+    <dimen name="paddind_15">15dp</dimen>
+=
+    <dimen name="tv_size_16">16sp</dimen>
+    <dimen name="padding_bottom_10">10dp</dimen>
+    <dimen name="padding_1">1dp</dimen>
+    <dimen name="margin_bottom_5">5dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="width_30">30dp</dimen>
+    <dimen name="height_30">30dp</dimen>
+    <dimen name="margin_left_5">5dp</dimen>
+    <dimen name="max_height_23">23dp</dimen>
+    <dimen name="margin_left_7">7dp</dimen>
+    <dimen name="margin_right_9">9dp</dimen>
+    <dimen name="width_47">47dp</dimen>
+    <dimen name="height_47">47dp</dimen>
+    <dimen name="margin_left_3">3dp</dimen>
+    <dimen name="margin_left_11">11dp</dimen>
+    <dimen name="margin_top_9">9dp</dimen>
+    <dimen name="padding_11">11dp</dimen>
+    <dimen name="max_height_200">200dp</dimen>
+    <dimen name="padding_left_5">5dp</dimen>
+    <dimen name="width_40">40dp</dimen>
+    <dimen name="height_45">45dp</dimen>
+    <dimen name="width_5">5dp</dimen>
+    <dimen name="paddingStart_5">2dp</dimen>
+    <dimen name="cardCornerRadius_4">4dp</dimen>
+    <dimen name="paddingLeft_2">2dp</dimen>
+    <dimen name="cardElevation_3">3dp</dimen>
+    <dimen name="height_130">130dp</dimen>
+    <dimen name="paddingEnd_4">4dp</dimen>
+    <dimen name="paddingRight_4">4dp</dimen>
+    <dimen name="paddingStart_4">4dp</dimen>
+    <dimen name="paddingLeft_4">4dp</dimen>
+    <dimen name="height_190">190dp</dimen>
+    <dimen name="marginTop_4">4dp</dimen>
+    <dimen name="paddingBottom_2">2dp</dimen>
+    <dimen name="txtSize_11">11sp</dimen>
+    <dimen name="marginRight_5">5dp</dimen>
+    <dimen name="marginEnd_5">5dp</dimen>
+    <dimen name="marginLeft_6">6dp</dimen>
+    <dimen name="marginTop_164">164dp</dimen>
+    <dimen name="textSize_13">13sp</dimen>
+    <dimen name="height_115">115dp</dimen>
+    <dimen name="width_75">75dp</dimen>
+    <dimen name="height_55">55dp</dimen>
+    <dimen name="marginStart_15">15dp</dimen>
+    <dimen name="marginBottom_15">15dp</dimen>
+    <dimen name="marginleft_77">77dp</dimen>
+    <dimen name="margintop_17">17dp</dimen>
+    <dimen name="marginleft_90">90dp</dimen>
+    <dimen name="margintop_170">170dp</dimen>
+    <dimen name="textsize_8">8sp</dimen>
+    <dimen name="margintop_130">130dp</dimen>
+    <dimen name="marginstart_287">287dp</dimen>
+    <dimen name="marginstart_285">285dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="marginStart_250">250dp</dimen>
+    <dimen name="marginStart_247">247dp</dimen>
+    <dimen name="marginBottom_5">5dp</dimen>
 
 
+
+    <dimen name="margen_top_200">200dp</dimen>
+    <dimen name="font_23">23sp</dimen>
+    <dimen name="layout_width_207">207dp</dimen>
+    <dimen name="layout_height_48">48dp</dimen>
+    <dimen name="margin_Top_512">512dp</dimen>
+    <dimen name="font_17">17sp</dimen>
+    <dimen name="margin_Top_575">575dp</dimen>
+    <dimen name="margin_Top_618">618dp</dimen>
+    <dimen name="layout_width_34">34dp</dimen>
+    <dimen name="layout_width_31">31dp</dimen>
+    <dimen name="layout_width_33">33dp</dimen>
+    <dimen name="margin_Left_138">138dp</dimen>
+    <dimen name="margin_Left_15">15dp</dimen>
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="margin_Top_672">672dp</dimen>
+    <dimen name="margin_Top_687">687dp</dimen>
+
+
+
+
+
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="height_260">260dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="textSize_17">17sp</dimen>
+    <dimen name="margin_190">190dp</dimen>
+    <dimen name="width_60">60dp</dimen>
+    <dimen name="height_1">1dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="width_70">70dp</dimen>
+    <dimen name="textSize_14">14sp</dimen>
+    <dimen name="margin_13">13dp</dimen>
+    <dimen name="width_130">130dp</dimen>
+    <dimen name="elevation_8">8dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="cornerRaduis_10">10dp</dimen>
+    <dimen name="width_100">100dp</dimen>
+    <dimen name="height_110">110dp</dimen>
+    <dimen name="width_160">160dp</dimen>
+    <dimen name="height_180">180dp</dimen>
+    <dimen name="cornerRadius_6">6dp</dimen>
+    <dimen name="height_100">100dp</dimen>
+    <dimen name="width_25">25dp</dimen>
+    <dimen name="height_25">25dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
 
     <dimen name="layout_300dp">300dp</dimen>
-
-
+    <dimen name="layout_200dp">200dp</dimen>
     <dimen name="textSize_18sp">18sp</dimen>
-
-
-
     <dimen name="textSize_14sp">14sp</dimen>
-
-
-
-
-
-
-
     <dimen name="layout_dimen_60dp">60dp</dimen>
-
-
-
     <dimen name="layout_dimen_50dp">50dp</dimen>
-
-
-
     <dimen name="layout_dimen_20dp">20dp</dimen>
-
-
-
     <dimen name="layout_dimen_19dp">19dp</dimen>
-
-
-
     <dimen name="layout_dimen_15dp">15dp</dimen>
-
-
-
     <dimen name="layout_dimen_10dp">10dp</dimen>
-
-
-
     <dimen name="layout_dimen_5dp">5dp</dimen>
-
-
-
     <dimen name="layout_dimen_3dp">3dp</dimen>
-
-
-
     <dimen name="layout_dimen_12dp">12dp</dimen>
-
-
-
     <dimen name="layout_dimen_25dp">25dp</dimen>
-
-
-
     <dimen name="layout_dimen_2dp">2dp</dimen>
-
-
-
     <dimen name="layout_dimen_1dp">1dp</dimen>
-
     <dimen name="layout_dimen_40dp">40dp</dimen>
-
     <dimen name="layout_dimen_mins60dp">-60dp</dimen>
-
     <dimen name="textsize_30sp">30sp</dimen>
-
     <dimen name="textsize_16sp">16sp</dimen>
+    <dimen name="layout_dimen_30dp">30dp</dimen>
 </resources>

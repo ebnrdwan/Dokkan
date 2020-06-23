@@ -14,7 +14,9 @@ abstract public class BaseFragment extends Fragment {
 
     /*================= must be implemented Methods - start=========================*/
 
-    /**his is return the layout Resource id to pass it to onCreateView */
+    /**
+     * his is return the layout Resource id to pass it to onCreateView
+     */
     public abstract int getLayoutId();
 
 
@@ -34,7 +36,8 @@ abstract public class BaseFragment extends Fragment {
 
 
     /*will  be needed in the future isa, not now, */
-    public  void onActivityReady(Bundle bundle){};
+    private void onActivityReady(Bundle bundle) {
+    }
 
 
     /*================= must be implemented Methods - End=========================*/

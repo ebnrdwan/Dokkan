@@ -40,7 +40,7 @@
 
             android:layout_height="@dimen/layout_200dp"
 
-            android:src="@drawable/logo"
+            android:src="@drawable/login_logo"
 
             android:scaleType="fitCenter"
 
@@ -107,72 +107,64 @@
             android:orientation="vertical">
 
 
-
             <EditText
+                android:id="@+id/email_login"
 
                 android:layout_width="match_parent"
 
-                android:layout_height="@dimen/layout_dimen_40dp"
+                android:layout_height="wrap_content"
 
                 android:inputType="textEmailAddress"
 
-                android:layout_marginTop="@dimen/layout_dimen_5dp"
+                android:padding="@dimen/layout_dimen_15dp"
 
-                android:layout_marginLeft="@dimen/layout_dimen_20dp"
-
-                android:layout_marginRight="@dimen/layout_dimen_20dp"
-
-                android:drawableLeft="@drawable/ic_email"
-
-                android:paddingStart="@dimen/layout_dimen_5dp"
-
-                android:drawablePadding="@dimen/layout_dimen_15dp"
-
-                android:hint="@string/hint_email"
-
-                android:textColor="@color/color_bage"
-
-                android:textColorHint="@color/color_white"
-
-                android:fontFamily="sans-serif"
+                android:layout_margin="@dimen/layout_dimen_12dp"
 
                 android:textSize="@dimen/text_size_15"
-
-                android:padding="@dimen/layout_dimen_10dp"/>
-
-
-
-
-
-            <EditText
-
-                android:layout_width="match_parent"
-
-                android:layout_height="@dimen/layout_dimen_40dp"
-
-                android:inputType="textPassword"
-
-                android:layout_marginTop="@dimen/layout_dimen_25dp"
-
-                android:layout_marginLeft="@dimen/layout_dimen_20dp"
-
-                android:layout_marginRight="@dimen/layout_dimen_20dp"
 
                 android:drawableLeft="@drawable/ic_lock"
 
+                android:drawablePadding="@dimen/layout_dimen_15dp"
+
                 android:paddingStart="@dimen/layout_dimen_5dp"
 
-                android:drawablePadding="@dimen/layout_dimen_15dp"
+                android:hint="@string/hint_email"
+
+                android:textColorHint="@color/color_white"
+
+                android:backgroundTint="#B3AEAE"
+                />
+
+            <EditText
+                android:id="@+id/password_login"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:inputType="textPassword"
+
+                android:padding="@dimen/layout_dimen_15dp"
 
                 android:hint="@string/hint_password"
 
-                android:fontFamily="sans-serif"
+                android:backgroundTint="@color/color_B3AEAE"
 
-                android:textColor="@color/color_bage"
+                android:layout_margin="@dimen/layout_dimen_12dp"
 
                 android:textSize="@dimen/text_size_15"
 
-                android:textColorHint="@color/color_white"/>
+                android:drawableLeft="@drawable/ic_lock"
+
+                android:drawablePadding="@dimen/layout_dimen_15dp"
+
+                android:paddingStart="@dimen/layout_dimen_5dp"
+
+                android:textColorHint="@color/color_white"
+
+
+                />
+
 
             <TextView
 

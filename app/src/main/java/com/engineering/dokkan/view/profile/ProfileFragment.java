@@ -32,6 +32,7 @@ public class ProfileFragment extends BaseFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
         }
     };
 
