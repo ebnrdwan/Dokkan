@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "816150159294",
+    "firebase_url": "https://dokkan-780ad.firebaseio.com",
+    "project_id": "dokkan-780ad",
+    "storage_bucket": "dokkan-780ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816150159294:android:a585c1c3bd63089cd0a3ef",
+        "android_client_info": {
+          "package_name": "com.engineering.dokkan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816150159294-k2dq6koeqkuhnqtf59pkga8h29f7ienj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgHGVvmSYZB7sB3u7lPl5LJkeEQ4cpEGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816150159294-k2dq6koeqkuhnqtf59pkga8h29f7ienj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
