@@ -31,7 +31,7 @@ public class Fragment_Welcome extends BaseFragment {
         btn_singIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-       //         getNavController().navigate(R.id.action_fragment_Welcome2_to_profileFragment2);
+                getNavController().navigate(R.id.action_fragment_Welcome_to_loginFragment);
             }
         });
 
@@ -56,7 +56,7 @@ public class Fragment_Welcome extends BaseFragment {
 
 
     NavController getNavController() {
-        return Navigation.findNavController(getActivity(), R.id.my_nav_host);
+        return Navigation.findNavController(requireActivity(), R.id.my_nav_host);
 
     }
 /*

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6a4e5d</color>
     <color name="colorPrimaryDark">#9a7c84</color>
-    <color name="colorAccent">#9a7c84</color>
+    <color name="colorAccent">#ecddcd</color>
     <color name="noData_fontColor">#9a7c84</color>
 
 
@@ -44,4 +44,13 @@
     <color name="color_f8f6f7">#f8f6f7</color>
     <color name="color_baa6ab">#baa6ab</color>
     <color name="color_474646">#474646</color>
+    <color name="color_B3AEAE">#B3AEAE</color>
+
+    <color name="color_text_blod">#7C5D67</color>
+
+    <color name="color_text">#BDB5B7</color>
+
+    <color name="color_bage">#ecddcd</color>
+
+    <color name="color_bage2">#f8f6f7</color>
 </resources>
