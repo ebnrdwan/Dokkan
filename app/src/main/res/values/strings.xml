@@ -2,7 +2,6 @@
     <string name="app_name">Dokkan</string>
 
 
-
     <string name="location_name">cairo, Egypt</string>
     <string name="user_name">Salma and Esraa</string>
     <string name="sign_out">Sign Out</string>
@@ -24,6 +23,20 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+
+    <string name="after_registration">AFTER REGISTRATION</string>
+    <string name="register">REGISTER</string>
+    <string name="register2">Register</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="i_agree_to_the">i agree to the</string>
+    <string name="terms_and_conditions"> terms and conditions.</string>
+    <string name="register3">Register</string>
+    <string name="terms_and_conditions2">TERMS AND CONDITIONS</string>
+    <string name="i_agree_to_the_terms_and_conditions">i agree to the terms and conditions.</string>
 
     <string name="recently_viewed">Recently Viewed</string>
 
@@ -60,4 +73,25 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_with_your_social">Login With Your Social</string>
     <string name="media_account">Media Account.</string>
+    <string name="invited_you_to_something">invited you to something</string>
+
+
+    <string name="name_item">NAME</string>
+
+    <string name="date_item">11:04AM</string>
+
+    <string name="Register_here"> Register here.</string>
+
+    <string name="Dont_have_an_account">Don’t have an account?</string>
+
+    <string name="Forget_Password">Forget Password!?</string>
+
+    <string name="hint_email">E-Mail</string>
+
+    <string name="hint_password">password</string>
+
+    <string name="Don_Worry_we_just_need_your"> Don\'t Worry, we just need your </string>
+    <string name="registared_email_address_and_its_done"> registared email address and its done!</string>
+    <string name="enter_your_registered_email">enter your registered email</string>
+    <string name="Regst_Password">Regst Password</string>
 </resources>
