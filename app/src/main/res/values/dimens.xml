@@ -228,4 +228,6 @@
     <dimen name="width_25">25dp</dimen>
     <dimen name="height_25">25dp</dimen>
     <dimen name="margin_4">4dp</dimen>
+    <dimen name="logo_height">130dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
 </resources>

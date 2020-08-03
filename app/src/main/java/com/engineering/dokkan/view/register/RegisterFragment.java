@@ -1,33 +1,29 @@
 package com.engineering.dokkan.view.register;
 
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +35,6 @@ public class RegisterFragment extends BaseFragment {
     FirebaseAuth mFireBaseAuth;
     private DatabaseReference databaseReference;
     private String currentUserID;
-
 
 
     public RegisterFragment() {
@@ -67,16 +62,10 @@ public class RegisterFragment extends BaseFragment {
         mFireBaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mProgress = new ProgressDialog(getActivity());
-        currentUserID = mFireBaseAuth.getCurrentUser().getUid();
-
-
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createAccount();
-
-
             }
 
         });

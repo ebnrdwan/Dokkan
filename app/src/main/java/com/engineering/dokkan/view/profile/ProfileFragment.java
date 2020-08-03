@@ -23,7 +23,7 @@ public class ProfileFragment extends BaseFragment {
     public void initializeViews(View view) {
         ListView listView = view.findViewById(R.id.list);
         ArrayList<String> list = AddingOptionsToList();
-        OptionAdapter adapter = new OptionAdapter(getActivity() , list);
+        OptionAdapter adapter = new OptionAdapter(requireActivity() , list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onOptionClickListener);
     }
