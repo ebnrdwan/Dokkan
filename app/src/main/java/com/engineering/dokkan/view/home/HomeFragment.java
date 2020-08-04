@@ -1,19 +1,56 @@
 package com.engineering.dokkan.view.home;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.HomeItemModel;
+import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.data.models.SliderItemModel;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class HomeFragment extends BaseFragment {
+    //firebase
+    private DatabaseReference dbReference;
+    //slider
+    private ArrayList<SliderItemModel> datasider;
+    private ViewPager2 viewPager2;
+    private SliderAdapter sliderAdapter;
+    //tablayout
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPageAdapter viewadapter;
+    //connect categories with tablayout
+    Map<String, String> categoriesMap;
+    private MainViewModel mainViewModel;
+
+    //recentview
+    private ArrayList<ProductitemModel> dataRecentView;
+    private RecyclerView recyclerViewRecentView ;
+
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
@@ -21,153 +58,178 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
-        intializeSimilarItemViewRecycler(view) ;
-        intializeCategoryRecycler (view);
-        intializeOtherCategoryRecycler (view);
-        intializeRecentlyFavoriteRecycler (view);
-        intializeRecentlyViewRecycler (view) ;
+        initViewModel();
+        DoingOfTabLayout (view);
+        SliderWork( view);
+        intializeRecentlyViewRecycler ( view);
+
 
     }
 
     @Override
     public void setListeners() {
 
+
+
+
+
     }
 
-    //RecyclerViews initialization with ClickListener
-    public void intializeRecentlyViewRecycler (View view){
+    private void SliderWork(View view) {
+        viewPager2 = view.findViewById(R.id.viewPagerSlider);
+        showSlider(view);
+        viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                /*1-get key of current position from keySet
+                 * 2-set adapter with the key*/
+
+                mainViewModel.setCategoryID(datasider.get(position).getKey());
+                viewadapter.setCatID(datasider.get(position).getKey());
+                Log.d("PAGE_SELECTED", "onPageSelected: " + position);
+                Log.d("SET CATID", "categoriesKEY: " + datasider.get(position).getKey());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            float pageMargin = getResources().getDimensionPixelOffset(R.dimen.pageMargin);
+            float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offset);
+
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                String TAG = "VIEWPAGER_POS";
+                float myOffset = position * -(2 * pageOffset + pageMargin);
+                if (position < -1) {
+                    page.setTranslationX(-myOffset);
+                } else if (position <= 1) {
+                    float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
+                    Log.d(TAG, "transformPageVALUE: " + scaleFactor);
+                    page.setTranslationX(myOffset);
+                    page.setScaleY(scaleFactor);
+                    page.setAlpha(scaleFactor);
+                } else {
+                    page.setAlpha(0);
+                    page.setTranslationX(myOffset);
+                }
+
+            }
+        });
+        viewPager2.setPageTransformer(compositePageTransformer);
+    }
+
+    private void DoingOfTabLayout(View view) {
+        tabLayout = view.findViewById(R.id.tablayout);
+        viewPager = view.findViewById(R.id.viewpager);
+        viewadapter = new ViewPageAdapter(getActivity().getSupportFragmentManager());
+        viewPager.setAdapter(viewadapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void intializeRecentlyViewRecycler (View view){
         RVAdapterRecentlyView.ImageClickListener listenerRecView = new RVAdapterRecentlyView.ImageClickListener() {
             @Override
-            public void onItemClick(int item) {
+            public void onItemClick(ProductitemModel item) {
 
                 Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
             }
         };
+        showRecentView(view ,listenerRecView );
 
-        RVAdapterRecentlyView adapterRecView = new RVAdapterRecentlyView(getListofRecentlyView(), listenerRecView);
-        RecyclerView recyclerViewRecView = (RecyclerView) view.findViewById(R.id.recently_view_recyclerView);
-        recyclerViewRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        recyclerViewRecView.setAdapter(adapterRecView);
 
 
     }
-    public void intializeCategoryRecycler (View view){
 
-        RVAdapterCategory.ImageClickListener listenerImage = new RVAdapterCategory.ImageClickListener() {
+    private void initViewModel() {
+        mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+    }
+
+    private void showSlider(View view) {
+        datasider = new ArrayList<>();
+        dbReference = FirebaseDatabase.getInstance().getReference("categories");
+        dbReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(int item) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //categoriesMap = (Map<String, String>) dataSnapshot.getValue();
 
-                Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    SliderItemModel item = snapshot.getValue(SliderItemModel.class);
+                    datasider.add(item);
+                }
+                sliderAdapter = new SliderAdapter(datasider, viewPager2);
+                viewPager2.setAdapter(sliderAdapter);
+
             }
-        };
 
-        RVAdapterCategory adapterImages = new RVAdapterCategory(getListofImages(), listenerImage);
-        RecyclerView recyclerViewImages = (RecyclerView) view.findViewById(R.id.rv_images);
-        recyclerViewImages.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        recyclerViewImages.setAdapter(adapterImages);
-
-
-    }
-    public void intializeSimilarItemViewRecycler (View view){
-
-        RVAdapterSimilarView.ItemClickListener listener = new RVAdapterSimilarView.ItemClickListener() {
             @Override
-            public void onItemClick(HomeItemModel item) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getActivity(), "item Clicked", Toast.LENGTH_SHORT).show();
             }
-        };
+        });
 
-        RVAdapterSimilarView adapter = new RVAdapterSimilarView(getList(), listener);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.similarItem_recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        recyclerView.setAdapter(adapter);
+
+
 
     }
-    public void intializeOtherCategoryRecycler (View view){
 
-        RVAdapterOtherCategory.ImageClickListener listenerotherCateg = new RVAdapterOtherCategory.ImageClickListener() {
+    private void showRecentView(View view, final RVAdapterRecentlyView.ImageClickListener listenerRecView ) {
+        recyclerViewRecentView= (RecyclerView) view.findViewById(R.id.recently_view_recyclerView);
+        recyclerViewRecentView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        dataRecentView = new ArrayList<>();
+        dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
+        dbReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onItemClick(int item) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                ProductitemModel item = dataSnapshot.getValue(ProductitemModel.class);
+                Log.d("DATA SNAPSHOT", "values: " + item);
 
-                Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
+                dataRecentView.add(item);
+                RVAdapterRecentlyView adapter = new RVAdapterRecentlyView(dataRecentView , listenerRecView );
+                recyclerViewRecentView.setAdapter(adapter);
             }
-        };
 
-
-        RVAdapterOtherCategory adapterOtherCategory = new RVAdapterOtherCategory(getListofOtherCateg(), listenerotherCateg);
-        RecyclerView recyclerViewOtherCateg = (RecyclerView) view.findViewById(R.id.rv_other_categ);
-        recyclerViewOtherCateg.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        recyclerViewOtherCateg.setAdapter(adapterOtherCategory);
-
-    }
-    public void intializeRecentlyFavoriteRecycler (View view){
-
-        RVAdapterRecentFavorite.ImageClickListener listenerRecFav = new RVAdapterRecentFavorite.ImageClickListener() {
             @Override
-            public void onItemClick(int item) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
             }
-        };
 
-        RVAdapterRecentFavorite adapterRecFav = new RVAdapterRecentFavorite(getListofRecentlyFav(), listenerRecFav);
-        RecyclerView recyclerViewRecFav = (RecyclerView) view.findViewById(R.id.recently_fav_recyclerView);
-        recyclerViewRecFav.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        recyclerViewRecFav.setAdapter(adapterRecFav);
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
 
 
     }
 
 
-    //ArrayLists initialization
-    private ArrayList<HomeItemModel> getList() {
-        final ArrayList<HomeItemModel> item = new ArrayList<HomeItemModel>();
-        item.add(new HomeItemModel("Item Full Name", "$150", R.drawable.grid_one));
-        item.add(new HomeItemModel("Item Full Name", "$150", R.drawable.grid_two));
-        item.add(new HomeItemModel("Item Full Name", "$150", R.drawable.grid_three));
-        item.add(new HomeItemModel("Item Full Name", "$150", R.drawable.grid_four));
 
-        return item;
-    }
-    private ArrayList<Integer> getListofImages() {
-        final ArrayList<Integer> image = new ArrayList<Integer>();
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.test_image);
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.grid_one);
-        return image;
-    }
-    private ArrayList<Integer> getListofOtherCateg() {
-        final ArrayList<Integer> image = new ArrayList<Integer>();
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.test_image);
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.grid_one);
-        return image;
-    }
-    private ArrayList<Integer> getListofRecentlyView() {
-        final ArrayList<Integer> image = new ArrayList<Integer>();
-        image.add(R.drawable.grid_two);
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.grid_four);
-        image.add(R.drawable.test_image);
-        image.add(R.drawable.grid_one);
-        image.add(R.drawable.test_image);
-
-        return image;
-    }
-    private ArrayList<Integer> getListofRecentlyFav() {
-        final ArrayList<Integer> image = new ArrayList<Integer>();
-        image.add(R.drawable.grid_two);
-        image.add(R.drawable.grid_three);
-        image.add(R.drawable.grid_four);
-        image.add(R.drawable.test_image);
-        image.add(R.drawable.grid_one);
-        image.add(R.drawable.test_image);
-
-
-        return image;
-    }
 }
+
+

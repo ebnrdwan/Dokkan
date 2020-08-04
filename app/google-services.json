@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "276128427205",
-    "firebase_url": "https://dokkan-2b59b.firebaseio.com",
-    "project_id": "dokkan-2b59b",
-    "storage_bucket": "dokkan-2b59b.appspot.com"
+    "project_number": "904299256162",
+    "firebase_url": "https://dokkan-608a8.firebaseio.com",
+    "project_id": "dokkan-608a8",
+    "storage_bucket": "dokkan-608a8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:276128427205:android:7f82c9bf08448ee46254ac",
+        "mobilesdk_app_id": "1:904299256162:android:57bf7ca5ff6aa686af743b",
         "android_client_info": {
           "package_name": "com.engineering.dokkan"
         }
       },
       "oauth_client": [
         {
-          "client_id": "276128427205-4e9iq19ikbn44vba47sqkes8huj7ttvr.apps.googleusercontent.com",
+          "client_id": "904299256162-ac6coh4jeemo2elacaqfn1aoosmi8hob.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engineering.dokkan",
+            "certificate_hash": "049270e5c8a53bd3f43c582ec9893945055bc586"
+          }
+        },
+        {
+          "client_id": "904299256162-lsgj7edav25db7gmimg81fc1agp1nb8q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJJ9Hz0HIPsAf21OuYKm9vurOCuILKVzM"
+          "current_key": "AIzaSyBM5uKD2kdwFjg0ki-Acltsl0QzZtfraFQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "276128427205-4e9iq19ikbn44vba47sqkes8huj7ttvr.apps.googleusercontent.com",
+              "client_id": "904299256162-lsgj7edav25db7gmimg81fc1agp1nb8q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

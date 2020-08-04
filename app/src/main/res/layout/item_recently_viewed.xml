@@ -25,7 +25,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/grid_two"
             />
-        <ImageButton
+        <ImageView
+            android:id="@+id/fav_recentview"
             android:layout_width="@dimen/width_25"
             android:layout_height="@dimen/height_25"
             android:layout_gravity="end"
