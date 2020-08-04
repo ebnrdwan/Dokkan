@@ -94,15 +94,8 @@ public class HomeFragment extends BaseFragment {
 
                 mainViewModel.setCategoryID(datasider.get(position).getKey());
                 viewadapter.setCatID(datasider.get(position).getKey());
-
-//                mainViewModel.setCategoryID((String) categoriesMap.keySet().toArray()[position]);
-//                viewadapter.setCatID((String) categoriesMap.keySet().toArray()[position]);
                 Log.d("PAGE_SELECTED", "onPageSelected: " + position);
                 Log.d("SET CATID", "categoriesKEY: " + datasider.get(position).getKey());
-
-
-
-
             }
 
             @Override
