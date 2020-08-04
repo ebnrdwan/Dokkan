@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/pageMarginAndOffset"
+    android:layout_marginRight="@dimen/pageMarginAndOffset"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/imageSlide">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/width_180"
+        android:layout_height="@dimen/height_190"
+        app:cardCornerRadius="@dimen/cornerRadius_20"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_8"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_f8f6f7">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_140"
+                android:scaleType="centerCrop"
+                android:id="@+id/imageview_slide"
+                android:src="@drawable/embridory_art"/>
+
+            <TextView
+                android:id="@+id/tv_slide"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/padding_5"
+                android:text="@string/embroidery_art"
+                android:textStyle="bold"
+                android:textColor="@color/color_9a7c84"
+                android:textSize="@dimen/text_size25"
+                android:fontFamily="cursive"
+                android:layout_below="@id/imageview_slide"
+                />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
