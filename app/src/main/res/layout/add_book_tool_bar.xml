@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/color_9a7c84"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/martop35"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/add_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/arrow_back"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/ml80"
+            android:text="@string/my_address_book"
+            android:textSize="@dimen/s2sp"
+            android:textColor="@color/color_F1EDED"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/add_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/arrow_back"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/ml300"
+            android:text="@string/save"
+            android:textSize="@dimen/s2sp"
+            android:textColor="@color/color_F1EDED"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

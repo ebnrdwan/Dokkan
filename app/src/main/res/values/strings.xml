@@ -44,4 +44,25 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_with_your_social">Login With Your Social</string>
     <string name="media_account">Media Account.</string>
+    <string name="Item_name">order_item_name</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="item_name">Item Name</string>
+    <string name="_">-</string>
+    <string name="s1">1</string>
+    <string name="splus">+</string>
+    <string name="s150">$150</string>
+    <string name="my_address_book">My Address Book</string>
+    <string name="customer_number">Customer Number</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="customer_name">Customer NAme</string>
+    <string name="textplus">+</string>
+    <string name="save">Save</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="address">Address</string>
+    <string name="enter_your_address">Enter Your Address</string>
+    <string name="enter_your_country">Enter Your Country</string>
+    <string name="number">Number</string>
+    <string name="enter_your_number">Enter Your Number</string>
+    <string name="country">Country</string>
+    <string name="order_status">Order Status</string>
 </resources>

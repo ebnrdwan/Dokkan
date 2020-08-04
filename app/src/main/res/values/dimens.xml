@@ -158,8 +158,51 @@
     <dimen name="margin_Top_672">672dp</dimen>
     <dimen name="margin_Top_687">687dp</dimen>
 
+    <dimen name="m30">30dp</dimen>
+    <dimen name="font13sp">13sp</dimen>
+
+    <dimen name="mt2">2dp</dimen>
+    <dimen name="s2sp">20sp</dimen>
+    <dimen name="s12">12sp</dimen>
+    <dimen name="lw70">70dp</dimen>
+    <dimen name="lh1">1dp</dimen>
+    <dimen name="lw80">80dp</dimen>
+    <dimen name="lh90">90dp</dimen>
+    <dimen name="lh2">2dp</dimen>
+    <dimen name="ts18">18sp</dimen>
+    <dimen name="lw90">90dp</dimen>
+    <dimen name="lh40">40dp</dimen>
 
 
+    <dimen name="ml3">3dp</dimen>
+
+    <dimen name="ml15">15dp</dimen>
+    <dimen name="s15">15sp</dimen>
+
+    <dimen name="lh20">20dp</dimen>
+    <dimen name="ml12">12dp</dimen>
+    <dimen name="s10">10sp</dimen>
+    <dimen name="layoutw20">20dp</dimen>
+
+    <dimen name="layout20">20dp</dimen>
+    <dimen name="la20">20dp</dimen>
+    <dimen name="pad25">25dp</dimen>
+    <dimen name="martop35">35dp</dimen>
+    <dimen name="mt83">83dp</dimen>
+    <dimen name="layow70">70dp</dimen>
+    <dimen name="layoh70">70dp</dimen>
+    <dimen name="ml315">315dp</dimen>
+    <dimen name="mt600">600dp</dimen>
+    <dimen name="textsize30">30sp</dimen>
+    <dimen name="size14">14sp</dimen>
+    <dimen name="mtop90">90dp</dimen>
+    <dimen name="mtop60">60dp</dimen>
+    <dimen name="mtop30">30dp</dimen>
+    <dimen name="mtop1">1dp</dimen>
+    <dimen name="ml80">80dp</dimen>
+    <dimen name="ml300">300dp</dimen>
+    <dimen name="ml13">13dp</dimen>
+    <dimen name="Tsize25">25sp</dimen>
 
 
 </resources>

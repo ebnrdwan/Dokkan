@@ -27,4 +27,8 @@
     <color name="text_btn_color">#FFFFFF</color>
 
     <color name="color_ecddcd">#ecddcd</color>
+
+    <color name="white">#000</color>
+    <color name="black">#fff</color>
+    <color name="colorf8f6f7">#f8f6f7</color>
 </resources>
