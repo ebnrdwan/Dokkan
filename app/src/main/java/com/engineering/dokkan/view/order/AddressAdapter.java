@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.viewAddressModel;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -18,13 +20,14 @@ import java.util.ArrayList;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressHolder> {
 
-    ArrayList<view_address_item> addressList;
+    ArrayList<viewAddressModel> addressList;
     DatabaseReference databaseReference;
+    FirebaseDatabase rootNode;
    protected ItemClickListener onItemClickListener;
 
 
 
-    public AddressAdapter(ArrayList<view_address_item> addressList, AddressAdapter.ItemClickListener onItemClickListener) {
+    public AddressAdapter(ArrayList<viewAddressModel> addressList, AddressAdapter.ItemClickListener onItemClickListener) {
         this.addressList = addressList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -41,10 +44,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
     @Override
     public void onBindViewHolder(@NonNull final AddressAdapter.AddressHolder holder, final int position) {
         holder.setItemClicked(addressList.get(position));
-        holder.customer_name.setText(addressList.get(position).getCustomer_name());
-        holder.customer_address.setText(addressList.get(position).getCustomer_address());
-        holder.customer_country.setText(addressList.get(position).getCustomer_country());
-        holder.customer_number.setText(addressList.get(position).getCustomer_number());
+        // store data in firebase
+        rootNode = FirebaseDatabase.getInstance();
+        databaseReference = rootNode.getReference("users");
+        String name =  holder.customer_name.getText().toString();
+        String address =  holder.customer_address.getText().toString();
+        String country =  holder.customer_country.getText().toString();
+        String number =  holder.customer_number.getText().toString();
+        viewAddressModel viewAddressModel = new viewAddressModel(name,address,country,number);
+        databaseReference.setValue(viewAddressModel);
     }
 
     @Override
@@ -55,7 +63,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
      class AddressHolder extends RecyclerView.ViewHolder{
         View rootView ;
        ItemClickListener itemClickListener;
-         TextView customer_name;
+        TextView customer_name;
         TextView customer_address;
         TextView customer_country;
         TextView customer_number;
@@ -71,7 +79,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
 
         }
 
-         public void setItemClicked(final view_address_item item) {
+         public void setItemClicked(final viewAddressModel item) {
              rootView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -79,10 +87,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
                  }
              });
          }
+
     }
     public interface ItemClickListener {
-        void onItemClick(view_address_item item);
+        void onItemClick(viewAddressModel item);
     }
+
+
     }
 
 

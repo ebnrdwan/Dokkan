@@ -1,4 +1,4 @@
-package com.engineering.dokkan.view.order;
+package com.engineering.dokkan.data.models;
 
 public class OrderItemModel {
 

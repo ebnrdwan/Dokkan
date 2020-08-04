@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.OrderItemModel;
 import com.engineering.dokkan.view.order.OrderAdapter;
-import com.engineering.dokkan.view.order.OrderItemModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
     }
 
 
