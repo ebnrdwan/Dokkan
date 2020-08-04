@@ -26,7 +26,7 @@ public class Favourite_Fragment extends BaseFragment{
 
 
     NavController getNavController() {
-        return Navigation.findNavController(getActivity(), R.id.nav_host_fragment);}
+        return Navigation.findNavController(getActivity(), R.id.my_nav_host);}
 
 
     @Override

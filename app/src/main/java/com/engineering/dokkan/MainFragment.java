@@ -36,7 +36,7 @@ public class MainFragment extends BaseFragment {
     }
 
     NavController getNavController(){
-        return Navigation.findNavController(getActivity() ,R.id.nav_host_fragment);
+        return Navigation.findNavController(getActivity() ,R.id.my_nav_host);
     }
 
     @Override
@@ -54,34 +54,34 @@ public class MainFragment extends BaseFragment {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_homeFragment);
+                getNavController().navigate(R.id.action_mainFragment2_to_homeFragment2);
             }
         });
         btn_askQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_askQuestionFragment);
+                getNavController().navigate(R.id.action_mainFragment2_to_askQuestionFragment);
 
             }
         });
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_profileFragment);
+                getNavController().navigate(R.id.action_mainFragment2_to_profileFragment);
 
             }
         });
         btn_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_notificationFragment);
+                getNavController().navigate(R.id.action_mainFragment2_to_notificationFragment);
 
             }
         });
         btn_msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNavController().navigate(R.id.action_mainFragment_to_chatFragement);
+                getNavController().navigate(R.id.action_mainFragment2_to_chatFragement);
 
             }
         });

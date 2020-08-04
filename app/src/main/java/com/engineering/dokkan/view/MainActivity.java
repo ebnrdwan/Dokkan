@@ -24,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
 //        navigateToProfile();
 //        navigateToNotification();
 //        navigateToChat();
-        //       navigateToQuestions();
+//        navigateToQuestions();
 
 
     }
+
+
     void navigateToProfile() {
         ProfileFragment headFragment = new ProfileFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
