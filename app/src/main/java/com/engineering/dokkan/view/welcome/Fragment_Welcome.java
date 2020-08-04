@@ -28,7 +28,12 @@ public class Fragment_Welcome extends BaseFragment {
         btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singUp = view.findViewById(R.id.btn_signUp);
 
-        btn_singIn.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    @Override
+    public void setListeners() {
+    /*    btn_singIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getNavController().navigate(R.id.action_fragment_Welcome2_to_profileFragment2);
@@ -41,10 +46,7 @@ public class Fragment_Welcome extends BaseFragment {
                 getNavController().navigate(R.id.action_fragment_Welcome2_to_askQuestionFragment);
             }
         });
-    }
-
-    @Override
-    public void setListeners() {
+        */
 
     }
 
