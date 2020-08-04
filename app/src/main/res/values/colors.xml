@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6a4e5d</color>
     <color name="colorPrimaryDark">#9a7c84</color>
-    <color name="colorAccent">#9a7c84</color>
+    <color name="colorAccent">#ecddcd</color>
     <color name="noData_fontColor">#9a7c84</color>
 
 
@@ -19,6 +19,20 @@
     <color name="bkgcolor_mauve">#6a4e5d</color>
     <color name="color_wigth">#ffff</color>
     <color name="textColor_black">#f000</color>
+
+
+
+    <color name="color_FFF5F5F5">#FFF5F5F5</color>
+    <color name="color_FFF7F1F4">#FFF7F1F4</color>
+    <color name="color_FDFBFB">#FDFBFB</color>
+    <color name="color_fff">#fff</color>
+    <color name="color_FFF7F2F2">#FFF7F2F2</color>
+    <color name="color_e6e4e4">#e6e4e4</color>
+    <color name="color_fff2">#fff</color>
+    <color name="color_FFF8F7F7">#FFF8F7F7</color>
+    <color name="backgroundTint">#C4BBBB</color>
+
+
     <color name="title_name">#9A7C84</color>
     <color name="txtColor_black">#2d2d2d</color>
     <color name="text1color">#6a4e5d</color>
@@ -27,8 +41,16 @@
     <color name="text_btn_color">#FFFFFF</color>
 
     <color name="color_ecddcd">#ecddcd</color>
-    <color name="color_e6e4e4">#e6e4e4</color>
     <color name="color_f8f6f7">#f8f6f7</color>
     <color name="color_baa6ab">#baa6ab</color>
     <color name="color_474646">#474646</color>
+    <color name="color_B3AEAE">#B3AEAE</color>
+
+    <color name="color_text_blod">#7C5D67</color>
+
+    <color name="color_text">#BDB5B7</color>
+
+    <color name="color_bage">#ecddcd</color>
+
+    <color name="color_bage2">#f8f6f7</color>
 </resources>
