@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/margin_15"
+    android:layout_marginLeft="@dimen/margin_15"
+    android:layout_marginTop="@dimen/margin_15"
+    android:paddingStart="@dimen/paddingStart_5"
+    android:clickable="true"
+    cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardElevation="@dimen/cardElevation_3"
+    android:paddingLeft="@dimen/paddingLeft_2"
+    android:background="@color/bkgcolor_gray">
+
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_5"
+        android:paddingBottom="@dimen/padding_5">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/product_image"
+            android:layout_width="@dimen/lw80"
+            android:layout_height="@dimen/lh90"
+            android:layout_marginStart="@dimen/margin_10"
+            tools:src="@drawable/icon3" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lh2"
+            android:background="@color/color_F1EDED"
+            android:layout_below="@id/product_image"
+            android:layout_margin="@dimen/margin_10"
+            />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/product_image"
+            android:layout_marginTop="@dimen/margin_30"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:text="@string/item_name"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/ts18"
+            android:textStyle="bold"
+
+            />
+
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name"
+            android:layout_toRightOf="@id/product_image"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:text="@string/shop_name"
+            android:textSize="@dimen/textSize_15" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/padding_5"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:background="@android:color/transparent"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view"
+            android:layout_toRightOf="@id/product_image"
+
+            android:paddingBottom="@dimen/padding_10">
+
+            <LinearLayout
+                android:id="@+id/counter"
+                android:layout_width="@dimen/lw90"
+                android:layout_height="@dimen/lh40"
+                android:layout_gravity="center"
+                android:background="@drawable/background_count"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/minus_button"
+                    android:layout_width="@dimen/la20"
+                    android:layout_height="@dimen/lh20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/ml3"
+                    android:background="@drawable/background_mins"
+                    android:text="@string/_"
+                    android:textSize="@dimen/s10"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/counter_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/ml15"
+                    android:gravity="center"
+                    tools:text="@string/s1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/s15" />
+
+
+                <Button
+                    android:id="@+id/plus_button"
+                    android:layout_width="@dimen/layout20"
+                    android:layout_height="@dimen/lh20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/ml12"
+                    android:background="@drawable/background_plus"
+                    android:text="@string/splus"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/s10"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_30"
+                tools:text="@string/s150"
+                android:textSize="@dimen/size_18"
+                android:layout_toRightOf="@id/counter"
+                android:padding="@dimen/padding_5"
+                />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_address"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/margin_15"
+    android:layout_marginLeft="@dimen/margin_15"
+    android:layout_marginTop="@dimen/margin_15"
+    android:clickable="true"
+    cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardElevation="@dimen/cardElevation_3"
+    android:paddingLeft="@dimen/paddingLeft_2"
+    android:background="@color/bkgcolor_gray">
+
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_5"
+        android:paddingBottom="@dimen/padding_5">
+
+      <TextView
+          android:id="@+id/customer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/mtop1"
+          android:layout_marginLeft="@dimen/margin_10"
+          android:text="@string/customer_nname"
+          android:textColor="@color/color_6a4e5d"
+          android:textSize="@dimen/font_17"
+          android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/customer_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mtop30"
+            android:layout_marginLeft="@dimen/ml15"
+            android:text="@string/customer_address"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/size14"
+            />
+
+        <TextView
+            android:id="@+id/customer_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mtop60"
+            android:layout_marginLeft="@dimen/ml15"
+            android:text="@string/country"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/size14"
+            />
+
+        <TextView
+            android:id="@+id/customer_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mtop90"
+            android:layout_marginLeft="@dimen/ml15"
+            android:text="@string/customer_number"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/size14"
+           />
+        </RelativeLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
