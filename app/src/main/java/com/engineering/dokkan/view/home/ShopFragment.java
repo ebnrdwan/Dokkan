@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,7 @@ import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.ShopitemModel;
 import com.engineering.dokkan.view.Favourite.ShopRecycAdaptar;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.engineering.dokkan.view.shop.ShopPageFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,9 +43,6 @@ public class ShopFragment extends BaseFragment {
     private DatabaseReference dbReference;
     Bundle bundle1 ;
     MainViewModel mainViewModel;
-
-   // ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite;
-    //ShopRecyclerAdaptar.RateBarClickListener ListenerRate;
 
 
     @Override
@@ -139,10 +139,24 @@ public class ShopFragment extends BaseFragment {
         });
     }
 
+    NavController getNavController(){
+        return Navigation.findNavController(getActivity() ,R.id.nav_host_fragment);
+    }
+
+
     ShopRecyclerAdaptar.ItemClickListener ListenerShops = new ShopRecyclerAdaptar.ItemClickListener() {
         @Override
         public void onItemClick(ShopitemModel item) {
+//            ShopPageFragment shopPageFragment = new ShopPageFragment();
+//            Bundle arguments = new Bundle();
+//            arguments.putString("SHOP_KEY", item.getKey());
+//            Log.d("SHOP_KEY_SEND", item.getKey());
+//            shopPageFragment.setArguments(arguments);
+            getNavController().navigate(R.id.action_homeFragment_to_shopPageFragment);
+
             Toast.makeText(getActivity(), "item Clicked", Toast.LENGTH_SHORT).show();
+
+
         }
     };
 

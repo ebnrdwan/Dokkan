@@ -38,7 +38,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.engineering.dokkan.view.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_shopPageFragment"
+            app:destination="@id/shopPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.engineering.dokkan.view.notifications.NotificationFragment"
@@ -47,4 +51,11 @@
         android:id="@+id/profileFragment"
         android:name="com.engineering.dokkan.view.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/shopPageFragment"
+        android:name="com.engineering.dokkan.view.shop.ShopPageFragment"
+        android:label="fragment_shop_page"
+        tools:layout="@layout/fragment_shop_page" />
+
+
 </navigation>

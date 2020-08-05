@@ -25,7 +25,6 @@
     <dimen name="height_15">15dp</dimen>
     <dimen name="width_15">15dp</dimen>
     <dimen name="width_150">150dp</dimen>
-    <dimen name="height_50">50dp</dimen>
 
 
     <dimen name="width_300">300dp</dimen>
@@ -78,7 +77,6 @@
     <dimen name="size2">15sp</dimen>
     <dimen name="size3">20sp</dimen>
     <dimen name="paddind_15">15dp</dimen>
-=
     <dimen name="tv_size_16">16sp</dimen>
     <dimen name="padding_bottom_10">10dp</dimen>
     <dimen name="padding_1">1dp</dimen>
@@ -197,4 +195,10 @@
     <dimen name="cornerRadius_20">20dp</dimen>
     <dimen name="height_140">140dp</dimen>
     <dimen name="text_size25">25sp</dimen>
+    <dimen name="textSize_20">20sp</dimen>
+    <dimen name="margin_44">44dp</dimen>
+    <dimen name="width_50">50dp</dimen>
+    <dimen name="height_50">50dp</dimen>
+    <dimen name="margin_65">65dp</dimen>
+    <dimen name="margin_85">85dp</dimen>
 </resources>

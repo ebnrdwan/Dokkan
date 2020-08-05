@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_15">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="@dimen/width_100"
+            android:layout_height="@dimen/height_100"
+            android:src="@drawable/icon5"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFF"
+            android:id="@+id/img_shop"
+            />
+        <TextView
+            android:id="@+id/name_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_shop"
+            android:text="@string/shopName"
+            android:paddingLeft="@dimen/padding_15"
+            android:layout_marginTop="@dimen/margin_10"
+            android:textSize="@dimen/textSize_20"
+            android:textColor="#000000"
+            />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_shop"
+            android:layout_toRightOf="@id/img_shop"
+            android:numStars="5"
+            android:isIndicator="false"
+            android:stepSize="0.5"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingTop="@dimen/padding_5"
+            android:paddingBottom="@dimen/padding_5"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rating_bar"
+            android:layout_toRightOf="@id/img_shop"
+            android:drawableStart="@drawable/ic_location"
+            android:text="@string/location_name"
+            android:textSize="@dimen/textsize_10"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingBottom="@dimen/padding_5"
+            />
+        <TextView
+            android:id="@+id/num_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_toRightOf="@id/img_shop"
+            android:text="900 sale on app since 2010"
+            android:textSize="@dimen/textsize_10"
+            android:paddingLeft="@dimen/padding_15"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/buttons_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_10"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/favourite_shop"
+            android:layout_width="@dimen/width_30"
+            android:layout_height="@dimen/height_30"
+            android:background="@drawable/fav_shop_empty"
+
+            />
+
+        <TextView
+            android:id="@+id/fav_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/favourite_shop"
+            android:text="Favorite"
+            android:textSize="@dimen/textSize_13"/>
+
+        <ImageView
+            android:id="@+id/contact_shop"
+            android:layout_width="@dimen/width_30"
+            android:layout_height="@dimen/height_30"
+            android:background="@drawable/ic_call_black_24dp"
+            android:layout_toRightOf="@id/favourite_shop"
+            android:layout_marginLeft="@dimen/marginleft_77"
+            />
+        <TextView
+            android:id="@+id/contact_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_shop"
+            android:layout_toRightOf="@id/fav_tv"
+            android:text="Contact us"
+            android:textSize="@dimen/textSize_13"
+            android:layout_marginLeft="@dimen/margin_50"/>
+
+
+        <ImageButton
+            android:id="@+id/share_shop"
+            android:layout_width="@dimen/width_30"
+            android:layout_height="@dimen/height_30"
+            android:layout_toRightOf="@id/contact_shop"
+            android:background="@android:color/transparent"
+            android:gravity="start|top"
+            android:layout_marginLeft="@dimen/margin_85"
+            android:src="@drawable/share_shop" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_shop"
+            android:layout_toRightOf="@id/contact_tv"
+            android:text="Share"
+            android:textSize="@dimen/textSize_13"
+            android:layout_marginLeft="@dimen/margin_65"/>
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/shop_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Hey everyone I sell really beautiull items"
+        android:padding="@dimen/padding_5"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/margin_10"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_e6e4e4"
+            android:padding="@dimen/padding_5"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabRippleColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorAccent">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/ItemsTab"
+                android:layout_width="@dimen/width_25"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/item" />
+
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/reviewsTab"
+                android:layout_width="@dimen/width_25"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/reviews" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/aboutTab"
+                android:layout_width="@dimen/width_25"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/about" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/policiesTab"
+                android:layout_width="@dimen/width_25"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/policies" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_layout"
+            android:paddingLeft="@dimen/padding_10"
+            android:paddingRight="@dimen/padding_15">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/view_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerview_item"
+            android:layout_alignParentRight="true"
+            android:paddingTop="@dimen/padding_5"
+            android:paddingRight="@dimen/padding_5"
+            android:text="@string/view_more"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="@dimen/width_70"
+            android:layout_height="@dimen/height_1"
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/view_more"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/padding_5"
+            android:paddingRight="@dimen/padding_5"/>
+
+
+        <RelativeLayout
+            android:id="@+id/relative_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:background="@color/color_e6e4e4"
+            android:layout_marginTop="@dimen/margin_5"
+            android:padding="@dimen/padding_5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/reviews"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_6a4e5d">
+            </TextView>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingRight="@dimen/padding_15"
+            android:layout_below="@id/relative_review"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/relative_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerview_review"
+            android:background="@color/color_e6e4e4"
+            android:padding="@dimen/padding_5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/about"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_6a4e5d">
+            </TextView>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/about_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:layout_below="@id/relative_about"
+            android:padding="@dimen/padding_10"
+            />
+
+        <View
+            android:id="@+id/lineview"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/about_tv"
+            android:padding="@dimen/padding_5"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"/>
+
+        <TextView
+            android:id="@+id/relatedlinks_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Related Links"
+            android:layout_below="@id/lineview"
+            android:textColor="@color/textColor_black"
+            android:textSize="@dimen/textSize_20"
+            android:padding="@dimen/padding_10"
+            />
+
+        <LinearLayout
+            android:layout_below="@id/relatedlinks_tv"
+            android:id="@+id/facebook"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/width_30"
+                android:layout_height="@dimen/height_30"
+                android:src="@drawable/facebook"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:layout_marginBottom="@dimen/margin_5"
+                />
+            <Button
+                android:id="@+id/tv_fb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5"
+                android:background="@android:color/transparent"
+                android:text="@string/facebook"
+                android:textAlignment="textStart"
+                android:paddingLeft="@dimen/padding_10"
+                android:drawableEnd="@drawable/right_arrow"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@id/facebook"
+            android:id="@+id/insta"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/width_30"
+                android:layout_height="@dimen/height_30"
+                android:src="@drawable/instagram"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:layout_marginBottom="@dimen/margin_5"
+                />
+
+            <Button
+                android:id="@+id/tv_insta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5"
+                android:textAlignment="textStart"
+                android:background="@android:color/transparent"
+                android:text="@string/instgram"
+                android:paddingLeft="@dimen/padding_10"
+                android:drawableEnd="@drawable/right_arrow"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_policies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/insta"
+            android:background="@color/color_e6e4e4"
+            android:padding="@dimen/padding_5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/policies"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_6a4e5d">
+            </TextView>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/policies_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:layout_below="@id/relative_policies"
+            android:padding="@dimen/padding_10"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_5"
+        android:hint="01001615842"
+        android:layout_marginRight="@dimen/margin_10"
+        android:textSize="@dimen/textSize_20"
+        android:textStyle="bold"
+        android:textColor="@color/color_9a7c84"/>
+
+    <Button
+        android:id="@+id/copy"
+        android:layout_width="@dimen/width_30"
+        android:layout_height="@dimen/height_30"
+        android:layout_marginRight="@dimen/margin_10"
+        android:background="@drawable/ic_content_copy_black_24dp"
+
+        />
+
+    <Button
+        android:id="@+id/call_us"
+        android:layout_width="@dimen/width_30"
+        android:layout_height="@dimen/height_30"
+        android:background="@drawable/ic_call_black_24dp"
+
+        />
+
+</LinearLayout>
