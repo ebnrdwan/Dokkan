@@ -51,5 +51,8 @@ dependencies {
 
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
+    //navigation button
+    //implementation 'com.android.support:design:28.0.0'
 
+    implementation 'com.google.android.material:material:1.0.0'
 }

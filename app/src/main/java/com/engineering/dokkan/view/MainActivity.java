@@ -1,24 +1,37 @@
 package com.engineering.dokkan.view;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.view.Favourite.Favourite_Fragment;
 import com.engineering.dokkan.view.chat.ChatFragement;
+import com.engineering.dokkan.view.home.HomeFragment;
 import com.engineering.dokkan.view.notifications.NotificationFragment;
+import com.engineering.dokkan.view.orders.OrdersFragment;
 import com.engineering.dokkan.view.profile.ProfileFragment;
 import com.engineering.dokkan.view.questions.AskQuestionFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+     BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(btn_nav_method);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_nav,new HomeFragment()).commit();
+
 
 
 //        navigateToProfile();
@@ -29,6 +42,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    BottomNavigationView.OnNavigationItemSelectedListener btn_nav_method =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment fragment = null;
+                    switch (item.getItemId()){
+                        case R.id.navigation_home:
+                            fragment = new HomeFragment();
+                            break;
+
+                        case R.id.navigation_profile:
+                            fragment = new ProfileFragment();
+                            break;
+
+                        case R.id.navigation_favorite:
+                            fragment = new Favourite_Fragment();
+                            break;
+
+                        case R.id.navigation_add_to_card:
+                            fragment = new OrdersFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container_nav,fragment).commit();
+                    return true;
+                }
+
+            };
 
     void navigateToProfile() {
         ProfileFragment headFragment = new ProfileFragment();
