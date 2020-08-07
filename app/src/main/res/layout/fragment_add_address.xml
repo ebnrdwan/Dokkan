@@ -78,6 +78,7 @@
         android:id="@+id/cust_number_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="@string/enter_your_number"
         android:layout_marginLeft="@dimen/ml13"
         android:textSize="@dimen/size_18"

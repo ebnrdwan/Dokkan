@@ -34,7 +34,7 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Address"
+            android:text="View Addreaass"
             android:textSize="@dimen/s12"
             android:textColor="@color/color_F1EDED"
             android:layout_alignParentRight="true"

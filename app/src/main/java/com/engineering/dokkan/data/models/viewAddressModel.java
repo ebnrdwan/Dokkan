@@ -2,10 +2,19 @@ package com.engineering.dokkan.data.models;
 
 public class viewAddressModel {
 
+    private String customerID;
     private String customerName;
     private String customerAddress;
     private String customerCountry;
     private String customerNumber;
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -42,7 +51,7 @@ public class viewAddressModel {
     public viewAddressModel() {
     }
 
-    public viewAddressModel(String customerName, String  customerAddress, String  customerCountry, String  customerNumber) {
+    public viewAddressModel(String customerName, String customerAddress, String customerCountry, String customerNumber) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerCountry = customerCountry;

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reg_navigation"
-    app:startDestination="@+id/fragment_Welcome">
+    app:startDestination="@+id/ordersFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -159,9 +159,42 @@
         android:id="@+id/homeFragment"
         android:name="com.engineering.dokkan.view.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.engineering.dokkan.view.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+
+        <action
+            android:id="@+id/action_ordersFragment_to_addressesfragment"
+            app:destination="@id/addressesfragment" />
 
 
+    </fragment>
 
+    <fragment
+        android:id="@+id/addressesfragment"
+        android:name="com.engineering.dokkan.view.address.AddreesesFragment"
+        android:label="fragment_addreeses"
+        tools:layout="@layout/fragment_addreeses" >
+
+        <action
+            android:id="@+id/action_addressesfragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.engineering.dokkan.view.address.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" >
+
+        <action
+            android:id="@+id/action_addAddress_to_AddressFragment"
+            app:destination="@id/addressesfragment" />
+
+    </fragment>
 
 
 </navigation>

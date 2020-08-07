@@ -23,14 +23,43 @@
     <string name="_11_04_am">11:04 Am</string>
 
     <string name="sorry_no_result_found">Sorry,no result found</string>
+
+
+    <string name="after_registration">AFTER REGISTRATION</string>
+    <string name="register">REGISTER</string>
+    <string name="register2">Register</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="i_agree_to_the">i agree to the</string>
+    <string name="terms_and_conditions"> terms and conditions.</string>
+    <string name="register3">Register</string>
+    <string name="terms_and_conditions2">TERMS AND CONDITIONS</string>
+    <string name="i_agree_to_the_terms_and_conditions">i agree to the terms and conditions.</string>
+
+    <string name="recently_viewed">Recently Viewed</string>
+
+    <string name="accessories">Accessories</string>
+    <string name="based_on_your_recent_searches">Based on your recent searches</string>
+    <string name="see_more">See more</string>
+    <string name="similar_to_items_you_viewed">Similar to items you Viewed</string>
+    <string name="view_more">View more</string>
+    <string name="any_other_category">Any Other Category</string>
+    <string name="similar_to_recent_favorites">Similar to recent favorites</string>
+    <string name="item_full_name">Item Full Name</string>
+    <string name="price_150">$150</string>
+    <string name="home">Home</string>
+    <string name="messages">Messages</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+    <string name="ask_question">Ask Question</string>
+
+
     <string name="text1">The cart is empty</string>
     <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
     <string name="back_to_shopping">Back to Shopping</string>
     <string name="chating">Chating</string>
-    <string name="notification">notification</string>
-    <string name="profile">profile</string>
-    <string name="messages">messages</string>
-    <string name="ask_question">ask_question</string>
     <string name="hello">hello</string>
     <string name="type_a_message">type a message..</string>
     <string name="azza_helmy">Azza Helmy</string>
@@ -44,6 +73,33 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_with_your_social">Login With Your Social</string>
     <string name="media_account">Media Account.</string>
+    <string name="invited_you_to_something">invited you to something</string>
+
+
+    <string name="name_item">NAME</string>
+
+    <string name="date_item">11:04AM</string>
+
+    <string name="Register_here"> Register here.</string>
+
+    <string name="Dont_have_an_account">Don’t have an account?</string>
+
+    <string name="Forget_Password">Forget Password!?</string>
+
+    <string name="hint_email">E-Mail</string>
+
+    <string name="hint_password">password</string>
+
+    <string name="Don_Worry_we_just_need_your"> Don\'t Worry, we just need your </string>
+    <string name="registared_email_address_and_its_done"> registared email address and its done!</string>
+    <string name="enter_your_registered_email">enter your registered email</string>
+    <string name="Regst_Password">Regst Password</string>
+    <string name="welcomeUser_name">Asmaa El Qady</string>
+    <string name="browse_category">Browse Category</string>
+    <string name="product">Product</string>
+    <string name="embroidery_art">Embroidery Art</string>
+
+
     <string name="Item_name">order_item_name</string>
     <string name="shop_name">Shop Name</string>
     <string name="item_name">Item Name</string>
@@ -66,4 +122,14 @@
     <string name="country">Country</string>
     <string name="order_status">Order Status</string>
     <string name="customer_nname">customer Name</string>
+    <string name="title_activity_a">a</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
 </resources>

@@ -1,26 +1,18 @@
-package com.engineering.dokkan;
+package com.engineering.dokkan.view;
 
 
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class MainFragment extends BaseFragment {
     private Button btn_home,btn_chating, btn_msg, btn_notification, btn_profile, btn_askQ;
 
@@ -36,7 +28,7 @@ public class MainFragment extends BaseFragment {
     }
 
     NavController getNavController(){
-        return Navigation.findNavController(getActivity() ,R.id.my_nav_host);
+        return Navigation.findNavController(getActivity() , R.id.my_nav_host);
     }
 
     @Override

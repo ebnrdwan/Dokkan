@@ -5,15 +5,12 @@
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/margin_15"
-    android:layout_marginLeft="@dimen/margin_15"
-    android:layout_marginTop="@dimen/margin_15"
-    android:paddingStart="@dimen/paddingStart_5"
-    android:clickable="true"
+    android:layout_marginStart="@dimen/margin_15"
+    android:layout_marginEnd="@dimen/margin_15"
+    android:layout_marginTop="8dp"
     cardview:cardCornerRadius="@dimen/cardCornerRadius_4"
     android:foreground="?android:attr/selectableItemBackground"
     cardview:cardElevation="@dimen/cardElevation_3"
-    android:paddingLeft="@dimen/paddingLeft_2"
     android:background="@color/bkgcolor_gray">
 
 
@@ -81,68 +78,34 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:layout_toRightOf="@id/product_image"
-
             android:paddingBottom="@dimen/padding_10">
 
-            <LinearLayout
+            
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                 android:id="@+id/counter"
-                android:layout_width="@dimen/lw90"
-                android:layout_height="@dimen/lh40"
-                android:layout_gravity="center"
-                android:background="@drawable/background_count"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/minus_button"
-                    android:layout_width="@dimen/la20"
-                    android:layout_height="@dimen/lh20"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/ml3"
-                    android:background="@drawable/background_mins"
-                    android:text="@string/_"
-                    android:textSize="@dimen/s10"
-                    android:textStyle="bold" />
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                cardview:textSize="6sp"
+                cardview:initialNumber="0"
+                cardview:backGroundColor="@color/text2color"
 
 
-                <TextView
-                    android:id="@+id/counter_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/ml15"
-                    android:gravity="center"
-                    tools:text="@string/s1"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/s15" />
-
-
-                <Button
-                    android:id="@+id/plus_button"
-                    android:layout_width="@dimen/layout20"
-                    android:layout_height="@dimen/lh20"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/ml12"
-                    android:background="@drawable/background_plus"
-                    android:text="@string/splus"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/s10"
-                    android:textStyle="bold"
-                    tools:ignore="SmallSp" />
-            </LinearLayout>
-
+                />
 
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_30"
-                tools:text="@string/s150"
-                android:textSize="@dimen/size_18"
+                android:layout_toEndOf="@+id/counter"
                 android:layout_toRightOf="@id/counter"
                 android:padding="@dimen/padding_5"
-                />
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/bkgcolor_mauve"
+                android:textSize="16sp"
+                tools:text="@string/s150" />
 
 
         </RelativeLayout>

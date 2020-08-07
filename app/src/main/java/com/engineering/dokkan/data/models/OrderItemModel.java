@@ -5,7 +5,7 @@ public class OrderItemModel {
     private String shopname;
     private String quantityPrice;
     private String productName;
-    private int quantity;
+    private String quantity;
     private String productImage;
     private String productID;
     private String shopId;
@@ -39,11 +39,11 @@ public class OrderItemModel {
         this.productName = productName;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
