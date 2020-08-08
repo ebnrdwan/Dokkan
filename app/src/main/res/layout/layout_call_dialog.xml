@@ -6,14 +6,15 @@
     >
 
     <TextView
+        android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_5"
-        android:hint="01001615842"
+        android:text="00000"
         android:layout_marginRight="@dimen/margin_10"
         android:textSize="@dimen/textSize_20"
         android:textStyle="bold"
-        android:textColor="@color/color_9a7c84"/>
+        android:textColor="#9C9C9C"/>
 
     <Button
         android:id="@+id/copy"

@@ -47,7 +47,7 @@
             android:numStars="5"
             android:isIndicator="false"
             android:stepSize="0.5"
-            android:paddingLeft="@dimen/padding_15"
+            android:layout_marginLeft="@dimen/margin_15"
             android:paddingTop="@dimen/padding_5"
             android:paddingBottom="@dimen/padding_5"/>
 
@@ -258,7 +258,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_380"
             android:paddingLeft="@dimen/padding_15"
             android:paddingRight="@dimen/padding_15"
             android:layout_below="@id/relative_review"

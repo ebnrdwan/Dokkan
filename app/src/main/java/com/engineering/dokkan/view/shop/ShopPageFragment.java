@@ -1,14 +1,23 @@
 package com.engineering.dokkan.view.shop;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,18 +56,24 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class ShopPageFragment extends BaseFragment {
+    private static  final int REQUEST_CALL = 1 ;
     private ArrayList<ShopReviewModel> reviewList;
     private RecyclerView reviewRecyclerView;
     private DatabaseReference databaseReference;
-    Bundle bundle1;
+    private Bundle bundle;
 
-    TextView shopname , location , desc ,about , policies ;
-    Button fblink , instalink ;
-    ImageView shopimg , fav , call , share ;
-    RatingBar ratingBar ;
+    private TextView shopname , location , desc ,about , policies ;
+    private Button fblink , instalink ;
+    private ImageView shopimg , fav , contactUs , share ;
+    private RatingBar ratingBar ;
 
-    String fb_link , insta_link , callnum ;
+    private String fb_link , insta_link , callnum ;
 
+    private Button copy , call ;
+    private TextView number;
+
+
+    private String msg ;
 
 
     public ShopPageFragment() {
@@ -74,13 +89,18 @@ public class ShopPageFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initialization(view);
-//        bundle1 = getArguments();
-//        if( bundle1 != null) {
-//            String shop_id = bundle1.getString("SHOP_KEY");
-//            Log.d("SHOP_KEY_RECEIVE", shop_id);
-//        }
-        showShopDetails();
-            }
+        bundle = getArguments();
+        String shop_id = bundle.getString("shop_id");
+        showShopDetails(shop_id);
+
+        msg = " Welcome to the shop : http://www.dokkan.com/shops/" + shop_id ;
+
+
+
+
+
+
+    }
 
     private void initialization(View view) {
         reviewRecyclerView = view.findViewById(R.id.recyclerview_review);
@@ -95,15 +115,15 @@ public class ShopPageFragment extends BaseFragment {
         fblink = view.findViewById(R.id.tv_fb);
         instalink = view.findViewById(R.id.tv_insta);
         fav = view.findViewById(R.id.favourite_shop);
-        call = view.findViewById(R.id.contact_shop);
+        contactUs = view.findViewById(R.id.contact_shop);
         share = view.findViewById(R.id.share_shop);
 
 
     }
 
-    private void showShopDetails() {
+    private void showShopDetails(String id) {
         final Query query = FirebaseDatabase.getInstance().getReference("shops")
-                .orderByChild("key").equalTo("shopID2");
+                .orderByChild("key").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -159,10 +179,10 @@ public class ShopPageFragment extends BaseFragment {
                 ShopReviewRecycAdapter adapter = new ShopReviewRecycAdapter(reviewList);
                 reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 reviewRecyclerView.setAdapter(adapter);
-//                DividerItemDecoration dv;
-//                dv = new DividerItemDecoration(reviewRecyclerView.getContext(),
-//                      ((LinearLayoutManager)new LinearLayoutManager(getActivity()) ).getOrientation());
-//                reviewRecyclerView.addItemDecoration(dv);
+                DividerItemDecoration dv;
+                dv = new DividerItemDecoration(reviewRecyclerView.getContext(),
+                      ((LinearLayoutManager)new LinearLayoutManager(getActivity()) ).getOrientation());
+                reviewRecyclerView.addItemDecoration(dv);
 
 
             }
@@ -204,28 +224,34 @@ public class ShopPageFragment extends BaseFragment {
             }
         });
 
-        call.setOnClickListener(new View.OnClickListener() {
+        contactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDialog();
-
             }
         });
 
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setChooserTitle("Share URL")
+                        .setText(msg)
+                        .startChooser();
+            }
+        });
+
+
         //favoriteClick()
-        //callClick()
         //shareClick()
 
 
 
     }
 
-    private void openDialog() {
-//        final Dialog dialog = new Dialog(getActivity()); // Context, this, etc.
-//        dialog.setContentView(R.layout.layout_call_dialog);
-//        dialog.setTitle("The phone Number :");
-//        dialog.show();
 
+    private void openDialog() {
         LayoutInflater inflater = getActivity().getLayoutInflater() ;
         View view = inflater.inflate(R.layout.layout_call_dialog , null);
         final AlertDialog.Builder mB =new AlertDialog.Builder(getActivity());
@@ -233,13 +259,6 @@ public class ShopPageFragment extends BaseFragment {
         mB.setTitle("The Phone Number :");
         mB.setView(view);
         mB.setCancelable(false);
-        mB.setPositiveButton("call", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-
-            }
-        });
         mB.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -248,7 +267,62 @@ public class ShopPageFragment extends BaseFragment {
         });
         AlertDialog m = mB.create();
         mB.show();
+
+        copy = view.findViewById(R.id.copy);
+        call = view.findViewById(R.id.call_us);
+        number = view.findViewById(R.id.number);
+
+        number.setText(callnum);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makePhoneCall();
+            }
+
+        });
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getActivity() ;
+                ClipboardManager clipboard = (ClipboardManager)
+                        context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("phone number", callnum);
+                clipboard.setPrimaryClip(clip);
+                clip.getDescription();
+                Toast.makeText(getActivity() , "copied" , Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
     }
+
+
+    private void makePhoneCall() {
+
+        if (ContextCompat.checkSelfPermission(getActivity() , Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ){
+            ActivityCompat.requestPermissions(getActivity() , new String[]{Manifest.permission.CALL_PHONE} ,REQUEST_CALL);
+
+        } else {
+            String dial = "tel:" + callnum;
+            startActivity(new Intent(Intent.ACTION_CALL , Uri.parse(dial)));
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL){
+            if (grantResults.length > 0  && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                makePhoneCall();
+            } else {
+                Toast.makeText(getActivity() ,"PERMISSION DENIED" ,Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+
 
 
 }

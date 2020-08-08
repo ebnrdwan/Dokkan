@@ -91,33 +91,7 @@
         android:layout_toRightOf="@id/item_image"
         android:textSize="@dimen/textsize_10"/>
 
-                <ImageView
-                    android:id="@+id/fav_comment"
-                    android:layout_width="@dimen/width_25"
-                    android:layout_height="@dimen/height_25"
-                    android:layout_gravity="center"
-                    android:layout_below="@id/item_image"
-                    android:layout_toRightOf="@id/cutomer_image"
-                    android:layout_marginLeft="@dimen/margin_10"
-                    android:layout_marginBottom="@dimen/margin_5"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/ic_favorite_black_24dp">
 
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/num_of_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="@dimen/margin_15"
-                    android:layout_below="@id/item_image"
-                    android:layout_toRightOf="@id/fav_comment"
-                    android:text="77"
-                    android:textSize="@dimen/textSize_13">
-
-                </TextView>
 
                 <TextView
                     android:id="@+id/tv_date"

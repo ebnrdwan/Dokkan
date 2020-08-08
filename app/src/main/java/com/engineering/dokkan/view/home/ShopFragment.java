@@ -57,36 +57,6 @@ public class ShopFragment extends BaseFragment {
 
     @Override
     public void setListeners() {
-//         ListenerFavourite = new ShopRecyclerAdaptar.FavouriteClickListener() {
-//            @Override
-//            public void onFavouriteClicked(int position, boolean isFav) {
-//                dbReference = FirebaseDatabase.getInstance().getReference("shops");
-//                dbReference.child(data.get(position).getKey()).child("favourite").setValue(isFav)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                            }
-//                        });
-//
-//
-//            }
-//        };
-
-//        ListenerRate = new ShopRecyclerAdaptar.RateBarClickListener(){
-//
-//            @Override
-//            public void onRateClicked(int position, float rate) {
-//                dbReference = FirebaseDatabase.getInstance().getReference("shops");
-//                dbReference.child(data.get(position).getKey()).child("rate").setValue(rate)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
-//                            }
-//                        });
-//            }
-//        };
     }
 
 
@@ -140,7 +110,7 @@ public class ShopFragment extends BaseFragment {
     }
 
     NavController getNavController(){
-        return Navigation.findNavController(getActivity() ,R.id.nav_host_fragment);
+        return Navigation.findNavController(getActivity() ,R.id.my_nav_host);
     }
 
 
@@ -148,11 +118,9 @@ public class ShopFragment extends BaseFragment {
         @Override
         public void onItemClick(ShopitemModel item) {
 //            ShopPageFragment shopPageFragment = new ShopPageFragment();
-//            Bundle arguments = new Bundle();
-//            arguments.putString("SHOP_KEY", item.getKey());
-//            Log.d("SHOP_KEY_SEND", item.getKey());
-//            shopPageFragment.setArguments(arguments);
-            getNavController().navigate(R.id.action_homeFragment_to_shopPageFragment);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.SHOP_KEY , item.getKey());
+            getNavController().navigate(R.id.action_homeFragment2_to_shopPageFragment , bundle);
 
             Toast.makeText(getActivity(), "item Clicked", Toast.LENGTH_SHORT).show();
 
