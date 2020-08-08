@@ -92,7 +92,6 @@ public class ShopPageFragment extends BaseFragment {
         bundle = getArguments();
         String shop_id = bundle.getString("shop_id");
         showShopDetails(shop_id);
-
         msg = " Welcome to the shop : http://www.dokkan.com/shops/" + shop_id ;
 
 

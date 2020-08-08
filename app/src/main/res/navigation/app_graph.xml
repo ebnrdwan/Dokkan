@@ -12,11 +12,11 @@
         android:label="fragment_shop_page"
         tools:layout="@layout/fragment_shop_page" >
         <argument
-            android:name="SHOP_ID"
+            android:name="shop_id"
             app:argType="string" />
         <deepLink
             android:id="@+id/deepLink"
-            app:uri="http://www.dokkan.com/shops/{SHOP_ID}"
+            app:uri="http://www.dokkan.com/shops/{shop_id}"
              />
     </fragment>
 
