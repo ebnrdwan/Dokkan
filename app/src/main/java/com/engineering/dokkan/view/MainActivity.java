@@ -20,49 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        navigateToProfile();
-//        navigateToNotification();
-//        navigateToChat();
-//        navigateToQuestions();
-
-
-    }
-
-
-    void navigateToProfile() {
-        ProfileFragment headFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.container, headFragment)
-                .commit();
-    }
-
-
-    void navigateToQuestions() {
-        AskQuestionFragment Fragment = new AskQuestionFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.container, Fragment);
-        ft.commit();
-    }
-
-
-    public void navigateToNotification() {
-        NotificationFragment fragx = new NotificationFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, fragx);
-        ft.commit();
-    }
-
-
-    public void navigateToChat() {
-        ChatFragement chatFragement = new ChatFragement();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, chatFragement);
-        ft.commit();
     }
 
 
