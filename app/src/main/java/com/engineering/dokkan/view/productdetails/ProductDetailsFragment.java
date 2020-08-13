@@ -69,7 +69,6 @@ public class ProductDetailsFragment extends BaseFragment {
         initialize(view);
         sliderWork();
         retriveProuductData(getArguments().getString(Constants.PRODUCT_ID_KEY));
-        retriveShopData(null);
         RetriveReviewInRecycleView();
     }
 
@@ -184,7 +183,7 @@ public class ProductDetailsFragment extends BaseFragment {
     }
 
     private void retriveShopData(String productId) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("shop").child("ShopId1");
+        databaseReference = FirebaseDatabase.getInstance().getReference("shops").child(productId != null ? productId : "ShopId1");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -206,7 +205,7 @@ public class ProductDetailsFragment extends BaseFragment {
     }
 
     private void retriveProuductData(String productId) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("product").child(productId);
+        databaseReference = FirebaseDatabase.getInstance().getReference("products").child(productId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -217,7 +216,7 @@ public class ProductDetailsFragment extends BaseFragment {
                 String pDescription = dataSnapshot.child("description").getValue(String.class);
                 productDescription.setText(pDescription);
                 String pMaterial = dataSnapshot.child("Material").getValue(String.class);
-                String shopId = dataSnapshot.child("shop_id").getValue(String.class);
+                String shopId = dataSnapshot.child("shopId").getValue(String.class);
                 retriveShopData(shopId);
                 ProductMaterial.setText("" + pMaterial);
                 String pSize = dataSnapshot.child("size").getValue(String.class);

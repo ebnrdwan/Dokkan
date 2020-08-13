@@ -64,12 +64,13 @@ public class ProductsFragment extends BaseFragment {
                             dbReference.child(key).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString(Constants.PRODUCT_ID_KEY, item.getKey());
-                                    navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
                                 }
                             });
                         }
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constants.PRODUCT_ID_KEY, item.getKey());
+                        navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
                     }
 
                     @Override
