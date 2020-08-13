@@ -4,10 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/container_nav"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -20,5 +16,13 @@
         app:menu="@menu/nav_buttom"
         >
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/my_nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/app_graph"
+        />
 
 </RelativeLayout>

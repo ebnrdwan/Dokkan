@@ -4,23 +4,23 @@
 
 
         <item
-            android:id="@+id/navigation_home"
+            android:id="@+id/homeFragment"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Home"
             />
 
         <item
-            android:id="@+id/navigation_profile"
+            android:id="@+id/profileFragment"
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="Profile"/>
 
         <item
-            android:id="@+id/navigation_favorite"
+            android:id="@+id/favourite_Fragment"
             android:icon="@drawable/ic_favorite_b_24dp"
             android:title="Favorite"/>
 
         <item
-            android:id="@+id/navigation_add_to_card"
+            android:id="@+id/ordersFragment"
             android:icon="@drawable/ic_add_shopping_cart_black_24dp"
             android:title="Card"/>
     </menu>

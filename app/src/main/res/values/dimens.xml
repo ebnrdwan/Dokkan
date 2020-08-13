@@ -303,6 +303,7 @@
     <dimen name="s10">10sp</dimen>
     <dimen name="layoutw20">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="paddin25">25dp</dimen>
 
 
 </resources>

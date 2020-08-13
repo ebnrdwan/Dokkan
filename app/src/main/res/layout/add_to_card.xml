@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,4 +15,38 @@
         app:navGraph="@navigation/app_graph"
         />
 
-</LinearLayout>
+
+
+
+    <include layout="@layout/order_toolbar"
+        android:id="@+id/toolbar"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_id_order"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@+id/order_total"
+        android:layout_marginTop="2dp"
+        android:scrollbars="vertical">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/order_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Order All"
+        android:textAlignment="gravity"
+        android:padding="@dimen/paddin25"
+        android:textColor="@color/color_F1EDED"
+        android:background="@color/color_9a7c84"
+        android:layout_margin="@dimen/margin_15"
+        />
+
+
+
+</RelativeLayout>
+
