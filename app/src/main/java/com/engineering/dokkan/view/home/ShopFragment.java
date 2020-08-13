@@ -11,17 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.ShopitemModel;
-import com.engineering.dokkan.view.Favourite.ShopRecycAdaptar;
 import com.engineering.dokkan.view.base.BaseFragment;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

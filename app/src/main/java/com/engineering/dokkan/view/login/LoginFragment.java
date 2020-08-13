@@ -110,8 +110,6 @@ public class LoginFragment extends BaseFragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 if (firebaseAuth.getCurrentUser().isEmailVerified()) {
-                                    String currentUserID = firebaseAuth.getCurrentUser().getUid();
-                                    RootRef.child("Users").child(currentUserID).setValue("");
                                     loadingbar.dismiss();
                                     getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);
                                     Toast.makeText(getActivity(), "Logged is succesfully.", Toast.LENGTH_SHORT).show();
