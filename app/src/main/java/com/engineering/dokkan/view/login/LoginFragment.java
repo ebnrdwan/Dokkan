@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginFragment extends BaseFragment {
     private Button btn_sing;
     private FirebaseUser currentUser;
@@ -77,6 +80,7 @@ public class LoginFragment extends BaseFragment {
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getNavController().navigate(R.id.action_loginFragment_to_register);
 
             }
         });
@@ -112,8 +116,6 @@ public class LoginFragment extends BaseFragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 if (firebaseAuth.getCurrentUser().isEmailVerified()) {
-                                    String currentUserID = firebaseAuth.getCurrentUser().getUid();
-                                    RootRef.child("Users").child(currentUserID).setValue("");
                                     loadingbar.dismiss();
                                     getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);
                                     Toast.makeText(getActivity(), "Logged is succesfully.", Toast.LENGTH_SHORT).show();
@@ -121,11 +123,8 @@ public class LoginFragment extends BaseFragment {
                                 } else {
                                     loadingbar.dismiss();
                                     Toast.makeText(getActivity(), "please veify your email address", Toast.LENGTH_SHORT).show();
-
                                 }
-
                             } else {
-
                                 loadingbar.dismiss();
                                 String error = task.getException().getMessage();
                                 Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();

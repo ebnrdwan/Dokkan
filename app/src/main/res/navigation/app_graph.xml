@@ -35,6 +35,9 @@
             android:id="@+id/action_loginFragment_to_resetPassword"
             app:destination="@id/resetPassword" />
         <action
+            android:id="@+id/action_loginFragment_to_register"
+            app:destination="@id/registerFragment" />
+        <action
             android:id="@+id/action_loginFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
     </fragment>
