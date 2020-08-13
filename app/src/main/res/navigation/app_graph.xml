@@ -77,32 +77,6 @@
             android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.engineering.dokkan.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment2_to_mainFragment"
-            app:destination="@id/ChatFragement" />
-        <action
-            android:id="@+id/action_mainFragment2_to_chatFragement"
-            app:destination="@id/chatingFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_askQuestionFragment"
-            app:destination="@id/askQuestionFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
-
-
-    </fragment>
 
     <fragment
         android:id="@+id/chatingFragment"
@@ -161,9 +135,6 @@
         android:id="@+id/homeFragment"
         android:name="com.engineering.dokkan.view.home.HomeFragment"
         android:label="HomeFragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_ProductDetails"
-            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
@@ -171,8 +142,14 @@
         android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
         android:label="ProductDetailsFragment" >
 
+        <argument
+            android:name="productId"
+            app:argType="string" />
     </fragment>
 
+    <action
+        android:id="@+id/action_global_to_ProductDetails"
+        app:destination="@id/productDetailsFragment" />
 
 
 </navigation>

@@ -1,7 +1,12 @@
 package com.engineering.dokkan.view.productdetails;
 
 import android.graphics.Color;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -9,16 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.TextView;
-
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,12 +36,12 @@ public class ProductDetailsFragment extends BaseFragment {
     RecyclerView rv;
     ReviewAdapter adapter;
     RatingBar ratingBar;
-    Button arrowBtn1, arrowBtn2,ask_qustion;
+    Button arrowBtn1, arrowBtn2, ask_qustion;
     LinearLayout contaner;
     //product
     TextView ProductName, productDescription, productPrice, ProductMaterial, productSize;
     //Shop
-    TextView ShopName,ShopLocation,ShopeReviews;
+    TextView ShopName, ShopLocation, ShopeReviews;
     ImageView ShopImage;
     RatingBar ShopRate;
     //slider
@@ -70,10 +67,10 @@ public class ProductDetailsFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initialize(view);
-         sliderWork();
-         RetriveProuductData();
-         RetriveShopData();
-         RetriveReviewInRecycleView();
+        sliderWork();
+        retriveProuductData(getArguments().getString(Constants.PRODUCT_ID_KEY));
+        retriveShopData(null);
+        RetriveReviewInRecycleView();
     }
 
     @Override
@@ -117,13 +114,13 @@ public class ProductDetailsFragment extends BaseFragment {
         });
     }
 
-    private void initialize( View view) {
+    private void initialize(View view) {
         //slider
         sliderView = view.findViewById(R.id.imageSlider);
         //button ask qustion
-        ask_qustion=view.findViewById(R.id.askQuestion_button);
+        ask_qustion = view.findViewById(R.id.askQuestion_button);
         //counter
-        counterTxt =view.findViewById(R.id.counter_txt);
+        counterTxt = view.findViewById(R.id.counter_txt);
         minusButton = view.findViewById(R.id.minus_button);
         minusButton.setOnClickListener(clickListener);
         pluButton = view.findViewById(R.id.plus_button);
@@ -149,12 +146,12 @@ public class ProductDetailsFragment extends BaseFragment {
         ShopName = view.findViewById(R.id.shop_name);
         ShopImage = view.findViewById(R.id.shop_Image);
         ShopLocation = view.findViewById(R.id.location_txt);
-        ShopeReviews=view.findViewById(R.id.shop_reviews);
+        ShopeReviews = view.findViewById(R.id.shop_reviews);
 
     }
 
     private void sliderWork() {
-        SliderAdapter adapter2 = new SliderAdapter( getActivity());
+        SliderAdapter adapter2 = new SliderAdapter(getActivity());
         sliderView.setSliderAdapter(adapter2);
         sliderView.setIndicatorSelectedColor(Color.WHITE);
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
@@ -179,13 +176,14 @@ public class ProductDetailsFragment extends BaseFragment {
                         ((LinearLayoutManager) lm).getOrientation());
                 rv.addItemDecoration(dv);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
 
-    private void RetriveShopData() {
+    private void retriveShopData(String productId) {
         databaseReference = FirebaseDatabase.getInstance().getReference("shop").child("ShopId1");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -197,16 +195,18 @@ public class ProductDetailsFragment extends BaseFragment {
                 String shLocation = dataSnapshot.child("location").getValue(String.class);
                 ShopLocation.setText(shLocation);
                 String ShReview = dataSnapshot.child("numOfViews").getValue(String.class);
-                ShopeReviews.setText( "( " +ShReview + " Reviews )" );
+                ShopeReviews.setText("( " + ShReview + " Reviews )");
+
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
 
-    private void RetriveProuductData() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("product").child("Id1");
+    private void retriveProuductData(String productId) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("product").child(productId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -216,9 +216,11 @@ public class ProductDetailsFragment extends BaseFragment {
                 productPrice.setText(pPrice + " LE ");
                 String pDescription = dataSnapshot.child("description").getValue(String.class);
                 productDescription.setText(pDescription);
-                String pMaterial=dataSnapshot.child("Material").getValue(String.class);
-                ProductMaterial.setText(""+ pMaterial);
-                String pSize=dataSnapshot.child("size").getValue(String.class);
+                String pMaterial = dataSnapshot.child("Material").getValue(String.class);
+                String shopId = dataSnapshot.child("shop_id").getValue(String.class);
+                retriveShopData(shopId);
+                ProductMaterial.setText("" + pMaterial);
+                String pSize = dataSnapshot.child("size").getValue(String.class);
                 productSize.setText(pSize);
             }
 
@@ -237,10 +239,12 @@ public class ProductDetailsFragment extends BaseFragment {
         counter--;
         counterTxt.setText(counter + "");
     }
+
     private void plusCounter() {
         counter++;
         counterTxt.setText(counter + "");
     }
+
     private View.OnClickListener clickListener = new View.OnClickListener() {
 
 

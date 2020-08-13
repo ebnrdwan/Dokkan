@@ -2,6 +2,9 @@ package com.engineering.dokkan.view.home;
 
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,14 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -59,14 +57,16 @@ public class ProductsFragment extends BaseFragment {
                 dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
                 Query query = dbReference.orderByChild("key").equalTo(item.getKey());
                 query.addValueEventListener(new ValueEventListener() {
-                    @Override
+
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if ( !dataSnapshot.exists() ){
+                        if (!dataSnapshot.exists()) {
                             String key = dbReference.push().getKey();
                             dbReference.child(key).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-//                    Toast.makeText(getActivity() , "Product Added Succcesfully.." , Toast.LENGTH_LONG).show();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(Constants.PRODUCT_ID_KEY, item.getKey());
+                                    navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
                                 }
                             });
                         }
@@ -106,9 +106,9 @@ public class ProductsFragment extends BaseFragment {
                     ProductitemModel categ = snapshot.getValue(ProductitemModel.class);
                     data.add(categ);
                 }
-                ProductRecycAdapter Adapter = new ProductRecycAdapter( getContext() ,data , ListenerProducts);
+                ProductRecycAdapter Adapter = new ProductRecycAdapter(getContext(), data, ListenerProducts);
                 recyclerView.setAdapter(Adapter);
-                Log.d("STEP", "adapter: " + "done" );
+                Log.d("STEP", "adapter: " + "done");
 
             }
 

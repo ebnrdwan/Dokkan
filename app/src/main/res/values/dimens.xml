@@ -282,4 +282,5 @@
     <dimen name="height_70">70dp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="sliderIndicatorRadius_2">2dp</dimen>
+    <dimen name="textSize_17">17dp</dimen>
 </resources>

@@ -16,6 +16,7 @@ import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,6 +52,7 @@ public class LoginFragment extends BaseFragment {
     }
 
     public void initialization(View view) {
+        FirebaseApp.initializeApp(requireActivity());
         firebaseAuth = FirebaseAuth.getInstance();
         RootRef = FirebaseDatabase.getInstance().getReference();
         Email = (EditText) view.findViewById(R.id.email_login);

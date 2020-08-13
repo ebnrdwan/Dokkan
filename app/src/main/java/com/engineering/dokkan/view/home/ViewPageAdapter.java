@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.engineering.dokkan.utils.Constants;
+
 public class ViewPageAdapter extends FragmentPagerAdapter {
 
     //    private  final List<Fragment> firstFragment = new ArrayList();
