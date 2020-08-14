@@ -161,6 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_e6e4e4"
+            android:layout_marginBottom="@dimen/margin_10"
             android:padding="@dimen/padding_5"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabRippleColor="@color/colorPrimary"
@@ -258,7 +259,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_review"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_380"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingBottom="@dimen/padding_10"
+            android:layout_height="@dimen/height_500"
             android:paddingLeft="@dimen/padding_15"
             android:paddingRight="@dimen/padding_15"
             android:layout_below="@id/relative_review"
@@ -266,12 +269,36 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/view_more_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerview_review"
+            android:layout_alignParentRight="true"
+            android:paddingTop="@dimen/padding_5"
+            android:paddingRight="@dimen/padding_5"
+            android:text="@string/view_more"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <View
+            android:id="@+id/line_review"
+            android:layout_width="@dimen/width_70"
+            android:layout_height="@dimen/height_1"
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/view_more_review"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/padding_5"
+            android:paddingRight="@dimen/padding_5"/>
+
+
         <RelativeLayout
             android:id="@+id/relative_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recyclerview_review"
+            android:layout_below="@id/line_review"
             android:background="@color/color_e6e4e4"
+            android:layout_marginTop="@dimen/margin_5"
             android:padding="@dimen/padding_5">
 
             <TextView

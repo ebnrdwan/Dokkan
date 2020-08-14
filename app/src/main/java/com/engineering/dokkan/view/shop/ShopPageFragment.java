@@ -20,6 +20,7 @@ import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,12 +35,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.data.models.ShopProductModel;
 import com.engineering.dokkan.data.models.ShopReviewModel;
 import com.engineering.dokkan.data.models.ShopModel;
 import com.engineering.dokkan.view.Favourite.Shop_Fragment;
 import com.engineering.dokkan.view.MainActivity;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.engineering.dokkan.view.home.ProductRecycAdapter;
 import com.engineering.dokkan.view.home.ShopRecyclerAdaptar;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,23 +61,30 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class ShopPageFragment extends BaseFragment {
-    private static  final int REQUEST_CALL = 1 ;
-    private ArrayList<ShopReviewModel> reviewList;
-    private RecyclerView reviewRecyclerView;
-    private DatabaseReference databaseReference;
     private Bundle bundle;
 
+    private static  final int REQUEST_CALL = 1 ;
+
+    //review
+    private ArrayList<ShopReviewModel> reviewList;
+    private RecyclerView reviewRecyclerView;
+
+    //items
+    private ArrayList<ShopProductModel> prodList ;
+    private RecyclerView productRecyclerView;
+    ShopProductRecycAdapter.ItemClickListener ListenerProducts;
+
+
+    //shop details
     private TextView shopname , location , desc ,about , policies ;
     private Button fblink , instalink ;
     private ImageView shopimg , fav , contactUs , share ;
     private RatingBar ratingBar ;
-
-    private String fb_link , insta_link , callnum ;
-
     private Button copy , call ;
     private TextView number;
+    private String fb_link , insta_link , callnum ;
 
-
+    //deep link
     private String msg ;
 
 
@@ -89,6 +101,8 @@ public class ShopPageFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initialization(view);
+
+        //get shop id from home when click on specific shop
         bundle = getArguments();
         String shop_id = bundle.getString("shop_id");
         showShopDetails(shop_id);
@@ -96,13 +110,13 @@ public class ShopPageFragment extends BaseFragment {
 
 
 
-
-
-
     }
 
     private void initialization(View view) {
         reviewRecyclerView = view.findViewById(R.id.recyclerview_review);
+
+        productRecyclerView = view.findViewById(R.id.recyclerview_item);
+
 
         shopimg = view.findViewById(R.id.img_shop) ;
         shopname = view.findViewById(R.id.name_shop);
@@ -141,18 +155,26 @@ public class ShopPageFragment extends BaseFragment {
                     insta_link = shops.getInstaLink();
                     callnum = shops.getPhoneNum() ;
 
-
-                    HashMap<String , String> map = shops.getReviews();
-                    Collection<String> values = map.values();
-                    //Creating an ArrayList of values
-                    ArrayList<String> listOfIDs = new ArrayList<String>(values);
-
+                    //show shop Reviews
+                    HashMap<String , String> mapReview = shops.getReviews();
+                    Collection<String> valuesReview = mapReview.values();
+                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
+                    ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
                     reviewList = new ArrayList<>();
-                    for ( String id : listOfIDs){
-                        Log.d("REVIEW_ID" , id) ;
+                    for ( String id : listOfReviewsIDs){
                         showShopReviews(id);
-
                     }
+
+                    //show shop Products
+                    HashMap<String , String> mapProd = shops.getProducts();
+                    Collection<String> valuesProduct = mapProd.values();
+                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
+                    ArrayList<String> listOfProdIDs = new ArrayList<String>(valuesProduct);
+                    prodList = new ArrayList<>();
+                    for ( String id : listOfProdIDs){
+                        showShopProducts(id);
+                    }
+
                 }
             }
 
@@ -174,7 +196,6 @@ public class ShopPageFragment extends BaseFragment {
                     ShopReviewModel reviewModel = snapshot.getValue(ShopReviewModel.class);
                     reviewList.add(reviewModel);
                 }
-
                 ShopReviewRecycAdapter adapter = new ShopReviewRecycAdapter(reviewList);
                 reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 reviewRecyclerView.setAdapter(adapter);
@@ -196,8 +217,42 @@ public class ShopPageFragment extends BaseFragment {
 
     }
 
+    private void showShopProducts(String id) {
+        Query query = FirebaseDatabase.getInstance().getReference("products")
+                .orderByChild("key").equalTo(id);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    ShopProductModel productModel = snapshot.getValue(ShopProductModel.class);
+                    prodList.add(productModel);
+                }
+                ShopProductRecycAdapter adapter = new ShopProductRecycAdapter(getContext() ,prodList , ListenerProducts);
+                productRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                productRecyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getActivity() , databaseError.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+    }
+
     @Override
     public void setListeners() {
+        ListenerProducts = new ShopProductRecycAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(ShopProductModel item) {
+
+            }
+        };
+
+
 
         fblink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,14 +296,7 @@ public class ShopPageFragment extends BaseFragment {
             }
         });
 
-
-        //favoriteClick()
-        //shareClick()
-
-
-
     }
-
 
     private void openDialog() {
         LayoutInflater inflater = getActivity().getLayoutInflater() ;
@@ -297,9 +345,7 @@ public class ShopPageFragment extends BaseFragment {
 
     }
 
-
     private void makePhoneCall() {
-
         if (ContextCompat.checkSelfPermission(getActivity() , Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ){
             ActivityCompat.requestPermissions(getActivity() , new String[]{Manifest.permission.CALL_PHONE} ,REQUEST_CALL);
 
@@ -320,8 +366,5 @@ public class ShopPageFragment extends BaseFragment {
         }
 
     }
-
-
-
 
 }

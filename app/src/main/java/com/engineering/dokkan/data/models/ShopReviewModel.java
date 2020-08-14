@@ -5,83 +5,57 @@ public class ShopReviewModel {
     private String image;
     private String name;
     private float rate;
-    private Boolean Fav_comment;
-    private int likesOfComment;
     private String time;
     private String Key;
-    private String itemImage;
-    private String itemName;
-    private String itemDesc ;
+    private String productID ;
 
 
     public ShopReviewModel() {
 
     }
 
-    public ShopReviewModel(String comment, String image, String name, float rate,Boolean Fav_comment, String time) {
+    public ShopReviewModel(String comment, String image, String name,
+                           float rate, Boolean fav_comment, int likesOfComment,
+                           String time, String key, String productID) {
         this.comment = comment;
         this.image = image;
         this.name = name;
         this.rate = rate;
-        this.Fav_comment =Fav_comment;
-        this.time = time;
-
-    }
-
-    public ShopReviewModel(String comment, String image, String name, float rate,
-                           Boolean fav_comment, int likesOfComment, String time,
-                           String key, String itemImage, String itemName, String itemDesc) {
-        this.comment = comment;
-        this.image = image;
-        this.name = name;
-        this.rate = rate;
-        Fav_comment = fav_comment;
-        this.likesOfComment = likesOfComment;
         this.time = time;
         Key = key;
-        this.itemImage = itemImage;
-        this.itemName = itemName;
-        this.itemDesc = itemDesc;
+        this.productID = productID;
+    }
+    //    public String getItemImage() {
+//        return itemImage;
+//    }
+//
+//    public void setItemImage(String itemImage) {
+//        this.itemImage = itemImage;
+//    }
+//
+//    public String getItemName() {
+//        return itemName;
+//    }
+//
+//    public void setItemName(String itemName) {
+//        this.itemName = itemName;
+//    }
+//
+//    public String getItemDesc() {
+//        return itemDesc;
+//    }
+//
+//    public void setItemDesc(String itemDesc) {
+//        this.itemDesc = itemDesc;
+//    }
+
+
+    public String getProductID() {
+        return productID;
     }
 
-    public String getItemImage() {
-        return itemImage;
-    }
-
-    public void setItemImage(String itemImage) {
-        this.itemImage = itemImage;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getItemDesc() {
-        return itemDesc;
-    }
-
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc;
-    }
-
-    public int getLikesOfComment() {
-        return likesOfComment;
-    }
-
-    public void setLikesOfComment(int likesOfComment) {
-        this.likesOfComment = likesOfComment;
-    }
-
-    public Boolean getFav_comment() {
-        return Fav_comment;
-    }
-
-    public void setFav_comment(Boolean fav_comment) {
-        Fav_comment = fav_comment;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
     public String getKey() {

@@ -49,9 +49,26 @@ public class ShopReviewRecycAdapter extends RecyclerView.Adapter<ShopReviewRecyc
 
         holder.time_of_comment.setText(reviewList.get(position).getTime());
 
-        holder.item_name.setText(reviewList.get(position).getItemName());
-        holder.item_desc.setText(reviewList.get(position).getItemDesc());
-        Picasso.get().load(reviewList.get(position).getItemImage()).into(holder.item_image);
+//
+////
+////
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("products");
+        databaseReference.child(reviewList.get(position).getProductID()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                holder.item_name.setText( dataSnapshot.child("name").getValue(String.class) );
+                holder.item_desc.setText( dataSnapshot.child("descryption").getValue(String.class) );
+                Picasso.get().load( dataSnapshot.child("img1").getValue(String.class) ).into(holder.item_image);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
     }
 
@@ -63,10 +80,11 @@ public class ShopReviewRecycAdapter extends RecyclerView.Adapter<ShopReviewRecyc
 
 
     class ReviewViewHolder extends RecyclerView.ViewHolder {
-        TextView comment,  customer_name , time_of_comment , item_name , item_desc ;
+        TextView comment,  customer_name , time_of_comment ,item_name , item_desc ;
         ImageView item_image;
         CircleImageView customerImage;
         RatingBar rate;
+
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
