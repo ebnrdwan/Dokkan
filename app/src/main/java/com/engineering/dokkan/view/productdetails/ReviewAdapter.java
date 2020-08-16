@@ -46,10 +46,15 @@ public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewVie
     @Override
     public void onBindViewHolder(@NonNull final ReviewViewHolder holder, final int position) {
         ReviewModel ReviewModel = reviewList.get(position);
+
         holder.rate.setRating(ReviewModel.getRate());
+
         holder.customer_name.setText(ReviewModel.getName());
+
         holder.comment.setText(ReviewModel.getComment());
+
         Picasso.get().load(reviewList.get(position).getImage()).into(holder.CImage);
+
         holder.time_of_comment.setText(ReviewModel.getTime());
 
         //   holder.rate.setRating(ReviewModel.getRate());
@@ -60,49 +65,6 @@ public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewVie
             }
         });
 
-        //Favourite
-        isFavourite(reviewList.get(position).getKey(), holder.Fav_comment, reviewList.get(position));
-        holder.Fav_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!reviewList.get(position).getFav_comment()) { //  if it was false
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("reviews");
-                    databaseReference.child(reviewList.get(position).getKey()).child("Fav_comment").setValue(true)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                }
-                            });
-                    reviewList.get(position).setFav_comment(true);
-
-                } else { //if it was already true
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("reviews");
-                    databaseReference.child(reviewList.get(position).getKey()).child("Fav_comment").removeValue()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                }
-                            });
-                    reviewList.get(position).setFav_comment(false);
-                }
-            }
-        });
-
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("reviews");
-        databaseReference.child("likesOfComment").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ( dataSnapshot.exists()){
-                    holder.num_of_like.setText(((int) dataSnapshot.getChildrenCount()));
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
 
     @Override
@@ -111,30 +73,9 @@ public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewVie
     }
 
 
-    private void isFavourite(String key, final ImageView favourite, final ReviewModel reviewModel) {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("reviews");
-        databaseReference.child(key).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ( dataSnapshot.child("Fav_comment").exists()){
-                    favourite.setImageResource(R.drawable.fav_icon2);
-                    reviewModel.setFav_comment(true);
-                } else  {
-                    favourite.setImageResource(R.drawable.fav_icon3);
-                    reviewModel.setFav_comment(true);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     class ReviewViewHolder extends RecyclerView.ViewHolder {
-        TextView comment, num_of_like, customer_name,time_of_comment;
-        ImageView Fav_comment;
+        TextView comment, customer_name,time_of_comment;
         CircleImageView CImage;
         RatingBar rate;
         public ReviewViewHolder(@NonNull View itemView) {
@@ -142,9 +83,7 @@ public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewVie
             customer_name = itemView.findViewById(R.id.tv_customer_name);
             comment = itemView.findViewById(R.id.tv_comment);
             time_of_comment = itemView.findViewById(R.id.tv_date);
-            num_of_like = itemView.findViewById(R.id.num_of_like);
             rate=itemView.findViewById(R.id.ratingBar);
-            Fav_comment=itemView.findViewById(R.id.fav_comment);
             CImage = itemView.findViewById(R.id.circimage);
         }
     }

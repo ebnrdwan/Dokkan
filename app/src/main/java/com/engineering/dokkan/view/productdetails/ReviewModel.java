@@ -2,94 +2,82 @@ package com.engineering.dokkan.view.productdetails;
 
 public class ReviewModel {
     private String comment;
-        private String image;
-        private String name;
-        private float rate;
-        private Boolean Fav_comment;
-        private int likesOfComment;
-        private String time;
-        private String Key;
+    private String image;
+    private String name;
+    private float rate;
+    private String time;
+    private String Key;
+    private String productID ;
 
 
-        public ReviewModel() {
+    public ReviewModel() {
+    }
 
-        }
+    public ReviewModel(String comment, String image, String name, float rate, String time, String key, String productID) {
+        this.comment = comment;
+        this.image = image;
+        this.name = name;
+        this.rate = rate;
+        this.time = time;
+        Key = key;
+        this.productID = productID;
+    }
 
-        public ReviewModel(String comment, String image, String name, float rate,Boolean Fav_comment, String time) {
-            this.comment = comment;
-            this.image = image;
-            this.name = name;
-            this.rate = rate;
-            this.Fav_comment =Fav_comment;
-            this.time = time;
+    public String getComment() {
+        return comment;
+    }
 
-        }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-        public int getLikesOfComment() {
-            return likesOfComment;
-        }
+    public String getImage() {
+        return image;
+    }
 
-        public void setLikesOfComment(int likesOfComment) {
-            this.likesOfComment = likesOfComment;
-        }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-        public Boolean getFav_comment() {
-            return Fav_comment;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setFav_comment(Boolean fav_comment) {
-            Fav_comment = fav_comment;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public String getKey() {
-            return Key;
-        }
+    public float getRate() {
+        return rate;
+    }
 
-        public void setKey(String key) {
-            Key = key;
-        }
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
 
-        public String getComment() {
-            return comment;
-        }
+    public String getTime() {
+        return time;
+    }
 
-        public void setComment(String comment) {
-            this.comment = comment;
-        }
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-        public String getImage() {
-            return image;
-        }
+    public String getKey() {
+        return Key;
+    }
 
-        public void setImage(String image) {
-            this.image = image;
-        }
+    public void setKey(String key) {
+        Key = key;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public String getProductID() {
+        return productID;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public float getRate() {
-            return rate;
-        }
-
-        public void setRate(float rate) {
-            this.rate = rate;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
-
-
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
 }
 
 

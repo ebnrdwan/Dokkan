@@ -263,9 +263,8 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_15"
                 android:layout_marginLeft="@dimen/margin_18"
-                android:layout_marginTop="@dimen/margin_25"
                 android:layout_toRightOf="@+id/shop_name"
                 android:isIndicator="false"
                 android:numStars="5"
@@ -273,17 +272,7 @@
                 android:rating="3.5"
                 android:stepSize="0.5" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_15"
-                android:layout_marginTop="@dimen/margin_25"
-                android:id="@+id/shop_reviews"
-                android:layout_marginRight="@dimen/margin_5"
-                android:layout_toRightOf="@id/rate_bar"
-                android:text="@string/string_text_reviews"
-                android:textColor="@color/textColor_black"
-                android:textSize="@dimen/textSize_10" />
+
         </RelativeLayout>
 
 
@@ -340,7 +329,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
-            android:layout_width="@dimen/width_350"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/height_250"
             android:layout_gravity="center"
             android:visibility="visible" />

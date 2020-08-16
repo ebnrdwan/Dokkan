@@ -69,7 +69,7 @@ public class ProductsFragment extends BaseFragment {
                         }
 
                         Bundle bundle = new Bundle();
-                        bundle.putString(Constants.PRODUCT_ID_KEY, item.getKey());
+                        bundle.putString("productId", item.getKey());
                         navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
                     }
 

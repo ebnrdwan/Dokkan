@@ -153,6 +153,7 @@
         <action
             android:id="@+id/action_homeFragment2_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+
     </fragment>
 
 
@@ -160,22 +161,24 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.engineering.dokkan.view.home.HomeFragment"
-        android:label="HomeFragment" >
-    </fragment>
+        android:label="HomeFragment" />
 
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" >
+        android:label="ProductDetailsFragment" />
+    <action
+        android:id="@+id/action_global_to_ProductDetails"
+        app:destination="@id/productDetailsFragment" />
 
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.engineering.dokkan.view.home.ProductsFragment"
+        android:label="ProductsFragment" >
         <argument
             android:name="productId"
             app:argType="string" />
     </fragment>
-
-    <action
-        android:id="@+id/action_global_to_ProductDetails"
-        app:destination="@id/productDetailsFragment" />
 
 
 </navigation>
