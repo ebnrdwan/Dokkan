@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include layout="@layout/add_book_tool_bar"
+        android:id="@+id/toolbar3"/>
+
+    <TextView
+        android:id="@+id/cust_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="@dimen/Tsize25"
+        android:layout_marginLeft="@dimen/marginLeft_10"
+        android:textColor="@color/text2color"/>
+
+    <EditText
+        android:id="@+id/cust_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_name"
+        android:layout_marginLeft="@dimen/ml13"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/text2color"
+        />
+
+    <TextView
+        android:id="@+id/cust_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/address"
+        android:textSize="@dimen/Tsize25"
+        android:layout_marginLeft="@dimen/marginLeft_10"
+        android:textColor="@color/text2color"/>
+
+    <EditText
+        android:id="@+id/cust_address_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_address"
+        android:layout_marginLeft="@dimen/ml13"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/text2color"
+        />
+
+    <TextView
+        android:id="@+id/cust_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/country"
+        android:textSize="@dimen/Tsize25"
+        android:layout_marginLeft="@dimen/marginLeft_10"
+        android:textColor="@color/text2color"/>
+
+    <EditText
+        android:id="@+id/cust_add_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_country"
+        android:layout_marginLeft="@dimen/ml13"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/text2color"
+        />
+
+    <TextView
+        android:id="@+id/cust_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textSize="@dimen/Tsize25"
+        android:layout_marginLeft="@dimen/marginLeft_10"
+        android:textColor="@color/text2color"/>
+
+    <EditText
+        android:id="@+id/cust_number_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/enter_your_number"
+        android:layout_marginLeft="@dimen/ml13"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/text2color"
+        />
+
+</LinearLayout>

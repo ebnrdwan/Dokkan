@@ -60,4 +60,15 @@
     <color name="color_6e4e5d">#6e4e5d</color>
     <color name="color_1B1719">#1B1719</color>
     <color name="color_C09E9E">#C09E9E</color>
+
+
+
+
+
+
+
+    <color name="white">#000</color>
+    <color name="black">#fff</color>
+    <color name="colorf8f6f7">#f8f6f7</color>
+
 </resources>

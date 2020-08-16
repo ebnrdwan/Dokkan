@@ -98,6 +98,40 @@
     <string name="browse_category">Browse Category</string>
     <string name="product">Product</string>
     <string name="embroidery_art">Embroidery Art</string>
+
+
+    <string name="Item_name">order_item_name</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="item_name">Item Name</string>
+    <string name="_">-</string>
+    <string name="s1">1</string>
+    <string name="splus">+</string>
+    <string name="s150">$150</string>
+    <string name="my_address_book">My Address Book</string>
+    <string name="customer_number">Customer Number</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="customer_name">Customer NAme</string>
+    <string name="textplus">+</string>
+    <string name="save">Save</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="address">Address</string>
+    <string name="enter_your_address">Enter Your Address</string>
+    <string name="enter_your_country">Enter Your Country</string>
+    <string name="number">Number</string>
+    <string name="enter_your_number">Enter Your Number</string>
+    <string name="country">Country</string>
+    <string name="order_status">Order Status</string>
+    <string name="customer_nname">customer Name</string>
+    <string name="title_activity_a">a</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
     <string name="reviews">Reviews</string>
     <string name="about">About</string>
     <string name="policies">Policies</string>
