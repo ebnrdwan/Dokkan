@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cutomer_image"
+            android:layout_margin="5dp"
+            android:layout_width="@dimen/width_40"
+            android:layout_height="@dimen/height_40"
+            app:civ_border_color="#C09E9E"
+            android:src="@drawable/icon5"
+            app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Name"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_toRightOf="@id/cutomer_image"
+                android:textColor="@color/color_Darkgrey"
+                android:textSize="@dimen/textSize_16" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/cutomer_image"
+                android:layout_below="@id/tv_customer_name"
+                android:numStars="5"
+                android:isIndicator="false"
+                android:stepSize="0.5"
+                android:progressTint="#FFC107"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_3">
+
+            </RatingBar>
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxEms="20"
+                android:paddingTop="@dimen/padding_5"
+                android:paddingBottom="@dimen/padding_5"
+                android:layout_toRightOf="@id/cutomer_image"
+                android:layout_below="@id/ratingBar"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:text=" commentcommentcommentcomment bbbbbbbcomment"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"/>
+
+           <ImageView
+               android:id="@+id/item_image"
+               android:layout_width="@dimen/width_50"
+               android:layout_height="@dimen/height_50"
+               android:src="@drawable/sim_two"
+               android:layout_marginLeft="@dimen/margin_10"
+               android:layout_marginTop="@dimen/margin_10"
+               android:layout_marginBottom="@dimen/margin_5"
+               android:layout_marginRight="@dimen/margin_5"
+               android:layout_below="@id/tv_comment"
+               android:layout_toRightOf="@id/cutomer_image"
+                />
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_name"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/tv_comment"
+                android:layout_toRightOf="@id/item_image"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textSize_13"/>
+
+    <TextView
+        android:id="@+id/item_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Description"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@id/item_name"
+        android:layout_toRightOf="@id/item_image"
+        android:textSize="@dimen/textsize_10"/>
+
+
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin20"
+                    android:text="6 Days ago"
+                    android:textSize="@dimen/textSize_13"/>
+
+
+</RelativeLayout>

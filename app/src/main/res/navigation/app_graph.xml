@@ -5,6 +5,22 @@
     android:id="@+id/reg_navigation"
     app:startDestination="@+id/fragment_Welcome">
 
+
+    <fragment
+        android:id="@+id/shopPageFragment"
+        android:name="com.engineering.dokkan.view.shop.ShopPageFragment"
+        android:label="fragment_shop_page"
+        tools:layout="@layout/fragment_shop_page" >
+        <argument
+            android:name="shop_id"
+            app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://www.dokkan.com/shops/{shop_id}"
+             />
+    </fragment>
+
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.engineering.dokkan.view.register.RegisterFragment"
@@ -69,7 +85,11 @@
         android:id="@+id/shop_Fragment"
         android:name="com.engineering.dokkan.view.Favourite.Shop_Fragment"
         android:label="shop_fragment"
-        tools:layout="@layout/shop_fragment" />
+        tools:layout="@layout/shop_fragment" >
+        <argument
+            android:name="shop_id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/empty_CartFragment"
@@ -79,6 +99,30 @@
         <action
             android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.engineering.dokkan.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment2_to_mainFragment"
+            app:destination="@id/ChatFragement" />
+        <action
+            android:id="@+id/action_mainFragment2_to_chatFragement"
+            app:destination="@id/chatingFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
 
     <fragment
@@ -118,6 +162,9 @@
         android:id="@+id/homeFragment2"
         android:name="com.engineering.dokkan.view.home.HomeFragment"
         android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment2_to_shopPageFragment"
+            app:destination="@id/shopPageFragment" />
         <action
             android:id="@+id/action_homeFragment2_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />

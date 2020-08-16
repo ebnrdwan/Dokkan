@@ -98,6 +98,12 @@
     <string name="browse_category">Browse Category</string>
     <string name="product">Product</string>
     <string name="embroidery_art">Embroidery Art</string>
+    <string name="reviews">Reviews</string>
+    <string name="about">About</string>
+    <string name="policies">Policies</string>
+    <string name="item_name">Item Name</string>
+    <string name="facebook">FaceBook</string>
+    <string name="instgram">Instgram</string>
     <string name="price_19">19</string>
     <string name="string_numOfLiks">77</string>
     <string name="string_dateOfReview">6 Days ago</string>
