@@ -1,6 +1,7 @@
 package com.engineering.dokkan.view.productdetails;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -28,12 +30,14 @@ import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProductDetailsFragment extends BaseFragment {
-    RecyclerView rv;
+    RecyclerView reviewRecycView;
     ReviewAdapter adapter;
     RatingBar ratingBar;
     Button arrowBtn1, arrowBtn2, ask_qustion;
@@ -41,7 +45,7 @@ public class ProductDetailsFragment extends BaseFragment {
     //product
     TextView ProductName, productDescription, productPrice, ProductMaterial, productSize;
     //Shop
-    TextView ShopName, ShopLocation, ShopeReviews;
+    TextView ShopName, ShopLocation;
     ImageView ShopImage;
     RatingBar ShopRate;
     //slider
@@ -58,6 +62,8 @@ public class ProductDetailsFragment extends BaseFragment {
     ArrayList<ReviewModel> reviewList;
     ReviewModel reviewModel;
 
+    String prod_id;
+
 
     @Override
     public int getLayoutId() {
@@ -66,10 +72,11 @@ public class ProductDetailsFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
+        Bundle bundle = getArguments();
+        prod_id = bundle.getString("productId" ) ;
         initialize(view);
         sliderWork();
-        retriveProuductData(getArguments().getString(Constants.PRODUCT_ID_KEY));
-        RetriveReviewInRecycleView();
+        retriveProuductData(prod_id);
     }
 
     @Override
@@ -84,13 +91,13 @@ public class ProductDetailsFragment extends BaseFragment {
         arrowBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rv.getVisibility() == View.GONE) {
+                if (reviewRecycView.getVisibility() == View.GONE) {
                     // TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
-                    rv.setVisibility(View.VISIBLE);
+                    reviewRecycView.setVisibility(View.VISIBLE);
                     arrowBtn1.setBackgroundResource(R.drawable.up_arrow);
                 } else {
                     // TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
-                    rv.setVisibility(View.GONE);
+                    reviewRecycView.setVisibility(View.GONE);
                     arrowBtn1.setBackgroundResource(R.drawable.adown_arrow);
                 }
             }
@@ -128,7 +135,7 @@ public class ProductDetailsFragment extends BaseFragment {
         arrowBtn1 = view.findViewById(R.id.expand_more);
         arrowBtn2 = view.findViewById(R.id.expand_detials);
 //recyclerView
-        rv = view.findViewById(R.id.recycler);
+        reviewRecycView = view.findViewById(R.id.recycler);
         contaner = view.findViewById(R.id.contaner);
         ratingBar = view.findViewById(R.id.ratingBar);
 
@@ -145,35 +152,34 @@ public class ProductDetailsFragment extends BaseFragment {
         ShopName = view.findViewById(R.id.shop_name);
         ShopImage = view.findViewById(R.id.shop_Image);
         ShopLocation = view.findViewById(R.id.location_txt);
-        ShopeReviews = view.findViewById(R.id.shop_reviews);
 
     }
 
     private void sliderWork() {
-        SliderAdapter adapter2 = new SliderAdapter(getActivity());
+        SliderAdapter adapter2 = new SliderAdapter(getActivity() , prod_id);
         sliderView.setSliderAdapter(adapter2);
         sliderView.setIndicatorSelectedColor(Color.WHITE);
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
     }
 
-    private void RetriveReviewInRecycleView() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("reviews");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    private void RetriveReviewInRecycleView( String id ) {
+        Query query = FirebaseDatabase.getInstance().getReference("Reviews")
+                .orderByChild("Key").equalTo(id);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                reviewList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     reviewModel = snapshot.getValue(ReviewModel.class);
                     reviewList.add(reviewModel);
                 }
                 adapter = new ReviewAdapter(reviewList);
                 RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
-                rv.setLayoutManager(lm);
-                rv.setAdapter(adapter);
+                reviewRecycView.setLayoutManager(lm);
+                reviewRecycView.setAdapter(adapter);
                 DividerItemDecoration dv;
-                dv = new DividerItemDecoration(rv.getContext(),
+                dv = new DividerItemDecoration(reviewRecycView.getContext(),
                         ((LinearLayoutManager) lm).getOrientation());
-                rv.addItemDecoration(dv);
+                reviewRecycView.addItemDecoration(dv);
             }
 
             @Override
@@ -182,19 +188,34 @@ public class ProductDetailsFragment extends BaseFragment {
         });
     }
 
-    private void retriveShopData(String productId) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("shops").child(productId != null ? productId : "ShopId1");
+    private void retriveShopData(String idShop) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("shops").child(idShop);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String shName = dataSnapshot.child("name").getValue(String.class);
+
+                String shName = dataSnapshot.child("shopName").getValue(String.class);
                 ShopName.setText(shName);
-                String shImage = dataSnapshot.child("image").getValue(String.class);
+
+                String shImage = dataSnapshot.child("shopImage").getValue(String.class);
                 Picasso.get().load(shImage).into(ShopImage);
+
                 String shLocation = dataSnapshot.child("location").getValue(String.class);
                 ShopLocation.setText(shLocation);
-                String ShReview = dataSnapshot.child("numOfViews").getValue(String.class);
-                ShopeReviews.setText("( " + ShReview + " Reviews )");
+
+                reviewList = new ArrayList<>();
+                 for(DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
+                    String reviewID   = snapshot.getValue(String.class);
+                    RetriveReviewInRecycleView(reviewID);
+                 }
+//
+//                Collection<String> valuesReview = mapReview.values();
+//                //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
+//                ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
+//                //reviewList = new ArrayList<>();
+//                for ( String id : listOfReviewsIDs){
+//                    RetriveReviewInRecycleView(id);
+//                }
 
             }
 
@@ -211,16 +232,21 @@ public class ProductDetailsFragment extends BaseFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String pName = dataSnapshot.child("name").getValue(String.class);
                 ProductName.setText(pName);
+
                 String pPrice = dataSnapshot.child("price").getValue(String.class);
-                productPrice.setText(pPrice + " LE ");
-                String pDescription = dataSnapshot.child("description").getValue(String.class);
+                productPrice.setText(pPrice );
+
+                String pDescription = dataSnapshot.child("descryption").getValue(String.class);
                 productDescription.setText(pDescription);
-                String pMaterial = dataSnapshot.child("Material").getValue(String.class);
-                String shopId = dataSnapshot.child("shopId").getValue(String.class);
-                retriveShopData(shopId);
-                ProductMaterial.setText("" + pMaterial);
+
+                String pMaterial = dataSnapshot.child("materials").getValue(String.class);
+                ProductMaterial.setText(pMaterial);
+
                 String pSize = dataSnapshot.child("size").getValue(String.class);
                 productSize.setText(pSize);
+
+                String shopId = dataSnapshot.child("shopId").getValue(String.class);
+                retriveShopData(shopId);
             }
 
 

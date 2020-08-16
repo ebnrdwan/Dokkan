@@ -22,9 +22,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Context context;
-    String image1,image2,image3;
-    public SliderAdapter(Context context) {
+    String image1,image2,image3 , id;
+
+
+    public SliderAdapter(Context context , String id ) {
         this.context = context;
+        this.id = id;
     }
 
     @Override
@@ -36,13 +39,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     @Override
     public void onBindViewHolder(final SliderAdapterVH viewHolder, final int position) {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("product").child("Id1");
-        databaseReference.child("images").addValueEventListener(new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("products").child(id);
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                image1 = dataSnapshot.child("image1").getValue(String.class);
-                image2 = dataSnapshot.child("image2").getValue(String.class);
-                image3 = dataSnapshot.child("image3").getValue(String.class);
+                image1 = dataSnapshot.child("img1").getValue(String.class);
+                image2 = dataSnapshot.child("img2").getValue(String.class);
+                image3 = dataSnapshot.child("img3").getValue(String.class);
                 switch (position) {
                     case 1:
                         Glide.with(viewHolder.itemView).load(image1).into(viewHolder.imageViewBackground);
