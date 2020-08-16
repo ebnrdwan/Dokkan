@@ -58,7 +58,7 @@
 
            <ImageView
                android:id="@+id/item_image"
-               android:layout_width="@dimen/width_50"
+               android:layout_width="@dimen/layout_dimen_50dp"
                android:layout_height="@dimen/height_50"
                android:src="@drawable/sim_two"
                android:layout_marginLeft="@dimen/margin_10"

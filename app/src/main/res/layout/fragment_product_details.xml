@@ -7,6 +7,7 @@
     android:background="@color/color_white">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/marginleft_77"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
@@ -100,7 +101,7 @@
                 <Button
                     android:id="@+id/askQuestion_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/height_35dp"
+                    android:layout_height="@dimen/height_35"
                     android:layout_marginLeft="@dimen/margin_5"
                     android:layout_marginRight="@dimen/margin_10"
                     android:layout_marginBottom="@dimen/margin_10"
@@ -115,7 +116,7 @@
 
                 <LinearLayout
                     android:layout_width="@dimen/width_100"
-                    android:layout_height="@dimen/height_35dp"
+                    android:layout_height="@dimen/height_35"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/margin_10"
                     android:background="@drawable/background_count"
@@ -153,7 +154,7 @@
                         android:layout_width="@dimen/width_25"
                         android:layout_height="@dimen/height_25"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="@dimen/margin_12dp"
+                        android:layout_marginLeft="@dimen/ml12"
                         android:layout_marginBottom="@dimen/margin_2"
                         android:background="@drawable/background_plus"
                         android:gravity="center"
@@ -167,7 +168,7 @@
                 <Button
                     android:id="@+id/addToCard_button"
                     android:layout_width="@dimen/width_94"
-                    android:layout_height="@dimen/height_35dp"
+                    android:layout_height="@dimen/height_35"
                     android:layout_margin="@dimen/margin_10"
                     android:layout_gravity="center"
                     android:background="@drawable/background"
@@ -192,7 +193,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_2"
+                android:layout_height="@dimen/layout_dimen_2dp"
                 android:layout_marginLeft="@dimen/margin_10"
                 android:layout_marginRight="@dimen/margin_10"
                 android:layout_below="@id/description_txt"
@@ -215,7 +216,7 @@
                 android:layout_height="@dimen/height_60"
                 app:civ_border_color="@color/color_C09E9E"
                 app:civ_border_width="@dimen/border_Width_1"
-                android:layout_marginTop="@dimen/margin_12dp"
+                android:layout_marginTop="@dimen/ml12"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_marginLeft="@dimen/margin_30"
                 android:background="@color/color_white"
@@ -311,7 +312,7 @@
                     android:layout_marginLeft="@dimen/margin_13"
                     android:layout_marginTop="10dp"
                     android:text="@string/string_text_Reviews"
-                    android:textSize="@dimen/textSize_17"
+                    android:textSize="@dimen/text_size17"
                     android:textColor="@color/color_6a4e5d">
                 </TextView>
 
@@ -372,7 +373,7 @@
                         android:layout_marginTop="@dimen/margin_10"
                         android:text="@string/string_text_itemDetails"
                         android:textColor="@color/color_6a4e5d"
-                        android:textSize="@dimen/textSize_17">
+                        android:textSize="@dimen/text_size17">
                     </TextView>
 
                     <Button
@@ -423,7 +424,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_2"
+                android:layout_height="@dimen/layout_dimen_2dp"
                 android:layout_marginRight="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:background="@color/color_e6e4e4"/>

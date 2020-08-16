@@ -20,7 +20,7 @@
             android:layout_height="@dimen/height_60"
             app:civ_border_color="@color/bordr_color"
             android:src="@drawable/user1"
-            app:civ_border_width="@dimen/border_width" />
+            app:civ_border_width="@dimen/border_Width_1" />
 
         <LinearLayout
             android:id="@+id/linear"

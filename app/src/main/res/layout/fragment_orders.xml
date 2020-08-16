@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/marginleft_77"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white">
 
@@ -25,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Order All"
-
         android:textColor="@color/color_F1EDED"
         android:background="@color/color_9a7c84"
         android:layout_marginStart="14dp"

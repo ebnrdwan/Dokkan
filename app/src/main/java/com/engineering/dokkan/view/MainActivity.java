@@ -1,19 +1,56 @@
 package com.engineering.dokkan.view;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.engineering.dokkan.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ArrayList<Integer> list = new ArrayList<>();
+        list.add(R.id.fragment_Welcome);
+        list.add(R.id.registerFragment);
+        list.add(R.id.loginFragment);
+        list.add(R.id.resetPassword);
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        NavController navController = Navigation.findNavController(this , R.id.my_nav_host);
+        NavigationUI.setupWithNavController(bottomNavigationView , navController);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if (list.contains(destination.getId())){
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else {
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        });
+
     }
 
 

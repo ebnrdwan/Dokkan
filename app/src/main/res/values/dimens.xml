@@ -303,6 +303,24 @@
     <dimen name="s10">10sp</dimen>
     <dimen name="layoutw20">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="height_450">450dp</dimen>
+    <dimen name="sliderIndicatorRadius_2">2dp</dimen>
+    <dimen name="height_35">35dp</dimen>
+    <dimen name="textSize_10">10sp</dimen>
+    <dimen name="width_94">94dp</dimen>
+    <dimen name="height_60">60dp</dimen>
+    <dimen name="border_Width_1">1dp</dimen>
+    <dimen name="text_size_9">9sp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="width_350">350dp</dimen>
+    <dimen name="margin_290">290dp</dimen>
+    <dimen name="height_250">250dp</dimen>
+    <dimen name="height_70">70dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="margin_85">85dp</dimen>
+    <dimen name="margin_65">65dp</dimen>
+    <dimen name="height_500">500dp</dimen>
+    <dimen name="width_8">8dp</dimen>
 
 
 </resources>

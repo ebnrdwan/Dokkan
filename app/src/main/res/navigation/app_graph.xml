@@ -181,13 +181,10 @@
         android:label="fragment_addreeses"
         tools:layout="@layout/fragment_addreeses" >
 
-    <fragment
-        android:id="@+id/productDetailsFragment"
-        android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" />
-    <action
-        android:id="@+id/action_global_to_ProductDetails"
-        app:destination="@id/productDetailsFragment" />
+
+
+
+
         <action
             android:id="@+id/action_addressesfragment_to_addAddressFragment"
             app:destination="@id/addAddressFragment" />
@@ -213,6 +210,13 @@
             app:destination="@id/addressesfragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
+        android:label="ProductDetailsFragment" />
+    <action
+        android:id="@+id/action_global_to_ProductDetails"
+        app:destination="@id/productDetailsFragment" />
 
 
 </navigation>
