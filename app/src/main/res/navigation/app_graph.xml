@@ -100,30 +100,6 @@
             android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
             app:destination="@id/askQuestionFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.engineering.dokkan.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment2_to_mainFragment"
-            app:destination="@id/ChatFragement" />
-        <action
-            android:id="@+id/action_mainFragment2_to_chatFragement"
-            app:destination="@id/chatingFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_askQuestionFragment"
-            app:destination="@id/askQuestionFragment" />
-        <action
-            android:id="@+id/action_mainFragment2_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
-    </fragment>
 
     <fragment
         android:id="@+id/chatingFragment"
