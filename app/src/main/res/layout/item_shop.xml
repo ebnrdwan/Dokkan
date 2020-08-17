@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_180"
+    android:layout_height="@dimen/height_90"
     android:layout_marginRight="@dimen/margin_15"
     android:layout_marginLeft="@dimen/margin_15"
     android:layout_marginBottom="@dimen/margin_10"
@@ -20,14 +20,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
-        <ImageView
-            android:id="@+id/shopImage"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_100"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/photo1" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView

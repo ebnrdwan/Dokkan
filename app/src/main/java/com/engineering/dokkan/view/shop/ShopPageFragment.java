@@ -188,6 +188,7 @@ public class ShopPageFragment extends BaseFragment {
     }
 
     private void showShopReviews(String id) {
+
         Query query = FirebaseDatabase.getInstance().getReference("Reviews")
                 .orderByChild("Key").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
@@ -219,27 +220,31 @@ public class ShopPageFragment extends BaseFragment {
     }
 
     private void showShopProducts(String id) {
+          prodList = new ArrayList<>();
+
         Query query = FirebaseDatabase.getInstance().getReference("products")
                 .orderByChild("shopId").equalTo(id);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ShopProductModel productModel = snapshot.getValue(ShopProductModel.class);
-                    prodList.add(productModel);
+        if ( query != null) {
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        ShopProductModel productModel = snapshot.getValue(ShopProductModel.class);
+                        prodList.add(productModel);
+                    }
+                    ShopProductRecycAdapter adapter = new ShopProductRecycAdapter(getContext(), prodList, ListenerProducts);
+                    productRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                    productRecyclerView.setAdapter(adapter);
+
                 }
-                ShopProductRecycAdapter adapter = new ShopProductRecycAdapter(getContext() ,prodList , ListenerProducts);
-                productRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                productRecyclerView.setAdapter(adapter);
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity() , databaseError.getMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
+                }
+            });
+        }
 
 
     }

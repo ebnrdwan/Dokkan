@@ -2,6 +2,7 @@ package com.engineering.dokkan.view.productdetails;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -76,6 +77,7 @@ public class ProductDetailsFragment extends BaseFragment {
         prod_id = bundle.getString("productId" ) ;
         initialize(view);
         sliderWork();
+        Log.d(" product ID " , " id " + prod_id);
         retriveProuductData(prod_id);
     }
 

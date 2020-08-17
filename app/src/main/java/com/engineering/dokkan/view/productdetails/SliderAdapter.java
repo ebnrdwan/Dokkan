@@ -43,9 +43,9 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                image1 = dataSnapshot.child("img1").getValue(String.class);
-                image2 = dataSnapshot.child("img2").getValue(String.class);
-                image3 = dataSnapshot.child("img3").getValue(String.class);
+                image1 = dataSnapshot.child("image1").getValue(String.class);
+                image2 = dataSnapshot.child("image2").getValue(String.class);
+                image3 = dataSnapshot.child("image3").getValue(String.class);
                 switch (position) {
                     case 1:
                         Glide.with(viewHolder.itemView).load(image1).into(viewHolder.imageViewBackground);
