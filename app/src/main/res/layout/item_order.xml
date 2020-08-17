@@ -84,10 +84,11 @@
             <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                 android:id="@+id/counter"
                 android:layout_width="100dp"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/height_30"
+                android:layout_marginTop="6dp"
                 cardview:textSize="6sp"
                 cardview:initialNumber="0"
-                cardview:backGroundColor="@color/text2color"
+                cardview:backGroundColor="@color/colorPrimaryDark"
 
 
                 />
