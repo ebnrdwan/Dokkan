@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(R.id.resetPassword);
 
         if (SharedPreference.getInstance(this).isUserSaved()) {
-            Navigation.findNavController(this, R.id.my_nav_host).getGraph().setStartDestination(R.id.homeFragment2);
+            Navigation.findNavController(this, R.id.my_nav_host).navigate(R.id.action_fragment_Welcome_to_homeFragment);
         }
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         NavController navController = Navigation.findNavController(this, R.id.my_nav_host);
