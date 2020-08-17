@@ -204,10 +204,12 @@ public class ProductDetailsFragment extends BaseFragment {
                 ShopLocation.setText(shLocation);
 
                 reviewList = new ArrayList<>();
-                 for(DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
-                    String reviewID   = snapshot.getValue(String.class);
-                    RetriveReviewInRecycleView(reviewID);
-                 }
+                if ( dataSnapshot.child("Reviews").exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
+                        String reviewID = snapshot.getValue(String.class);
+                        RetriveReviewInRecycleView(reviewID);
+                    }
+                }
 //
 //                Collection<String> valuesReview = mapReview.values();
 //                //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
@@ -236,7 +238,7 @@ public class ProductDetailsFragment extends BaseFragment {
                 String pPrice = dataSnapshot.child("price").getValue(String.class);
                 productPrice.setText(pPrice );
 
-                String pDescription = dataSnapshot.child("descryption").getValue(String.class);
+                String pDescription = dataSnapshot.child("description").getValue(String.class);
                 productDescription.setText(pDescription);
 
                 String pMaterial = dataSnapshot.child("materials").getValue(String.class);

@@ -15,6 +15,10 @@
         android:title="Favorite"/>
 
 
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Profile"/>
 
     <item
         android:id="@+id/ordersFragment"

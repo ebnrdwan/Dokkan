@@ -62,7 +62,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final favouriteHolder holder, final int position) {
-        Picasso.get().load(productsList.get(position).getImage()).into(holder.Item_Image);
+        Picasso.get().load(productsList.get(position).getImage1()).into(holder.Item_Image);
         holder.Item_Name.setText(productsList.get(position).getName());
         holder.Item_Price.setText(productsList.get(position).getPrice());
 
@@ -71,7 +71,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT,  productsList.get(position).getImage() );
+                intent.putExtra(Intent.EXTRA_TEXT,  productsList.get(position).getImage1() );
                 intent.setType("text/plain");
                 c.startActivity(Intent.createChooser(intent, "Send To"));
 
@@ -85,7 +85,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 productsList.get(position).setRate(ratingBar.getRating());
                 databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                databaseReference.child(productsList.get(position).getKey()).child("rate").setValue(ratingBar.getRating())
+                databaseReference.child(productsList.get(position).getProductId()).child("rate").setValue(ratingBar.getRating())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -96,13 +96,13 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         });
 
         //Favourite
-        isFavourite(productsList.get(position).getKey() , holder.favourite , productsList.get(position)) ;
+        isFavourite(productsList.get(position).getProductId() , holder.favourite , productsList.get(position)) ;
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ( !productsList.get(position).isFav() ){ //  if it was false
                     databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(productsList.get(position).getKey()).child("favourite").setValue(true)
+                    databaseReference.child(productsList.get(position).getProductId()).child("favourite").setValue(true)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -113,7 +113,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
 
                 } else { //if it was already true
                     databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(productsList.get(position).getKey()).child("favourite").removeValue()
+                    databaseReference.child(productsList.get(position).getProductId()).child("favourite").removeValue()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

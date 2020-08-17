@@ -1,32 +1,38 @@
 package com.engineering.dokkan.data.models;
 
+import java.util.ArrayList;
+
 public class ShopitemModel  {
 
+    private ArrayList<String> listOfcategIDs ;
     private String key ;
     private String location;
-    private String bio;
     private String coverImage;
     private String shopImage;
-    private String categoryid;
     private String shopName;
     private boolean fav  ;
     private float rate ;
 
-
-    public float getRate() {
-        return rate;
+    public ShopitemModel() {
     }
 
-    public void setRate(float rate) {
+    public ShopitemModel(ArrayList<String> listOfcategIDs, String key, String location, String coverImage, String shopImage, String shopName, boolean fav, float rate) {
+        this.listOfcategIDs = listOfcategIDs;
+        this.key = key;
+        this.location = location;
+        this.coverImage = coverImage;
+        this.shopImage = shopImage;
+        this.shopName = shopName;
+        this.fav = fav;
         this.rate = rate;
     }
 
-    public boolean isFav() {
-        return fav;
+    public ArrayList<String> getListOfcategIDs() {
+        return listOfcategIDs;
     }
 
-    public void setFav(boolean fav) {
-        this.fav = fav;
+    public void setListOfcategIDs(ArrayList<String> listOfcategIDs) {
+        this.listOfcategIDs = listOfcategIDs;
     }
 
     public String getKey() {
@@ -45,14 +51,6 @@ public class ShopitemModel  {
         this.location = location;
     }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
     public String getCoverImage() {
         return coverImage;
     }
@@ -69,20 +67,28 @@ public class ShopitemModel  {
         this.shopImage = shopImage;
     }
 
-    public String getCategoryid() {
-        return categoryid;
-    }
-
-    public void setCategoryid(String categoryid) {
-        this.categoryid = categoryid;
-    }
-
     public String getShopName() {
         return shopName;
     }
 
     public void setShopName(String shopName) {
         this.shopName = shopName;
+    }
+
+    public boolean isFav() {
+        return fav;
+    }
+
+    public void setFav(boolean fav) {
+        this.fav = fav;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }
 

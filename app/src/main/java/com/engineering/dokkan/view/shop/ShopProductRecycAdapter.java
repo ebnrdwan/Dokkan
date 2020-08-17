@@ -50,7 +50,7 @@ public class ShopProductRecycAdapter extends RecyclerView.Adapter<ShopProductRec
 
     @Override
     public void onBindViewHolder(@NonNull final favouriteHolder holder, final int position) {
-        Picasso.get().load(productsList.get(position).getImage()).into(holder.Item_Image);
+        Picasso.get().load(productsList.get(position).getImage1()).into(holder.Item_Image);
         holder.Item_Name.setText(productsList.get(position).getName());
         holder.Item_Price.setText(productsList.get(position).getPrice());
 
@@ -59,7 +59,7 @@ public class ShopProductRecycAdapter extends RecyclerView.Adapter<ShopProductRec
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT,  productsList.get(position).getImage() );
+                intent.putExtra(Intent.EXTRA_TEXT,  productsList.get(position).getImage1() );
                 intent.setType("text/plain");
                 c.startActivity(Intent.createChooser(intent, "Send To"));
 

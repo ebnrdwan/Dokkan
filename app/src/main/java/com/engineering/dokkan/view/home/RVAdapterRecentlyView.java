@@ -41,7 +41,7 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, final int position) {
-        Picasso.get().load(imageList.get(position).getImage()).into(holder.itemImage);
+        Picasso.get().load(imageList.get(position).getImage1()).into(holder.itemImage);
         holder.setDatainView(imageList.get(position));
         if ( imageList.get(position).isFav() ){
             holder.favourite.setImageResource(R.drawable.fav_icon);
@@ -49,13 +49,13 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
             holder.favourite.setImageResource(R.drawable.ic_favorite_empty);
         }
 
-        isFavourite(imageList.get(position).getKey() , holder.favourite , imageList.get(position)) ;
+        isFavourite(imageList.get(position).getProductId() , holder.favourite , imageList.get(position)) ;
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ( !imageList.get(position).isFav() ){ //  if it was false
                     databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(imageList.get(position).getKey()).child("favourite").setValue(true)
+                    databaseReference.child(imageList.get(position).getProductId()).child("favourite").setValue(true)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -66,7 +66,7 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
 
                 } else { //if it was already true
                     databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(imageList.get(position).getKey()).child("favourite").removeValue()
+                    databaseReference.child(imageList.get(position).getProductId()).child("favourite").removeValue()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

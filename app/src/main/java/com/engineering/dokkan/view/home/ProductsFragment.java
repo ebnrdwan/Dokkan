@@ -55,7 +55,7 @@ public class ProductsFragment extends BaseFragment {
             @Override
             public void onItemClick(final ProductitemModel item) {
                 dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
-                Query query = dbReference.orderByChild("key").equalTo(item.getKey());
+                Query query = dbReference.orderByChild("productId").equalTo(item.getProductId());
                 query.addValueEventListener(new ValueEventListener() {
 
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,7 +69,7 @@ public class ProductsFragment extends BaseFragment {
                         }
 
                         Bundle bundle = new Bundle();
-                        bundle.putString("productId", item.getKey());
+                        bundle.putString("productId", item.getProductId());
                         navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
                     }
 

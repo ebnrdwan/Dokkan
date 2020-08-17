@@ -106,6 +106,7 @@ public class ShopPageFragment extends BaseFragment {
         bundle = getArguments();
         String shop_id = bundle.getString("shop_id");
         showShopDetails(shop_id);
+        showShopProducts(shop_id);
         msg = " Welcome to the shop : http://www.dokkan.com/shops/" + shop_id ;
 
 
@@ -155,25 +156,25 @@ public class ShopPageFragment extends BaseFragment {
                     insta_link = shops.getInstaLink();
                     callnum = shops.getPhoneNum() ;
 
-                    //show shop Reviews
-                    HashMap<String , String> mapReview = shops.getReviews();
-                    Collection<String> valuesReview = mapReview.values();
-                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
-                    ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
-                    reviewList = new ArrayList<>();
-                    for ( String id : listOfReviewsIDs){
-                        showShopReviews(id);
-                    }
+//                    //show shop Reviews
+//                    HashMap<String , String> mapReview = shops.getReviews();
+//                    Collection<String> valuesReview = mapReview.values();
+//                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
+//                    ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
+//                    reviewList = new ArrayList<>();
+//                    for ( String id : listOfReviewsIDs){
+//                        showShopReviews(id);
+//                    }
 
                     //show shop Products
-                    HashMap<String , String> mapProd = shops.getProducts();
-                    Collection<String> valuesProduct = mapProd.values();
-                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
-                    ArrayList<String> listOfProdIDs = new ArrayList<String>(valuesProduct);
-                    prodList = new ArrayList<>();
-                    for ( String id : listOfProdIDs){
-                        showShopProducts(id);
-                    }
+//                    HashMap<String , String> mapProd = shops.getProducts();
+//                    Collection<String> valuesProduct = mapProd.values();
+//                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
+//                    ArrayList<String> listOfProdIDs = new ArrayList<String>(valuesProduct);
+//                    prodList = new ArrayList<>();
+//                    for ( String id : listOfProdIDs){
+//                        showShopProducts(id);
+//                    }
 
                 }
             }
@@ -219,7 +220,7 @@ public class ShopPageFragment extends BaseFragment {
 
     private void showShopProducts(String id) {
         Query query = FirebaseDatabase.getInstance().getReference("products")
-                .orderByChild("key").equalTo(id);
+                .orderByChild("shopId").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

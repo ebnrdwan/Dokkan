@@ -41,9 +41,14 @@ import java.util.ArrayList;
 public class ShopFragment extends BaseFragment {
     RecyclerView recyclerView;
     ArrayList<ShopitemModel> data;
+    ArrayList<ShopitemModel> listofShops;
+
     private DatabaseReference dbReference;
     Bundle bundle1 ;
     MainViewModel mainViewModel;
+
+    String name ;
+    int i ;
 
    // ShopRecyclerAdaptar.FavouriteClickListener ListenerFavourite;
     //ShopRecyclerAdaptar.RateBarClickListener ListenerRate;
@@ -76,30 +81,74 @@ public class ShopFragment extends BaseFragment {
     }
 
     private void getShopByCategory(String catId) {
-        dbReference = FirebaseDatabase.getInstance().getReference("shops");
-        Query query = FirebaseDatabase.getInstance().getReference("shops")
-                .orderByChild("categoryid").equalTo(catId);
-        query.addValueEventListener(new ValueEventListener() {
+        String name = getNameOfCateg(catId);
+         dbReference = FirebaseDatabase.getInstance().getReference("shops");
+         dbReference.addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
+                        listofShops.add(shops);
+                    }
+             }
+
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         });
+
+         for ( ShopitemModel s : listofShops){
+             if ( s.getListOfcategIDs().contains(name)){
+                 data.add(s);
+             }
+         }
+
+        ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
+                            , data, ListenerShops);
+         recyclerView.setAdapter(adapter);
+
+
+//            Query query = FirebaseDatabase.getInstance().getReference("shops")
+//                    .orderByChild("listOfcategIDs").orderByValue().equalTo(name);
+//            query.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    data.clear();
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                        ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
+//                        data.add(shops);
+//                    }
+//                    ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
+//                            , data, ListenerShops);
+//                    recyclerView.setAdapter(adapter);
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
+//
+
+    }
+
+    private String getNameOfCateg(String catId) {
+
+        dbReference = FirebaseDatabase.getInstance().getReference("categories");
+        dbReference.child(catId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                data.clear();
-
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
-                    data.add(shops);
-                }
-                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
-                        ,data , ListenerShops);
-                recyclerView.setAdapter(adapter);
+                 name = dataSnapshot.child("categoryname").getValue(String.class);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity() , databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
-
+        return name;
 
     }
 
