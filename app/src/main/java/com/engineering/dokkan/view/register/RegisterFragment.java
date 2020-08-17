@@ -47,9 +47,7 @@ public class RegisterFragment extends BaseFragment {
         return R.layout.fragment_register;
     }
 
-    NavController getNavController() {
-        return Navigation.findNavController(getActivity(), R.id.my_nav_host);
-    }
+
 
 
     @Override
@@ -120,7 +118,7 @@ public class RegisterFragment extends BaseFragment {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            getNavController().navigate(R.id.action_registerFragment_to_profileFragment);
+                                            getNavController().navigate(R.id.action_registerFragment_to_LoginFragment);
                                         } else {
                                             mProgress.dismiss();
                                             String message = task.getException().toString();

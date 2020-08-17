@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,6 +59,8 @@ abstract public class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeViews(view);
+
+
     }
 
     @Override
@@ -66,20 +69,27 @@ abstract public class BaseFragment extends Fragment {
 
         setListeners();
         onActivityReady(savedInstanceState);
+        if (getActivity() != null)
+            getActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    navigateUp();
+                }
+            });
     }
 
 
-  public   void navigateTo(NavDirections direction) {
+    public void navigateTo(NavDirections direction) {
         NavHostFragment.findNavController(this).navigate(direction);
 
     }
 
 
-  public   void navigateTo(Uri deepLink) {
+    public void navigateTo(Uri deepLink) {
         NavHostFragment.findNavController(this).navigate(deepLink);
     }
 
- public    void navigateTo(
+    public void navigateTo(
             @IdRes int actionId,
             NavOptions navOptions,
             Navigator.Extras navigatorExtras,
@@ -94,8 +104,12 @@ abstract public class BaseFragment extends Fragment {
             navController.navigate(actionId, bundle, navOptions, navigatorExtras);
     }
 
+    public NavController getNavController() {
+        return NavHostFragment.findNavController(this);
+    }
 
-  public   void navigateUp() {
+
+    public void navigateUp() {
         NavHostFragment.findNavController(this).navigateUp();
     }
 

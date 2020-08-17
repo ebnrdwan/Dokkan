@@ -9,10 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,9 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginFragment extends BaseFragment {
     private Button btn_sing;
@@ -42,10 +38,6 @@ public class LoginFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
         return (R.layout.fragment_login2);
-    }
-
-    NavController getNavController() {
-        return Navigation.findNavController(requireActivity(), R.id.my_nav_host);
     }
 
     @Override
@@ -117,6 +109,9 @@ public class LoginFragment extends BaseFragment {
                             if (task.isSuccessful()) {
                                 if (firebaseAuth.getCurrentUser().isEmailVerified()) {
                                     loadingbar.dismiss();
+                                    if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                                        SharedPreference.getInstance(getContext()).saveUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
                                     getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);
                                     Toast.makeText(getActivity(), "Logged is succesfully.", Toast.LENGTH_SHORT).show();
 

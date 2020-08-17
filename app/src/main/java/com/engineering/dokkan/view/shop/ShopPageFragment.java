@@ -70,7 +70,7 @@ public class ShopPageFragment extends BaseFragment {
     private RecyclerView reviewRecyclerView;
 
     //items
-    private ArrayList<ShopProductModel> prodList ;
+    private ArrayList<ShopProductModel> prodList = new ArrayList<>();
     private RecyclerView productRecyclerView;
     ShopProductRecycAdapter.ItemClickListener ListenerProducts;
 

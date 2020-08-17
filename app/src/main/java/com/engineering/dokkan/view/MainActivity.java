@@ -12,14 +12,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-
 
 
     @Override
@@ -33,17 +32,19 @@ public class MainActivity extends AppCompatActivity {
         list.add(R.id.loginFragment);
         list.add(R.id.resetPassword);
 
-
+        if (SharedPreference.getInstance(this).isUserSaved()) {
+            Navigation.findNavController(this, R.id.my_nav_host).getGraph().setStartDestination(R.id.homeFragment2);
+        }
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        NavController navController = Navigation.findNavController(this , R.id.my_nav_host);
-        NavigationUI.setupWithNavController(bottomNavigationView , navController);
+        NavController navController = Navigation.findNavController(this, R.id.my_nav_host);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (list.contains(destination.getId())){
+                if (list.contains(destination.getId())) {
                     bottomNavigationView.setVisibility(View.GONE);
-                }else {
+                } else {
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
 

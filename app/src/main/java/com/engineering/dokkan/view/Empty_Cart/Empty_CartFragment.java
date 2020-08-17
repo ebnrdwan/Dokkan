@@ -45,9 +45,7 @@ public class Empty_CartFragment extends BaseFragment {
     public void setListeners() {
 
     }
-    NavController getNavController(){
-        return Navigation.findNavController(getActivity() ,R.id.my_nav_host);
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

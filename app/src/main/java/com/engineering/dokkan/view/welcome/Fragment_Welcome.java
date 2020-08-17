@@ -6,10 +6,9 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.view.base.BaseFragment;
 
 public class Fragment_Welcome extends BaseFragment {
@@ -25,6 +24,7 @@ public class Fragment_Welcome extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
+
         btn_singIn = view.findViewById(R.id.btn_signIn);
         btn_singUp = view.findViewById(R.id.btn_signUp);
 
@@ -55,10 +55,7 @@ public class Fragment_Welcome extends BaseFragment {
     }
 
 
-    NavController getNavController() {
-        return Navigation.findNavController(requireActivity(), R.id.my_nav_host);
 
-    }
 /*
     void navigateToAskQuestion() {
         getNavController().navigate(R.id.action_fragment_Welcome2_to_askQuestionFragment);

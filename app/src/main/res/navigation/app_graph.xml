@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/reg_navigation"
+    android:id="@+id/app_graph"
     app:startDestination="@+id/fragment_Welcome">
 
 
@@ -26,8 +26,8 @@
         android:name="com.engineering.dokkan.view.register.RegisterFragment"
         android:label="RegisterFragment">
         <action
-            android:id="@+id/action_registerFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_registerFragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
 
     </fragment>
     <fragment
@@ -36,10 +36,21 @@
         android:label="Fragment_Welcome">
         <action
             android:id="@+id/action_fragment_Welcome_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/app_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_fragment_Welcome_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/app_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_fragment_Welcome_to_homeFragment"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/app_graph"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -55,6 +66,8 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment2"
+            app:popUpTo="@id/app_graph"
+            app:popUpToInclusive="true"
             app:destination="@id/homeFragment2" />
     </fragment>
     <fragment

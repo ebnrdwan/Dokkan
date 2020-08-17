@@ -25,10 +25,6 @@ public class Favourite_Fragment extends BaseFragment{
     }
 
 
-    NavController getNavController() {
-        return Navigation.findNavController(getActivity(), R.id.my_nav_host);}
-
-
     @Override
     public void initializeViews(View view) {
         tabLayout = view.findViewById(R.id.tablayout);

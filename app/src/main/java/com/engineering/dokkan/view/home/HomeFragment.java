@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -16,7 +15,6 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.models.HomeItemModel;
 import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.SliderItemModel;
 import com.engineering.dokkan.view.base.BaseFragment;
@@ -48,7 +46,7 @@ public class HomeFragment extends BaseFragment {
 
     //recentview
     private ArrayList<ProductitemModel> dataRecentView;
-    private RecyclerView recyclerViewRecentView ;
+    private RecyclerView recyclerViewRecentView;
 
 
     @Override
@@ -59,18 +57,15 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initViewModel();
-        DoingOfTabLayout (view);
-        SliderWork( view);
-        intializeRecentlyViewRecycler ( view);
+        initializeTablayout(view);
+        SliderWork(view);
+        intializeRecentlyViewRecycler(view);
 
 
     }
 
     @Override
     public void setListeners() {
-
-
-
 
 
     }
@@ -132,15 +127,13 @@ public class HomeFragment extends BaseFragment {
         viewPager2.setPageTransformer(compositePageTransformer);
     }
 
-    private void DoingOfTabLayout(View view) {
+    private void initializeTablayout(View view) {
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
         viewadapter = new ViewPageAdapter(getActivity().getSupportFragmentManager());
-        viewPager.setAdapter(viewadapter);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void intializeRecentlyViewRecycler (View view){
+    public void intializeRecentlyViewRecycler(View view) {
         RVAdapterRecentlyView.ImageClickListener listenerRecView = new RVAdapterRecentlyView.ImageClickListener() {
             @Override
             public void onItemClick(ProductitemModel item) {
@@ -148,8 +141,7 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
             }
         };
-        showRecentView(view ,listenerRecView );
-
+        showRecentView(view, listenerRecView);
 
 
     }
@@ -170,8 +162,7 @@ public class HomeFragment extends BaseFragment {
                     SliderItemModel item = snapshot.getValue(SliderItemModel.class);
                     datasider.add(item);
                 }
-                sliderAdapter = new SliderAdapter(datasider, viewPager2);
-                viewPager2.setAdapter(sliderAdapter);
+                initializeSlider();
 
             }
 
@@ -183,12 +174,19 @@ public class HomeFragment extends BaseFragment {
         });
 
 
-
-
     }
 
-    private void showRecentView(View view, final RVAdapterRecentlyView.ImageClickListener listenerRecView ) {
-        recyclerViewRecentView= (RecyclerView) view.findViewById(R.id.recently_view_recyclerView);
+    private void initializeSlider() {
+        sliderAdapter = new SliderAdapter(datasider, viewPager2);
+        viewPager2.setAdapter(sliderAdapter);
+        if (!datasider.isEmpty())
+            viewadapter.setCatID(datasider.get(0).getKey());
+        viewPager.setAdapter(viewadapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void showRecentView(View view, final RVAdapterRecentlyView.ImageClickListener listenerRecView) {
+        recyclerViewRecentView = (RecyclerView) view.findViewById(R.id.recently_view_recyclerView);
         recyclerViewRecentView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
         dataRecentView = new ArrayList<>();
@@ -200,7 +198,7 @@ public class HomeFragment extends BaseFragment {
                 Log.d("DATA SNAPSHOT", "values: " + item);
 
                 dataRecentView.add(item);
-                RVAdapterRecentlyView adapter = new RVAdapterRecentlyView(dataRecentView , listenerRecView );
+                RVAdapterRecentlyView adapter = new RVAdapterRecentlyView(dataRecentView, listenerRecView);
                 recyclerViewRecentView.setAdapter(adapter);
             }
 
@@ -223,11 +221,10 @@ public class HomeFragment extends BaseFragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
 
 
     }
-
 
 
 }
