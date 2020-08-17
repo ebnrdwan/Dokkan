@@ -7,7 +7,6 @@ public class ShopitemModel  {
     private ArrayList<String> listOfcategIDs ;
     private String key ;
     private String location;
-    private String coverImage;
     private String shopImage;
     private String shopName;
     private boolean fav  ;
@@ -16,11 +15,10 @@ public class ShopitemModel  {
     public ShopitemModel() {
     }
 
-    public ShopitemModel(ArrayList<String> listOfcategIDs, String key, String location, String coverImage, String shopImage, String shopName, boolean fav, float rate) {
+    public ShopitemModel(ArrayList<String> listOfcategIDs, String key, String location, String shopImage, String shopName, boolean fav, float rate) {
         this.listOfcategIDs = listOfcategIDs;
         this.key = key;
         this.location = location;
-        this.coverImage = coverImage;
         this.shopImage = shopImage;
         this.shopName = shopName;
         this.fav = fav;
@@ -51,13 +49,6 @@ public class ShopitemModel  {
         this.location = location;
     }
 
-    public String getCoverImage() {
-        return coverImage;
-    }
-
-    public void setCoverImage(String coverImage) {
-        this.coverImage = coverImage;
-    }
 
     public String getShopImage() {
         return shopImage;

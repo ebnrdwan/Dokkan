@@ -72,85 +72,66 @@ public class ShopFragment extends BaseFragment {
     private void showShops(View rootView) {
         recyclerView = rootView.findViewById(R.id.recyclerview_id_shop);
         data = new ArrayList<>();
-        bundle1 = getArguments();
-        String idshop = bundle1.getString(Constants.CATEGORY_KEY);
-        Log.d("ID_SHOP", "CAT_ID: "+idshop);
+//        bundle1 = getArguments();
+//        String idshop = bundle1.getString(Constants.CATEGORY_KEY);
+//        Log.d("ID_SHOP", "CAT_ID: "+idshop);
         initViewModel();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-        getShopByCategory(idshop);
+        //getShopByCategory(idshop);
     }
 
     private void getShopByCategory(String catId) {
-        String name = getNameOfCateg(catId);
-         dbReference = FirebaseDatabase.getInstance().getReference("shops");
-         dbReference.addValueEventListener(new ValueEventListener() {
-             @Override
-             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
-                        listofShops.add(shops);
-                    }
-             }
-
-             @Override
-             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-             }
-         });
-
-         for ( ShopitemModel s : listofShops){
-             if ( s.getListOfcategIDs().contains(name)){
-                 data.add(s);
-             }
-         }
-
-        ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
-                            , data, ListenerShops);
-         recyclerView.setAdapter(adapter);
-
-
-//            Query query = FirebaseDatabase.getInstance().getReference("shops")
-//                    .orderByChild("listOfcategIDs").orderByValue().equalTo(name);
-//            query.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    data.clear();
-//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                        ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
-//                        data.add(shops);
-//                    }
-//                    ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
-//                            , data, ListenerShops);
-//                    recyclerView.setAdapter(adapter);
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
-//
-//                }
-//            });
-//
-
-    }
-
-    private String getNameOfCateg(String catId) {
+        Log.d("getShopByCategory" , "catId" +catId);
 
         dbReference = FirebaseDatabase.getInstance().getReference("categories");
-        dbReference.child(catId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                 name = dataSnapshot.child("categoryname").getValue(String.class);
-            }
+        if ( dbReference != null) {
+            dbReference.child(catId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    name = dataSnapshot.child("categoryname").getValue(String.class);
+                    Log.d("getShopByCategory ", " categoryname1 " + name);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    dbReference = FirebaseDatabase.getInstance().getReference("shops");
+                    if ( dbReference != null){
+                        dbReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                data.clear();
+                                listofShops = new ArrayList<>() ;
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    ShopitemModel shops = snapshot.getValue(ShopitemModel.class);
+                                    Log.d("getShopByCategory ", " categoryname2 " + name);
 
-            }
-        });
-        return name;
+                                    if ( shops.getListOfcategIDs().contains(name)){
+                                        data.add(shops);
+                                    }
+
+                                }
+                                ShopRecyclerAdaptar adapter = new ShopRecyclerAdaptar(getContext()
+                                        , data, ListenerShops);
+                                recyclerView.setAdapter(adapter);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
 
     }
+
 
     void initViewModel() {
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
@@ -158,6 +139,8 @@ public class ShopFragment extends BaseFragment {
             @Override
             public void onChanged(String newCatID) {
                 getShopByCategory(newCatID);
+                Log.d("VIEW_MODEL", "CAT_ID: "+ newCatID);
+
             }
         });
     }

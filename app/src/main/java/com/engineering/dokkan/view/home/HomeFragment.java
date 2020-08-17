@@ -59,9 +59,9 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         initViewModel();
-        DoingOfTabLayout (view);
+        DoingOfTabLayout(view);
         SliderWork( view);
-        intializeRecentlyViewRecycler ( view);
+        intializeRecentlyViewRecycler( view);
 
 
     }
@@ -160,29 +160,31 @@ public class HomeFragment extends BaseFragment {
 
     private void showSlider(View view) {
         datasider = new ArrayList<>();
-        dbReference = FirebaseDatabase.getInstance().getReference("categories");
-        dbReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //categoriesMap = (Map<String, String>) dataSnapshot.getValue();
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    SliderItemModel item = snapshot.getValue(SliderItemModel.class);
-                    datasider.add(item);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("categories");
+        if( databaseReference!=null) {
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //categoriesMap = (Map<String, String>) dataSnapshot.getValue();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        SliderItemModel item = snapshot.getValue(SliderItemModel.class);
+                        datasider.add(item);
+                    }
+                    sliderAdapter = new SliderAdapter(datasider, viewPager2);
+                    viewPager2.setAdapter(sliderAdapter);
+
                 }
-                sliderAdapter = new SliderAdapter(datasider, viewPager2);
-                viewPager2.setAdapter(sliderAdapter);
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
 
-            }
-        });
-
-
+        }
 
 
     }

@@ -61,7 +61,6 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
     @Override
     public void onBindViewHolder(@NonNull final shopHolder holder, final int position) {
-        Picasso.get().load(shopList.get(position).getShopImage()).into(holder.shopImage);
         Picasso.get().load(shopList.get(position).getShopImage()).into(holder.Shop_Name_Image);
         holder.ShopName.setText(shopList.get(position).getShopName());
         holder.shoplocation.setText(shopList.get(position).getLocation());
@@ -187,7 +186,6 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
 
     class shopHolder extends RecyclerView.ViewHolder {
-        ImageView shopImage;
         ImageView Shop_Name_Image ;
         TextView ShopName ;
         TextView shoplocation ;
@@ -201,7 +199,6 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
         public shopHolder(@NonNull View itemView,final ItemClickListener itemClickListener) {
             super(itemView);
-            shopImage = itemView.findViewById(R.id.shopImage);
             Shop_Name_Image = itemView.findViewById(R.id.shop_name_image);
             ShopName = itemView.findViewById(R.id.shop_name);
             shoplocation = itemView.findViewById(R.id.shop_location);
