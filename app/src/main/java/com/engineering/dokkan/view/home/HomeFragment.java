@@ -2,6 +2,7 @@ package com.engineering.dokkan.view.home;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,15 +17,19 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.data.models.RecProdModel;
 import com.engineering.dokkan.data.models.SliderItemModel;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -45,8 +50,11 @@ public class HomeFragment extends BaseFragment {
     private MainViewModel mainViewModel;
 
     //recentview
-    private ArrayList<ProductitemModel> dataRecentView;
+    private ArrayList<RecProdModel> dataRecentView;
     private RecyclerView recyclerViewRecentView;
+
+    private TextView username ;
+    private String currentUserID;
 
 
     @Override
@@ -56,12 +64,38 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
+        currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        username = view.findViewById(R.id.user_name);
+        showName();
         initViewModel();
         initializeTablayout(view);
         SliderWork(view);
         intializeRecentlyViewRecycler(view);
 
 
+    }
+
+    private void showName() {
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                .orderByChild("uid").equalTo(currentUserID);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                    if( snapshot.child("name").exists()) {
+                        username.setText( snapshot.child("name").getValue(String.class) );
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -131,12 +165,14 @@ public class HomeFragment extends BaseFragment {
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
         viewadapter = new ViewPageAdapter(getActivity().getSupportFragmentManager());
+        viewPager.setAdapter(viewadapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     public void intializeRecentlyViewRecycler(View view) {
         RVAdapterRecentlyView.ImageClickListener listenerRecView = new RVAdapterRecentlyView.ImageClickListener() {
             @Override
-            public void onItemClick(ProductitemModel item) {
+            public void onItemClick(RecProdModel item) {
 
                 Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
             }
@@ -191,10 +227,11 @@ public class HomeFragment extends BaseFragment {
 
         dataRecentView = new ArrayList<>();
         dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
-        dbReference.addChildEventListener(new ChildEventListener() {
+        Query query = dbReference.orderByChild("userId").equalTo(currentUserID);
+                query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                ProductitemModel item = dataSnapshot.getValue(ProductitemModel.class);
+                RecProdModel item = dataSnapshot.getValue(RecProdModel.class);
                 Log.d("DATA SNAPSHOT", "values: " + item);
 
                 dataRecentView.add(item);

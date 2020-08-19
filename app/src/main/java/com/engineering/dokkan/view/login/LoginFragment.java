@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class LoginFragment extends BaseFragment {
     private FirebaseAuth firebaseAuth;
     ProgressDialog loadingbar;
     private DatabaseReference RootRef;
+    private ImageView backbutton ;
+
 
     public LoginFragment() {
 
@@ -56,6 +59,8 @@ public class LoginFragment extends BaseFragment {
         newAccount = (TextView) view.findViewById(R.id.regester_here);
         loadingbar = new ProgressDialog(getActivity());
         btn_sing = view.findViewById(R.id.but_sing);
+        backbutton = view.findViewById(R.id.arrow_back);
+
     }
 
     @Override
@@ -82,6 +87,13 @@ public class LoginFragment extends BaseFragment {
 
                 getNavController().navigate(R.id.action_loginFragment_to_resetPassword);
 
+            }
+        });
+
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNavController().navigate(R.id.action_loginFragment_to_fragment_Welcome);
             }
         });
     }

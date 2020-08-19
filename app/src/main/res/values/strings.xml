@@ -3,7 +3,7 @@
 
 
     <string name="location_name">cairo, Egypt</string>
-    <string name="user_name">Salma and Esraa</string>
+    <string name="user_name">Salma Yassin</string>
     <string name="sign_out">Sign Out</string>
 
     <string name="send">Send</string>
@@ -86,14 +86,14 @@
 
     <string name="Forget_Password">Forget Password!?</string>
 
-    <string name="hint_email">E-Mail</string>
+    <string name="hint_email">E-mail</string>
 
     <string name="hint_password">password</string>
 
-    <string name="Don_Worry_we_just_need_your"> Don\'t Worry, we just need your </string>
+    <string name="Don_Worry_we_just_need_your"> Do not Worry we just need your </string>
     <string name="registared_email_address_and_its_done"> registared email address and its done!</string>
     <string name="enter_your_registered_email">enter your registered email</string>
-    <string name="Regst_Password">Regst Password</string>
+    <string name="Regst_Password">Reset Password</string>
     <string name="welcomeUser_name">Asmaa El Qady</string>
     <string name="browse_category">Browse Category</string>
     <string name="product">Product</string>
@@ -153,4 +153,5 @@
     <string name="string_text_size">hight~30cm</string>
     <string name="string_text_material">Materials</string>
     <string name="string_text_detais">coper wire, we use a good material</string>
+    <string name="items">Items</string>
 </resources>

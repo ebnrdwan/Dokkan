@@ -1,5 +1,6 @@
 package com.engineering.dokkan.view.productdetails;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -24,8 +26,6 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>{
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
     ArrayList<ReviewModel> reviewList;
     RatingBar ratingBar;
 
@@ -45,25 +45,41 @@ public class ReviewAdapter  extends RecyclerView.Adapter<ReviewAdapter.ReviewVie
 
     @Override
     public void onBindViewHolder(@NonNull final ReviewViewHolder holder, final int position) {
-        ReviewModel ReviewModel = reviewList.get(position);
+        ReviewModel review_model = reviewList.get(position);
 
-        holder.rate.setRating(ReviewModel.getRate());
+        holder.time_of_comment.setText(review_model.getDate());
 
-        holder.customer_name.setText(ReviewModel.getName());
+        holder.rate.setRating( Float.parseFloat( review_model.getRate() ) );
+        holder.rate.setIsIndicator(true);
 
-        holder.comment.setText(ReviewModel.getComment());
+        holder.comment.setText(review_model.getComment());
 
-        Picasso.get().load(reviewList.get(position).getImage()).into(holder.CImage);
-
-        holder.time_of_comment.setText(ReviewModel.getTime());
-
-        //   holder.rate.setRating(ReviewModel.getRate());
-        holder.rate.setOnClickListener(new View.OnClickListener() {
+        String  userid = review_model.getUserID()  ;
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                .orderByChild("uid").equalTo(userid);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                float ratingValue = ratingBar.getRating();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                    if( snapshot.child("name").exists()) {
+                        holder.customer_name.setText(  snapshot.child("name").getValue(String.class) );
+                    }
+                    if ( snapshot.child("userImage").exists()){
+                        String url = snapshot.child("userImage").getValue(String.class);
+                        Picasso.get().load(url).into(holder.CImage);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
+
 
     }
 

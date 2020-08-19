@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +34,13 @@ import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +57,12 @@ public class ProductDetailsFragment extends BaseFragment {
     TextView ShopName, ShopLocation;
     ImageView ShopImage;
     RatingBar ShopRate;
+
+    //Reviews
+    private EditText review_editText ;
+    private Button send_review ;
+    private  RatingBar rate_review ;
+
     //slider
     SliderView sliderView;
     //Counter
@@ -63,7 +77,10 @@ public class ProductDetailsFragment extends BaseFragment {
     ArrayList<ReviewModel> reviewList;
     ReviewModel reviewModel;
 
-    String prod_id;
+    private String prod_id;
+    private String shopId ;
+    private String currentUserID;
+
 
 
     @Override
@@ -79,6 +96,7 @@ public class ProductDetailsFragment extends BaseFragment {
         sliderWork();
         Log.d(" product ID " , " id " + prod_id);
         retriveProuductData(prod_id);
+        RetriveReviewInRecycleView(prod_id);
     }
 
     @Override
@@ -88,6 +106,47 @@ public class ProductDetailsFragment extends BaseFragment {
             public void onClick(View v) {
             }
         });
+
+        send_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reviewRecycView.setVisibility(View.VISIBLE);
+                String comment = review_editText.getText().toString();
+                float rate = rate_review.getRating();
+                String rate_string = "" + rate ;
+
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+                String formattedDate = df.format(c);
+
+                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Reviews");
+                String key = dbReference.push().getKey();
+
+                HashMap<String,String> map = new HashMap<>();
+                map.put("reviewID" , key);
+                map.put("productID" , prod_id);
+                map.put("shopID" , shopId);
+                map.put("userID" , currentUserID);
+                map.put("comment" , comment);
+                map.put("rate" , rate_string);
+                map.put("date" , formattedDate);
+
+                dbReference.child(key).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getActivity() , "Thanks for your Review" , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                review_editText.setText("");
+                rate_review.setRating(0);
+
+
+
+
+            }
+        });
+
 
         //Expandable Reviews
         arrowBtn1.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +182,8 @@ public class ProductDetailsFragment extends BaseFragment {
     }
 
     private void initialize(View view) {
+        currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         //slider
         sliderView = view.findViewById(R.id.imageSlider);
         //button ask qustion
@@ -133,27 +194,34 @@ public class ProductDetailsFragment extends BaseFragment {
         minusButton.setOnClickListener(clickListener);
         pluButton = view.findViewById(R.id.plus_button);
         pluButton.setOnClickListener(clickListener);
-//Expand Review&Detials
+        //Expand Review&Detials
         arrowBtn1 = view.findViewById(R.id.expand_more);
         arrowBtn2 = view.findViewById(R.id.expand_detials);
-//recyclerView
+        //recyclerView
         reviewRecycView = view.findViewById(R.id.recycler);
         contaner = view.findViewById(R.id.contaner);
         ratingBar = view.findViewById(R.id.ratingBar);
 
-//RatingBar For  The Item
+        //RatingBar For  The Item
         RatingBar rat_bar_item = view.findViewById(R.id.rate_bar_Item);
         float ratingNumber = rat_bar_item.getRating();
-//product
+        //product
         ProductName = view.findViewById(R.id.item_name);
         productPrice = view.findViewById(R.id.item_price);
         productDescription = view.findViewById(R.id.description_txt);
         ProductMaterial = view.findViewById(R.id.item_material);
         productSize = view.findViewById(R.id.item_size);
-//shop
+        //shop
         ShopName = view.findViewById(R.id.shop_name);
         ShopImage = view.findViewById(R.id.shop_Image);
         ShopLocation = view.findViewById(R.id.location_txt);
+
+        //review
+        review_editText = view.findViewById(R.id.et_write_review);
+        send_review = view.findViewById(R.id.send_btn);
+        rate_review = view.findViewById(R.id.rate_bar_review);
+        reviewList = new ArrayList<>();
+
 
     }
 
@@ -164,24 +232,29 @@ public class ProductDetailsFragment extends BaseFragment {
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
     }
 
-    private void RetriveReviewInRecycleView( String id ) {
+    private void RetriveReviewInRecycleView( String prodID ) {
         Query query = FirebaseDatabase.getInstance().getReference("Reviews")
-                .orderByChild("Key").equalTo(id);
+                .orderByChild("productID").equalTo(prodID);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    reviewModel = snapshot.getValue(ReviewModel.class);
-                    reviewList.add(reviewModel);
+                reviewList.clear();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        reviewModel = snapshot.getValue(ReviewModel.class);
+                        reviewList.add(reviewModel);
+                    }
+                    adapter = new ReviewAdapter(reviewList);
+                    RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
+                    reviewRecycView.setLayoutManager(lm);
+                    reviewRecycView.setAdapter(adapter);
+                    DividerItemDecoration dv;
+                    dv = new DividerItemDecoration(reviewRecycView.getContext(),
+                            ((LinearLayoutManager) lm).getOrientation());
+                    reviewRecycView.addItemDecoration(dv);
+                } else {
+                    reviewRecycView.setVisibility(View.GONE);
                 }
-                adapter = new ReviewAdapter(reviewList);
-                RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
-                reviewRecycView.setLayoutManager(lm);
-                reviewRecycView.setAdapter(adapter);
-                DividerItemDecoration dv;
-                dv = new DividerItemDecoration(reviewRecycView.getContext(),
-                        ((LinearLayoutManager) lm).getOrientation());
-                reviewRecycView.addItemDecoration(dv);
             }
 
             @Override
@@ -205,13 +278,13 @@ public class ProductDetailsFragment extends BaseFragment {
                 String shLocation = dataSnapshot.child("location").getValue(String.class);
                 ShopLocation.setText(shLocation);
 
-                reviewList = new ArrayList<>();
-                if ( dataSnapshot.child("Reviews").exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
-                        String reviewID = snapshot.getValue(String.class);
-                        RetriveReviewInRecycleView(reviewID);
-                    }
-                }
+//                reviewList = new ArrayList<>();
+//                if ( dataSnapshot.child("Reviews").exists()) {
+//                    for (DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
+//                        String reviewID = snapshot.getValue(String.class);
+//                        RetriveReviewInRecycleView(reviewID);
+//                    }
+//                }
 //
 //                Collection<String> valuesReview = mapReview.values();
 //                //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
@@ -249,7 +322,7 @@ public class ProductDetailsFragment extends BaseFragment {
                 String pSize = dataSnapshot.child("size").getValue(String.class);
                 productSize.setText(pSize);
 
-                String shopId = dataSnapshot.child("shopId").getValue(String.class);
+                 shopId = dataSnapshot.child("shopId").getValue(String.class);
                 retriveShopData(shopId);
             }
 

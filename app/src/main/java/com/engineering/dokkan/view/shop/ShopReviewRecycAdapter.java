@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -42,12 +43,40 @@ public class ShopReviewRecycAdapter extends RecyclerView.Adapter<ShopReviewRecyc
 
     @Override
     public void onBindViewHolder(@NonNull final ReviewViewHolder holder, final int position) {
-        holder.rate.setRating(reviewList.get(position).getRate());
-        holder.customer_name.setText(reviewList.get(position).getName());
-        holder.comment.setText(reviewList.get(position).getComment());
-        Picasso.get().load(reviewList.get(position).getImage()).into(holder.customerImage);
 
-        holder.time_of_comment.setText(reviewList.get(position).getTime());
+        holder.rate.setRating( Float.parseFloat(reviewList.get(position).getRate()) );
+        holder.rate.setIsIndicator(true);
+
+        String  userid = reviewList.get(position).getUserID()  ;
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                .orderByChild("uid").equalTo(userid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                    if( snapshot.child("name").exists()) {
+                        holder.customer_name.setText(  snapshot.child("name").getValue(String.class) );
+                    }
+                    if ( snapshot.child("userImage").exists()){
+                        String url = snapshot.child("userImage").getValue(String.class);
+                         Picasso.get().load(url).into(holder.customerImage);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        holder.comment.setText(reviewList.get(position).getComment());
+        holder.time_of_comment.setText(reviewList.get(position).getDate());
 
 //
 ////
@@ -58,8 +87,8 @@ public class ShopReviewRecycAdapter extends RecyclerView.Adapter<ShopReviewRecyc
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 holder.item_name.setText( dataSnapshot.child("name").getValue(String.class) );
-                holder.item_desc.setText( dataSnapshot.child("descryption").getValue(String.class) );
-                Picasso.get().load( dataSnapshot.child("img1").getValue(String.class) ).into(holder.item_image);
+                holder.item_desc.setText( dataSnapshot.child("description").getValue(String.class) );
+                Picasso.get().load( dataSnapshot.child("image1").getValue(String.class) ).into(holder.item_image);
             }
 
             @Override

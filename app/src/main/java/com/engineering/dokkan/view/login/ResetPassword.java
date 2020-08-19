@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
@@ -27,6 +28,8 @@ public class ResetPassword extends BaseFragment {
     private EditText registeredEmail;
     private Button resetPassword_btn;
     private FirebaseAuth firebaseAuth;
+    private ImageView backbutton ;
+
 
     public ResetPassword() {
         // Required empty public constructor
@@ -40,6 +43,14 @@ public class ResetPassword extends BaseFragment {
         registeredEmail = view.findViewById(R.id.rest_email);
         resetPassword_btn = view.findViewById(R.id.reset_btn);
         firebaseAuth=FirebaseAuth.getInstance();
+        backbutton = view.findViewById(R.id.arrow_back);
+
+    }
+
+
+
+    @Override
+    public void setListeners() {
 
         resetPassword_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,12 +59,13 @@ public class ResetPassword extends BaseFragment {
             }
         });
 
-    }
 
-
-
-    @Override
-    public void setListeners() {
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNavController().navigate(R.id.action_resetPassword_to_loginFragment);
+            }
+        });
 
 
     }

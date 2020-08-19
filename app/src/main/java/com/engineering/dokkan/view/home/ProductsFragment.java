@@ -18,6 +18,7 @@ import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +40,8 @@ public class ProductsFragment extends BaseFragment {
     MainViewModel mainViewModel;
     ProductRecycAdapter.ItemClickListener ListenerProducts;
 
+    private String currentUserID;
+
 
     @Override
     public int getLayoutId() {
@@ -46,6 +50,7 @@ public class ProductsFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
+        currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
         showCategories(view);
     }
 
@@ -54,23 +59,28 @@ public class ProductsFragment extends BaseFragment {
         ListenerProducts = new ProductRecycAdapter.ItemClickListener() {
             @Override
             public void onItemClick(final ProductitemModel item) {
+                Bundle bundle = new Bundle();
+                bundle.putString("productId", item.getProductId());
+                navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
+
+
                 dbReference = FirebaseDatabase.getInstance().getReference("RecentViewed");
                 Query query = dbReference.orderByChild("productId").equalTo(item.getProductId());
                 query.addValueEventListener(new ValueEventListener() {
 
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (!dataSnapshot.exists()) {
+                        if (!dataSnapshot.exists()) { //not exist
                             String key = dbReference.push().getKey();
-                            dbReference.child(key).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            HashMap<String,String> map = new HashMap<>();
+                            map.put("productId" , item.getProductId());
+                            map.put("userId" , currentUserID);
+                            dbReference.child(key).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                 }
                             });
-                        }
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("productId", item.getProductId());
-                        navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
+                        }
                     }
 
                     @Override

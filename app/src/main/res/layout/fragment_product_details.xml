@@ -331,9 +331,53 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_250"
+            android:layout_height="@dimen/height_300"
             android:layout_gravity="center"
             android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg">
+
+            <EditText
+                android:id="@+id/et_write_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="@drawable/edit_text_bg"
+                android:hint="please Write your review for this product..."
+                />
+
+            <RatingBar
+                android:id="@+id/rate_bar_review"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_below="@+id/et_write_review"
+                android:numStars="5"
+                android:isIndicator="false"
+                android:progressTint="#6a4e5d"
+                android:rating="0"
+                android:stepSize=".5" />
+            <Button
+                android:id="@+id/send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:text="Send"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/color_white"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/et_write_review"/>
+
+        </RelativeLayout>
+
+
         <LinearLayout
             android:id="@+id/linear_Item_Details"
             android:layout_width="wrap_content"
