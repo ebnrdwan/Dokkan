@@ -26,4 +26,9 @@
     <string name="text1">The cart is empty</string>
     <string name="looks_like_you_haven_t_added_any_items_to_your_cart_yet">Looks like you haven\'t added any items to your cart yet</string>
     <string name="back_to_shopping">Back to Shopping</string>
+    <string name="date_text">15 Dec,2020</string>
+    <string name="count_text">3</string>
+    <string name="price_text">200</string>
+    <string name="statuestext">inprogress</string>
+    <string name="myorderstext">My Orders</string>
 </resources>

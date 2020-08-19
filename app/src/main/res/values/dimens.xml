@@ -77,4 +77,17 @@
     <dimen name="margin2_10">10dp</dimen>
     <dimen name="size2">15sp</dimen>
     <dimen name="size3">20sp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="datesize">16sp</dimen>
+    <dimen name="count_size">17sp</dimen>
+    <dimen name="pricetext">18sp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_90">90dp</dimen>
+    <dimen name="linktext">14sp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="textsize">20sp</dimen>
 </resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e4e4"
+    android:orientation="vertical">
+<!--    tools:context=".MainActivity"-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolcolor"
+        android:id="@+id/toolbar_id">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:id="@+id/back"
+                />
+            <!--                android:onClick=""/>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_60"
+                android:layout_marginLeft="@dimen/margin_60"
+                android:text="@string/myorderstext"
+                android:textColor="@color/textcolor"
+                android:textSize="@dimen/textsize"
+                android:textStyle="bold"
+                android:id="@+id/title"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_10"
+        android:id="@+id/recycler">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>

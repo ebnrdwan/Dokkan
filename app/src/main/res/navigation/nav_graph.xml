@@ -3,19 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/empty_CartFragment">
-
+    app:startDestination="@id/profileFragment">
     <fragment
-        android:id="@+id/empty_CartFragment"
-        android:name="com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment"
-        android:label="fragment_empty__cart"
-        tools:layout="@layout/fragment_empty__cart" >
+        android:id="@+id/profileFragment"
+        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
+        android:label="ProfileFragment" >
         <action
-            android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
-            app:destination="@id/askQuestionFragment" />
+            android:id="@+id/action_profileFragment_to_myOrdersFragment"
+            app:destination="@id/myOrdersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myOrdersFragment"
+        android:name="com.engineering.dokkan.view.MyOrders.MyOrdersFragment"
+        android:label="MyOrdersFragment" />
     <fragment
         android:id="@+id/askQuestionFragment"
         android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
         android:label="AskQuestionFragment" />
+    <fragment
+        android:id="@+id/empty_CartFragment"
+        android:name="com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment"
+        android:label="Empty_CartFragment" >
+        <action
+            android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+    </fragment>
 </navigation>

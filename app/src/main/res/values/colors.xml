@@ -23,4 +23,11 @@
     <color name="text2color">#ac9fa6</color>
     <color name="btn_color">#6a4e5d</color>
     <color name="text_btn_color">#FFFFFF</color>
+    <color name="datecolor">#6a4e5d</color>
+    <color name="count_color">#baa6ab</color>
+    <color name="colorprice">#baa6ab</color>
+    <color name="linkcolor">#baa6ab</color>
+    <color name="viewcolor">#baa6ab</color>
+    <color name="toolcolor">#6a4e5d</color>
+    <color name="textcolor">#fff</color>
 </resources>
