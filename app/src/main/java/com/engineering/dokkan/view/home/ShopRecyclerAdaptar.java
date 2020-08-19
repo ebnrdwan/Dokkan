@@ -24,10 +24,12 @@ import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.ShopitemModel;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -37,9 +39,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
     Context c ;
     private ArrayList<ShopitemModel> shopList;
     private ItemClickListener onItemClickListener;
-    //private FavouriteClickListener onFavClickListener ;
-    //private RateBarClickListener onRateClickListener ;
-
+    private String currentuserId ;
     DatabaseReference databaseReference ;
 
     public ShopRecyclerAdaptar(Context c, ArrayList<ShopitemModel> shopList,
@@ -47,8 +47,8 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         this.c = c;
         this.shopList = shopList;
         this.onItemClickListener = onItemClickListener;
-       // this.onFavClickListener = onFavClickListener;
-        //this.onRateClickListener = onRateClickListener;
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     }
 
     @NonNull
@@ -65,10 +65,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         holder.ShopName.setText(shopList.get(position).getShopName());
         holder.shoplocation.setText(shopList.get(position).getLocation());
 
-        holder.setDatainView(shopList.get(position));
-
         holder.ratingBar.setRating(shopList.get(position).getRate());
-
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
@@ -89,87 +86,75 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         });
 
 
-        //favourite Togglebtn
-//        holder.favourite.setChecked(false);
-//        holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-//        holder.favourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    shopList.get(position).setFav(true);
-//                    //holder.favouriteClickListener.onFavouriteClicked(position , shopList.get(position).isFav());
-//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.fav_icon));
-//                    databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-//                    databaseReference.child(shopList.get(position).getKey()).child("favourite").setValue(true)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                        // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                } else {
-//                    holder.favourite.setBackgroundDrawable(ContextCompat.getDrawable(c, R.drawable.ic_favorite_empty));
-//                    shopList.get(position).setFav(false);
-//                    //holder.favouriteClickListener.onFavouriteClicked(position , shopList.get(position).isFav());
-//
-//                    databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-//                    databaseReference.child(shopList.get(position).getKey()).child("favourite").setValue(false)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                }
-//               // holder.favouriteClickListener.onFavouriteClicked(position , shopList.get(position).isFav());
-//            }
-//        });
 
-        isFavourite(shopList.get(position).getKey() , holder.favourite) ;
+        isFavourite(shopList.get(position).getKey() , holder.favourite , shopList.get(position)) ;
 
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ( !shopList.get(position).isFav() ){ //  if it was false
+
                     databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-                    databaseReference.child(shopList.get(position).getKey()).child("favourite").setValue(true)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    shopList.get(position).setFav(true);
+                    databaseReference.child(shopList.get(position).getKey()).child("isFav").setValue(true);
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentuserId).child("FavList");
+                    String keyfav = databaseReference.push().getKey();
+                    databaseReference.child(keyfav).child("key").setValue(keyfav);
+                    databaseReference.child(keyfav).child("isProduct").setValue(false);
+                    databaseReference.child(keyfav).child("itemId").setValue( shopList.get(position).getKey() );
+
                 } else { //if it was already true
+
                     databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-                    databaseReference.child(shopList.get(position).getKey()).child("favourite").removeValue()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    shopList.get(position).setFav(false);
+                    databaseReference.child(shopList.get(position).getKey()).child("isFav").removeValue();
+
+                    final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentuserId).child("FavList")
+                            .orderByChild("itemId").equalTo( shopList.get(position).getKey() );
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                snapshot.getRef().removeValue();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }
 
             }
         });
+        holder.setDatainView(shopList.get(position));
+
 
     }
 
 
-    private void isFavourite(String key, final ImageView favourite) {
+    private void isFavourite(String key, final ImageView favourite, final ShopitemModel shopitemModel) {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-        databaseReference.child(key).addValueEventListener(new ValueEventListener() {
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                .child(currentuserId).child("FavList")
+                .orderByChild("itemId").equalTo( key );
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ( dataSnapshot.child("favourite").exists()){
+                if ( dataSnapshot.exists() ){
                     favourite.setImageResource(R.drawable.fav_icon);
-                } else  {
+                    shopitemModel.setFav(true);
+                } else {
                     favourite.setImageResource(R.drawable.ic_favorite_empty);
+                    shopitemModel.setFav(false);
+
 
                 }
+
             }
 
             @Override
@@ -177,6 +162,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
 
             }
         });
+
     }
 
     @Override
@@ -191,8 +177,6 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         TextView shoplocation ;
         ImageView favourite  ;
         ItemClickListener itemClickListener;
-        //FavouriteClickListener favouriteClickListener ;
-        //RateBarClickListener rateBarClickListener;
         View rootView ;
         ImageButton ShareBtn ;
         RatingBar ratingBar ;
@@ -203,9 +187,7 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
             ShopName = itemView.findViewById(R.id.shop_name);
             shoplocation = itemView.findViewById(R.id.shop_location);
             rootView = itemView ;
-            //this.favouriteClickListener = favouriteClickListener ;
             this.itemClickListener =itemClickListener;
-            //this.rateBarClickListener =rateBarClickListener ;
             this.favourite = itemView.findViewById(R.id.favourite_icon);
             ShareBtn = itemView.findViewById(R.id.share_shop);
             ratingBar = itemView.findViewById(R.id.rating_bar);
