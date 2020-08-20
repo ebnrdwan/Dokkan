@@ -1,48 +1,70 @@
 package com.engineering.dokkan.data.models;
 
 public class FavShopModel {
-    private int shopImage ;
-    private int shop_name_image ;
-    private String shop_name ;
-    private String shop_location ;
+    private String shopCoverImage;
+    private String shop_name_image;
+    private String shopName;
+    private String shopLocation;
+    String mKey;
+    float rate ;
 
-    public FavShopModel(int shopImage, int shop_name_image, String shop_name, String shop_location) {
-        this.shopImage = shopImage;
+    public FavShopModel(String shopCoverImage, String shop_name_image, String shopName, String shopLocation) {
+        this.shopCoverImage = shopCoverImage;
         this.shop_name_image = shop_name_image;
-        this.shop_name = shop_name;
-        this.shop_location = shop_location;
+        this.shopName = shopName;
+        this.shopLocation = shopLocation;
     }
 
-    public int getShopImage() {
-        return shopImage;
+    public FavShopModel() {
+
     }
 
-    public void setShopImage(int shopImage) {
-        this.shopImage = shopImage;
+    public String getShopCoverImage() {
+        return shopCoverImage;
     }
 
-    public int getShop_name_image() {
+    public void setShopCoverImage(String shopCoverImage) {
+        this.shopCoverImage = shopCoverImage;
+    }
+
+    public String getShop_name_image() {
         return shop_name_image;
     }
 
-    public void setShop_name_image(int shop_name_image) {
+    public void setShop_name_image(String shop_name_image) {
         this.shop_name_image = shop_name_image;
     }
 
-    public String getShop_name() {
-        return shop_name;
+    public String getShopName() {
+        return shopName;
     }
 
-    public void setShop_name(String shop_name) {
-        this.shop_name = shop_name;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
-    public String getShop_location() {
-        return shop_location;
+    public String getShopLocation() {
+        return shopLocation;
     }
 
-    public void setShop_location(String shop_location) {
-        this.shop_location = shop_location;
+    public void setShopLocation(String shopLocation) {
+        this.shopLocation = shopLocation;
+    }
+
+    public String getmKey() {
+        return mKey;
+    }
+
+    public void setmKey(String mKey) {
+        this.mKey = mKey;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }
 
