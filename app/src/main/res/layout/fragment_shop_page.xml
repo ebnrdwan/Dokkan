@@ -88,7 +88,7 @@
             android:id="@+id/favourite_shop"
             android:layout_width="@dimen/width_30"
             android:layout_height="@dimen/height_30"
-            android:background="@drawable/fav_shop_empty"
+            tools:background="@drawable/fav_shop_empty"
 
             />
 

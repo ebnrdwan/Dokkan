@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.RateModel;
 import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,8 +56,9 @@ public class ProductDetailsFragment extends BaseFragment {
     TextView ProductName, productDescription, productPrice, ProductMaterial, productSize;
     //Shop
     TextView ShopName, ShopLocation;
-    ImageView ShopImage;
-    RatingBar ShopRate;
+    ImageView ShopImage , fav ;
+    RatingBar ratebarShop ;
+
 
     //Reviews
     private EditText review_editText ;
@@ -70,16 +72,19 @@ public class ProductDetailsFragment extends BaseFragment {
     private Button pluButton, minusButton;
     private int counter;
     //firebase
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private FirebaseStorage storage;
-    private StorageReference mStorageRef;
+
     ArrayList<ReviewModel> reviewList;
     ReviewModel reviewModel;
 
     private String prod_id;
     private String shopId ;
     private String currentUserID;
+
+    private ArrayList<RateModel> rateList ;
+    private ArrayList<RateModel> rateListShop ;
+    private double rateAverage = 0 ;
+
 
 
 
@@ -184,6 +189,9 @@ public class ProductDetailsFragment extends BaseFragment {
     private void initialize(View view) {
         currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        fav = view.findViewById(R.id.fav_inProductDetails);
+        ratebarShop = view.findViewById(R.id.rateBarforShop);
+
         //slider
         sliderView = view.findViewById(R.id.imageSlider);
         //button ask qustion
@@ -200,7 +208,7 @@ public class ProductDetailsFragment extends BaseFragment {
         //recyclerView
         reviewRecycView = view.findViewById(R.id.recycler);
         contaner = view.findViewById(R.id.contaner);
-        ratingBar = view.findViewById(R.id.ratingBar);
+        ratingBar = view.findViewById(R.id.rate_bar_Item);
 
         //RatingBar For  The Item
         RatingBar rat_bar_item = view.findViewById(R.id.rate_bar_Item);
@@ -221,6 +229,9 @@ public class ProductDetailsFragment extends BaseFragment {
         send_review = view.findViewById(R.id.send_btn);
         rate_review = view.findViewById(R.id.rate_bar_review);
         reviewList = new ArrayList<>();
+
+        rateList = new ArrayList<>();
+        rateListShop = new ArrayList<>();
 
 
     }
@@ -263,7 +274,7 @@ public class ProductDetailsFragment extends BaseFragment {
         });
     }
 
-    private void retriveShopData(String idShop) {
+    private void retriveShopData(final String idShop) {
         databaseReference = FirebaseDatabase.getInstance().getReference("shops").child(idShop);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -278,21 +289,30 @@ public class ProductDetailsFragment extends BaseFragment {
                 String shLocation = dataSnapshot.child("location").getValue(String.class);
                 ShopLocation.setText(shLocation);
 
-//                reviewList = new ArrayList<>();
-//                if ( dataSnapshot.child("Reviews").exists()) {
-//                    for (DataSnapshot snapshot : dataSnapshot.child("Reviews").getChildren()) {
-//                        String reviewID = snapshot.getValue(String.class);
-//                        RetriveReviewInRecycleView(reviewID);
-//                    }
-//                }
-//
-//                Collection<String> valuesReview = mapReview.values();
-//                //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
-//                ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
-//                //reviewList = new ArrayList<>();
-//                for ( String id : listOfReviewsIDs){
-//                    RetriveReviewInRecycleView(id);
-//                }
+                DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference("RatedList")
+                        .child(idShop).child("ListOfRated");
+                dbreference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        rateListShop.clear();
+                        if ( dataSnapshot.exists()){
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                RateModel rateModel = snapshot.getValue(RateModel.class);
+                                rateAverage = rateAverage + rateModel.getRate() ;
+                                rateListShop.add(rateModel);
+                            }
+                            ratebarShop.setRating( (float)(rateAverage / rateListShop.size() ) );
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
             }
 
@@ -302,7 +322,7 @@ public class ProductDetailsFragment extends BaseFragment {
         });
     }
 
-    private void retriveProuductData(String productId) {
+    private void retriveProuductData(final String productId) {
         databaseReference = FirebaseDatabase.getInstance().getReference("products").child(productId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -324,6 +344,60 @@ public class ProductDetailsFragment extends BaseFragment {
 
                  shopId = dataSnapshot.child("shopId").getValue(String.class);
                 retriveShopData(shopId);
+
+                DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference("RatedList")
+                        .child(productId).child("ListOfRated");
+                dbreference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        rateList.clear();
+                        if ( dataSnapshot.exists()){
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                RateModel rateModel = snapshot.getValue(RateModel.class);
+                                rateAverage = rateAverage + rateModel.getRate() ;
+                                rateList.add(rateModel);
+                            }
+                            ratingBar.setRating( (float)(rateAverage / rateList.size() ) );
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                                    .getReference("products").child(productId);
+                            databaseReference.child("rate").setValue(  (float)(rateAverage / rateList.size() )  );
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+                final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(currentUserID).child("FavList")
+                        .orderByChild("itemId").equalTo( productId );
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ( dataSnapshot.exists() ){
+                            fav.setImageResource(R.drawable.fav_icon);
+                        } else {
+                            fav.setImageResource(R.drawable.ic_favorite_empty);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
 
 

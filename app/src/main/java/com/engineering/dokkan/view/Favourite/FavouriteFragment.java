@@ -34,6 +34,7 @@ public class FavouriteFragment extends BaseFragment{
         viewadapter.AddFragment(new FavoriteShopFragment(), "Shop");
         viewPager.setAdapter(viewadapter);
         tabLayout.setupWithViewPager(viewPager);
+
     }
         @Override
         public void setListeners () {
