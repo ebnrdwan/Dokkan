@@ -48,13 +48,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                 image3 = dataSnapshot.child("image3").getValue(String.class);
                 switch (position) {
                     case 1:
-                        Glide.with(viewHolder.itemView).load(image1).into(viewHolder.imageViewBackground);
+                        Glide.with(context).load(image1).into(viewHolder.imageViewBackground);
                         break;
                     case 2:
-                        Glide.with(viewHolder.itemView).load(image2).into(viewHolder.imageViewBackground);
+                        Glide.with(context).load(image2).into(viewHolder.imageViewBackground);
                         break;
                     default:
-                        Glide.with(viewHolder.itemView).load(image3).into(viewHolder.imageViewBackground);
+                        Glide.with(context).load(image3).into(viewHolder.imageViewBackground);
                         break;
                 }
             }
