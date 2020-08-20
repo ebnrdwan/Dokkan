@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/color_9a7c84"
+    android:background="#9a7c84"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/martop35"
+            android:layout_marginTop="35dp"
             android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
             />
 
@@ -25,10 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/arrow_back"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/marginleft_90"
-            android:text="@string/my_address_book"
-            android:textSize="@dimen/s2sp"
-            android:textColor="@color/color_F1EDED"
+            android:layout_marginStart="90dp"
+            android:text="My Address Book"
+            android:textSize="20sp"
+            android:textColor="#F1EDED"
             android:textStyle="bold" />
 
 

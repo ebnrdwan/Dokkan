@@ -110,6 +110,7 @@ public class LoginFragment extends BaseFragment {
                                 if (firebaseAuth.getCurrentUser().isEmailVerified()) {
                                     loadingbar.dismiss();
                                     if (FirebaseAuth.getInstance().getCurrentUser() != null)
+
                                         SharedPreference.getInstance(getContext()).saveUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                                     getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);

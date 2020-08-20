@@ -1,82 +1,26 @@
 package com.engineering.dokkan.data.models;
 
+import java.util.List;
+
 public class OrderItemModel {
 
-    private String shopname;
-    private String quantityPrice;
-    private String productName;
-    private String quantity;
-    private String productImage;
-    private String productID;
-    private String shopId;
-    private String categoryid;
-    private String key;
-
-    public OrderItemModel() {
+    public viewAddressModel getAddress() {
+        return address;
     }
 
-    public String getShopname() {
-        return shopname;
+    public void setAddress(viewAddressModel address) {
+        this.address = address;
     }
 
-    public void setShopname(String shopname) {
-        this.shopname = shopname;
+    List <CartItem> cartItem ;
+    String status   , key ;
+    viewAddressModel address;
+    public List<CartItem> getCartItem() {
+        return cartItem;
     }
 
-    public String getQuantityPrice() {
-        return quantityPrice;
-    }
-
-    public void setQuantityPrice(String quantityPrice) {
-        this.quantityPrice = quantityPrice;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
-    }
-
-    public String getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(String shopId) {
-        this.shopId = shopId;
-    }
-
-    public String getCategoryid() {
-        return categoryid;
-    }
-
-    public void setCategoryid(String categoryid) {
-        this.categoryid = categoryid;
+    public void setCartItem(List<CartItem> cartItem) {
+        this.cartItem = cartItem;
     }
 
     public String getKey() {
@@ -85,5 +29,14 @@ public class OrderItemModel {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

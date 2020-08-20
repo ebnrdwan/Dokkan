@@ -1,6 +1,7 @@
 package com.engineering.dokkan.view.address;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,15 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.SharedPreference;
+import com.engineering.dokkan.data.models.CartItem;
 import com.engineering.dokkan.data.models.OrderItemModel;
 import com.engineering.dokkan.data.models.viewAddressModel;
 import com.engineering.dokkan.view.orders.OrderAdapter;
+import com.engineering.dokkan.view.orders.OrdersFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,12 +34,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddreesesFragment extends Fragment implements View.OnClickListener {
+public class AddreesesFragment extends Fragment implements View.OnClickListener  {
 
 
     private ImageView arrowBack;
     private RecyclerView addressRecycle;
-    private Button addAddressBtn;
+    private Button addAddressBtn , orderTotal;
     private AddressAdapter adapter ;
     private DatabaseReference databaseReference;
     private List<viewAddressModel> addressList;
@@ -59,7 +66,8 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     }
 
     private void fetchAddresses() {
-        databaseReference.child("addresses").child("user2").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Users").child(SharedPreference.getInstance(getContext()).getUser())
+                .child("addresses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 addressList = new ArrayList<viewAddressModel>();
@@ -79,17 +87,19 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
 
     }
 
+
     private void initView( View itemView) {
         arrowBack = itemView.findViewById(R.id.arrow_back);
         addressRecycle = itemView.findViewById(R.id.recyclerview_id_address);
         addAddressBtn =  itemView.findViewById(R.id.plus_button);
+        orderTotal = itemView.findViewById(R.id.order_total);
+        orderTotal.setOnClickListener(this);
        addAddressBtn.setOnClickListener(this);
     }
 
     private void initRecView() {
         adapter = new AddressAdapter();
         addressRecycle.setAdapter(adapter);
-
     }
 
 
@@ -102,8 +112,43 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
            case R.id.plus_button:
                getNavController().navigate(R.id.action_addressesfragment_to_addAddressFragment);
                 break;
+            case R.id.order_total:
+
+                if (AddressAdapter.addressModel == null){
+                    Snackbar.make(v,"please select Address or Add new Address" , Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+                addOrder();
+
+                break;
             default:
                 break;
         }
     }
+
+    private void addOrder() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").push();
+         Log.e("a",databaseReference.getKey());
+
+        List <CartItem> cartItems = OrdersFragment.cartItemList;
+
+        viewAddressModel addressModel = AddressAdapter.addressModel;
+
+        OrderItemModel orderItemModel = new OrderItemModel();
+
+        orderItemModel.setAddress(addressModel);
+        orderItemModel.setCartItem(cartItems);
+        orderItemModel.setStatus("Pending");
+
+
+        FirebaseDatabase.getInstance().getReference("Orders").
+                push().setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+    }
+
+
 }

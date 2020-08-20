@@ -63,7 +63,6 @@
 
             <RatingBar
                 android:id="@+id/rate_bar_Item"
-                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_price"
@@ -71,8 +70,10 @@
                 android:layout_marginLeft="@dimen/margin_Top_618"
                 android:numStars="5"
                 android:progressTint="#6a4e5d"
-                android:rating="3.5"
                 android:stepSize=".5" />
+
+
+
 
             <TextView
                 android:id="@+id/item_name"
@@ -92,10 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
                 android:layout_below="@+id/item_name"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/margin_left_7"
-                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginRight="@dimen/margin_15"
                 android:orientation="horizontal">
 
                 <Button
@@ -114,63 +114,27 @@
                     android:textSize="@dimen/textSize_10"
                     android:textStyle="bold" />
 
-                <LinearLayout
+
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/counter"
                     android:layout_width="@dimen/width_100"
                     android:layout_height="@dimen/height_35"
+                    android:layout_marginTop="6dp"
+                    app:textSize="6sp"
+                    app:initialNumber="1"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/margin_10"
-                    android:background="@drawable/background_count"
+                    app:textColor="@color/colorAccent"
                     android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/minus_button"
-                        android:layout_width="@dimen/width_25"
-                        android:layout_height="@dimen/height_25"
-                        android:layout_gravity="bottom"
-                        android:layout_marginLeft="@dimen/margin_3"
-                        android:layout_marginBottom="@dimen/margin_2"
-                        android:background="@drawable/background_mins"
-                        android:gravity="center"
-                        android:text="@string/string_minus_text"
-                        android:textSize="@dimen/text_size_15"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/counter_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/margin_15"
-                        android:gravity="center"
-                        android:text="@string/string_counter_text"
-                        android:textColor="@color/txtColor_black"
-                        android:textSize="@dimen/text_size_15" />
-
-
-                    <Button
-                        android:id="@+id/plus_button"
-                        android:layout_width="@dimen/width_25"
-                        android:layout_height="@dimen/height_25"
-                        android:layout_gravity="bottom"
-                        android:layout_marginLeft="@dimen/ml12"
-                        android:layout_marginBottom="@dimen/margin_2"
-                        android:background="@drawable/background_plus"
-                        android:gravity="center"
-                        android:text="@string/string_plus_text"
-                        android:textColor="@color/color_white"
-                        android:textSize="@dimen/text_size_15"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
+                    app:backGroundColor="#E9E7E7"
+                    />
 
                 <Button
                     android:id="@+id/addToCard_button"
                     android:layout_width="@dimen/width_94"
-                    android:layout_height="@dimen/height_35"
-                    android:layout_margin="@dimen/margin_10"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_10"
                     android:background="@drawable/background"
                     android:padding="@dimen/padding_5"
                     android:text="@string/string_text_AddToCart"

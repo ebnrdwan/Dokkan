@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/marginleft_77"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white">
+    android:background="@color/color_f8f6f7">
 
     <include layout="@layout/order_toolbar"
         android:id="@+id/toolbar"/>
@@ -15,21 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
+        android:layout_above="@+id/add_your_address"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_above="@+id/order_total">
+        android:layout_marginTop="2dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/order_total"
+        android:id="@+id/add_your_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Order All"
+        android:text="Add Your Address"
+        android:textAlignment="gravity"
+        android:padding="25dp"
         android:textColor="@color/color_F1EDED"
-        android:background="@color/color_9a7c84"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
+        android:background="@drawable/rounded_button"
+        android:layout_margin="@dimen/margin_15"
+        android:textSize="17sp"
+        android:textStyle="bold"
         />
 
 

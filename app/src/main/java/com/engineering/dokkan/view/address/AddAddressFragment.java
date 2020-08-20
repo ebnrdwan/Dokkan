@@ -1,5 +1,6 @@
 package com.engineering.dokkan.view.address;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.data.models.viewAddressModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -83,21 +85,23 @@ public class AddAddressFragment extends Fragment implements View.OnClickListener
         addressModel.setCustomerName(customerName);
         addressModel.setCustomerCountry(customerCountry);
         addressModel.setCustomerNumber(customerPhone);
-        addressModel.setCustomerID("user2");
+        addressModel.setCustomerID(SharedPreference.getInstance(getContext()).getUser());
 
         //show your custom progress
 
 
-        databaseReference.child("addresses").child(addressModel.getCustomerID()).push().setValue(addressModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseDatabase.getInstance().getReference("Users").child(SharedPreference.getInstance(getContext()).getUser())
+                .child("addresses").push().setValue(addressModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                  // Hide your custom progress
+                    // Hide your custom progress
                     getNavController().navigate(R.id.action_addAddress_to_AddressFragment);
-
                 }
             }
         });
+
+
 
 
     }

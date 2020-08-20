@@ -96,8 +96,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         });
 
         //Favourite
-        isFavourite(productsList.get(position).getProductId() , holder.favourite , productsList.get(position)) ;
-        holder.favourite.setOnClickListener(new View.OnClickListener() {
+        //isFavourite(productsList.get(position).getProductId() , holder.favourite , productsList.get(position)) ;
+        /*holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ( !productsList.get(position).isFav() ){ //  if it was false
@@ -126,11 +126,14 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
 
             }
         });
+
+         */
         //Product click
         holder.setDatainView(productsList.get(position));
 
     }
 
+    /*
     private void isFavourite(String key, final ImageView favourite, final ProductitemModel productitemModel) {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("products");
@@ -152,6 +155,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
             }
         });
     }
+
+     */
 
 //    private Uri getlocalBitmapUri(Bitmap bitmap) {
 //        Uri bmuri = null;

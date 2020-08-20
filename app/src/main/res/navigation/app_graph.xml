@@ -227,7 +227,11 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.engineering.dokkan.view.productdetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" />
+        android:label="ProductDetailsFragment" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_to_ProductDetails"
         app:destination="@id/productDetailsFragment" />

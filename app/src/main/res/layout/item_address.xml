@@ -14,59 +14,61 @@
     android:background="@color/bkgcolor_gray">
 
 
-    <RelativeLayout
-        android:id="@+id/top_relative"
-        android:layout_width="match_parent"
+  <RelativeLayout
+      android:id="@+id/top_relative"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/padding_5"
+      android:paddingBottom="@dimen/padding_5">
+
+    <TextView
+        android:id="@+id/customer_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding_5"
-        android:paddingBottom="@dimen/padding_5">
+        android:layout_marginTop="@dimen/mtop1"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:text="@string/customer_nname"
+        android:textColor="@color/color_6a4e5d"
+        android:textSize="@dimen/font_17"
+        android:textStyle="bold"/>
 
-      <TextView
-          android:id="@+id/customer_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/mtop1"
-          android:layout_marginLeft="@dimen/margin_10"
-          android:text="@string/customer_nname"
-          android:textColor="@color/color_6a4e5d"
-          android:textSize="@dimen/font_17"
-          android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/customer_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mtop30"
+        android:layout_marginLeft="@dimen/ml15"
+        android:text="@string/customer_address"
+        android:textColor="@color/color_6a4e5d"
+        android:textSize="@dimen/size14" />
 
-        <TextView
-            android:id="@+id/customer_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mtop30"
-            android:layout_marginLeft="@dimen/ml15"
-            android:text="@string/customer_address"
-            android:textColor="@color/color_6a4e5d"
-            android:textSize="@dimen/size14"
-            />
+    <TextView
+        android:id="@+id/customer_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mtop60"
+        android:layout_marginLeft="@dimen/ml15"
+        android:text="@string/country"
+        android:textColor="@color/color_6a4e5d"
+        android:textSize="@dimen/size14" />
 
-        <TextView
-            android:id="@+id/customer_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mtop60"
-            android:layout_marginLeft="@dimen/ml15"
-            android:text="@string/country"
-            android:textColor="@color/color_6a4e5d"
-            android:textSize="@dimen/size14"
-            />
+    <TextView
+        android:id="@+id/customer_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mtop90"
+        android:layout_marginLeft="@dimen/ml15"
+        android:text="@string/customer_number"
+        android:textColor="@color/color_6a4e5d"
+        android:textSize="@dimen/size14" />
 
-        <TextView
-            android:id="@+id/customer_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mtop90"
-            android:layout_marginLeft="@dimen/ml15"
-            android:text="@string/customer_number"
-            android:textColor="@color/color_6a4e5d"
-            android:textSize="@dimen/size14"
-           />
-        </RelativeLayout>
+    <RadioButton
+        android:id="@+id/radio_btn_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text=""/>
 
-
-
+  </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

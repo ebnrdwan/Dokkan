@@ -49,7 +49,7 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
             holder.favourite.setImageResource(R.drawable.ic_favorite_empty);
         }
 
-        isFavourite(imageList.get(position).getProductId() , holder.favourite , imageList.get(position)) ;
+        //isFavourite(imageList.get(position).getProductId() , holder.favourite , imageList.get(position)) ;
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -3,12 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/color_9a7c84"
-    >
+    android:background="@color/color_9a7c84">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/arrow_back"
@@ -23,35 +21,12 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/arrow_back"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/marginleft_90"
-            android:text="@string/order_status"
-            android:textSize="@dimen/s2sp"
-            android:textColor="@color/color_F1EDED"
+            android:layout_marginStart="110dp"
+            android:text="My Card"
+            android:textSize="26sp"
+            android:textColor="#F1EDED"
             android:textStyle="bold" />
 
-
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Addreaass"
-            android:textSize="@dimen/s12"
-            android:textColor="@color/color_F1EDED"
-            android:layout_alignParentRight="true"
-            android:paddingTop="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_10"
-            android:layout_centerVertical="true"
-            />
-
-        <View
-            android:layout_width="@dimen/lw70"
-            android:layout_height="@dimen/lh1"
-            android:layout_alignParentRight="true"
-            android:background="@color/color_F1EDED"
-            android:layout_below="@id/tv_address"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginRight="@dimen/margin_10"
-            />
 
     </RelativeLayout>
 
