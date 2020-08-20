@@ -65,7 +65,8 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initializeViews(View view) {
-        currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        currentUserID= getUserIdWrapper();
         username = view.findViewById(R.id.user_name);
         showName();
         initViewModel();

@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Item_Fragment extends BaseFragment{
+public class FavoriteItemFragment extends BaseFragment{
 
 
     private RecyclerView recyclerView;
@@ -37,7 +37,7 @@ public class Item_Fragment extends BaseFragment{
 
 
 
-    public Item_Fragment() {
+    public FavoriteItemFragment() {
     }
 
 

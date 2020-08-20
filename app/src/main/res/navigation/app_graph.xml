@@ -90,7 +90,7 @@
 
     <fragment
         android:id="@+id/favourite_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Favourite_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavouriteFragment"
         android:label="Favourite_Fragment" >
         <action
             android:id="@+id/action_favourite_Fragment_to_item_Fragment"
@@ -101,12 +101,12 @@
     </fragment>
     <fragment
         android:id="@+id/item_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Item_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteItemFragment"
         android:label="item_fragment"
         tools:layout="@layout/item_fragment" />
     <fragment
         android:id="@+id/shop_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Shop_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteShopFragment"
         android:label="shop_fragment"
         tools:layout="@layout/shop_fragment" >
         <argument
@@ -253,5 +253,9 @@
         android:id="@+id/action_global_to_ProductDetails"
         app:destination="@id/productDetailsFragment" />
 
-
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:popUpTo="@id/app_graph"
+        app:popUpToInclusive="true"
+        app:destination="@id/loginFragment" />
 </navigation>

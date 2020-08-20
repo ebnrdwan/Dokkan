@@ -54,7 +54,7 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
 
     @Override
     public void onBindViewHolder(@NonNull ShopRecycAdaptar.shopHolder holder, final int position) {
-        Picasso.get().load( shopList.get(position).getShopImage() ).into ( holder.Shop_Name_Image );
+        Picasso.get().load( shopList.get(position).getShopImage() ).placeholder(R.drawable.icon4).into ( holder.Shop_Name_Image );
         holder.ShopName.setText(shopList.get(position).getShopName());
         holder.Shop_location.setText(shopList.get(position).getLocation());
         holder.ratingBar.setRating(shopList.get(position).getRate());

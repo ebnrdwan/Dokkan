@@ -6,10 +6,10 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_id"
+        android:id="@+id/rvFavoriteShops"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding_10">
+        android:layout_margin="@dimen/margin_10">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -24,10 +24,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -36,28 +34,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.models.ProductitemModel;
 import com.engineering.dokkan.data.models.ShopProductModel;
 import com.engineering.dokkan.data.models.ShopReviewModel;
 import com.engineering.dokkan.data.models.ShopModel;
-import com.engineering.dokkan.view.Favourite.Shop_Fragment;
-import com.engineering.dokkan.view.MainActivity;
 import com.engineering.dokkan.view.base.BaseFragment;
-import com.engineering.dokkan.view.home.ProductRecycAdapter;
-import com.engineering.dokkan.view.home.ShopRecyclerAdaptar;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.

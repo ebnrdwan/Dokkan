@@ -3,15 +3,13 @@ package com.engineering.dokkan.view.Favourite;
 import android.view.View;
 
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class Favourite_Fragment extends BaseFragment{
+public class FavouriteFragment extends BaseFragment{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -30,8 +28,8 @@ public class Favourite_Fragment extends BaseFragment{
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpagerfav);
         viewadapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        viewadapter.AddFragment(new Item_Fragment(), "Item");
-        viewadapter.AddFragment(new Shop_Fragment(), "Shop");
+        viewadapter.AddFragment(new FavoriteItemFragment(), "Item");
+        viewadapter.AddFragment(new FavoriteShopFragment(), "Shop");
         viewPager.setAdapter(viewadapter);
         tabLayout.setupWithViewPager(viewPager);
 
