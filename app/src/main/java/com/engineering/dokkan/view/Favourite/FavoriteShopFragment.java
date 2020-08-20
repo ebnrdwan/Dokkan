@@ -6,14 +6,13 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.FavShopModel;
 import com.engineering.dokkan.view.base.BaseFragment;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -25,9 +24,11 @@ public class FavoriteShopFragment extends BaseFragment {
     private ArrayList<FavShopModel> shopData = new ArrayList<>();
     private ShopRecycAdaptar myAdapter;
     private String currentuserId;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public FavoriteShopFragment() {
     }
+
 
     @Override
     public int getLayoutId() {
@@ -45,6 +46,16 @@ public class FavoriteShopFragment extends BaseFragment {
 
     @Override
     public void setListeners() {
+        if (getView() != null) {
+            swipeRefreshLayout = getView().findViewById(R.id.swipeRefresh);
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    ShowShopData(getView());
+                }
+            });
+        }
+
 
     }
 
@@ -52,7 +63,7 @@ public class FavoriteShopFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if (getView() != null) {
-        initializeViews(getView());
+            initializeViews(getView());
         }
     }
 
@@ -64,6 +75,7 @@ public class FavoriteShopFragment extends BaseFragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                swipeRefreshLayout.setRefreshing(false);
                 shopData.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     String shopID = dataSnapshot1.child("itemId").getValue(String.class);
@@ -79,11 +91,14 @@ public class FavoriteShopFragment extends BaseFragment {
                                 Log.d("FAV MODEL ", "name" + favShopModel.getShopName());
                                 shopData.add(favShopModel);
                             }
+                            myAdapter = new ShopRecycAdaptar(getContext(), shopData);
+                            recyclerView.setAdapter(myAdapter);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                            swipeRefreshLayout.setRefreshing(false);
                         }
                     });
 
@@ -102,13 +117,11 @@ public class FavoriteShopFragment extends BaseFragment {
     }
 
     private void initializeRecyclerWithAdapter() {
+        if (getView() == null) return;
         recyclerView = getView().findViewById(R.id.rvFavoriteShops);
-        shopData.clear();
-        shopData.add(new FavShopModel("","nasr city","ims","shopname",false,4.0f));
-        shopData.add(new FavShopModel("","nasr city","img","shopname",false,4.0f));
         myAdapter = new ShopRecycAdaptar(getContext(), shopData);
         recyclerView.setAdapter(myAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
 
