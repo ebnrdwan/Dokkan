@@ -1,5 +1,6 @@
 package com.engineering.dokkan.view.home;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -174,7 +175,11 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(RecProdModel item) {
 
-                Toast.makeText(getActivity(), "image Clicked", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("productId", item.getProductId());
+                navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
+
+
             }
         };
         showRecentView(view, listenerRecView);

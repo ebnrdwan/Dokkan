@@ -15,23 +15,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.FavShopModel;
 import com.engineering.dokkan.data.models.FavitemModel;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favouriteHolder> {
     Context c;
     private ArrayList<FavitemModel> favList;
-
+    private String currentuserId ;
 
 
     public ItemRecycAdapter(Context c, ArrayList<FavitemModel> favList) {
-
         this.c = c;
         this.favList = favList;
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+
+    }
+
+    void updateData(ArrayList<FavitemModel> newprods){
+        favList = newprods;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,15 +55,31 @@ public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favo
 
     @Override
     public void onBindViewHolder(@NonNull final favouriteHolder holder, final int position) {
-        Picasso.get().load(favList.get(position).getImage()).into(holder.Item_Image);
+        Picasso.get().load(favList.get(position).getImage1() ).into(holder.Item_Image);
         holder.Item_Name.setText(favList.get(position).getName());
         holder.Item_Price.setText(favList.get(position).getPrice());
+        holder.favBtn.setImageResource(R.drawable.fav_icon);
 
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference("Fav_Item")
-                        .child(favList.get(position).getmKey()).removeValue();
+
+                final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(currentuserId).child("FavList")
+                        .orderByChild("itemId").equalTo( favList.get(position).getProductId() );
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for ( DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                            snapshot.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -60,7 +88,7 @@ public class ItemRecycAdapter extends RecyclerView.Adapter<ItemRecycAdapter.favo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, favList.get(position).getImage());
+                intent.putExtra(Intent.EXTRA_TEXT, favList.get(position).getImage1());
                 intent.setType("text/plain");
                 c.startActivity(Intent.createChooser(intent, "Send To"));
             }

@@ -1,4 +1,5 @@
 package com.engineering.dokkan.view.Favourite;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -8,12 +9,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.FavShopModel;
 import com.engineering.dokkan.data.models.FavitemModel;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -27,6 +31,8 @@ public class Item_Fragment extends BaseFragment{
     private ItemRecycAdapter mAdapter;
     private ArrayList<FavitemModel> data;
     DatabaseReference mDataReferance;
+    private String currentuserId ;
+
 
 
 
@@ -42,6 +48,7 @@ public class Item_Fragment extends BaseFragment{
 
     @Override
     public void initializeViews(View view) {
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ShowItemData(view);
     }
 
@@ -53,29 +60,54 @@ public class Item_Fragment extends BaseFragment{
 
 
     private void ShowItemData(View v) {
-        recyclerView = v.findViewById(R.id.recycler_id);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = v.findViewById(R.id.recycler_idfav);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        data = new ArrayList<FavitemModel>();
-        mDataReferance = FirebaseDatabase.getInstance().getReference().child("Fav_Item");
-        mDataReferance.addValueEventListener(new ValueEventListener() {
+        data = new ArrayList<>();
+
+        mAdapter = new ItemRecycAdapter(getContext(), data);
+        recyclerView.setAdapter(mAdapter);
+
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                .child(currentuserId).child("FavList")
+                .orderByChild("isProduct").equalTo(true);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 data.clear();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                {
+                    String prodID = dataSnapshot1.child("itemId").getValue(String.class);
+                    Log.d("PROD ID " , "the id is" + prodID);
 
-                    FavitemModel favModel = postSnapshot.getValue(FavitemModel.class);
-                    data.add(favModel);
+                    final Query query1 = FirebaseDatabase.getInstance().getReference("products")
+                            .orderByChild("productId").equalTo(prodID);
+                    query1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                FavitemModel favitemModel = snapshot.getValue(FavitemModel.class);
+//                                Log.d("FAV MODEL ", "name" + favitemModel.getShopName());
+                                data.add(favitemModel);
+                            }
+                            mAdapter.updateData(data);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
                 }
-                mAdapter = new ItemRecycAdapter(getContext(), data);
-                recyclerView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
+
+
+
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
-
 
             }
         });

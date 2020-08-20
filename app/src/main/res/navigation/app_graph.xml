@@ -184,6 +184,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <argument
+            android:name="productId"
+            app:argType="string" />
 
     </fragment>
 

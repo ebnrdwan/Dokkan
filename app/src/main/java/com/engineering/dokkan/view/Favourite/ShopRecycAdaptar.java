@@ -15,17 +15,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.FavShopModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shopHolder> {
     Context c;
     private ArrayList<FavShopModel> shopList;
+    private String currentuserId ;
+
 
     public ShopRecycAdaptar(Context c, ArrayList<FavShopModel> shopList) {
         this.c = c;
         this.shopList = shopList;
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     }
 
     @NonNull
@@ -36,20 +46,41 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
         return new ShopRecycAdaptar.shopHolder(v);
     }
 
+
+    void updateData(ArrayList<FavShopModel> newShops){
+        shopList = newShops;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ShopRecycAdaptar.shopHolder holder, final int position) {
-        Picasso.get().load(shopList.get(position).getShop_name_image()).into(holder.Shop_Name_Image);
-        Picasso.get().load(shopList.get(position).getShopCoverImage()).into(holder.ShopCoverImage);
+        Picasso.get().load( shopList.get(position).getShopImage() ).into ( holder.Shop_Name_Image );
         holder.ShopName.setText(shopList.get(position).getShopName());
-        holder.Shop_location.setText(shopList.get(position).getShopLocation());
+        holder.Shop_location.setText(shopList.get(position).getLocation());
         holder.ratingBar.setRating(shopList.get(position).getRate());
+        holder.favBtn.setImageResource(R.drawable.fav_icon);
 
 
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference("Fav_Shop")
-                        .child(shopList.get(position).getmKey()).removeValue();
+
+               final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(currentuserId).child("FavList")
+                        .orderByChild("itemId").equalTo( shopList.get(position).getKey() );
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for ( DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                            snapshot.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -57,7 +88,7 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, shopList.get(position).getShop_name_image());
+                intent.putExtra(Intent.EXTRA_TEXT, shopList.get(position).getShopImage());
                 intent.setType("text/plain");
                 c.startActivity(Intent.createChooser(intent, "Send To"));
             }
@@ -73,7 +104,6 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
 
 
   class shopHolder extends RecyclerView.ViewHolder {
-    ImageView ShopCoverImage;
     ImageView Shop_Name_Image ;
     TextView  ShopName ;
     TextView Shop_location ;
@@ -84,14 +114,15 @@ public class ShopRecycAdaptar extends RecyclerView.Adapter<ShopRecycAdaptar.shop
 
     public shopHolder(@NonNull View itemView) {
         super(itemView);
-        ShopCoverImage = itemView.findViewById(R.id.shopImage);
-        Shop_Name_Image = itemView.findViewById(R.id.shop_name_image);
-        ShopName = itemView.findViewById(R.id.shop_name);
-        Shop_location = itemView.findViewById(R.id.shop_location);
-        ShareBtn = itemView.findViewById(R.id.share_button);
-        favBtn = itemView.findViewById(R.id.favourite_icon);
-        ratingBar = itemView.findViewById(R.id.rating_bar);
+        Shop_Name_Image = itemView.findViewById(R.id.shop_name_imagefav);
+        ShopName = itemView.findViewById(R.id.shop_namefav);
+        Shop_location = itemView.findViewById(R.id.shop_locationfav);
+        ShareBtn = itemView.findViewById(R.id.share_buttonfav);
+        favBtn = itemView.findViewById(R.id.favourite_iconn);
+        ratingBar = itemView.findViewById(R.id.rating_barfav);
 
     }
+
+
 }
 }

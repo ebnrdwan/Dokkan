@@ -46,6 +46,7 @@ import com.engineering.dokkan.view.base.BaseFragment;
 import com.engineering.dokkan.view.home.ProductRecycAdapter;
 import com.engineering.dokkan.view.home.ShopRecyclerAdaptar;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -89,6 +90,9 @@ public class ShopPageFragment extends BaseFragment {
     private String msg ;
 
 
+    private String currentuserId ;
+
+
     RelativeLayout review ;
     RelativeLayout item ;
 
@@ -119,6 +123,8 @@ public class ShopPageFragment extends BaseFragment {
     }
 
     private void initialization(View view) {
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         reviewList = new ArrayList<>();
 
         reviewRecyclerView = view.findViewById(R.id.recyclerview_review);
@@ -144,7 +150,7 @@ public class ShopPageFragment extends BaseFragment {
 
     }
 
-    private void showShopDetails(String id) {
+    private void showShopDetails(final String id) {
         final Query query = FirebaseDatabase.getInstance().getReference("shops")
                 .orderByChild("key").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
@@ -152,7 +158,7 @@ public class ShopPageFragment extends BaseFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ShopModel shops = snapshot.getValue(ShopModel.class);
+                    final ShopModel shops = snapshot.getValue(ShopModel.class);
                     Picasso.get().load(shops.getShopImage()).into(shopimg);
                     shopname.setText(shops.getShopName());
                     ratingBar.setRating(shops.getRate());
@@ -164,6 +170,31 @@ public class ShopPageFragment extends BaseFragment {
                     fb_link = shops.getFbLink();
                     insta_link = shops.getInstaLink();
                     callnum = shops.getPhoneNum() ;
+
+                    final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentuserId).child("FavList")
+                            .orderByChild("itemId").equalTo( id );
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if ( dataSnapshot.exists() ){
+                                fav.setImageResource(R.drawable.fav_icon);
+                                shops.setFav(true);
+                            } else {
+                                fav.setImageResource(R.drawable.ic_favorite_empty);
+                                shops.setFav(false);
+
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
 
 
 
@@ -283,6 +314,11 @@ public class ShopPageFragment extends BaseFragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
 
             }
         });

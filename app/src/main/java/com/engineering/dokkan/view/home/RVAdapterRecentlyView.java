@@ -61,66 +61,9 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
         });
 
         holder.setDatainView(imageList.get(position));
-//        if ( imageList.get(position).isFav() ){
-//            holder.favourite.setImageResource(R.drawable.fav_icon);
-//        } else {
-//            holder.favourite.setImageResource(R.drawable.ic_favorite_empty);
-//        }
-//
-//        isFavourite(imageList.get(position).getProductId() , holder.favourite , imageList.get(position)) ;
-//        holder.favourite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if ( !imageList.get(position).isFav() ){ //  if it was false
-//                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
-//                    databaseReference.child(imageList.get(position).getProductId()).child("favourite").setValue(true)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                    imageList.get(position).setFav(true);
-//
-//                } else { //if it was already true
-//                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
-//                    databaseReference.child(imageList.get(position).getProductId()).child("favourite").removeValue()
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                    imageList.get(position).setFav(false);
-//                }
-//
-//
-//            }
-//        });
 
     }
 
-//    private void isFavourite(String key, final ImageView favourite, final RecProdModel productitemModel) {
-//
-//        databaseReference = FirebaseDatabase.getInstance().getReference("products");
-//        databaseReference.child(key).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if ( dataSnapshot.child("favourite").exists()){
-//                    favourite.setImageResource(R.drawable.fav_icon);
-//                    productitemModel.setFav(true);
-//                } else  {
-//                    favourite.setImageResource(R.drawable.ic_favorite_empty);
-//                    productitemModel.setFav(false);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
     @Override
     public int getItemCount() {
@@ -136,7 +79,6 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
         public ImageView itemImage ;
         View rootView;
         ImageClickListener itemClickListener;
-        ImageView favourite  ;
 
 
 
@@ -145,7 +87,6 @@ public class RVAdapterRecentlyView extends RecyclerView.Adapter<RVAdapterRecentl
             super(itemView);
             this.itemClickListener =itemClickListener;
             rootView = itemView ;
-            this.favourite = itemView.findViewById(R.id.fav_recentview);
             itemImage = (ImageView) itemView.findViewById(R.id.recently_view);
 
         }
