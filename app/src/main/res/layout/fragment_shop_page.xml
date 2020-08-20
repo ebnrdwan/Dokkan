@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/marginleft_77"
+
     android:orientation="vertical">
 
     <RelativeLayout
@@ -88,7 +88,7 @@
             android:id="@+id/favourite_shop"
             android:layout_width="@dimen/width_30"
             android:layout_height="@dimen/height_30"
-            android:background="@drawable/fav_shop_empty"
+            tools:background="@drawable/fav_shop_empty"
 
             />
 
@@ -152,94 +152,47 @@
         android:layout_marginBottom="@dimen/margin_10"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
+        <RelativeLayout
+            android:id="@+id/relative_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_e6e4e4"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:padding="@dimen/padding_5"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabRippleColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorAccent">
+            android:layout_marginTop="@dimen/margin_10"
+            android:padding="@dimen/padding_5">
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/ItemsTab"
-                android:layout_width="@dimen/width_25"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/item" />
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/items"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_6a4e5d">
+            </TextView>
 
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/reviewsTab"
-                android:layout_width="@dimen/width_25"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/reviews" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/aboutTab"
-                android:layout_width="@dimen/width_25"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/about" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/policiesTab"
-                android:layout_width="@dimen/width_25"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/policies" />
-
-
-        </com.google.android.material.tabs.TabLayout>
-
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tab_layout"
+            android:layout_below="@id/relative_item"
+            android:layout_marginTop="@dimen/margin_15"
             android:paddingLeft="@dimen/padding_10"
-            android:paddingRight="@dimen/padding_15">
+            android:paddingRight="@dimen/padding_15"
+            android:layout_marginBottom="@dimen/margin_20"
+            >
 
 
         </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView
-            android:id="@+id/view_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recyclerview_item"
-            android:layout_alignParentRight="true"
-            android:paddingTop="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_5"
-            android:text="@string/view_more"
-            android:textColor="@color/colorPrimary"
-            />
-
-        <View
-            android:id="@+id/line"
-            android:layout_width="@dimen/width_70"
-            android:layout_height="@dimen/height_1"
-            android:background="@color/colorPrimary"
-            android:layout_below="@+id/view_more"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_5"/>
-
 
         <RelativeLayout
             android:id="@+id/relative_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line"
+            android:layout_below="@id/recyclerview_item"
             android:background="@color/color_e6e4e4"
             android:layout_marginTop="@dimen/margin_5"
             android:padding="@dimen/padding_5">
@@ -270,34 +223,11 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/view_more_review"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recyclerview_review"
-            android:layout_alignParentRight="true"
-            android:paddingTop="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_5"
-            android:text="@string/view_more"
-            android:textColor="@color/colorPrimary"
-            />
-
-        <View
-            android:id="@+id/line_review"
-            android:layout_width="@dimen/width_70"
-            android:layout_height="@dimen/height_1"
-            android:background="@color/colorPrimary"
-            android:layout_below="@+id/view_more_review"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_5"/>
-
-
         <RelativeLayout
             android:id="@+id/relative_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line_review"
+            android:layout_below="@id/recyclerview_review"
             android:background="@color/color_e6e4e4"
             android:layout_marginTop="@dimen/margin_5"
             android:padding="@dimen/padding_5">
@@ -435,10 +365,6 @@
             android:layout_below="@id/relative_policies"
             android:padding="@dimen/padding_10"
             />
-
-
-    </RelativeLayout>
-
 
 
 

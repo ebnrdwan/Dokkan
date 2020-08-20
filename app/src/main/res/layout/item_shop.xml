@@ -71,13 +71,14 @@
 
         <ImageView
             android:id="@+id/favourite_icon"
-            android:layout_width="@dimen/width_20"
-            android:layout_height="@dimen/width_20"
-            android:background="@drawable/ic_favorite_empty"
+            android:layout_width="@dimen/width_25"
+            android:layout_height="@dimen/height_25"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_favorite_empty"
+            android:padding="@dimen/padding_3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/margin_15"
             android:layout_marginTop="@dimen/margin_10"
-            android:layout_below="@id/shopImage"
            />
 
 

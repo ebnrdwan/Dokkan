@@ -1,48 +1,74 @@
 package com.engineering.dokkan.data.models;
 
-public class FavShopModel {
-    private int shopImage ;
-    private int shop_name_image ;
-    private String shop_name ;
-    private String shop_location ;
+import java.util.ArrayList;
 
-    public FavShopModel(int shopImage, int shop_name_image, String shop_name, String shop_location) {
-        this.shopImage = shopImage;
-        this.shop_name_image = shop_name_image;
-        this.shop_name = shop_name;
-        this.shop_location = shop_location;
+public class FavShopModel {
+    private String key ;
+    private String location;
+    private String shopImage;
+    private String shopName;
+    private boolean fav  ;
+    private float rate ;
+
+    public FavShopModel() {
     }
 
-    public int getShopImage() {
+    public FavShopModel( String key, String location, String shopImage, String shopName, boolean fav, float rate) {
+        this.key = key;
+        this.location = location;
+        this.shopImage = shopImage;
+        this.shopName = shopName;
+        this.fav = fav;
+        this.rate = rate;
+    }
+
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getShopImage() {
         return shopImage;
     }
 
-    public void setShopImage(int shopImage) {
+    public void setShopImage(String shopImage) {
         this.shopImage = shopImage;
     }
 
-    public int getShop_name_image() {
-        return shop_name_image;
+    public String getShopName() {
+        return shopName;
     }
 
-    public void setShop_name_image(int shop_name_image) {
-        this.shop_name_image = shop_name_image;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
-    public String getShop_name() {
-        return shop_name;
+    public boolean isFav() {
+        return fav;
     }
 
-    public void setShop_name(String shop_name) {
-        this.shop_name = shop_name;
+    public void setFav(boolean fav) {
+        this.fav = fav;
     }
 
-    public String getShop_location() {
-        return shop_location;
+    public float getRate() {
+        return rate;
     }
 
-    public void setShop_location(String shop_location) {
-        this.shop_location = shop_location;
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }
 

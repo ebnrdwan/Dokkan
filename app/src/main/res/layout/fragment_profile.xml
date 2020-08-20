@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,121 +8,151 @@
     android:background="@drawable/profile_bg">
 
 
-    <LinearLayout
-        android:id="@+id/linearTop"
+    <RelativeLayout
+        android:id="@+id/RelativeTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_8"
-        android:paddingTop="@dimen/padding_5"
-        android:gravity="center|center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        android:padding="@dimen/drawable_padding_30"
+
+        >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/profileimage"
-            app:civ_border_color="@color/color_9a7c84"
+            android:paddingRight="@dimen/padding_5"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_account_circle_black_24dp"
+            android:backgroundTint="@color/color_white"
+            app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="2dp"
             android:layout_marginBottom="@dimen/margin_2"
             android:layout_marginTop="@dimen/margin_5"
             />
 
+        <ImageView
+            android:id="@+id/edit_photo"
+            android:layout_marginTop="@dimen/marginstart_70"
+            android:layout_width="@dimen/width_30"
+            android:layout_height="@dimen/height_30"
+            android:layout_marginLeft="@dimen/margin_110"
+            android:src="@drawable/ic_add_circle_black_24dp"
+            />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="@dimen/padding_5">
+            android:background="@android:color/transparent"
+            android:text="Done"
+            android:visibility="invisible"
+            android:textColor="@color/color_white"
+            android:layout_toRightOf="@id/profile_image"
+            />
+
 
             <TextView
+                android:layout_below="@id/profile_image"
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_8"
-                android:layout_marginEnd="@dimen/margin_8"
                 android:text="@string/user_name"
+                android:fontFamily="cursive"
+                android:padding="@dimen/padding_5"
                 android:textColor="@color/color_white"
-                android:textSize="@dimen/textSize_15"
+                android:textSize="@dimen/text_size_20"
                 android:textStyle="bold" />
-            <Button
-                android:layout_width="@dimen/width_15"
-                android:layout_height="@dimen/height_15"
-                android:background="@drawable/edit_name"
-                android:layout_marginTop="@dimen/margin_6"/>
-
-        </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tv_location"
+            <ImageView
+                android:id="@+id/edit_name"
+                android:layout_width="@dimen/width_20"
+                android:layout_height="@dimen/height_20"
+                android:layout_marginRight="@dimen/margin_5"
+                android:src="@drawable/edit_name"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_toRightOf="@id/tv_name"
+                android:layout_below="@id/profile_image"
+
+                />
+
+           <EditText
+             android:layout_below="@id/profile_image"
+            android:id="@+id/et_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginEnd="@dimen/margin_8"
-            android:layout_marginBottom="@dimen/margin_5"
-            android:drawableStart="@drawable/location"
-            android:text="@string/location_name"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/color_white"
+            android:fontFamily="cursive"
             android:textColor="@color/color_white"
-            android:textSize="@dimen/textSize_15" />
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="bold"
+               android:background="@drawable/edit_text_bg"
+               android:layout_marginTop="@dimen/margin_8"
+               android:padding="@dimen/padding_5"
+               android:visibility="invisible"
+               />
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="@dimen/height_50"
+            android:layout_height="@dimen/height_40"
+            android:layout_toRightOf="@id/et_name"
+            android:layout_below="@id/profile_image"
+            android:text="Ok"
+            android:layout_marginTop="@dimen/margin_8"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/color_white"
+            android:visibility="invisible"
+            />
 
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
+        android:layout_below="@id/RelativeTop"
         android:id="@+id/cardView"
         android:layout_width="@dimen/width_300"
         android:layout_height="@dimen/height_320"
         android:layout_marginStart="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_8"
-        android:layout_marginBottom="@dimen/margin_8"
         android:elevation="@dimen/elevation_5"
         app:cardBackgroundColor="@color/color_F1EDED"
         app:cardCornerRadius="@dimen/cornerRaduis_20"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearTop"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_centerHorizontal="true"
         >
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_300"
-            android:paddingRight="@dimen/padding_10"
             android:paddingLeft="@dimen/padding_10"
             android:paddingTop="@dimen/padding_5"
-            >
+            android:paddingRight="@dimen/padding_10">
 
         </ListView>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/cardView"
         android:id="@+id/signout"
         android:layout_width="@dimen/width_150"
         android:layout_height="@dimen/height_50"
         android:layout_marginStart="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_464"
         android:layout_marginEnd="@dimen/margin_8"
         android:elevation="@dimen/elevation_5"
         app:cardBackgroundColor="@color/color_6a4e5d"
         app:cardCornerRadius="@dimen/cornerRaduis_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearTop">
+        >
 
 
         <Button
+            android:id="@+id/signout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -134,4 +164,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

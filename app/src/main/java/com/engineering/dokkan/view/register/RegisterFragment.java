@@ -1,11 +1,16 @@
 package com.engineering.dokkan.view.register;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,11 +35,15 @@ import java.util.Objects;
  */
 public class RegisterFragment extends BaseFragment {
     private Button register;
-    EditText username, email, password, confirmPassword;
+    private TextView terms_condition;
+
+    private ImageView backbutton ;
+    private EditText username, email, password, confirmPassword;
     private ProgressDialog mProgress;
     FirebaseAuth mFireBaseAuth;
     private DatabaseReference databaseReference;
     private String currentUserID;
+    private CheckBox ckbox;
 
 
     public RegisterFragment() {
@@ -48,8 +57,6 @@ public class RegisterFragment extends BaseFragment {
     }
 
 
-
-
     @Override
     public void initializeViews(View view) {
         register = view.findViewById(R.id.butt);
@@ -60,13 +67,11 @@ public class RegisterFragment extends BaseFragment {
         mFireBaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mProgress = new ProgressDialog(getActivity());
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createAccount();
-            }
+        backbutton = view.findViewById(R.id.arrow_back);
 
-        });
+        terms_condition = view.findViewById(R.id.tv_terms);
+        ckbox = view.findViewById(R.id.cb_reg);
+
     }
 
     private void createAccount() {
@@ -89,61 +94,116 @@ public class RegisterFragment extends BaseFragment {
         if (TextUtils.isEmpty(confirmPass)) {
             Toast.makeText(getContext(), "Error!! ConfirmPassWord is Empty", Toast.LENGTH_LONG).show();
 
-        } else if (!pass.equals(confirmPass)) {
-            Toast.makeText(getContext(), "Error!! ConfirmPassWord should match PassWord", Toast.LENGTH_LONG).show();
 
-        } else {
-            mProgress.setTitle("Create User");
-            mProgress.setMessage("please Wait! User creation is in Progress...");
-            mProgress.setCanceledOnTouchOutside(true);
-            mProgress.show();
+            if (!ckbox.isChecked()) {
+                Toast.makeText(getContext(), " please accept our terms & condition first !!", Toast.LENGTH_LONG).show();
+            }
 
-            mFireBaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        currentUserID = mFireBaseAuth.getCurrentUser().getUid();
+            } else if (!pass.equals(confirmPass)) {
+                Toast.makeText(getContext(), "Error!! ConfirmPassWord should match PassWord", Toast.LENGTH_LONG).show();
 
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("uid", currentUserID);
-                        map.put("name", name);
-                        map.put("email", mail);
+            } else {
+                mProgress.setTitle("Create User");
+                mProgress.setMessage("please Wait! User creation is in Progress...");
+                mProgress.setCanceledOnTouchOutside(true);
+                mProgress.show();
 
-                        databaseReference.child("Users").child(currentUserID).setValue(map);
-                        mProgress.dismiss();
-                        Toast.makeText(getContext(), "Registered Successful :) \nPlease, Check your E-mail for Verifications", Toast.LENGTH_LONG).show();
+                mFireBaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            currentUserID = mFireBaseAuth.getCurrentUser().getUid();
 
-                        mFireBaseAuth.getCurrentUser().sendEmailVerification()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            getNavController().navigate(R.id.action_registerFragment_to_LoginFragment);
-                                        } else {
-                                            mProgress.dismiss();
-                                            String message = task.getException().toString();
-                                            Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("uid", currentUserID);
+                            map.put("name", name);
+                            map.put("email", mail);
 
+                            databaseReference.child("Users").child(currentUserID).setValue(map);
+                            mProgress.dismiss();
+                            Toast.makeText(getContext(), "Registered Successful :) \nPlease, Check your E-mail for Verifications", Toast.LENGTH_LONG).show();
+
+                            mFireBaseAuth.getCurrentUser().sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                getNavController().navigate(R.id.action_registerFragment_to_LoginFragment);
+                                            } else {
+                                                mProgress.dismiss();
+                                                String message = task.getException().getMessage();
+                                                Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+
+                                            }
                                         }
-                                    }
-                                });
-                    } else {
-                        String message = task.getException().toString();
-                        Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+                                    });
+                        } else {
+                            mProgress.dismiss();
+                            String message = task.getException().getMessage();
+                            Toast.makeText(getContext(), "Exception:" + message, Toast.LENGTH_LONG).show();
+                        }
                     }
+
+
+                });
+            }
+
+        }
+
+
+        @Override
+        public void setListeners () {
+            register.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    createAccount();
                 }
 
+            });
 
+
+            terms_condition.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showTermsAndCondition();
+                }
+            });
+            backbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getNavController().navigate(R.id.action_registerFragment_to_fragment_Welcome);
+                }
             });
         }
 
+    private void showTermsAndCondition() {
+        final AlertDialog.Builder mB = new AlertDialog.Builder(getContext());
+        mB.setTitle("License Agreement");
+        mB.setMessage( "" +
+                " Welcome to DOKKAN :))\n" +
+                "\n" +
+                "These terms and conditions outline the rules and regulations for the use of Dokkan application.\n" +
+                "\n" +
+                "By accessing this application we assume you accept these terms and conditions. Do not continue to use dokkan if you do not agree to take all of the terms and conditions stated on this page please .\n" +
+                "\n" +
+                "The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: 'Client', 'You' and 'developer of this app',"
+                + "let's be clear with each other , don't be harm for any person on your service." +
+                "these app Standard Terms and Conditions, Your product shall mean any audio, video text, images or other material you choose to display on this application. " +
+                "By displaying Your Content, you grant Company Name a non-exclusive, worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.\n" +
+                "\n" +
+                "Your Content must be your own and must not be invading any third-party's rights. Dokkan developer reserves the right to remove any of Your Content from this application at any time without notice."
+        );
+
+        mB.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog m = mB.create();
+        mB.show();
     }
 
 
-    @Override
-    public void setListeners() {
-
-    }
 
 
 }

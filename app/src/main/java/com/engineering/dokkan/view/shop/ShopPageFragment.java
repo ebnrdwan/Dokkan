@@ -24,27 +24,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.data.models.RateModel;
 import com.engineering.dokkan.data.models.ShopProductModel;
 import com.engineering.dokkan.data.models.ShopReviewModel;
 import com.engineering.dokkan.data.models.ShopModel;
-import com.engineering.dokkan.view.Favourite.Shop_Fragment;
-import com.engineering.dokkan.view.MainActivity;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.engineering.dokkan.view.home.ProductRecycAdapter;
-import com.engineering.dokkan.view.home.ShopRecyclerAdaptar;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,8 +51,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,6 +83,15 @@ public class ShopPageFragment extends BaseFragment {
     private String msg ;
 
 
+    private String currentuserId ;
+
+
+    RelativeLayout review ;
+    RelativeLayout item ;
+
+    private ArrayList<RateModel> ratelist ;
+    private double rateAverage = 0;
+
     public ShopPageFragment() {
         // Required empty public constructor
     }
@@ -109,11 +113,18 @@ public class ShopPageFragment extends BaseFragment {
         showShopProducts(shop_id);
         msg = " Welcome to the shop : http://www.dokkan.com/shops/" + shop_id ;
 
+        showShopReviews(shop_id);
 
 
     }
 
     private void initialization(View view) {
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        reviewList = new ArrayList<>();
+
+        ratelist = new ArrayList<>();
+
         reviewRecyclerView = view.findViewById(R.id.recyclerview_review);
 
         productRecyclerView = view.findViewById(R.id.recyclerview_item);
@@ -132,10 +143,12 @@ public class ShopPageFragment extends BaseFragment {
         contactUs = view.findViewById(R.id.contact_shop);
         share = view.findViewById(R.id.share_shop);
 
+        review = view.findViewById(R.id.relative_review);
+        item = view.findViewById(R.id.relative_item);
 
     }
 
-    private void showShopDetails(String id) {
+    private void showShopDetails(final String id) {
         final Query query = FirebaseDatabase.getInstance().getReference("shops")
                 .orderByChild("key").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
@@ -143,7 +156,7 @@ public class ShopPageFragment extends BaseFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ShopModel shops = snapshot.getValue(ShopModel.class);
+                    final ShopModel shops = snapshot.getValue(ShopModel.class);
                     Picasso.get().load(shops.getShopImage()).into(shopimg);
                     shopname.setText(shops.getShopName());
                     ratingBar.setRating(shops.getRate());
@@ -156,25 +169,54 @@ public class ShopPageFragment extends BaseFragment {
                     insta_link = shops.getInstaLink();
                     callnum = shops.getPhoneNum() ;
 
-//                    //show shop Reviews
-//                    HashMap<String , String> mapReview = shops.getReviews();
-//                    Collection<String> valuesReview = mapReview.values();
-//                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
-//                    ArrayList<String> listOfReviewsIDs = new ArrayList<String>(valuesReview);
-//                    reviewList = new ArrayList<>();
-//                    for ( String id : listOfReviewsIDs){
-//                        showShopReviews(id);
-//                    }
+                    final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentuserId).child("FavList")
+                            .orderByChild("itemId").equalTo( id );
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if ( dataSnapshot.exists() ){
+                                fav.setImageResource(R.drawable.fav_icon);
+                                shops.setFav(true);
+                            } else {
+                                fav.setImageResource(R.drawable.ic_favorite_empty);
+                                shops.setFav(false);
 
-                    //show shop Products
-//                    HashMap<String , String> mapProd = shops.getProducts();
-//                    Collection<String> valuesProduct = mapProd.values();
-//                    //Creating an ArrayList of values in the HashMap  ( HashMap >> ArrayList )
-//                    ArrayList<String> listOfProdIDs = new ArrayList<String>(valuesProduct);
-//                    prodList = new ArrayList<>();
-//                    for ( String id : listOfProdIDs){
-//                        showShopProducts(id);
-//                    }
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference("RatedList")
+                            .child(id).child("ListOfRated");
+                    dbreference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ratelist.clear();
+                            if ( dataSnapshot.exists()){
+                                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                    RateModel rateModel = snapshot.getValue(RateModel.class);
+                                    rateAverage = rateAverage + rateModel.getRate() ;
+                                    ratelist.add(rateModel);
+                                }
+                                ratingBar.setRating( (float)(rateAverage / ratelist.size() ) );
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
 
                 }
             }
@@ -187,26 +229,32 @@ public class ShopPageFragment extends BaseFragment {
         });
     }
 
-    private void showShopReviews(String id) {
+    private void showShopReviews(String shopID) {
 
         Query query = FirebaseDatabase.getInstance().getReference("Reviews")
-                .orderByChild("Key").equalTo(id);
+                .orderByChild("shopID").equalTo(shopID);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ShopReviewModel reviewModel = snapshot.getValue(ShopReviewModel.class);
-                    reviewList.add(reviewModel);
+                if (dataSnapshot.exists()) {
+                    review.setVisibility(View.VISIBLE);
+                    reviewRecyclerView.setVisibility(View.VISIBLE);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        ShopReviewModel reviewModel = snapshot.getValue(ShopReviewModel.class);
+                        reviewList.add(reviewModel);
+                    }
+                    ShopReviewRecycAdapter adapter = new ShopReviewRecycAdapter(reviewList);
+                    reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    reviewRecyclerView.setAdapter(adapter);
+                    DividerItemDecoration dv;
+                    dv = new DividerItemDecoration(reviewRecyclerView.getContext(),
+                            ((LinearLayoutManager) new LinearLayoutManager(getActivity())).getOrientation());
+                    reviewRecyclerView.addItemDecoration(dv);
+
+                } else{
+                    review.setVisibility(View.GONE);
+                    reviewRecyclerView.setVisibility(View.GONE);
                 }
-                ShopReviewRecycAdapter adapter = new ShopReviewRecycAdapter(reviewList);
-                reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                reviewRecyclerView.setAdapter(adapter);
-                DividerItemDecoration dv;
-                dv = new DividerItemDecoration(reviewRecyclerView.getContext(),
-                      ((LinearLayoutManager)new LinearLayoutManager(getActivity()) ).getOrientation());
-                reviewRecyclerView.addItemDecoration(dv);
-
-
             }
 
             @Override
@@ -225,17 +273,23 @@ public class ShopPageFragment extends BaseFragment {
         Query query = FirebaseDatabase.getInstance().getReference("products")
                 .orderByChild("shopId").equalTo(id);
         if ( query != null) {
+            item.setVisibility(View.VISIBLE);
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        ShopProductModel productModel = snapshot.getValue(ShopProductModel.class);
-                        prodList.add(productModel);
-                    }
-                    ShopProductRecycAdapter adapter = new ShopProductRecycAdapter(getContext(), prodList, ListenerProducts);
-                    productRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    productRecyclerView.setAdapter(adapter);
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            ShopProductModel productModel = snapshot.getValue(ShopProductModel.class);
+                            prodList.add(productModel);
+                        }
+                        ShopProductRecycAdapter adapter = new ShopProductRecycAdapter(getContext(), prodList, ListenerProducts);
+                        productRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                        productRecyclerView.setAdapter(adapter);
 
+                    } else {
+                        Toast.makeText(getActivity() , "Still no products in this shop.." , Toast.LENGTH_SHORT).show();
+                        item.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
@@ -254,8 +308,13 @@ public class ShopPageFragment extends BaseFragment {
         ListenerProducts = new ShopProductRecycAdapter.ItemClickListener() {
             @Override
             public void onItemClick(ShopProductModel item) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("productId", item.getProductId());
+                        navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
 
-            }
+
+
+                    }
         };
 
 
@@ -280,6 +339,11 @@ public class ShopPageFragment extends BaseFragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
 
             }
         });

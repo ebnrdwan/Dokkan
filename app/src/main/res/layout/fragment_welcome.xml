@@ -4,29 +4,9 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@drawable/back_ground"
+    android:background="@drawable/welcome_cust"
     tools:context=".view.MainActivity">
 
-    <ImageView
-        android:id="@+id/img_1"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_25"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/logo_height"
-        android:src="@drawable/logo1" />
-
-    <TextView
-        android:id="@+id/edt_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/img_1"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:text="@string/made_with_love"
-        android:textColor="@color/color_ecddcd"
-        android:textSize="@dimen/font_23"
-        android:textStyle="bold" />
 
 <RelativeLayout
     android:layout_alignParentBottom="true"

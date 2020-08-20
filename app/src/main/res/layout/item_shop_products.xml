@@ -11,7 +11,7 @@
         android:layout_height="@dimen/height_180"
         android:elevation="@dimen/elevation_5"
         app:cardBackgroundColor="@color/color_white"
-        app:cardCornerRadius="@dimen/cornerRadius_6"
+        app:cardCornerRadius="@dimen/cornerRadius_20"
         android:layout_marginRight="@dimen/margin_15"
         android:layout_marginBottom="@dimen/margin_15"
         android:layout_marginLeft="@dimen/margin_5">
@@ -19,6 +19,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_F1EDED"
             >
 
             <ImageView
@@ -96,6 +97,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="start|top"
                 android:src="@drawable/ic_share"
+                android:layout_marginRight="@dimen/margin_3"
                 android:layout_below="@+id/ratingBar"
                 android:layout_alignParentRight="true"/>
 

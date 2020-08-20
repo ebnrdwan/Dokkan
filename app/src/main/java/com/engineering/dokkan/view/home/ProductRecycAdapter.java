@@ -24,10 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.models.ProductitemModel;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -41,7 +43,8 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
     Context c ;
     private ArrayList<ProductitemModel> productsList;
     private ItemClickListener onItemClickListener;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceProd;
+    private String currentuserId ;
 
 
 
@@ -51,6 +54,7 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         this.c = c;
         this.productsList = productsList;
         this.onItemClickListener = onItemClickListener;
+        currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @NonNull
@@ -79,100 +83,174 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         });
 
         //RateBar
-        holder.ratingBar.setRating(productsList.get(position).getRate());
+        isRating(holder.ratingBar , productsList.get(position));
+//        holder.ratingBar.setRating(productsList.get(position).getRate());
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 productsList.get(position).setRate(ratingBar.getRating());
-                databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                databaseReference.child(productsList.get(position).getProductId()).child("rate").setValue(ratingBar.getRating())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
-                            }
-                        });
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RatedList")
+                .child(productsList.get(position).getProductId() ).child("ListOfRated");
+               // String key = databaseReference.push().getKey();
+                databaseReference.child(currentuserId).child("key").setValue( currentuserId);
+                databaseReference.child(currentuserId).child("isProduct").setValue(true);
+                databaseReference.child(currentuserId).child("customerId").setValue(  currentuserId );
+                databaseReference.child(currentuserId).child("Rate").setValue( ratingBar.getRating() );
+
+
+
             }
         });
 
         //Favourite
-        //isFavourite(productsList.get(position).getProductId() , holder.favourite , productsList.get(position)) ;
-        /*holder.favourite.setOnClickListener(new View.OnClickListener() {
+        isFavourite(productsList.get(position).getProductId() , holder.favourite , productsList.get(position)) ;
+
+        holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( !productsList.get(position).isFav() ){ //  if it was false
-                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(productsList.get(position).getProductId()).child("favourite").setValue(true)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    productsList.get(position).setFav(true);
+                if ( ! productsList.get(position).isFav() ){ //  if it was false
 
-                } else { //if it was already true
-                    databaseReference = FirebaseDatabase.getInstance().getReference("products");
-                    databaseReference.child(productsList.get(position).getProductId()).child("favourite").removeValue()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Toast.makeText(getActivity() , "shop favourite Succcesfully.." , Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    productsList.get(position).setFav(false);
+                    databaseReferenceProd = FirebaseDatabase.getInstance().getReference("products");
+                    databaseReferenceProd.child( productsList.get(position).getProductId() ).child("isFav").setValue(true);
+
+                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(currentuserId).child("FavList");
+                                  String key = databaseReference.push().getKey();
+                                  databaseReference.child(key).child("key").setValue(key);
+                                  databaseReference.child(key).child("isProduct").setValue(true);
+                                  databaseReference.child(key).child("itemId").setValue(  productsList.get(position).getProductId() );
+
+                }
+                else { //if it was already true
+
+                    databaseReferenceProd = FirebaseDatabase.getInstance().getReference("products");
+                    databaseReferenceProd.child( productsList.get(position).getProductId() ).child("isFav").removeValue();
+
+                     final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(currentuserId).child("FavList")
+                             .orderByChild("itemId").equalTo( productsList.get(position).getProductId() );
+                     query.addListenerForSingleValueEvent(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                             for ( DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                                 snapshot.getRef().removeValue();
+                             }
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                         }
+                     });
+
+
                 }
 
 
             }
         });
 
-         */
         //Product click
         holder.setDatainView(productsList.get(position));
 
     }
 
-    /*
-    private void isFavourite(String key, final ImageView favourite, final ProductitemModel productitemModel) {
+    private void isRating(final RatingBar ratingBar, ProductitemModel productitemModel) {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("products");
-        databaseReference.child(key).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ( dataSnapshot.child("favourite").exists()){
-                    favourite.setImageResource(R.drawable.fav_icon);
-                    productitemModel.setFav(true);
-                } else  {
-                    favourite.setImageResource(R.drawable.ic_favorite_empty);
-                    productitemModel.setFav(true);
-                }
-            }
+        Query query = FirebaseDatabase.getInstance().getReference("RatedList").child(productitemModel.getProductId())
+                .child("ListOfRated").orderByChild("customerId").equalTo(currentuserId);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ( dataSnapshot.exists()){
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                if (snapshot.child("Rate").getValue(Float.class) != null){
+                                    ratingBar.setRating( snapshot.child("Rate").getValue(Float.class) );
+                                }
+                            }
 
-            }
-        });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
     }
 
-     */
+    private void isFavourite(final String prod_Id, final ImageView favourite, final ProductitemModel productitemModel) {
 
-//    private Uri getlocalBitmapUri(Bitmap bitmap) {
-//        Uri bmuri = null;
-//        try {
-//            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-//            FileOutputStream fileOutputStream = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-//            fileOutputStream.close();
-//            bmuri = Uri.fromFile(file);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e2) {
-//            e2.printStackTrace();
-//        }
-//        return bmuri;
-//    }
+        final Query query = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentuserId).child("FavList")
+                            .orderByChild("itemId").equalTo( prod_Id );
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                favourite.setImageResource(R.drawable.fav_icon);
+                                productitemModel.setFav(true);
+                            } else {
+                                favourite.setImageResource(R.drawable.ic_favorite_empty);
+                                productitemModel.setFav(false);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+
+//        databaseReferenceProd = FirebaseDatabase.getInstance().getReference("products");
+//        databaseReferenceProd.child(prod_Id).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                if ( dataSnapshot.child("isFav").exists() ){
+
+//                    final Query query = FirebaseDatabase.getInstance().getReference("Users")
+//                            .child(currentuserId).child("FavList")
+//                            .orderByChild("itemId").equalTo( productitemModel.getProductId() );
+//                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if(dataSnapshot.exists()){
+//                                favourite.setImageResource(R.drawable.fav_icon);
+//                                productitemModel.setFav(true);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+
+
+
+//                } else  {
+//                    favourite.setImageResource(R.drawable.ic_favorite_empty);
+//                    productitemModel.setFav(false);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+    }
+
+
 
     @Override
     public int getItemCount() {

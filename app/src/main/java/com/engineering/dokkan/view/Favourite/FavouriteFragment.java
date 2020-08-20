@@ -1,17 +1,17 @@
 package com.engineering.dokkan.view.Favourite;
 
+import android.os.Bundle;
 import android.view.View;
 
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class Favourite_Fragment extends BaseFragment{
+public class FavouriteFragment extends BaseFragment{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -29,9 +29,9 @@ public class Favourite_Fragment extends BaseFragment{
     public void initializeViews(View view) {
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
-        viewadapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        viewadapter.AddFragment(new Item_Fragment(), "Item");
-        viewadapter.AddFragment(new Shop_Fragment(), "Shop");
+        viewadapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewadapter.AddFragment(new FavoriteItemFragment(), "Item");
+        viewadapter.AddFragment(new FavoriteShopFragment(), "Shop");
         viewPager.setAdapter(viewadapter);
         tabLayout.setupWithViewPager(viewPager);
 

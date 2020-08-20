@@ -25,17 +25,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/grid_two"
             />
-        <ImageView
-            android:id="@+id/fav_recentview"
-            android:layout_width="@dimen/width_25"
-            android:layout_height="@dimen/height_25"
-            android:layout_gravity="end"
-            android:paddingTop="@dimen/padding_5"
-            android:paddingRight="@dimen/padding_5"
-            android:src="@drawable/ic_favorite_empty"
-            android:background="@android:color/transparent"/>
-
-
 
 
 

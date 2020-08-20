@@ -27,26 +27,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_180"
                 android:background="@drawable/welcome_bg"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/welcome"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_90"
-                    android:layout_marginTop="@dimen/margin_20"
-                    android:background="@drawable/welcome_logo" />
-
-                <TextView
-                    android:id="@+id/user_name"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/margin_10"
-                    android:fontFamily="cursive"
-                    android:text="@string/welcomeUser_name"
-                    android:textColor="@color/color_F1EDED"
-                    android:textSize="@dimen/textSize_25"
-                    android:textStyle="bold" />
+                    >
+                    <TextView
+                        android:id="@+id/welcome_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:text="Welcome ,"
+                        android:layout_marginRight="@dimen/margin_5"
+                        android:fontFamily="sans-serif"
+                        android:textSize="@dimen/textSize_25"
+                        />
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/welcome_text"
+                        android:textColor="@color/color_white"
+                        android:text="@string/user_name"
+                        android:textSize="@dimen/text_size_20"
+                        android:fontFamily="cursive"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In your home of handmade"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:layout_below="@+id/welcome_text"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_size_15"
+                        />
+                </RelativeLayout>
 
 
             </LinearLayout>

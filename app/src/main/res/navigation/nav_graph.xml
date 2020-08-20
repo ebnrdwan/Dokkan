@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/favourite_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavouriteFragment"
+        android:label="Favourite_Fragment" >
+        <action
+            android:id="@+id/action_favourite_Fragment_to_item_Fragment"
+            app:destination="@id/item_Fragment" />
+        <action
+            android:id="@+id/action_favourite_Fragment_to_shop_Fragment"
+            app:destination="@id/shop_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/item_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteItemFragment"
+        android:label="item_fragment"
+        tools:layout="@layout/item_fragment" />
+    <fragment
+        android:id="@+id/shop_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteShopFragment"
+        android:label="shop_fragment"
+        tools:layout="@layout/shop_fragment" />
+
+    <fragment
+        android:id="@+id/empty_CartFragment"
+        android:name="com.engineering.dokkan.view.Empty_Cart.Empty_CartFragment"
+        android:label="fragment_empty__cart"
+        tools:layout="@layout/fragment_empty__cart" >
+        <action
+            android:id="@+id/action_empty_CartFragment_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.engineering.dokkan.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment2_to_mainFragment"
+            app:destination="@id/ChatFragement" />
+        <action
+            android:id="@+id/action_mainFragment2_to_chatFragement"
+            app:destination="@id/chatingFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment2_to_askQuestionFragment"
+            app:destination="@id/askQuestionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatingFragment"
+        android:name="com.engineering.dokkan.view.chating.ChatingFragment"
+        android:label="ChatingFragment"
+        tools:layout="@layout/fragment_chating" />
+    <fragment
+        android:id="@+id/askQuestionFragment"
+        android:name="com.engineering.dokkan.view.questions.AskQuestionFragment"
+        android:label="AskQuestionFragment"
+        tools:layout="@layout/fragment_askquestion_frag" />
+    <fragment
+        android:id="@+id/ChatFragement"
+        android:name="com.engineering.dokkan.view.chat.ChatFragement"
+        android:label="ChatFragement"
+        tools:layout="@layout/fragment_chat_fragement" />
+
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.engineering.dokkan.view.notifications.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.engineering.dokkan.view.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>
+

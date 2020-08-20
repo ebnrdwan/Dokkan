@@ -18,6 +18,9 @@
             android:id="@+id/deepLink"
             app:uri="http://www.dokkan.com/shops/{shop_id}"
              />
+        <argument
+            android:name="productId"
+            app:argType="string" />
     </fragment>
 
 
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/action_registerFragment_to_LoginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_fragment_Welcome"
+            app:destination="@id/fragment_Welcome" />
 
     </fragment>
     <fragment
@@ -69,18 +75,25 @@
             app:popUpTo="@id/app_graph"
             app:popUpToInclusive="true"
             app:destination="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_fragment_Welcome"
+            app:destination="@id/fragment_Welcome" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
         android:name="com.engineering.dokkan.view.login.ResetPassword"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" />
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPassword_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 
 
     <fragment
         android:id="@+id/favourite_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Favourite_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavouriteFragment"
         android:label="Favourite_Fragment" >
         <action
             android:id="@+id/action_favourite_Fragment_to_item_Fragment"
@@ -91,12 +104,12 @@
     </fragment>
     <fragment
         android:id="@+id/item_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Item_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteItemFragment"
         android:label="item_fragment"
         tools:layout="@layout/item_fragment" />
     <fragment
         android:id="@+id/shop_Fragment"
-        android:name="com.engineering.dokkan.view.Favourite.Shop_Fragment"
+        android:name="com.engineering.dokkan.view.Favourite.FavoriteShopFragment"
         android:label="shop_fragment"
         tools:layout="@layout/shop_fragment" >
         <argument
@@ -139,7 +152,17 @@
         android:id="@+id/profileFragment"
         android:name="com.engineering.dokkan.view.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_chatFragement"
+            app:destination="@id/chatFragement" />
+        <action
+            android:id="@+id/action_profileFragment_to_addressesfragment"
+            app:destination="@id/addressesfragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fragment_Welcome"
+            app:destination="@id/fragment_Welcome" />
+    </fragment>
 
 
 
@@ -160,12 +183,13 @@
         <action
             android:id="@+id/action_homeFragment2_to_profileFragment"
             app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment2_to_chatFragement"
-            app:destination="@id/chatFragement" />
+
         <action
             android:id="@+id/action_homeFragment2_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <argument
+            android:name="productId"
+            app:argType="string" />
 
     </fragment>
 
@@ -236,5 +260,9 @@
         android:id="@+id/action_global_to_ProductDetails"
         app:destination="@id/productDetailsFragment" />
 
-
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:popUpTo="@id/app_graph"
+        app:popUpToInclusive="true"
+        app:destination="@id/loginFragment" />
 </navigation>

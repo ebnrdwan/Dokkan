@@ -1,69 +1,27 @@
 package com.engineering.dokkan.data.models;
 
 public class ShopReviewModel {
-    private String comment;
-    private String image;
-    private String name;
-    private float rate;
-    private String time;
-    private String Key;
+    private String comment ;
     private String productID ;
+    private String rate;
+    private String reviewID ;
+    private String shopID ;
+    private String userID;
+    private String  date ;
 
 
     public ShopReviewModel() {
 
     }
 
-    public ShopReviewModel(String comment, String image, String name,
-                           float rate, Boolean fav_comment, int likesOfComment,
-                           String time, String key, String productID) {
+    public ShopReviewModel(String comment, String productID, String rate, String reviewID, String shopID, String userID, String date) {
         this.comment = comment;
-        this.image = image;
-        this.name = name;
+        this.productID = productID;
         this.rate = rate;
-        this.time = time;
-        Key = key;
-        this.productID = productID;
-    }
-    //    public String getItemImage() {
-//        return itemImage;
-//    }
-//
-//    public void setItemImage(String itemImage) {
-//        this.itemImage = itemImage;
-//    }
-//
-//    public String getItemName() {
-//        return itemName;
-//    }
-//
-//    public void setItemName(String itemName) {
-//        this.itemName = itemName;
-//    }
-//
-//    public String getItemDesc() {
-//        return itemDesc;
-//    }
-//
-//    public void setItemDesc(String itemDesc) {
-//        this.itemDesc = itemDesc;
-//    }
-
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
-    }
-
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String key) {
-        Key = key;
+        this.reviewID = reviewID;
+        this.shopID = shopID;
+        this.userID = userID;
+        this.date = date;
     }
 
     public String getComment() {
@@ -74,37 +32,51 @@ public class ShopReviewModel {
         this.comment = comment;
     }
 
-    public String getImage() {
-        return image;
+    public String getProductID() {
+        return productID;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public float getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(float rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 
-    public String getTime() {
-        return time;
+    public String getReviewID() {
+        return reviewID;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setReviewID(String reviewID) {
+        this.reviewID = reviewID;
     }
 
+    public String getShopID() {
+        return shopID;
+    }
 
+    public void setShopID(String shopID) {
+        this.shopID = shopID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

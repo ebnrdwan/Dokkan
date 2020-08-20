@@ -17,6 +17,9 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigator;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.engineering.dokkan.R;
+import com.google.firebase.auth.FirebaseAuth;
+
 abstract public class BaseFragment extends Fragment {
 
 
@@ -111,6 +114,23 @@ abstract public class BaseFragment extends Fragment {
 
     public void navigateUp() {
         NavHostFragment.findNavController(this).navigateUp();
+    }
+
+    public boolean isUserExisted() {
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
+    }
+
+    public String getUserId() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    public String getUserIdWrapper() {
+        if (isUserExisted()) {
+            return getUserId();
+        } else {
+            navigateTo(R.id.action_global_to_loginFragment, null, null, null);
+            return "";
+        }
     }
 
 
