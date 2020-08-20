@@ -26,7 +26,7 @@ public class FavouriteFragment extends BaseFragment{
     @Override
     public void initializeViews(View view) {
         tabLayout = view.findViewById(R.id.tablayout);
-        viewPager = view.findViewById(R.id.viewpagerfav);
+        viewPager = view.findViewById(R.id.viewpager);
         viewadapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         viewadapter.AddFragment(new FavoriteItemFragment(), "Item");
         viewadapter.AddFragment(new FavoriteShopFragment(), "Shop");

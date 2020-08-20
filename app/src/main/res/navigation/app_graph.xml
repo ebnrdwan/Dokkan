@@ -18,6 +18,9 @@
             android:id="@+id/deepLink"
             app:uri="http://www.dokkan.com/shops/{shop_id}"
              />
+        <argument
+            android:name="productId"
+            app:argType="string" />
     </fragment>
 
 

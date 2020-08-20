@@ -83,19 +83,23 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         });
 
         //RateBar
-        holder.ratingBar.setRating(productsList.get(position).getRate());
+        isRating(holder.ratingBar , productsList.get(position));
+//        holder.ratingBar.setRating(productsList.get(position).getRate());
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 productsList.get(position).setRate(ratingBar.getRating());
-                databaseReferenceProd = FirebaseDatabase.getInstance().getReference("products");
-                databaseReferenceProd.child(productsList.get(position).getProductId()).child("rate").setValue(ratingBar.getRating())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
-                            }
-                        });
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RatedList")
+                .child(productsList.get(position).getProductId() ).child("ListOfRated");
+               // String key = databaseReference.push().getKey();
+                databaseReference.child(currentuserId).child("key").setValue( currentuserId);
+                databaseReference.child(currentuserId).child("isProduct").setValue(true);
+                databaseReference.child(currentuserId).child("customerId").setValue(  currentuserId );
+                databaseReference.child(currentuserId).child("Rate").setValue( ratingBar.getRating() );
+
+
+
             }
         });
 
@@ -148,6 +152,32 @@ public class ProductRecycAdapter extends RecyclerView.Adapter<ProductRecycAdapte
         });
         //Product click
         holder.setDatainView(productsList.get(position));
+
+    }
+
+    private void isRating(final RatingBar ratingBar, ProductitemModel productitemModel) {
+
+        Query query = FirebaseDatabase.getInstance().getReference("RatedList").child(productitemModel.getProductId())
+                .child("ListOfRated").orderByChild("customerId").equalTo(currentuserId);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ( dataSnapshot.exists()){
+                            for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                                if (snapshot.child("Rate").getValue(Float.class) != null){
+                                    ratingBar.setRating( snapshot.child("Rate").getValue(Float.class) );
+                                }
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
     }
 

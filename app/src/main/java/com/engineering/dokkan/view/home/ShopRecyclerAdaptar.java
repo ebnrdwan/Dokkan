@@ -65,25 +65,28 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         holder.ShopName.setText(shopList.get(position).getShopName());
         holder.shoplocation.setText(shopList.get(position).getLocation());
 
-        holder.ratingBar.setRating(shopList.get(position).getRate());
+        //RateBar
+        isRating(holder.ratingBar , shopList.get(position));
+//        holder.ratingBar.setRating(productsList.get(position).getRate());
         holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-//                LayerDrawable stars = (LayerDrawable)holder.ratingBar.getProgressDrawable();
-//                stars.getDrawable(2) .setColorFilter(Color.YELLOW , PorterDuff.Mode.SRC_ATOP);
-
                 shopList.get(position).setRate(ratingBar.getRating());
-               //holder.rateBarClickListener.onRateClicked(position , ratingBar.getRating() );
-                databaseReference = FirebaseDatabase.getInstance().getReference("shops");
-                databaseReference.child(shopList.get(position).getKey()).child("rate").setValue(ratingBar.getRating())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Toast.makeText(getActivity() , "Rate Saved Succcesfully.." , Toast.LENGTH_LONG).show();
-                            }
-                        });
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RatedList")
+                        .child(shopList.get(position).getKey() ).child("ListOfRated");
+                // String key = databaseReference.push().getKey();
+                databaseReference.child(currentuserId).child("key").setValue( currentuserId);
+                databaseReference.child(currentuserId).child("isProduct").setValue(false);
+                databaseReference.child(currentuserId).child("customerId").setValue(  currentuserId );
+                databaseReference.child(currentuserId).child("Rate").setValue( ratingBar.getRating() );
+
+
+
             }
         });
+
+
 
 
 
@@ -133,6 +136,32 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
         });
         holder.setDatainView(shopList.get(position));
 
+
+    }
+
+    private void isRating(final RatingBar ratingBar, ShopitemModel shopitemModel) {
+
+        Query query = FirebaseDatabase.getInstance().getReference("RatedList").child(shopitemModel.getKey())
+                .child("ListOfRated").orderByChild("customerId").equalTo(currentuserId);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if ( dataSnapshot.exists()){
+                    for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                        if (snapshot.child("Rate").getValue(Float.class) != null){
+                            ratingBar.setRating( snapshot.child("Rate").getValue(Float.class) );
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -211,13 +240,6 @@ public class ShopRecyclerAdaptar extends RecyclerView.Adapter<ShopRecyclerAdapta
     interface ItemClickListener {
         void onItemClick(ShopitemModel item);
     }
-//
-//    interface FavouriteClickListener {
-//        void onFavouriteClicked(int position , boolean isFav );
-//    }
 
-//    interface RateBarClickListener {
-//        void onRateClicked(int position , float rate );
-//    }
 
 }

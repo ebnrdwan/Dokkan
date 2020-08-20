@@ -34,13 +34,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engineering.dokkan.R;
+import com.engineering.dokkan.data.models.ProductitemModel;
+import com.engineering.dokkan.data.models.RateModel;
 import com.engineering.dokkan.data.models.ShopProductModel;
 import com.engineering.dokkan.data.models.ShopReviewModel;
 import com.engineering.dokkan.data.models.ShopModel;
 import com.engineering.dokkan.view.base.BaseFragment;
+import com.engineering.dokkan.view.home.ProductRecycAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -85,6 +89,9 @@ public class ShopPageFragment extends BaseFragment {
     RelativeLayout review ;
     RelativeLayout item ;
 
+    private ArrayList<RateModel> ratelist ;
+    private double rateAverage = 0;
+
     public ShopPageFragment() {
         // Required empty public constructor
     }
@@ -115,6 +122,8 @@ public class ShopPageFragment extends BaseFragment {
         currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         reviewList = new ArrayList<>();
+
+        ratelist = new ArrayList<>();
 
         reviewRecyclerView = view.findViewById(R.id.recyclerview_review);
 
@@ -184,6 +193,28 @@ public class ShopPageFragment extends BaseFragment {
                         }
                     });
 
+                    DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference("RatedList")
+                            .child(id).child("ListOfRated");
+                    dbreference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ratelist.clear();
+                            if ( dataSnapshot.exists()){
+                                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                    RateModel rateModel = snapshot.getValue(RateModel.class);
+                                    rateAverage = rateAverage + rateModel.getRate() ;
+                                    ratelist.add(rateModel);
+                                }
+                                ratingBar.setRating( (float)(rateAverage / ratelist.size() ) );
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
 
 
@@ -277,8 +308,13 @@ public class ShopPageFragment extends BaseFragment {
         ListenerProducts = new ShopProductRecycAdapter.ItemClickListener() {
             @Override
             public void onItemClick(ShopProductModel item) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("productId", item.getProductId());
+                        navigateTo(R.id.action_global_to_ProductDetails, null, null, bundle);
 
-            }
+
+
+                    }
         };
 
 
