@@ -2,6 +2,7 @@ package com.engineering.dokkan.view.login;
 
 import android.app.ProgressDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,8 +21,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginFragment extends BaseFragment {
     private Button btn_sing;
@@ -122,11 +127,7 @@ public class LoginFragment extends BaseFragment {
                                 if (firebaseAuth.getCurrentUser().isEmailVerified()) {
                                     loadingbar.dismiss();
                                     if (FirebaseAuth.getInstance().getCurrentUser() != null)
-
-                                        SharedPreference.getInstance(getContext()).saveUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-                                    getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);
-                                    Toast.makeText(getActivity(), "Logged is succesfully.", Toast.LENGTH_SHORT).show();
+                                        getUserData(firebaseAuth.getCurrentUser().getUid());
 
                                 } else {
                                     loadingbar.dismiss();
@@ -141,4 +142,34 @@ public class LoginFragment extends BaseFragment {
                     });
         }
     }
+
+
+    void getUserData(String uuID) {
+         FirebaseDatabase.getInstance().getReference("Users")
+                .child(uuID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.getValue()!=null) {
+                    loadingbar.dismiss();
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                        SharedPreference.getInstance(getContext()).saveUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                    getNavController().navigate(R.id.action_loginFragment_to_homeFragment2);
+                    Toast.makeText(getActivity(), "Logged is succesfully.", Toast.LENGTH_SHORT).show();
+                    Log.e("a", getUserIdWrapper());
+                } else {
+                    loadingbar.dismiss();
+                    Toast.makeText(getActivity(), getString(R.string.user_not_found), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }
