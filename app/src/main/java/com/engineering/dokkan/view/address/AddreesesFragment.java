@@ -132,7 +132,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
          databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
 
 
-        List <CartItem> cartItems = OrdersFragment.cartItemList;
+        final List <CartItem> cartItems = OrdersFragment.cartItemList;
 
         viewAddressModel addressModel = AddressAdapter.addressModel;
 
@@ -147,7 +147,10 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                databaseReference.child("Users").child(SharedPreference.getInstance(getContext()).getUser()).child("cart").removeValue();
+                Toast.makeText(getContext(),"completed" , Toast.LENGTH_LONG).show();
+
+                databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(SharedPreference.getInstance(getContext()).getUser());
+                databaseReference.child("cart").removeValue();
             }
         });
     }
