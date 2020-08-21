@@ -2,12 +2,20 @@ package com.engineering.dokkan.data.models;
 
 public  class CartItem {
 
-    String productImage, productName , shopName  , productId, shopId  , status;
+    String productImage, productName , shopName  , productId, shopId  , status, key;
 
     int productQuanitity , productPrice  ;
 
     public String getStatus() {
         return status;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public void setStatus(String status) {

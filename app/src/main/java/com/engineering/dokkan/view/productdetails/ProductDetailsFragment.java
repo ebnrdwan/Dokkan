@@ -22,6 +22,7 @@ import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.data.models.CartItem;
 import com.engineering.dokkan.data.models.RateModel;
+import com.engineering.dokkan.utils.Constants;
 import com.engineering.dokkan.view.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -117,7 +118,8 @@ public class ProductDetailsFragment extends BaseFragment {
                 cartItem.setProductId(prod_id);
                 cartItem.setShopId(shopId);
                 cartItem.setShopName(shName);
-                cartItem.setStatus("Pending");
+                cartItem.setKey(prod_id);
+                cartItem.setStatus(Constants.PENDING);
                 FirebaseDatabase.getInstance().getReference("Users")
                         .child(SharedPreference.getInstance(getContext()).getUser()).child("cart").child(prod_id).setValue(cartItem);
 
@@ -143,7 +145,7 @@ public class ProductDetailsFragment extends BaseFragment {
                 String rate_string = "" + rate;
 
                 Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.getDefault());
                 String formattedDate = df.format(c);
 
                 DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Reviews");

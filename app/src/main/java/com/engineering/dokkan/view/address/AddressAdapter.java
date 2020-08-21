@@ -4,8 +4,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -13,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
-import com.engineering.dokkan.data.models.OrderItemModel;
-import com.engineering.dokkan.data.models.viewAddressModel;
+import com.engineering.dokkan.data.models.AddressModel;
 
 
 import java.util.ArrayList;
@@ -25,13 +22,13 @@ import java.util.List;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressHolder> {
 
-    private List<viewAddressModel> addressList;
+    private List<AddressModel> addressList;
 
-    public List<viewAddressModel> checkedAddress = new ArrayList<>();
+    public List<AddressModel> checkedAddress = new ArrayList<>();
 
     private int lastSelectedPosition = -1;
 
-    public static  viewAddressModel addressModel ;
+    public static AddressModel addressModel ;
 
 
     @NonNull
@@ -57,7 +54,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
         return addressList == null ? 0 : addressList.size();
     }
 
-    public void changeData(List<viewAddressModel> addressList) {
+    public void changeData(List<AddressModel> addressList) {
         this.addressList = addressList;
         notifyDataSetChanged();
     }

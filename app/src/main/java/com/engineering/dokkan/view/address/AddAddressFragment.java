@@ -1,6 +1,5 @@
 package com.engineering.dokkan.view.address;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.SharedPreference;
-import com.engineering.dokkan.data.models.viewAddressModel;
+import com.engineering.dokkan.data.models.AddressModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -80,7 +79,7 @@ public class AddAddressFragment extends Fragment implements View.OnClickListener
         return Navigation.findNavController(getActivity(), R.id.my_nav_host);}
 
     private void addAddressToDataBase(String customerName, String customerAddress, String customerCountry, String customerPhone) {
-        final viewAddressModel addressModel =new viewAddressModel();
+        final AddressModel addressModel =new AddressModel();
         addressModel.setCustomerAddress(customerAddress);
         addressModel.setCustomerName(customerName);
         addressModel.setCustomerCountry(customerCountry);

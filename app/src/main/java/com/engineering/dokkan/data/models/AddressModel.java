@@ -1,6 +1,6 @@
 package com.engineering.dokkan.data.models;
 
-public class viewAddressModel {
+public class AddressModel {
 
     private String customerID;
     private String customerName;
@@ -48,10 +48,10 @@ public class viewAddressModel {
         this.customerNumber = customerNumber;
     }
 
-    public viewAddressModel() {
+    public AddressModel() {
     }
 
-    public viewAddressModel(String customerName, String customerAddress, String customerCountry, String customerNumber) {
+    public AddressModel(String customerName, String customerAddress, String customerCountry, String customerNumber) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerCountry = customerCountry;

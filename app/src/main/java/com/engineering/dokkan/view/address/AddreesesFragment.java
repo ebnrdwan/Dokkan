@@ -19,8 +19,7 @@ import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.data.models.CartItem;
 import com.engineering.dokkan.data.models.OrderItemModel;
-import com.engineering.dokkan.data.models.viewAddressModel;
-import com.engineering.dokkan.view.orders.OrderAdapter;
+import com.engineering.dokkan.data.models.AddressModel;
 import com.engineering.dokkan.view.orders.OrdersFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddreesesFragment extends Fragment implements View.OnClickListener  {
@@ -42,7 +42,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     private Button addAddressBtn , orderTotal;
     private AddressAdapter adapter ;
     private DatabaseReference databaseReference;
-    private List<viewAddressModel> addressList;
+    private List<AddressModel> addressList;
 
 
 
@@ -70,10 +70,10 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
                 .child("addresses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                addressList = new ArrayList<viewAddressModel>();
+                addressList = new ArrayList<AddressModel>();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    viewAddressModel addressModel = dataSnapshot1.getValue(viewAddressModel.class);
+                    AddressModel addressModel = dataSnapshot1.getValue(AddressModel.class);
                     addressList.add(addressModel);
                 }
                 adapter.changeData(addressList);
@@ -129,12 +129,12 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     private void addOrder() {
 
          Log.e("a",databaseReference.push().getKey());
-         databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
+       databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
 
 
         final List <CartItem> cartItems = OrdersFragment.cartItemList;
 
-        viewAddressModel addressModel = AddressAdapter.addressModel;
+        AddressModel addressModel = AddressAdapter.addressModel;
 
         OrderItemModel orderItemModel = new OrderItemModel();
 
@@ -142,6 +142,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
         orderItemModel.setCartItem(cartItems);
 
         orderItemModel.setKey(databaseReference.getKey());
+        orderItemModel.setDate(new Date());
 
     databaseReference.setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
