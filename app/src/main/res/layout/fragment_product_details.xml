@@ -64,6 +64,7 @@
 
             <RatingBar
                 android:id="@+id/rate_bar_Item"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_price"
@@ -71,6 +72,7 @@
                 android:layout_marginLeft="@dimen/margin_Top_618"
                 android:numStars="5"
                 android:progressTint="#6a4e5d"
+                android:rating="3.5"
                 android:stepSize=".5" />
 
 
@@ -94,9 +96,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
                 android:layout_below="@+id/item_name"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:layout_marginBottom="@dimen/margin_left_7"
-                android:layout_marginLeft="@dimen/margin_30"
-                android:layout_marginRight="@dimen/margin_15"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <Button
@@ -133,9 +136,9 @@
                 <Button
                     android:id="@+id/addToCard_button"
                     android:layout_width="@dimen/width_94"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
+                    android:layout_height="@dimen/height_35"
                     android:layout_margin="@dimen/margin_10"
+                    android:layout_gravity="center"
                     android:background="@drawable/background"
                     android:padding="@dimen/padding_5"
                     android:text="@string/string_text_AddToCart"
