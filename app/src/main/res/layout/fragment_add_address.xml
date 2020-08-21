@@ -13,9 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        android:textSize="@dimen/Tsize25"
-        android:layout_marginLeft="@dimen/marginLeft_10"
-        android:textColor="@color/text2color"/>
+        android:paddingTop="@dimen/padding_10"
+        android:textSize="@dimen/text_size_20"
+        android:layout_marginLeft="@dimen/margin_13"
+        android:textColor="@color/colorPrimary"/>
 
     <EditText
         android:id="@+id/cust_name_edit"
@@ -24,7 +25,7 @@
         android:hint="@string/enter_your_name"
         android:layout_marginLeft="@dimen/ml13"
         android:textSize="@dimen/size_18"
-        android:textColor="@color/text2color"
+        android:textColor="@color/colorPrimaryDark"
         />
 
     <TextView
@@ -32,9 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/address"
-        android:textSize="@dimen/Tsize25"
-        android:layout_marginLeft="@dimen/marginLeft_10"
-        android:textColor="@color/text2color"/>
+        android:textSize="@dimen/text_size_20"
+        android:layout_marginLeft="@dimen/margin_13"
+        android:textColor="@color/colorPrimary"/>
 
     <EditText
         android:id="@+id/cust_address_edit"
@@ -43,7 +44,7 @@
         android:hint="@string/enter_your_address"
         android:layout_marginLeft="@dimen/ml13"
         android:textSize="@dimen/size_18"
-        android:textColor="@color/text2color"
+        android:textColor="@color/colorPrimaryDark"
         />
 
     <TextView
@@ -51,9 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/country"
-        android:textSize="@dimen/Tsize25"
-        android:layout_marginLeft="@dimen/marginLeft_10"
-        android:textColor="@color/text2color"/>
+        android:textSize="@dimen/text_size_20"
+        android:layout_marginLeft="@dimen/margin_13"
+        android:textColor="@color/colorPrimary"/>
 
     <EditText
         android:id="@+id/cust_add_edit"
@@ -62,7 +63,7 @@
         android:hint="@string/enter_your_country"
         android:layout_marginLeft="@dimen/ml13"
         android:textSize="@dimen/size_18"
-        android:textColor="@color/text2color"
+        android:textColor="@color/colorPrimaryDark"
         />
 
     <TextView
@@ -70,9 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number"
-        android:textSize="@dimen/Tsize25"
-        android:layout_marginLeft="@dimen/marginLeft_10"
-        android:textColor="@color/text2color"/>
+        android:textSize="@dimen/text_size_20"
+        android:layout_marginLeft="@dimen/margin_13"
+        android:textColor="@color/colorPrimary"/>
 
     <EditText
         android:id="@+id/cust_number_edit"
@@ -82,7 +83,7 @@
         android:hint="@string/enter_your_number"
         android:layout_marginLeft="@dimen/ml13"
         android:textSize="@dimen/size_18"
-        android:textColor="@color/text2color"
+        android:textColor="@color/colorPrimaryDark"
         />
 
 </LinearLayout>

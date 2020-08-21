@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="@dimen/height_60"
     android:background="@color/color_9a7c84"
     >
     <RelativeLayout
@@ -27,21 +27,20 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/ml80"
             android:text="@string/my_address_book"
-            android:textSize="@dimen/s2sp"
+            android:textSize="@dimen/textSize_15"
             android:textColor="@color/color_F1EDED"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/add_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/arrow_back"
+            android:layout_width="@dimen/width_40"
+            android:layout_height="@dimen/height_40"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/ml300"
-            android:text="@string/save"
-            android:textSize="@dimen/s2sp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_check_black_24dp"
             android:textColor="@color/color_F1EDED"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/margin_10"/>
 
     </RelativeLayout>
 

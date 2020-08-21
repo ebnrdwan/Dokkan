@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="@dimen/height_60"
     android:background="@color/color_9a7c84">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,8 +22,8 @@
             android:layout_toRightOf="@id/arrow_back"
             android:layout_centerInParent="true"
             android:layout_marginStart="110dp"
-            android:text="My Card"
-            android:textSize="26sp"
+            android:text="My Cart"
+            android:textSize="@dimen/text_size_20"
             android:textColor="#F1EDED"
             android:textStyle="bold" />
 
