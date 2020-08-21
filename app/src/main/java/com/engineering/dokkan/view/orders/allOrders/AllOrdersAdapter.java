@@ -54,8 +54,6 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
         holder.customerPhoneNum.setText(orderItemModels.get(position).getAddress().getCustomerNumber());
         String address = orderItemModels.get(position).getAddress().getCustomerCountry() + orderItemModels.get(position).getAddress().getCustomerAddress() ;
         holder.customerAddressLocation.setText(address);
-       //holder.orderDate.setText(""/*todo add order date*/);
-        Log.e("a",orderItemModels.get(position).getCartItem().size()+"");
 
         if(onItemClickListener!=null)
             holder.itemView.setOnClickListener(new View.OnClickListener() {
