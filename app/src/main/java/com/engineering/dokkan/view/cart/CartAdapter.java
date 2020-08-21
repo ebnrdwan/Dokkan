@@ -1,7 +1,6 @@
-package com.engineering.dokkan.view.orders;
+package com.engineering.dokkan.view.cart;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,21 +13,20 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.data.models.CartItem;
-import com.engineering.dokkan.view.productdetails.ProductDetailsFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
 
-public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.orderHolder> {
     private List<CartItem> cartItems;
 
     private Context context;
     DatabaseReference databaseReference;
 
 
-    public OrderAdapter(Context context) {
+    public CartAdapter(Context context) {
         this.context = context;
     }
 
@@ -37,11 +35,11 @@ public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder
     @Override
     public orderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
-        return new OrderAdapter.orderHolder(v);
+        return new CartAdapter.orderHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final OrderAdapter.orderHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final CartAdapter.orderHolder holder, final int position) {
 
         Picasso.get().load(cartItems.get(position).getProductImage()).into(holder.itemImage);
         holder.itemName.setText(cartItems.get(position).getProductName());

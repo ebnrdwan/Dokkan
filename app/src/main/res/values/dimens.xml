@@ -328,4 +328,12 @@
 
     <dimen name="marginTop_2">2dp</dimen>
     <dimen name="width_145">145dp</dimen>
+    <dimen name="separator_height">1dp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="layout_dimens_55">55dp</dimen>
+    <dimen name="profile_img_width_height">76dp</dimen>
+    <dimen name="layout_dimens_2">2dp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_Size_17">17sp</dimen>
 </resources>

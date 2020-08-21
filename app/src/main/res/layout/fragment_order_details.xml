@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@color/color_e6e4e4"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardCornerRadius="4dp"
+    cardview:cardElevation="@dimen/margin_3">
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:paddingTop="@dimen/padding_5"
+        android:paddingBottom="@dimen/padding_5"
+        >
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgCustomerProfile"
+            android:layout_width="@dimen/layout_dimens_55"
+            android:layout_height="@dimen/layout_dimens_55"
+            android:src="@drawable/icon4"
+            android:layout_marginStart="@dimen/margin_10"
+            app:civ_border_width="@dimen/margin_2"
+            app:civ_border_color="@color/color_white"
+            />
+
+        <TextView
+            android:id="@+id/tvCustomerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imgCustomerProfile"
+            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginStart="@dimen/margin_10"
+            android:text="Customer Name"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/text_size_15"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/customer_phone_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCustomerName"
+            android:layout_toEndOf="@id/imgCustomerProfile"
+            android:layout_marginStart="@dimen/margin_10"
+            android:text="Phone :"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_9a7c84"/>
+
+        <TextView
+            android:id="@+id/tvCustomerPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCustomerName"
+            android:layout_toEndOf="@id/customer_phone_0"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_2"
+            android:text="0123456789"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="normal"
+            android:textColor="@color/color_9a7c84"
+            android:background="@null"
+            />
+
+        <TextView
+            android:id="@+id/customer_address_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customer_phone_0"
+            android:layout_toEndOf="@id/imgCustomerProfile"
+            android:layout_marginStart="@dimen/margin_10"
+            android:text="Address :"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_9a7c84"/>
+
+        <TextView
+            android:id="@+id/tvCustomerAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/customer_address_0"
+            android:layout_below="@id/tvCustomerPhone"
+            android:text="cairo, egypt"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="normal"
+            android:textColor="@color/color_9a7c84"
+            android:background="@null"
+            />
+
+
+        <TextView
+            android:id="@+id/tvCustomerDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customer_address_0"
+            android:layout_toEndOf="@id/imgCustomerProfile"
+            android:layout_marginStart="@dimen/margin_10"
+            android:paddingEnd="@dimen/padding_5"
+            android:text="Date :"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_9a7c84"/>
+
+        <TextView
+            android:id="@+id/tvOrderDateValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvCustomerDateLabel"
+            android:layout_below="@id/customer_address_0"
+            tools:text="22 jun 2020"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="normal"
+            android:textColor="@color/color_9a7c84"
+            android:background="@null"
+            />
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_10"
+            android:id="@+id/separator"
+            android:layout_below="@id/tvOrderDateValue"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="wrap_content"
+                android:text="Items"
+                android:paddingBottom="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/margin_5"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="0dp"
+                android:background="@color/color_9a7c84"
+                android:layout_weight="4"
+                android:layout_marginEnd="@dimen/margin_5"
+                android:layout_height="@dimen/separator_height"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCartItems"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator"
+            tools:listitem="@layout/layout_order_product"
+            android:paddingTop="@dimen/padding_5"
+            cardview:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:paddingBottom="@dimen/padding_5" />
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
+

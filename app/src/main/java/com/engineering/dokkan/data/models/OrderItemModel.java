@@ -21,7 +21,11 @@ public class OrderItemModel {
     String key;
     String date;
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDateFormatted(Date date) {
         SimpleDateFormat df = new SimpleDateFormat(Constants.DATE_TIME_FORMAT, Locale.getDefault());
         this.date = df.format(date);
     }

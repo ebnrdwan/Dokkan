@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,15 +44,14 @@ public class ProfileFragment extends BaseFragment {
     private StorageReference storageReference;
     private ProgressDialog loadingBar;
     Uri mImageUri;
-    String url ;
+    String url;
 
-    private CircleImageView profileimg ;
-    private TextView username  ;
-    private ImageView editname , editpic ;
-    private EditText namET ;
-    private Button ok , signout  , done_img;
+    private CircleImageView profileimg;
+    private TextView username;
+    private ImageView editname, editpic;
+    private EditText namET;
+    private Button ok, signout, done_img;
     private String currentUserID;
-
 
 
     public ProfileFragment() {
@@ -67,8 +65,8 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void initializeViews(View view) {
         storageReference = FirebaseStorage.getInstance().getReference();
-        currentUserID= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d(" current user " , " USER ID" + currentUserID);
+        currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Log.d(" current user ", " USER ID" + currentUserID);
 
 
         profileimg = view.findViewById(R.id.profile_image);
@@ -84,7 +82,7 @@ public class ProfileFragment extends BaseFragment {
 
         ListView listView = view.findViewById(R.id.list);
         ArrayList<String> list = AddingOptionsToList();
-        OptionAdapter adapter = new OptionAdapter(requireActivity() , list);
+        OptionAdapter adapter = new OptionAdapter(requireActivity(), list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onOptionClickListener);
 
@@ -98,15 +96,15 @@ public class ProfileFragment extends BaseFragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    if( snapshot.child("name").exists()) {
+                    if (snapshot.child("name").exists()) {
                         String n = snapshot.child("name").getValue(String.class);
                         username.setText(n);
                         Log.d("text view", "name" + n);
                     }
-                    if ( snapshot.child("userImage").exists()){
-                    String url = snapshot.child("userImage").getValue(String.class);
+                    if (snapshot.child("userImage").exists()) {
+                        String url = snapshot.child("userImage").getValue(String.class);
                         Picasso.get().load(url).into(profileimg);
                     }
 
@@ -126,11 +124,14 @@ public class ProfileFragment extends BaseFragment {
     private AdapterView.OnItemClickListener onOptionClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            switch ((position)){
-                case 1 :
+            switch ((position)) {
+                case 0:
+                    getNavController().navigate(R.id.action_profileFragment_to_ordersFragment);
+                    break;
+                case 1:
                     getNavController().navigate(R.id.action_profileFragment_to_chatFragement);
-                    break ;
-                case 5 :
+                    break;
+                case 5:
                     getNavController().navigate(R.id.action_profileFragment_to_addressesfragment);
 
             }
@@ -185,11 +186,11 @@ public class ProfileFragment extends BaseFragment {
                     @Override
                     public void onClick(View view) {
 
-                        DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("Users")
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users")
                                 .child(currentUserID);
-                        databaseReference.child("name").setValue( namET.getText().toString() );
+                        databaseReference.child("name").setValue(namET.getText().toString());
                         username.setVisibility(View.VISIBLE);
-                        username.setText( namET.getText().toString());
+                        username.setText(namET.getText().toString());
                         namET.setVisibility(View.INVISIBLE);
                         ok.setVisibility(View.INVISIBLE);
 
@@ -203,7 +204,7 @@ public class ProfileFragment extends BaseFragment {
 
     }
 
-    private ArrayList<String> AddingOptionsToList (){
+    private ArrayList<String> AddingOptionsToList() {
         final ArrayList<String> list = new ArrayList<String>();
         list.add("My Orders");
         list.add("Messages");
@@ -211,13 +212,13 @@ public class ProfileFragment extends BaseFragment {
         list.add("Help");
         list.add("Languages");
         list.add("My Address Book");
-        return list ;
+        return list;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK&& data != null && data.getData() != null) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             mImageUri = data.getData();
             Picasso.get().load(mImageUri).into(profileimg);
         }
@@ -231,7 +232,7 @@ public class ProfileFragment extends BaseFragment {
 
     private void uploadFile() {
         if (mImageUri != null) {
-            final StorageReference fileReference = storageReference.child("UserImages/" +System.currentTimeMillis()
+            final StorageReference fileReference = storageReference.child("UserImages/" + System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
             fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

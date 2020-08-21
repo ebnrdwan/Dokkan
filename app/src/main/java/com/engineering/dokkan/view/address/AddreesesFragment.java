@@ -17,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.engineering.dokkan.R;
 import com.engineering.dokkan.data.SharedPreference;
+import com.engineering.dokkan.data.models.AddressModel;
 import com.engineering.dokkan.data.models.CartItem;
 import com.engineering.dokkan.data.models.OrderItemModel;
-import com.engineering.dokkan.data.models.AddressModel;
-import com.engineering.dokkan.view.orders.OrdersFragment;
+import com.engineering.dokkan.view.cart.CartFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,16 +34,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AddreesesFragment extends Fragment implements View.OnClickListener  {
+public class AddreesesFragment extends Fragment implements View.OnClickListener {
 
 
     private ImageView arrowBack;
     private RecyclerView addressRecycle;
-    private Button addAddressBtn , orderTotal;
-    private AddressAdapter adapter ;
+    private Button addAddressBtn, orderTotal;
+    private AddressAdapter adapter;
     private DatabaseReference databaseReference;
     private List<AddressModel> addressList;
-
 
 
     public AddreesesFragment() {
@@ -54,7 +53,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_addreeses, container, false);
+        View view = inflater.inflate(R.layout.fragment_addreeses, container, false);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -71,8 +70,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 addressList = new ArrayList<AddressModel>();
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     AddressModel addressModel = dataSnapshot1.getValue(AddressModel.class);
                     addressList.add(addressModel);
                 }
@@ -88,13 +86,13 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     }
 
 
-    private void initView( View itemView) {
+    private void initView(View itemView) {
         arrowBack = itemView.findViewById(R.id.arrow_back);
         addressRecycle = itemView.findViewById(R.id.recyclerview_id_address);
-        addAddressBtn =  itemView.findViewById(R.id.plus_button);
+        addAddressBtn = itemView.findViewById(R.id.plus_button);
         orderTotal = itemView.findViewById(R.id.order_total);
         orderTotal.setOnClickListener(this);
-       addAddressBtn.setOnClickListener(this);
+        addAddressBtn.setOnClickListener(this);
     }
 
     private void initRecView() {
@@ -104,18 +102,19 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
 
 
     NavController getNavController() {
-        return Navigation.findNavController(getActivity(), R.id.my_nav_host);}
+        return Navigation.findNavController(getActivity(), R.id.my_nav_host);
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-           case R.id.plus_button:
-               getNavController().navigate(R.id.action_addressesfragment_to_addAddressFragment);
+            case R.id.plus_button:
+                getNavController().navigate(R.id.action_addressesfragment_to_addAddressFragment);
                 break;
             case R.id.order_total:
 
-                if (AddressAdapter.addressModel == null){
-                    Snackbar.make(v,"please select Address or Add new Address" , Snackbar.LENGTH_LONG).show();
+                if (AddressAdapter.addressModel == null) {
+                    Snackbar.make(v, "please select Address or Add new Address", Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 addOrder();
@@ -128,11 +127,11 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
 
     private void addOrder() {
 
-         Log.e("a",databaseReference.push().getKey());
-       databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
+        Log.e("a", databaseReference.push().getKey());
+        databaseReference = FirebaseDatabase.getInstance().getReference("Orders").push();
 
 
-        final List <CartItem> cartItems = OrdersFragment.cartItemList;
+        final List<CartItem> cartItems = CartFragment.cartItemList;
 
         AddressModel addressModel = AddressAdapter.addressModel;
 
@@ -142,16 +141,21 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
         orderItemModel.setCartItem(cartItems);
 
         orderItemModel.setKey(databaseReference.getKey());
-        orderItemModel.setDate(new Date());
+        orderItemModel.setDateFormatted(new Date());
 
-    databaseReference.setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                Toast.makeText(getContext(),"completed" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "completed", Toast.LENGTH_LONG).show();
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(SharedPreference.getInstance(getContext()).getUser());
-                databaseReference.child("cart").removeValue();
+                databaseReference.child("cart").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        getNavController().navigate(R.id.action_addressesfragment_to_allOrdersFragment);
+                    }
+                });
             }
         });
     }

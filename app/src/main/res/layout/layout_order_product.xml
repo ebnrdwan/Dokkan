@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_5"
+        android:paddingBottom="@dimen/padding_5">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/product_image_0"
+            android:layout_width="@dimen/profile_img_width_height"
+            android:layout_height="@dimen/profile_img_width_height"
+            android:layout_marginStart="@dimen/margin_10"
+            app:civ_border_color="@color/color_white"
+            app:civ_border_width="@dimen/layout_dimens_2"
+            tools:src="@drawable/icon3" />
+
+        <TextView
+            android:id="@+id/item_name_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toEndOf="@+id/product_image_0"
+            android:text="@string/item_name"
+            android:textColor="@color/color_6a4e5d"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/quantity_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name_0"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_toEndOf="@id/product_image_0"
+            android:text="Quantity : "
+            android:textColor="@color/color_9a7c84"
+            android:textSize="@dimen/text_Size_17" />
+
+        <TextView
+            android:id="@+id/quantity_number_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name_0"
+            android:layout_toEndOf="@id/quantity_0"
+            android:background="@null"
+            android:paddingStart="@dimen/padding_5"
+            android:paddingTop="3dp"
+            android:text="3"
+            android:textColor="@color/color_9a7c84"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="normal" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quantity_number_0"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_15"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/status_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:paddingStart="@dimen/margin_5"
+                android:paddingEnd="@dimen/margin_5"
+                tools:text="Processing"
+                android:layout_marginTop="@dimen/margin_3"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:background="@drawable/bg_round_btn"
+                android:gravity="center"
+                android:textColor="@color/color_white"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

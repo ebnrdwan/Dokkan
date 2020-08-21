@@ -2,7 +2,7 @@ package com.engineering.dokkan.data.models;
 
 public  class CartItem {
 
-    String productImage, productName , shopName  , productId, shopId  , status, key;
+ public    String productImage, productName , shopName  , productId, shopId  , status, key;
 
     int productQuanitity , productPrice  ;
 

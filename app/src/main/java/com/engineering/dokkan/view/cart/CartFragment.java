@@ -1,8 +1,6 @@
-package com.engineering.dokkan.view.orders;
+package com.engineering.dokkan.view.cart;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class OrdersFragment extends Fragment implements View.OnClickListener {
+public class CartFragment extends Fragment implements View.OnClickListener {
 
 
     private ImageView mBackArrow;
@@ -38,14 +36,14 @@ public class OrdersFragment extends Fragment implements View.OnClickListener {
     private TextView mAddressTv;
     private RecyclerView orderRecyclerview;
     private Button addAddress;
-    private OrderAdapter adapter ;
+    private CartAdapter adapter ;
 
     private DatabaseReference databaseReference;
     public static List<CartItem> cartItemList;
     private List<Integer> orders;
 
 
-    public OrdersFragment() {
+    public CartFragment() {
         // Required empty public constructor
     }
 
@@ -55,7 +53,7 @@ public class OrdersFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_orders, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -89,7 +87,7 @@ public class OrdersFragment extends Fragment implements View.OnClickListener {
 
 
     private void initRecView() {
-        adapter = new OrderAdapter(getContext());
+        adapter = new CartAdapter(getContext());
         orderRecyclerview.setAdapter(adapter);
 
     }
@@ -110,7 +108,6 @@ public class OrdersFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case  R.id.add_your_address :
                 Toast.makeText(getContext(),"ww", Toast.LENGTH_SHORT).show();
                 getNavController().navigate(R.id.action_ordersFragment_to_addressesfragment);

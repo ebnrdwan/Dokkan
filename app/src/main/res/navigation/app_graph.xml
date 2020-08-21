@@ -156,6 +156,10 @@
         <action
             android:id="@+id/action_profileFragment_to_chatFragement"
             app:destination="@id/chatFragement" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_ordersFragment"
+            app:destination="@id/allOrdersListFragment" />
         <action
             android:id="@+id/action_profileFragment_to_addressesfragment"
             app:destination="@id/addressesfragment" />
@@ -200,10 +204,10 @@
         android:name="com.engineering.dokkan.view.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
-        android:id="@+id/ordersFragment"
-        android:name="com.engineering.dokkan.view.orders.OrdersFragment"
+        android:id="@+id/cartFragment"
+        android:name="com.engineering.dokkan.view.cart.CartFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" >
+        tools:layout="@layout/fragment_cart" >
 
         <action
             android:id="@+id/action_ordersFragment_to_addressesfragment"
@@ -219,7 +223,11 @@
         tools:layout="@layout/fragment_addreeses" >
 
 
-
+        <action
+            android:id="@+id/action_addressesfragment_to_allOrdersFragment"
+            app:destination="@id/allOrdersListFragment"
+            app:popUpTo="@id/allOrdersListFragment"
+            app:popUpToInclusive="true"/>
 
 
         <action
@@ -254,7 +262,7 @@
         android:label="ProductDetailsFragment" >
         <action
             android:id="@+id/action_productDetailsFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment" />
+            app:destination="@id/cartFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_to_ProductDetails"
@@ -265,4 +273,19 @@
         app:popUpTo="@id/app_graph"
         app:popUpToInclusive="true"
         app:destination="@id/loginFragment" />
+    <fragment
+        android:id="@+id/allOrdersListFragment"
+        android:name="com.engineering.dokkan.view.orders.allOrders.AllOrdersListFragment"
+        android:label="AllOrdersListFragment">
+
+        <action
+            android:id="@+id/action_orderList_To_OrderDetails"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.engineering.dokkan.view.orders.OrderDetailsFragment.OrderDetailsFragment"
+        android:label="OrderDetailsFragment" />
+
+
 </navigation>
