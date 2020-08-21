@@ -43,12 +43,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressH
 
     @Override
     public void onBindViewHolder(@NonNull final AddressAdapter.AddressHolder holder, final int position) {
+
         holder.customer_address.setText(addressList.get(position).getCustomerAddress());
         holder.customer_country.setText(addressList.get(position).getCustomerCountry());
         holder.customer_name.setText(addressList.get(position).getCustomerName());
         holder.customer_number.setText(addressList.get(position).getCustomerNumber());
         holder.radioButton.setChecked(lastSelectedPosition == position);
-
 
     }
 

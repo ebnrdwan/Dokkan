@@ -85,7 +85,6 @@ public class ProductDetailsFragment extends BaseFragment {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"aa",Toast.LENGTH_LONG).show();
                 CartItem cartItem = new CartItem();
                 cartItem.setProductImage(pImage);
                 cartItem.setProductName(pName);
@@ -94,6 +93,7 @@ public class ProductDetailsFragment extends BaseFragment {
                 cartItem.setProductId(prod_id);
                 cartItem.setShopId(shopId);
                 cartItem.setShopName(shName);
+                cartItem.setStatus("Pending");
                FirebaseDatabase.getInstance().getReference("Users")
                         .child(SharedPreference.getInstance(getContext()).getUser()).child("cart").child(prod_id).setValue(cartItem);
 

@@ -127,8 +127,10 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
     }
 
     private void addOrder() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").push();
-         Log.e("a",databaseReference.getKey());
+
+         Log.e("a",databaseReference.push().getKey());
+         databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
+
 
         List <CartItem> cartItems = OrdersFragment.cartItemList;
 
@@ -138,14 +140,14 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
 
         orderItemModel.setAddress(addressModel);
         orderItemModel.setCartItem(cartItems);
-        orderItemModel.setStatus("Pending");
 
+        orderItemModel.setKey(databaseReference.getKey());
 
-        FirebaseDatabase.getInstance().getReference("Orders").
-                push().setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+    databaseReference.setValue(orderItemModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
+                databaseReference.child("Users").child(SharedPreference.getInstance(getContext()).getUser()).child("cart").removeValue();
             }
         });
     }

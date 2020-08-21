@@ -13,7 +13,7 @@ public class OrderItemModel {
     }
 
     List <CartItem> cartItem ;
-    String status   , key ;
+    String  key ;
     viewAddressModel address;
     public List<CartItem> getCartItem() {
         return cartItem;
@@ -32,11 +32,5 @@ public class OrderItemModel {
     }
 
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

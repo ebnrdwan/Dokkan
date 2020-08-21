@@ -70,7 +70,7 @@ public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder
 
                 int price = newValue * cartItems.get(position).getProductPrice();
 
-                holder.itemPrice.setText(price + "L.E");
+                holder.itemPrice.setText(price + "$");
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(SharedPreference.getInstance(context).getUser());
                 databaseReference.child("cart").child(cartItems.get(position).getProductId()).child("sum").setValue(price + "");
