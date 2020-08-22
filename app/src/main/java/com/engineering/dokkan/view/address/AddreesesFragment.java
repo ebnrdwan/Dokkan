@@ -20,7 +20,6 @@ import com.engineering.dokkan.data.SharedPreference;
 import com.engineering.dokkan.data.models.CartItem;
 import com.engineering.dokkan.data.models.OrderItemModel;
 import com.engineering.dokkan.data.models.viewAddressModel;
-import com.engineering.dokkan.view.orders.OrderAdapter;
 import com.engineering.dokkan.view.orders.OrdersFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddreesesFragment extends Fragment implements View.OnClickListener  {
 
@@ -131,6 +134,13 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
          Log.e("a",databaseReference.push().getKey());
          databaseReference =   FirebaseDatabase.getInstance().getReference("Orders").push();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String sDate = sdf.format(new Date());
+
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss ");
+         String sTime = sdf2.format(new Date());
+
 
         final List <CartItem> cartItems = OrdersFragment.cartItemList;
 
@@ -140,6 +150,7 @@ public class AddreesesFragment extends Fragment implements View.OnClickListener 
 
         orderItemModel.setAddress(addressModel);
         orderItemModel.setCartItem(cartItems);
+        orderItemModel.setTime(sDate +" /////  " + sTime);
 
         orderItemModel.setKey(databaseReference.getKey());
 

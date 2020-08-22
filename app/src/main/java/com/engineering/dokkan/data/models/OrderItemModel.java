@@ -13,7 +13,17 @@ public class OrderItemModel {
     }
 
     List <CartItem> cartItem ;
-    String  key ;
+    String  key;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    String time ;
     viewAddressModel address;
     public List<CartItem> getCartItem() {
         return cartItem;
